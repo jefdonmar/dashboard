@@ -67,7 +67,7 @@ var _herokuConstant2 = _interopRequireDefault(_herokuConstant);
 
 _angular2['default'].module('app.core', ['ui.router']).config(_config2['default']).constant('HEROKU', _herokuConstant2['default']);
 
-},{"./config":1,"./heroku.constant":2,"angular":12,"angular-ui-router":10}],4:[function(require,module,exports){
+},{"./config":1,"./heroku.constant":2,"angular":13,"angular-ui-router":11}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -98,18 +98,52 @@ var _controllersHomeController2 = _interopRequireDefault(_controllersHomeControl
 
 _angular2['default'].module('app.layout', []).controller('HomeController', _controllersHomeController2['default']);
 
-},{"./controllers/home.controller":4,"angular":12}],6:[function(require,module,exports){
+},{"./controllers/home.controller":4,"angular":13}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var AddSubscriberController = function AddSubscriberController($state) {
+var AddSubscriberController = function AddSubscriberController($state, $scope, SubscriberService) {
 
   console.log('Hello from the add subscriber controller');
+
+  // set view model to this object
+  var vm = this;
+
+  // set of functions we will define in the controller
+  vm.addSubscriber = addSubscriber;
+  vm.validateEmail = validateEmail;
+
+  // use the form inputs to add a subscriber to the database
+
+  function addSubscriber(subObj) {
+    console.log('Supposed to add now');
+    SubscriberService.addSubscriber(subObj).then(function (response) {
+      console.log(response);
+      $state.go('root.home');
+    });
+  }
+
+  // watch the email entry field in the form and validate @ symbol with error msg
+  $scope.$watch('sub.email', function (newVal) {
+
+    if (!newVal) return;
+
+    if (!validateEmail(newVal)) {
+      $scope.sub.emailError = 'Email needs an @ symbol';
+      return console.log('Email needs an @ symbol');
+    } else {
+      $scope.sub.emailError = undefined;
+    }
+  });
+
+  function validateEmail(field) {
+    return field.indexOf('@') >= 0 ? true : false;
+  }
 };
 
-AddSubscriberController.$inject = ['$state'];
+AddSubscriberController.$inject = ['$state', '$scope', 'SubscriberService'];
 
 exports['default'] = AddSubscriberController;
 module.exports = exports['default'];
@@ -127,9 +161,46 @@ var _controllersAddSubscriberController = require('./controllers/add-subscriber.
 
 var _controllersAddSubscriberController2 = _interopRequireDefault(_controllersAddSubscriberController);
 
-_angular2['default'].module('app.subscriber', []).controller('AddSubscriberController', _controllersAddSubscriberController2['default']);
+var _servicesSubscriberService = require('./services/subscriber.service');
 
-},{"./controllers/add-subscriber.controller":6,"angular":12}],8:[function(require,module,exports){
+var _servicesSubscriberService2 = _interopRequireDefault(_servicesSubscriberService);
+
+_angular2['default'].module('app.subscriber', []).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
+
+},{"./controllers/add-subscriber.controller":6,"./services/subscriber.service":8,"angular":13}],8:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var SubscriberService = function SubscriberService($http, HEROKU) {
+
+  var url = HEROKU.URL + 'classes/subscriber';
+
+  this.addSubscriber = addSubscriber;
+  // this.editSubscriber    = editSubscriber;
+  // this.getAllSubscribers = getAllSubscribers;
+
+  function Subscriber(subObj) {
+    this.firstName = subObj.firstName;
+    this.lastName = subObj.lastName;
+    this.email = subObj.email;
+  }
+
+  function addSubscriber(subObj) {
+    var sub = new Subscriber(subObj);
+    console.log('Subscriber has been added');
+    console.log(sub);
+    return $http.post(url, sub, HEROKU.CONFIG);
+  }
+};
+
+SubscriberService.$inject = ['$http', 'HEROKU'];
+
+exports['default'] = SubscriberService;
+module.exports = exports['default'];
+
+},{}],9:[function(require,module,exports){
 // Import Chart JS - move to another file later
 'use strict';
 
@@ -157,7 +228,7 @@ require('./app-subscriber/index');
 
 console.dir(_chartJs2['default']);_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber']);
 
-},{"./app-core/index":3,"./app-layout/index":5,"./app-subscriber/index":7,"angular":12,"chart.js":9}],9:[function(require,module,exports){
+},{"./app-core/index":3,"./app-layout/index":5,"./app-subscriber/index":7,"angular":13,"chart.js":10}],10:[function(require,module,exports){
 /*!
  * Chart.js
  * http://chartjs.org/
@@ -3635,7 +3706,7 @@ console.dir(_chartJs2['default']);_angular2['default'].module('app', ['app.core'
 
 
 }).call(this);
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -8006,7 +8077,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.7
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -36911,11 +36982,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":11}]},{},[8])
+},{"./angular":12}]},{},[9])
 
 
 //# sourceMappingURL=main.js.map

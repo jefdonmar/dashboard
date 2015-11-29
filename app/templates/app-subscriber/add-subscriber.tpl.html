@@ -1,3 +1,9 @@
 <h3>Add subscriber page</h3>
 
-<add-subscriber sub="vm.sub"></add-subscriber>
+<form ng-submit="vm.addSubscriber(sub)">
+  <input placeholder="First Name..." ng-model="sub.firstName">
+  <input placeholder="Last Name..." ng-model="sub.lastName">
+  <input placeholder="Email address..." ng-model="sub.email">
+  <p ng-show="sub.emailError" class="form-error-message">{{ sub.emailError }}</p>
+  <button>Submit</button>
+</form>

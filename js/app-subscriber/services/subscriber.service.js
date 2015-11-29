@@ -3,8 +3,8 @@ let SubscriberService = function($http, HEROKU) {
   let url = HEROKU.URL + 'classes/subscriber';
 
   this.addSubscriber     = addSubscriber;
-  this.editSubscriber    = editSubscriber;
-  this.getAllSubscribers = getAllSubscribers;
+  // this.editSubscriber    = editSubscriber;
+  // this.getAllSubscribers = getAllSubscribers;
 
 
   function Subscriber (subObj) {
