@@ -6390,4 +6390,8 @@ th.hide-for-touch {
 body {
   background: #e2ebf3; }
 
+body .container {
+  margin: 10px auto;
+  max-width: 600px; }
+
 /*# sourceMappingURL=main.css.map */

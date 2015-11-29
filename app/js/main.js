@@ -15,6 +15,10 @@ var config = function config($urlRouterProvider, $stateProvider) {
     url: '/',
     controller: 'HomeController as vm',
     templateUrl: 'templates/app-layout/home.tpl.html'
+  }).state('root.add-subscriber', {
+    url: '/add-subscriber',
+    controller: 'AddSubscriberController as vm',
+    templateUrl: 'templates/app-subscriber/add-subscriber.tpl.html'
   });
 };
 
