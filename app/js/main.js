@@ -28,7 +28,23 @@ exports['default'] = config;
 module.exports = exports['default'];
 
 },{}],2:[function(require,module,exports){
-"use strict";
+// ACTUALLY PARSE AS OF NOW -- NEED TO REPLACE WITH HEROKU APP INFO
+
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports['default'] = {
+  URL: 'https://api.parse.com/1/',
+  CONFIG: {
+    headers: {
+      'X-Parse-Application-Id': 'Q9LkVIWcElPlKO8Vqp84E9t6RNAneyjquY7c17WC',
+      'X-Parse-REST-API-Key': 'zROPKm2h7Zj1PvbejjaVmaI9KgU1TK4YwOim5wLS'
+    }
+  }
+};
+module.exports = exports['default'];
 
 },{}],3:[function(require,module,exports){
 'use strict';
@@ -49,7 +65,7 @@ var _herokuConstant = require('./heroku.constant');
 
 var _herokuConstant2 = _interopRequireDefault(_herokuConstant);
 
-_angular2['default'].module('app.core', ['ui.router']).config(_config2['default']);
+_angular2['default'].module('app.core', ['ui.router']).config(_config2['default']).constant('HEROKU', _herokuConstant2['default']);
 
 },{"./config":1,"./heroku.constant":2,"angular":12,"angular-ui-router":10}],4:[function(require,module,exports){
 'use strict';

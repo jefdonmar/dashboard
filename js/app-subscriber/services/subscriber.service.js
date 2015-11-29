@@ -1,10 +1,10 @@
-let SubscriberService = function($http) {
+let SubscriberService = function($http, HEROKU) {
   
-  // inject HEROKU
-  // let url = HEROKU.URL + '';
+  let url = HEROKU.URL + 'classes/subscriber';
 
-  this.addSubscriber  = addSubscriber;
-  this.editSubscriber = editSubscriber;
+  this.addSubscriber     = addSubscriber;
+  this.editSubscriber    = editSubscriber;
+  this.getAllSubscribers = getAllSubscribers;
 
 
   function Subscriber (subObj) {
@@ -15,13 +15,13 @@ let SubscriberService = function($http) {
 
   function addSubscriber (subObj) {
     let sub = new Subscriber(subObj);
-    // return $http.post(url, sub, HEROKU.CONFIG);
     console.log('Subscriber has been added');
     console.log(sub);
+    return $http.post(url, sub, HEROKU.CONFIG);
   }
 
 };
 
-SubscriberService.$inject = ['$http'];
+SubscriberService.$inject = ['$http', 'HEROKU'];
 
 export default SubscriberService;
