@@ -2,10 +2,9 @@ let SubscriberService = function($http, HEROKU) {
   
   let url = HEROKU.URL + 'classes/subscriber';
 
-  this.addSubscriber     = addSubscriber;
+  this.addSubscriber = addSubscriber;
+  this.getAllSubscribers = getAllSubscribers;
   // this.editSubscriber    = editSubscriber;
-  // this.getAllSubscribers = getAllSubscribers;
-
 
   function Subscriber (subObj) {
     this.firstName = subObj.firstName;
@@ -19,6 +18,12 @@ let SubscriberService = function($http, HEROKU) {
     console.log(sub);
     return $http.post(url, sub, HEROKU.CONFIG);
   }
+
+  function getAllSubscribers () {
+    return $http.get(url, HEROKU.CONFIG);
+  }
+
+
 
 };
 

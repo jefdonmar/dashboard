@@ -19,6 +19,10 @@ var config = function config($urlRouterProvider, $stateProvider) {
     url: '/add-subscriber',
     controller: 'AddSubscriberController as vm',
     templateUrl: 'templates/app-subscriber/add-subscriber.tpl.html'
+  }).state('root.view-subscribers', {
+    url: '/view-subscribers',
+    controller: 'ViewSubscribersController as vm',
+    templateUrl: 'templates/app-subscriber/view-subscribers.tpl.html'
   });
 };
 
@@ -67,7 +71,7 @@ var _herokuConstant2 = _interopRequireDefault(_herokuConstant);
 
 _angular2['default'].module('app.core', ['ui.router']).config(_config2['default']).constant('HEROKU', _herokuConstant2['default']);
 
-},{"./config":1,"./heroku.constant":2,"angular":13,"angular-ui-router":11}],4:[function(require,module,exports){
+},{"./config":1,"./heroku.constant":2,"angular":15,"angular-ui-router":13}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -98,7 +102,7 @@ var _controllersHomeController2 = _interopRequireDefault(_controllersHomeControl
 
 _angular2['default'].module('app.layout', []).controller('HomeController', _controllersHomeController2['default']);
 
-},{"./controllers/home.controller":4,"angular":13}],6:[function(require,module,exports){
+},{"./controllers/home.controller":4,"angular":15}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -151,23 +155,104 @@ module.exports = exports['default'];
 },{}],7:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var ViewSubscribersController = function ViewSubscribersController($state, $scope, SubscriberService) {
+
+  console.log('Hello from the view subscribers controller');
+
+  // set view model to this object
+  var vm = this;
+
+  // connect data to scope of the controller through view model
+  vm.subscribers = [];
+  vm.clicked = clicked;
+
+  activate();
+
+  function activate() {
+    console.log('fetch');
+    // SubscriberService.getAllSubscribers().then( (response)=> {
+    //   console.log('subscribers have been fetched');
+    //   vm.subscribers = response.data.results;
+    // });
+  }
+
+  function clicked(sub) {
+    console.log('clicked', sub.firstName);
+  }
+};
+
+ViewSubscribersController.$inject = ['$state', '$scope', 'SubscriberService'];
+
+exports['default'] = ViewSubscribersController;
+module.exports = exports['default'];
+
+},{}],8:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var subscriberItem = function subscriberItem(SubscriberService) {
+
+  return {
+
+    restrict: 'EA', // Restrict to element only
+    replace: true, // Replace as opposed to inserting into
+    scope: {
+      sub: '='
+    },
+    templateUrl: 'templates/app-subscriber/view-subscribers.tpl.html',
+    controller: 'ViewSubscribersController as vm',
+    link: function link(scope, element, attrs) {
+      element.on('click', function () {
+        console.log('subscriber was clicked');
+      });
+    }
+  };
+};
+
+subscriberItem.$inject = ['SubscriberService'];
+
+exports['default'] = subscriberItem;
+module.exports = exports['default'];
+
+},{}],9:[function(require,module,exports){
+'use strict';
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _angular = require('angular');
 
 var _angular2 = _interopRequireDefault(_angular);
 
+// CONTROLLERS
+
 var _controllersAddSubscriberController = require('./controllers/add-subscriber.controller');
 
 var _controllersAddSubscriberController2 = _interopRequireDefault(_controllersAddSubscriberController);
+
+var _controllersViewSubscribersController = require('./controllers/view-subscribers.controller');
+
+var _controllersViewSubscribersController2 = _interopRequireDefault(_controllersViewSubscribersController);
+
+// DIRECTIVES
+
+var _directivesSubscriberItemDirective = require('./directives/subscriberItem.directive');
+
+var _directivesSubscriberItemDirective2 = _interopRequireDefault(_directivesSubscriberItemDirective);
+
+// SERVICES
 
 var _servicesSubscriberService = require('./services/subscriber.service');
 
 var _servicesSubscriberService2 = _interopRequireDefault(_servicesSubscriberService);
 
-_angular2['default'].module('app.subscriber', []).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
+_angular2['default'].module('app.subscriber', []).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
 
-},{"./controllers/add-subscriber.controller":6,"./services/subscriber.service":8,"angular":13}],8:[function(require,module,exports){
+},{"./controllers/add-subscriber.controller":6,"./controllers/view-subscribers.controller":7,"./directives/subscriberItem.directive":8,"./services/subscriber.service":10,"angular":15}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -178,8 +263,8 @@ var SubscriberService = function SubscriberService($http, HEROKU) {
   var url = HEROKU.URL + 'classes/subscriber';
 
   this.addSubscriber = addSubscriber;
+  this.getAllSubscribers = getAllSubscribers;
   // this.editSubscriber    = editSubscriber;
-  // this.getAllSubscribers = getAllSubscribers;
 
   function Subscriber(subObj) {
     this.firstName = subObj.firstName;
@@ -193,6 +278,10 @@ var SubscriberService = function SubscriberService($http, HEROKU) {
     console.log(sub);
     return $http.post(url, sub, HEROKU.CONFIG);
   }
+
+  function getAllSubscribers() {
+    return $http.get(url, HEROKU.CONFIG);
+  }
 };
 
 SubscriberService.$inject = ['$http', 'HEROKU'];
@@ -200,7 +289,7 @@ SubscriberService.$inject = ['$http', 'HEROKU'];
 exports['default'] = SubscriberService;
 module.exports = exports['default'];
 
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 // Import Chart JS - move to another file later
 'use strict';
 
@@ -209,6 +298,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'd
 var _chartJs = require('chart.js');
 
 var _chartJs2 = _interopRequireDefault(_chartJs);
+
+// console.dir(Chart);
 
 // Import angular
 
@@ -225,10 +316,9 @@ require('./app-layout/index');
 require('./app-subscriber/index');
 
 // Instantiate angular module
+_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber']);
 
-console.dir(_chartJs2['default']);_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber']);
-
-},{"./app-core/index":3,"./app-layout/index":5,"./app-subscriber/index":7,"angular":13,"chart.js":10}],10:[function(require,module,exports){
+},{"./app-core/index":3,"./app-layout/index":5,"./app-subscriber/index":9,"angular":15,"chart.js":12}],12:[function(require,module,exports){
 /*!
  * Chart.js
  * http://chartjs.org/
@@ -3706,7 +3796,7 @@ console.dir(_chartJs2['default']);_angular2['default'].module('app', ['app.core'
 
 
 }).call(this);
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -8077,7 +8167,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.7
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -36982,11 +37072,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":12}]},{},[9])
+},{"./angular":14}]},{},[11])
 
 
 //# sourceMappingURL=main.js.map

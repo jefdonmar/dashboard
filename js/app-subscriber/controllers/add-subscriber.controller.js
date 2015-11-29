@@ -9,8 +9,6 @@ let AddSubscriberController = function($state, $scope, SubscriberService) {
   vm.addSubscriber = addSubscriber;
   vm.validateEmail = validateEmail;
 
-
-
   // use the form inputs to add a subscriber to the database
 
   function addSubscriber (subObj) {

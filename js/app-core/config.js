@@ -16,6 +16,11 @@ let config = function($urlRouterProvider, $stateProvider) {
       url: '/add-subscriber',
       controller: 'AddSubscriberController as vm',
       templateUrl: 'templates/app-subscriber/add-subscriber.tpl.html'
+    })
+    .state('root.view-subscribers', {
+      url: '/view-subscribers',
+      controller: 'ViewSubscribersController as vm',
+      templateUrl: 'templates/app-subscriber/view-subscribers.tpl.html'
     });
 
 };
