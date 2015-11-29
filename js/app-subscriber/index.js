@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import AddSubscriberController from './controllers/add-subcriber.controller';
+import AddSubscriberController from './controllers/add-subscriber.controller';
 
 angular
   .module('app.subscriber', [])

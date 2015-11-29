@@ -51,7 +51,7 @@ var _herokuConstant2 = _interopRequireDefault(_herokuConstant);
 
 _angular2['default'].module('app.core', ['ui.router']).config(_config2['default']);
 
-},{"./config":1,"./heroku.constant":2,"angular":10,"angular-ui-router":8}],4:[function(require,module,exports){
+},{"./config":1,"./heroku.constant":2,"angular":12,"angular-ui-router":10}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -82,7 +82,38 @@ var _controllersHomeController2 = _interopRequireDefault(_controllersHomeControl
 
 _angular2['default'].module('app.layout', []).controller('HomeController', _controllersHomeController2['default']);
 
-},{"./controllers/home.controller":4,"angular":10}],6:[function(require,module,exports){
+},{"./controllers/home.controller":4,"angular":12}],6:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var AddSubscriberController = function AddSubscriberController($state) {
+
+  console.log('Hello from the add subscriber controller');
+};
+
+AddSubscriberController.$inject = ['$state'];
+
+exports['default'] = AddSubscriberController;
+module.exports = exports['default'];
+
+},{}],7:[function(require,module,exports){
+'use strict';
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _angular = require('angular');
+
+var _angular2 = _interopRequireDefault(_angular);
+
+var _controllersAddSubscriberController = require('./controllers/add-subscriber.controller');
+
+var _controllersAddSubscriberController2 = _interopRequireDefault(_controllersAddSubscriberController);
+
+_angular2['default'].module('app.subscriber', []).controller('AddSubscriberController', _controllersAddSubscriberController2['default']);
+
+},{"./controllers/add-subscriber.controller":6,"angular":12}],8:[function(require,module,exports){
 // Import Chart JS - move to another file later
 'use strict';
 
@@ -104,11 +135,13 @@ require('./app-core/index');
 
 require('./app-layout/index');
 
+require('./app-subscriber/index');
+
 // Instantiate angular module
 
-console.dir(_chartJs2['default']);_angular2['default'].module('app', ['app.core', 'app.layout']);
+console.dir(_chartJs2['default']);_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber']);
 
-},{"./app-core/index":3,"./app-layout/index":5,"angular":10,"chart.js":7}],7:[function(require,module,exports){
+},{"./app-core/index":3,"./app-layout/index":5,"./app-subscriber/index":7,"angular":12,"chart.js":9}],9:[function(require,module,exports){
 /*!
  * Chart.js
  * http://chartjs.org/
@@ -3586,7 +3619,7 @@ console.dir(_chartJs2['default']);_angular2['default'].module('app', ['app.core'
 
 
 }).call(this);
-},{}],8:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -7957,7 +7990,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.7
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -36862,11 +36895,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":9}]},{},[6])
+},{"./angular":11}]},{},[8])
 
 
 //# sourceMappingURL=main.js.map
