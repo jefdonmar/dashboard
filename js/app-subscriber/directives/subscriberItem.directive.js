@@ -7,13 +7,15 @@ let subscriberItem = function(SubscriberService) {
     scope: {
       sub: '='
     },
-    templateUrl: 'templates/app-subscriber/view-subscribers.tpl.html',
     controller: 'ViewSubscribersController as vm',
-    link: function (scope, element, attrs) {
-      element.on('click', function () {
-        console.log('subscriber was clicked');
-      });
-    }
+    template: `
+      <div class="subscriber-block">
+        <p>Name: {{ sub.firstName }} {{ sub.lastName }}</p>
+        <p>Email: {{ sub.email }}</p>
+      </div>
+    `,
+    // link: function (scope, element, attrs) {
+    // }
   };
 
 };

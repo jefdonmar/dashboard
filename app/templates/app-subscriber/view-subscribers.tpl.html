@@ -1,7 +1,7 @@
-<div>
-  <subscriber-item
-    ng-repeat="s in subscribers" 
-    sub="s"
-    ng-click="vm.clicked(sub)">
-  </subscriber-item>
-</div>
+<h3>My subscribers</h3>
+<subscriber-item 
+  ng-repeat="s in vm.subscribers"
+  sub="s">
+</subscriber-item>
+
+

@@ -173,10 +173,11 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
 
   function activate() {
     console.log('fetch');
-    // SubscriberService.getAllSubscribers().then( (response)=> {
-    //   console.log('subscribers have been fetched');
-    //   vm.subscribers = response.data.results;
-    // });
+    SubscriberService.getAllSubscribers().then(function (response) {
+      console.log('subscribers have been fetched');
+      vm.subscribers = response.data.results;
+      console.log(vm.subscribers);
+    });
   }
 
   function clicked(sub) {
@@ -204,16 +205,13 @@ var subscriberItem = function subscriberItem(SubscriberService) {
     scope: {
       sub: '='
     },
-    templateUrl: 'templates/app-subscriber/view-subscribers.tpl.html',
     controller: 'ViewSubscribersController as vm',
-    link: function link(scope, element, attrs) {
-      element.on('click', function () {
-        console.log('subscriber was clicked');
-      });
-    }
+    template: '\n      <div class="subscriber-block">\n        <p>Name: {{ sub.firstName }} {{ sub.lastName }}</p>\n        <p>Email: {{ sub.email }}</p>\n      </div>\n    '
   };
 };
 
+// link: function (scope, element, attrs) {
+// }
 subscriberItem.$inject = ['SubscriberService'];
 
 exports['default'] = subscriberItem;
