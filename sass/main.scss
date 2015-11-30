@@ -2,6 +2,7 @@
 // See Readme for a list of supported ones
 
 @import "foundation";
+@import "font-awesome";
 
 body {
   background: #e2ebf3;
@@ -10,4 +11,12 @@ body {
 body .container {
   margin: 10px auto;
   max-width: 600px;
+}
+
+button .change-button {
+  width: 100px;
+  padding: 5px;
+  background-color: green;
+  border: 1px solid black;
+  font-size: .9em;
 }

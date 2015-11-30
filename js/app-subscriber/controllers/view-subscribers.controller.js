@@ -7,12 +7,12 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
   vm.subscribers = [];
   vm.clicked     = clicked;
 
+  $scope.sortType = 'firstName';
+
   activate();
 
   function activate () {
-    console.log('fetch');
     SubscriberService.getAllSubscribers().then( (response)=> {
-      console.log('subscribers have been fetched');
       vm.subscribers = response.data.results;
       console.log(vm.subscribers);
     });

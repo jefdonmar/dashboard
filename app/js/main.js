@@ -167,12 +167,12 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
   vm.subscribers = [];
   vm.clicked = clicked;
 
+  $scope.sortType = 'firstName';
+
   activate();
 
   function activate() {
-    console.log('fetch');
     SubscriberService.getAllSubscribers().then(function (response) {
-      console.log('subscribers have been fetched');
       vm.subscribers = response.data.results;
       console.log(vm.subscribers);
     });
@@ -198,19 +198,20 @@ var subscriberItem = function subscriberItem(SubscriberService) {
 
   return {
 
-    restrict: 'EA', // Restrict to element only
+    restrict: 'A', // Restrict to element only
     replace: true, // Replace as opposed to inserting into
     scope: {
       sub: '='
     },
     // transclude: true,
     // controller: 'ViewSubscribersController as vm', // Not needed?
-    template: '\n      <tr>\n        <td>{{ sub.firstName }}</td>\n        <td>{{ sub.lastName }}</td>\n        <td>{{ sub.email }}</td>\n        <td>\n          <input \n            type="checkbox"\n            ng-model="sub.Baseball"\n            ng-init="checked=true">\n            <span ng-if="sub.Baseball">Yes</span>\n        </td>\n      </tr>\n    '
+    template: '\n      <tr>\n        <td>{{ sub.firstName }}</td>\n        <td>{{ sub.lastName }}</td>\n        <td>{{ sub.email }}</td>\n        <td>\n          <input \n            type="checkbox"\n            ng-model="sub.Baseball"\n            ng-init="checked=true"\n            ng-click="changed=true">\n            <span ng-if="sub.Baseball">Yes</span>\n        <button class="change-button" ng-show="changed">Submit change</button>\n        </td>\n      </tr>\n    ',
+    link: function link(scope, element, attrs) {
+      scope.sortType = 'First Name';
+    }
   };
 };
 
-// link: function (scope, element, attrs) {
-// }
 subscriberItem.$inject = ['SubscriberService'];
 
 exports['default'] = subscriberItem;
