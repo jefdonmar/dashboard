@@ -7,7 +7,7 @@ let UserService = function($http, HEROKU, $cookies, $state) {
 
   // FUNCTIONS TO DEFINE
   this.signup    = signup;
-  this.login     = login;
+  // this.login     = login;
   // this.storeAuth = storeAuth;
   // this.checkAuth = checkAuth;
 
