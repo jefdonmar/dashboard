@@ -4,8 +4,9 @@
   <input ng-model="user.firstName" placeholder="First Name">
   <input ng-model="user.lastName" placeholder="Last Name">
   <input ng-model="user.email" placeholder="Email">
+  <p ng-show="user.emailError" class="form-error-message">{{ user.emailError }}</p>
+  <input ng-model="user.companyName" placeholder="Company name">
   <input ng-model="user.username" placeholder="Username">
   <input ng-model="user.password" type="password" placeholder="Password">
-  <p ng-show="user.emailError" class="form-error-message">{{ user.emailError }}</p>
   <button>Sign up</button>
 </form>

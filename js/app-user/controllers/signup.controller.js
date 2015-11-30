@@ -12,14 +12,10 @@ let SignupController = function($state, $scope, UserService) {
 
   function signup (userObj) {
     console.log(userObj);
-    UserService.newUserSignup(userObj).then( (response)=> {
-      console.log(response);
-    });
+    // UserService.signup(userObj).then( (response)=> {
+    //   console.log(response);
+    // });
   }
-
-
-
-
 
   // watch the email entry field in the form and validate @ symbol with error msg
   $scope.$watch('user.email', function (newVal) {
