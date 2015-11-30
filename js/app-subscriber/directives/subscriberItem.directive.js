@@ -7,12 +7,14 @@ let subscriberItem = function(SubscriberService) {
     scope: {
       sub: '='
     },
-    controller: 'ViewSubscribersController as vm',
+    // transclude: true,
+    // controller: 'ViewSubscribersController as vm', // Not needed?
     template: `
-      <div class="subscriber-block">
-        <p>Name: {{ sub.firstName }} {{ sub.lastName }}</p>
-        <p>Email: {{ sub.email }}</p>
-      </div>
+      <tr>
+        <td>{{ sub.firstName }}</td>
+        <td>{{ sub.lastName }}</td>
+        <td>{{ sub.email }}</td>
+      </tr>
     `,
     // link: function (scope, element, attrs) {
     // }

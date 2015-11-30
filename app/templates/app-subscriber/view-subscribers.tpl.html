@@ -1,7 +1,14 @@
 <h3>My subscribers</h3>
-<subscriber-item 
-  ng-repeat="s in vm.subscribers"
-  sub="s">
-</subscriber-item>
+
+<table>
+  <tr class="header-row">
+    <td class="table-titles">First Name</td>
+    <td class="table-titles">Last Name</td>
+    <td class="table-titles">Email</td>
+  </tr>
+  <tr subscriber-item ng-repeat="s in vm.subscribers"
+    sub="s"></tr>
+</table>
+  
 
 

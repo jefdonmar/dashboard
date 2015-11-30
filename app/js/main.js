@@ -160,8 +160,6 @@ Object.defineProperty(exports, '__esModule', {
 });
 var ViewSubscribersController = function ViewSubscribersController($state, $scope, SubscriberService) {
 
-  console.log('Hello from the view subscribers controller');
-
   // set view model to this object
   var vm = this;
 
@@ -176,7 +174,6 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     SubscriberService.getAllSubscribers().then(function (response) {
       console.log('subscribers have been fetched');
       vm.subscribers = response.data.results;
-      console.log(vm.subscribers);
     });
   }
 
@@ -205,8 +202,9 @@ var subscriberItem = function subscriberItem(SubscriberService) {
     scope: {
       sub: '='
     },
-    controller: 'ViewSubscribersController as vm',
-    template: '\n      <div class="subscriber-block">\n        <p>Name: {{ sub.firstName }} {{ sub.lastName }}</p>\n        <p>Email: {{ sub.email }}</p>\n      </div>\n    '
+    // transclude: true,
+    // controller: 'ViewSubscribersController as vm', // Not needed?
+    template: '\n      <tr>\n        <td>{{ sub.firstName }}</td>\n        <td>{{ sub.lastName }}</td>\n        <td>{{ sub.email }}</td>\n      </tr>\n    '
   };
 };
 
