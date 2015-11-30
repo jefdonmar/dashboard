@@ -7,6 +7,16 @@ Object.defineProperty(exports, '__esModule', {
 var AddArticleController = function AddArticleController($state, $scope, ArticleService) {
 
   console.log('Hello from the add article controller');
+
+  // let vm = this;
+
+  // vm.addArticle = addArticle;
+
+  // function addArticle (article) {
+  //   ArticleService.addArticle(article).then( (response)=> {
+  //     console.log(response.data.results);
+  //   });
+  // }
 };
 
 AddArticleController.$inject = ['$state', '$scope', 'ArticleService'];
@@ -53,7 +63,23 @@ Object.defineProperty(exports, '__esModule', {
 });
 var ArticleService = function ArticleService($http, HEROKU) {
 
-  console.log('Hello from the ArticleService');
+  // console.log('Hello from the ArticleService');
+
+  // let url = HEROKU.URL + 'content';
+
+  // this.addArticle = addArticle;
+
+  // function Article (article) {
+  //   this.tag       = article.tag;
+  //   this.headline  = article.headline;
+  //   this.paragraph = article.paragraph;
+  // }
+
+  // function addArticle (article) {
+  //   let a = new Article (article);
+  //   return $http.post(url, a, HEROKU.CONFIG.headers);
+  // }
+
 };
 
 ArticleService.$inject = ['$http', 'HEROKU'];
@@ -115,14 +141,16 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports['default'] = {
-  URL: 'https://api.parse.com/1/',
+  URL: 'https://serene-waters-8064.herokuapp.com/',
   CONFIG: {
-    headers: {
-      'X-Parse-Application-Id': 'Q9LkVIWcElPlKO8Vqp84E9t6RNAneyjquY7c17WC',
-      'X-Parse-REST-API-Key': 'zROPKm2h7Zj1PvbejjaVmaI9KgU1TK4YwOim5wLS'
-    }
+    headers: {}
   }
 };
+
+// --- OLD PARSE CONFIGURATION FOR TESTING ---
+// headers: { below }
+// 'X-Parse-Application-Id': 'Q9LkVIWcElPlKO8Vqp84E9t6RNAneyjquY7c17WC',
+// 'X-Parse-REST-API-Key': 'zROPKm2h7Zj1PvbejjaVmaI9KgU1TK4YwOim5wLS'
 module.exports = exports['default'];
 
 },{}],6:[function(require,module,exports){
@@ -400,9 +428,11 @@ var SignupController = function SignupController($state, $scope, UserService) {
 
   function signup(userObj) {
     console.log(userObj);
-    // UserService.signup(userObj).then( (response)=> {
-    //   console.log(response);
-    // });
+    UserService.signup(userObj).then(function (response) {
+      var userRES = response.data.user;
+      console.log(userRES);
+      UserService.storeAuth(userRES);
+    });
   }
 
   // watch the email entry field in the form and validate @ symbol with error msg
@@ -412,10 +442,10 @@ var SignupController = function SignupController($state, $scope, UserService) {
 
     if (!validateEmail(newVal)) {
       $scope.user.emailError = 'Email needs an @ symbol';
-      return console.log('Email needs an @ symbol');
+      // return console.log('Email needs an @ symbol');
     } else {
-      $scope.user.emailError = undefined;
-    }
+        $scope.user.emailError = undefined;
+      }
   });
 
   function validateEmail(field) {
@@ -460,33 +490,36 @@ Object.defineProperty(exports, '__esModule', {
 var UserService = function UserService($http, HEROKU, $cookies, $state) {
 
   // Get actual Heroku route from Backend
-  // let url = HEROKU.URL + '/user';
+  var url = HEROKU.URL;
 
-  console.log('Hello from the UserService');
+  // console.log('Hello from the UserService');
 
   // FUNCTIONS TO DEFINE
   this.signup = signup;
   // this.login     = login;
-  // this.storeAuth = storeAuth;
+  this.storeAuth = storeAuth;
   // this.checkAuth = checkAuth;
 
   // SERVICE FUNCTIONS
   function User(userObj) {
-    this.firstName = userObj.firstName;
-    this.lastName = userObj.lastName;
+    // -- COMMENTING OUR FIELDS NOT IN USE --
+    // this.firstName   = userObj.firstName;
+    // this.lastName    = userObj.lastName;
+    // this.companyName = userObj.companyName;
+    // this.username    = userObj.username;
+    this.name = userObj.name;
     this.email = userObj.email;
-    this.companyName = userObj.companyName;
-    this.username = userObj.username;
     this.password = userObj.password;
   }
 
   // Re-purpose this based on requirements of our Heroku App
-  // function storeAuth (user) {
-  //   $cookies.put('streamline-sessionToken', user.sessionToken);
-  //   $cookies.put('streamline-user', user.id);
-  //   setHeaders(user.sessionToken);
-  //   $state.go('root.home');
-  // }
+
+  function storeAuth(user) {
+    $cookies.put('auth_token', user.auth_token);
+    $cookies.put('user_id', user.id);
+    setHeaders();
+    // $state.go('root.home');
+  }
 
   // function checkAuth (user) {
   //   let t = $cookies.get('streamline-sessionToken');
@@ -501,15 +534,19 @@ var UserService = function UserService($http, HEROKU, $cookies, $state) {
 
   // UPDATE based on changes above -- setHeaders is defined there
   // Name will be defined by our Heroku app
-  // function setHeaders (token) {
-  //   HEROKU.CONFIG.headers['Auth_Token'] = token;
-  // }
+
+  function setHeaders() {
+    HEROKU.CONFIG.headers['auth_token'] = $cookies.get('auth_token');
+    // user.auth;
+    HEROKU.CONFIG.headers['user_id'] = $cookies.get('user_id');
+    // token;
+  }
 
   function signup(userObj) {
     var user = new User(userObj);
-    console.log('User has been added');
+    console.log('User should have been added');
     console.log(user);
-    // return $http.post(url, user, HEROKU.CONFIG);
+    return $http.post(url + 'signup', user, HEROKU.CONFIG);
   }
 
   // function login (userObj) {

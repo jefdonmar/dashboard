@@ -25,15 +25,17 @@
 
     <!-- CREATE A COLUMN FOR EACH CATEGORY/TAG -->
     <!-- CREATE A NEW DIRECTIVE TO NG-REPEAT FOR EACH TAG - SHOULD BE RELATIVELY SIMPLE -->
-    <td category-preferences></td>
+    <!-- <td category-preferences></td> -->
 
 
     <td class="table-titles">Baseball</td>
   </tr>
+
   <tr subscriber-item 
     ng-repeat="s in vm.subscribers | orderBy:sortType:sortReverse"
     sub="s">
   </tr>
+  
 </table>
   
 
