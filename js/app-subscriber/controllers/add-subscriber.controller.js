@@ -8,6 +8,15 @@ let AddSubscriberController = function($state, $scope, SubscriberService) {
   // set of functions we will define in the controller
   vm.addSubscriber = addSubscriber;
   vm.validateEmail = validateEmail;
+  vm.subjects = getSubjects();
+
+  function getSubjects () {
+    var subjects = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
+    return subjects;
+  }
+
+  console.log(vm.subjects);
+
 
   // use the form inputs to add a subscriber to the database
 
