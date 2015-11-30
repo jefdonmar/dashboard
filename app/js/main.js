@@ -535,8 +535,6 @@ var _chartJs = require('chart.js');
 
 var _chartJs2 = _interopRequireDefault(_chartJs);
 
-// console.dir(Chart);
-
 // Import angular
 
 var _angular = require('angular');
@@ -556,7 +554,8 @@ require('./app-user/index');
 require('./app-content/index');
 
 // Instantiate angular module
-_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber', 'app.user', 'app.content']);
+
+console.dir(_chartJs2['default']);_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber', 'app.user', 'app.content']);
 
 },{"./app-content/index":2,"./app-core/index":6,"./app-layout/index":8,"./app-subscriber/index":12,"./app-user/index":16,"angular":24,"chart.js":21}],19:[function(require,module,exports){
 /**
