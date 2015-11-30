@@ -11,18 +11,8 @@ let subscriberItem = function(SubscriberService) {
     // controller: 'ViewSubscribersController as vm', // Not needed?
     template: `
       <tr>
-        <td>{{ sub.firstName }}</td>
-        <td>{{ sub.lastName }}</td>
         <td>{{ sub.email }}</td>
-        <td>
-          <input 
-            type="checkbox"
-            ng-model="sub.Baseball"
-            ng-init="checked=true"
-            ng-click="changed=true">
-            <span ng-if="sub.Baseball">Yes</span>
-        <button class="change-button" ng-show="changed">Submit change</button>
-        </td>
+        <td>{{ sub.subject_names }}</td>
       </tr>
     `,
     link: function (scope, element, attrs) {

@@ -13,7 +13,7 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
 
   function activate () {
     SubscriberService.getAllSubscribers().then( (response)=> {
-      vm.subscribers = response.data.results;
+      vm.subscribers = response.data.subscriber;
       console.log(vm.subscribers);
     });
   }
