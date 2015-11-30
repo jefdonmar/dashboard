@@ -1,9 +1,19 @@
 <h3>Add subscriber page</h3>
 
 <form ng-submit="vm.addSubscriber(sub)">
-  <input placeholder="First Name..." ng-model="sub.firstName">
-  <input placeholder="Last Name..." ng-model="sub.lastName">
+  <!-- <input placeholder="First Name..." ng-model="sub.firstName">
+  <input placeholder="Last Name..." ng-model="sub.lastName"> -->
   <input placeholder="Email address..." ng-model="sub.email">
   <p ng-show="sub.emailError" class="form-error-message">{{ sub.emailError }}</p>
-  <button>Submit</button>
+  <table>
+    <tr class="header-row">
+      <td class="table-titles">Subjects</td>
+      <td class="table-titles">Opt in?</td>
+    </tr>
+    <tr subscriber-subjects 
+      ng-repeat="s in vm.subjects"
+      subject="s">
+    </tr>
+  </table>
+    <button>Submit</button>
 </form>
