@@ -1,8 +1,8 @@
 <h3>Add an article</h3>
 
-<form ng-submit="addArticle(article)">
-  <input placeholder="tag...">
-  <input placeholder="headline...">
-  <input placeholder="paragraph...">
+<form ng-submit="vm.addArticle(article)">
+  <input ng-model="article.tag" placeholder="tag...">
+  <input ng-model="article.headline" placeholder="headline...">
+  <input ng-model="article.paragraph" placeholder="paragraph...">
   <button>Submit</button>
 </form>

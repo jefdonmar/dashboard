@@ -12,9 +12,11 @@ let SignupController = function($state, $scope, UserService) {
 
   function signup (userObj) {
     console.log(userObj);
-    // UserService.signup(userObj).then( (response)=> {
-    //   console.log(response);
-    // });
+    UserService.signup(userObj).then( (response)=> {
+      let userRES = response.data.user;
+      console.log(userRES);
+      UserService.storeAuth(userRES);
+    });
   }
 
   // watch the email entry field in the form and validate @ symbol with error msg
@@ -24,7 +26,7 @@ let SignupController = function($state, $scope, UserService) {
 
     if (!validateEmail(newVal)) {
       $scope.user.emailError = 'Email needs an @ symbol';
-      return console.log('Email needs an @ symbol');
+      // return console.log('Email needs an @ symbol');
     } else {
       $scope.user.emailError = undefined;
     }

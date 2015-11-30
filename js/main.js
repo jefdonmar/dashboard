@@ -5,14 +5,12 @@ console.dir(Chart);
 // Import angular
 import angular from 'angular';
 
-
 // Import other app modules
 import './app-core/index';
 import './app-layout/index';
 import './app-subscriber/index';
 import './app-user/index';
 import './app-content/index';
-
 
 // Instantiate angular module
 angular
