@@ -7,7 +7,7 @@ let UserService = function($http, HEROKU, $cookies, $state) {
 
   // FUNCTIONS TO DEFINE
   this.signup    = signup;
-  // this.login     = login;
+  this.login     = login;
   this.storeAuth = storeAuth;
   // this.checkAuth = checkAuth;
 
@@ -61,12 +61,11 @@ let UserService = function($http, HEROKU, $cookies, $state) {
     return $http.post(url + 'signup', user, HEROKU.CONFIG);
   }
 
-  // function login (userObj) {
-  //   return $http.post(url + 'login', userObj, {
-  //     headers: HEROKU.CONFIG.headers,
-  //     data: userObj
-  //   });
-  // }
+  function login (userObj) {
+    console.log('User should have been logged In');
+    console.log(userObj);
+    return $http.post(url + 'login', userObj, HEROKU.CONFIG);
+  }
 
 
 };
