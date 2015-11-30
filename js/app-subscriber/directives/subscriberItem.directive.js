@@ -14,6 +14,13 @@ let subscriberItem = function(SubscriberService) {
         <td>{{ sub.firstName }}</td>
         <td>{{ sub.lastName }}</td>
         <td>{{ sub.email }}</td>
+        <td>
+          <input 
+            type="checkbox"
+            ng-model="sub.Baseball"
+            ng-init="checked=true">
+            <span ng-if="sub.Baseball">Yes</span>
+        </td>
       </tr>
     `,
     // link: function (scope, element, attrs) {

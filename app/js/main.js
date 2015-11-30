@@ -174,6 +174,7 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     SubscriberService.getAllSubscribers().then(function (response) {
       console.log('subscribers have been fetched');
       vm.subscribers = response.data.results;
+      console.log(vm.subscribers);
     });
   }
 
@@ -204,7 +205,7 @@ var subscriberItem = function subscriberItem(SubscriberService) {
     },
     // transclude: true,
     // controller: 'ViewSubscribersController as vm', // Not needed?
-    template: '\n      <tr>\n        <td>{{ sub.firstName }}</td>\n        <td>{{ sub.lastName }}</td>\n        <td>{{ sub.email }}</td>\n      </tr>\n    '
+    template: '\n      <tr>\n        <td>{{ sub.firstName }}</td>\n        <td>{{ sub.lastName }}</td>\n        <td>{{ sub.email }}</td>\n        <td>\n          <input \n            type="checkbox"\n            ng-model="sub.Baseball"\n            ng-init="checked=true">\n            <span ng-if="sub.Baseball">Yes</span>\n        </td>\n      </tr>\n    '
   };
 };
 

@@ -14,6 +14,7 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
     SubscriberService.getAllSubscribers().then( (response)=> {
       console.log('subscribers have been fetched');
       vm.subscribers = response.data.results;
+      console.log(vm.subscribers);
     });
   }
 
