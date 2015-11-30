@@ -156,7 +156,8 @@ Object.defineProperty(exports, '__esModule', {
 });
 var HomeController = function HomeController($state) {
 
-  console.log('Hello from home controller');
+  // console.log('Hello from home controller');
+
 };
 
 HomeController.$inject = ['$state'];
@@ -187,7 +188,7 @@ Object.defineProperty(exports, '__esModule', {
 });
 var AddSubscriberController = function AddSubscriberController($state, $scope, SubscriberService) {
 
-  console.log('Hello from the add subscriber controller');
+  // console.log('Hello from the add subscriber controller');
 
   // set view model to this object
   var vm = this;
@@ -275,7 +276,7 @@ var subscriberItem = function subscriberItem(SubscriberService) {
 
   return {
 
-    restrict: 'A', // Restrict to element only
+    restrict: 'A', // Restrict to attribute only
     replace: true, // Replace as opposed to inserting into
     scope: {
       sub: '='

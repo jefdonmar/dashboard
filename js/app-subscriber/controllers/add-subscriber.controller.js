@@ -1,6 +1,6 @@
 let AddSubscriberController = function($state, $scope, SubscriberService) {
   
-  console.log('Hello from the add subscriber controller');
+  // console.log('Hello from the add subscriber controller');
 
   // set view model to this object
   let vm = this;

@@ -2,7 +2,7 @@ let subscriberItem = function(SubscriberService) {
   
   return {
 
-    restrict: 'A', // Restrict to element only
+    restrict: 'A', // Restrict to attribute only
     replace: true, // Replace as opposed to inserting into
     scope: {
       sub: '='

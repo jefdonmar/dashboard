@@ -1,6 +1,6 @@
 let HomeController = function($state) {
   
-  console.log('Hello from home controller');
+  // console.log('Hello from home controller');
 
 };
 
