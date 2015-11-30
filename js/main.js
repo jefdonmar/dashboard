@@ -10,11 +10,13 @@ import angular from 'angular';
 import './app-core/index';
 import './app-layout/index';
 import './app-subscriber/index';
+import './app-user/index';
+import './app-content/index';
 
 
 // Instantiate angular module
 angular
-  .module('app', ['app.core', 'app.layout', 'app.subscriber'])
+  .module('app', ['app.core', 'app.layout', 'app.subscriber', 'app.user', 'app.content'])
 ;
 
 

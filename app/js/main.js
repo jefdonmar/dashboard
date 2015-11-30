@@ -4,6 +4,69 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
+var AddArticleController = function AddArticleController($state, $scope, ArticleService) {
+
+  console.log('Hello from the add article controller');
+};
+
+AddArticleController.$inject = ['$state', '$scope', 'ArticleService'];
+
+exports['default'] = AddArticleController;
+module.exports = exports['default'];
+
+},{}],2:[function(require,module,exports){
+'use strict';
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _angular = require('angular');
+
+var _angular2 = _interopRequireDefault(_angular);
+
+// CONTROLLERS
+
+var _controllersAddArticleController = require('./controllers/add-article.controller');
+
+var _controllersAddArticleController2 = _interopRequireDefault(_controllersAddArticleController);
+
+// SERVICES
+
+var _servicesArticleService = require('./services/article.service');
+
+var _servicesArticleService2 = _interopRequireDefault(_servicesArticleService);
+
+// DIRECTIVES
+
+_angular2['default'].module('app.content', [])
+// CONTROLLERS
+.controller('AddArticleController', _controllersAddArticleController2['default'])
+// SERVICES
+.service('ArticleService', _servicesArticleService2['default']);
+
+// DIRECTIVES
+
+},{"./controllers/add-article.controller":1,"./services/article.service":3,"angular":22}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var ArticleService = function ArticleService($http, HEROKU) {
+
+  console.log('Hello from the ArticleService');
+};
+
+ArticleService.$inject = ['$http', 'HEROKU'];
+
+exports['default'] = ArticleService;
+module.exports = exports['default'];
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 var config = function config($urlRouterProvider, $stateProvider) {
 
   $urlRouterProvider.otherwise('/');
@@ -23,6 +86,18 @@ var config = function config($urlRouterProvider, $stateProvider) {
     url: '/view-subscribers',
     controller: 'ViewSubscribersController as vm',
     templateUrl: 'templates/app-subscriber/view-subscribers.tpl.html'
+  }).state('root.login', {
+    url: '/login',
+    controller: 'LoginController as vm',
+    templateUrl: 'templates/app-user/login.tpl.html'
+  }).state('root.add-article', {
+    url: '/add-article',
+    controller: 'AddArticleController as vm',
+    templateUrl: 'templates/app-content/add-article.tpl.html'
+  }).state('root.signup', {
+    url: '/signup',
+    controller: 'SignupController as vm',
+    templateUrl: 'templates/app-user/signup.tpl.html'
   });
 };
 
@@ -31,7 +106,7 @@ config.$inject = ['$urlRouterProvider', '$stateProvider'];
 exports['default'] = config;
 module.exports = exports['default'];
 
-},{}],2:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 // ACTUALLY PARSE AS OF NOW -- NEED TO REPLACE WITH HEROKU APP INFO
 
 'use strict';
@@ -50,7 +125,7 @@ exports['default'] = {
 };
 module.exports = exports['default'];
 
-},{}],3:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -71,7 +146,7 @@ var _herokuConstant2 = _interopRequireDefault(_herokuConstant);
 
 _angular2['default'].module('app.core', ['ui.router']).config(_config2['default']).constant('HEROKU', _herokuConstant2['default']);
 
-},{"./config":1,"./heroku.constant":2,"angular":15,"angular-ui-router":13}],4:[function(require,module,exports){
+},{"./config":4,"./heroku.constant":5,"angular":22,"angular-ui-router":20}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -87,7 +162,7 @@ HomeController.$inject = ['$state'];
 exports['default'] = HomeController;
 module.exports = exports['default'];
 
-},{}],5:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -102,7 +177,7 @@ var _controllersHomeController2 = _interopRequireDefault(_controllersHomeControl
 
 _angular2['default'].module('app.layout', []).controller('HomeController', _controllersHomeController2['default']);
 
-},{"./controllers/home.controller":4,"angular":15}],6:[function(require,module,exports){
+},{"./controllers/home.controller":7,"angular":22}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -152,7 +227,7 @@ AddSubscriberController.$inject = ['$state', '$scope', 'SubscriberService'];
 exports['default'] = AddSubscriberController;
 module.exports = exports['default'];
 
-},{}],7:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -188,7 +263,7 @@ ViewSubscribersController.$inject = ['$state', '$scope', 'SubscriberService'];
 exports['default'] = ViewSubscribersController;
 module.exports = exports['default'];
 
-},{}],8:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -217,7 +292,7 @@ subscriberItem.$inject = ['SubscriberService'];
 exports['default'] = subscriberItem;
 module.exports = exports['default'];
 
-},{}],9:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -250,7 +325,7 @@ var _servicesSubscriberService2 = _interopRequireDefault(_servicesSubscriberServ
 
 _angular2['default'].module('app.subscriber', []).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
 
-},{"./controllers/add-subscriber.controller":6,"./controllers/view-subscribers.controller":7,"./directives/subscriberItem.directive":8,"./services/subscriber.service":10,"angular":15}],10:[function(require,module,exports){
+},{"./controllers/add-subscriber.controller":9,"./controllers/view-subscribers.controller":10,"./directives/subscriberItem.directive":11,"./services/subscriber.service":13,"angular":22}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -287,7 +362,112 @@ SubscriberService.$inject = ['$http', 'HEROKU'];
 exports['default'] = SubscriberService;
 module.exports = exports['default'];
 
-},{}],11:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var LoginController = function LoginController($scope, $state, UserService) {
+
+  console.log('Hello from the LoginController');
+};
+
+LoginController.$inject = ['$scope', '$state', 'UserService'];
+
+exports['default'] = LoginController;
+module.exports = exports['default'];
+
+},{}],15:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var SignupController = function SignupController($state, $scope, UserService) {
+
+  console.log('Hello from the SignupController');
+
+  // set view model to this object
+  var vm = this;
+
+  // set of functions we will define in the controller
+  vm.signup = signup;
+  vm.validateEmail = validateEmail;
+
+  function signup(userObj) {
+    console.log(userObj);
+    UserService.newUserSignup(userObj).then(function (response) {
+      console.log(response);
+    });
+  }
+
+  // watch the email entry field in the form and validate @ symbol with error msg
+  $scope.$watch('user.email', function (newVal) {
+
+    if (!newVal) return;
+
+    if (!validateEmail(newVal)) {
+      $scope.user.emailError = 'Email needs an @ symbol';
+      return console.log('Email needs an @ symbol');
+    } else {
+      $scope.user.emailError = undefined;
+    }
+  });
+
+  function validateEmail(field) {
+    return field.indexOf('@') >= 0 ? true : false;
+  }
+};
+
+SignupController.$inject = ['$state', '$scope', 'UserService'];
+
+exports['default'] = SignupController;
+module.exports = exports['default'];
+
+},{}],16:[function(require,module,exports){
+'use strict';
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _angular = require('angular');
+
+var _angular2 = _interopRequireDefault(_angular);
+
+var _controllersLoginController = require('./controllers/login.controller');
+
+var _controllersLoginController2 = _interopRequireDefault(_controllersLoginController);
+
+var _controllersSignupController = require('./controllers/signup.controller');
+
+var _controllersSignupController2 = _interopRequireDefault(_controllersSignupController);
+
+var _servicesUserService = require('./services/user.service');
+
+var _servicesUserService2 = _interopRequireDefault(_servicesUserService);
+
+_angular2['default'].module('app.user', []).controller('LoginController', _controllersLoginController2['default']).controller('SignupController', _controllersSignupController2['default']).service('UserService', _servicesUserService2['default']);
+
+},{"./controllers/login.controller":14,"./controllers/signup.controller":15,"./services/user.service":17,"angular":22}],17:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var UserService = function UserService($http, HEROKU) {
+
+  // Get actual Heroku route from Backend
+  // let url = HEROKU.URL + '/user';
+
+  console.log('Hello from the UserService');
+};
+
+UserService.$inject = ['$http', 'HEROKU'];
+
+exports['default'] = UserService;
+module.exports = exports['default'];
+
+},{}],18:[function(require,module,exports){
 // Import Chart JS - move to another file later
 'use strict';
 
@@ -313,10 +493,14 @@ require('./app-layout/index');
 
 require('./app-subscriber/index');
 
-// Instantiate angular module
-_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber']);
+require('./app-user/index');
 
-},{"./app-core/index":3,"./app-layout/index":5,"./app-subscriber/index":9,"angular":15,"chart.js":12}],12:[function(require,module,exports){
+require('./app-content/index');
+
+// Instantiate angular module
+_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber', 'app.user', 'app.content']);
+
+},{"./app-content/index":2,"./app-core/index":6,"./app-layout/index":8,"./app-subscriber/index":12,"./app-user/index":16,"angular":22,"chart.js":19}],19:[function(require,module,exports){
 /*!
  * Chart.js
  * http://chartjs.org/
@@ -3794,7 +3978,7 @@ _angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber'])
 
 
 }).call(this);
-},{}],13:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -8165,7 +8349,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],14:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.7
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -37070,11 +37254,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],15:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":14}]},{},[11])
+},{"./angular":21}]},{},[18])
 
 
 //# sourceMappingURL=main.js.map

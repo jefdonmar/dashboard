@@ -21,6 +21,21 @@ let config = function($urlRouterProvider, $stateProvider) {
       url: '/view-subscribers',
       controller: 'ViewSubscribersController as vm',
       templateUrl: 'templates/app-subscriber/view-subscribers.tpl.html'
+    })
+    .state('root.login', {
+      url: '/login',
+      controller: 'LoginController as vm',
+      templateUrl: 'templates/app-user/login.tpl.html'
+    })
+    .state('root.add-article', {
+      url: '/add-article',
+      controller: 'AddArticleController as vm',
+      templateUrl: 'templates/app-content/add-article.tpl.html'
+    })
+    .state('root.signup', {
+      url: '/signup',
+      controller: 'SignupController as vm',
+      templateUrl: 'templates/app-user/signup.tpl.html'
     });
 
 };

@@ -1,0 +1,11 @@
+<h3>Sign up form</h3>
+
+<form ng-submit="vm.signup(user)">
+  <input ng-model="user.firstName" placeholder="First Name">
+  <input ng-model="user.lastName" placeholder="Last Name">
+  <input ng-model="user.email" placeholder="Email">
+  <input ng-model="user.username" placeholder="Username">
+  <input ng-model="user.password" type="password" placeholder="Password">
+  <p ng-show="user.emailError" class="form-error-message">{{ user.emailError }}</p>
+  <button>Sign up</button>
+</form>
