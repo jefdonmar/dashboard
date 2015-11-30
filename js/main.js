@@ -15,6 +15,12 @@ import './app-content/index';
 // Instantiate angular module
 angular
   .module('app', ['app.core', 'app.layout', 'app.subscriber', 'app.user', 'app.content'])
+  .run(function ($rootScope, UserService) {
+    $rootScope.$on('$stateChangeSuccess', function() {
+      console.log('state change');
+      UserService.setHeaders();
+    });
+  })
 ;
 
 

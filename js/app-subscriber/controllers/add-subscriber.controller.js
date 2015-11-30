@@ -9,14 +9,37 @@ let AddSubscriberController = function($state, $scope, SubscriberService) {
   vm.addSubscriber = addSubscriber;
   vm.validateEmail = validateEmail;
   vm.subjects = getSubjects();
+  vm.selectedSubjects = {};
+
+  console.log(vm.selectedSubjects);
 
   function getSubjects () {
-    var subjects = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
+    var subjects = [
+      {
+        subject: 'Football',
+        selected: false
+      },
+      {
+        subject: 'Baseball',
+        selected: false
+      },
+      {
+        subject: 'Basketball',
+        selected: false
+      },
+      {
+        subject: 'Soccer',
+        selected: false
+      },
+      {
+        subject: 'Hockey',
+        selected: false
+      }
+    ];
     return subjects;
   }
 
   console.log(vm.subjects);
-
 
   // use the form inputs to add a subscriber to the database
 
@@ -24,7 +47,7 @@ let AddSubscriberController = function($state, $scope, SubscriberService) {
     console.log('Supposed to add now');
     SubscriberService.addSubscriber(subObj).then( (response)=>{
       console.log(response);
-      $state.go('root.home');
+      // $state.go('root.home');
     });
   }
 

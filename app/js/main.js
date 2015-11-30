@@ -225,9 +225,27 @@ var AddSubscriberController = function AddSubscriberController($state, $scope, S
   vm.addSubscriber = addSubscriber;
   vm.validateEmail = validateEmail;
   vm.subjects = getSubjects();
+  vm.selectedSubjects = {};
+
+  console.log(vm.selectedSubjects);
 
   function getSubjects() {
-    var subjects = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
+    var subjects = [{
+      subject: 'Football',
+      selected: false
+    }, {
+      subject: 'Baseball',
+      selected: false
+    }, {
+      subject: 'Basketball',
+      selected: false
+    }, {
+      subject: 'Soccer',
+      selected: false
+    }, {
+      subject: 'Hockey',
+      selected: false
+    }];
     return subjects;
   }
 
@@ -239,7 +257,7 @@ var AddSubscriberController = function AddSubscriberController($state, $scope, S
     console.log('Supposed to add now');
     SubscriberService.addSubscriber(subObj).then(function (response) {
       console.log(response);
-      $state.go('root.home');
+      // $state.go('root.home');
     });
   }
 
@@ -287,7 +305,7 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
 
   function activate() {
     SubscriberService.getAllSubscribers().then(function (response) {
-      vm.subscribers = response.data.results;
+      vm.subscribers = response.data.subscriber;
       console.log(vm.subscribers);
     });
   }
@@ -319,7 +337,7 @@ var subscriberItem = function subscriberItem(SubscriberService) {
     },
     // transclude: true,
     // controller: 'ViewSubscribersController as vm', // Not needed?
-    template: '\n      <tr>\n        <td>{{ sub.firstName }}</td>\n        <td>{{ sub.lastName }}</td>\n        <td>{{ sub.email }}</td>\n        <td>\n          <input \n            type="checkbox"\n            ng-model="sub.Baseball"\n            ng-init="checked=true"\n            ng-click="changed=true">\n            <span ng-if="sub.Baseball">Yes</span>\n        <button class="change-button" ng-show="changed">Submit change</button>\n        </td>\n      </tr>\n    ',
+    template: '\n      <tr>\n        <td>{{ sub.email }}</td>\n        <td>{{ sub.subject_names }}</td>\n      </tr>\n    ',
     link: function link(scope, element, attrs) {
       scope.sortType = 'First Name';
     }
@@ -348,7 +366,7 @@ var subscriberSubjects = function subscriberSubjects(SubscriberService) {
     },
     // transclude: true,
     // controller: 'ViewSubscribersController as vm', // Not needed?
-    template: '\n      <tr>\n        <td>{{ subject }}</td>\n        <td>\n          <input \n            type="checkbox"\n            ng-click="subject = true"\n            // ng-model="subject.subject_names"\n          >\n        </td>\n      </tr>\n    '
+    template: '\n      <tr>\n        <td>{{ subject.subject }}</td>\n        <td>\n          <input \n            type="checkbox"\n            ng-click="subject.selected=true"\n            ng-model="vm.selectedSubjects[s.selected]">\n        </td>\n      </tr>\n    '
   };
 };
 
@@ -403,23 +421,23 @@ _angular2['default'].module('app.subscriber', []).controller('AddSubscriberContr
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var SubscriberService = function SubscriberService($http, HEROKU) {
+var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
 
-  var url = HEROKU.URL + 'classes/subscriber';
+  var url = HEROKU.URL + 'subscribers';
 
   this.addSubscriber = addSubscriber;
   this.getAllSubscribers = getAllSubscribers;
   // this.editSubscriber    = editSubscriber;
 
   function Subscriber(subObj) {
-    this.firstName = subObj.firstName;
-    this.lastName = subObj.lastName;
     this.email = subObj.email;
+    this.subject_names = "Baseball";
+    // subObj.selectedSubjects;
+    // subObj.subject_names;
   }
 
   function addSubscriber(subObj) {
     var sub = new Subscriber(subObj);
-    console.log('Subscriber has been added');
     console.log(sub);
     return $http.post(url, sub, HEROKU.CONFIG);
   }
@@ -427,9 +445,16 @@ var SubscriberService = function SubscriberService($http, HEROKU) {
   function getAllSubscribers() {
     return $http.get(url, HEROKU.CONFIG);
   }
+
+  function setHeaders() {
+    HEROKU.CONFIG.headers['auth_token'] = $cookies.get('auth_token');
+    // user.auth;
+    HEROKU.CONFIG.headers['user_id'] = $cookies.get('user_id');
+    // token;
+  }
 };
 
-SubscriberService.$inject = ['$http', 'HEROKU'];
+SubscriberService.$inject = ['$http', 'HEROKU', '$cookies'];
 
 exports['default'] = SubscriberService;
 module.exports = exports['default'];
@@ -555,6 +580,7 @@ var UserService = function UserService($http, HEROKU, $cookies, $state) {
   this.signup = signup;
   this.login = login;
   this.storeAuth = storeAuth;
+  this.setHeaders = setHeaders;
   // this.checkAuth = checkAuth;
 
   // SERVICE FUNCTIONS
@@ -578,14 +604,14 @@ var UserService = function UserService($http, HEROKU, $cookies, $state) {
     // $state.go('root.home');
   }
 
-  // function checkAuth (user) {
-  //   let t = $cookies.get('streamline-sessionToken');
-  //   if (t) {
-  //     setHeaders(t);
-  //   } else {
-  //     $state.go('root.login');
-  //   }
-  // }
+  function checkAuth(user) {
+    var t = $cookies.get('auth_token');
+    if (t) {
+      setHeaders(t);
+    } else {
+      $state.go('root.login');
+    }
+  }
 
   // ^^^ Re-purpose this based on requirements of our Heroku App ^^^
 
@@ -648,7 +674,12 @@ require('./app-content/index');
 
 // Instantiate angular module
 
-console.dir(_chartJs2['default']);_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber', 'app.user', 'app.content']);
+console.dir(_chartJs2['default']);_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber', 'app.user', 'app.content']).run(function ($rootScope, UserService) {
+  $rootScope.$on('$stateChangeSuccess', function () {
+    console.log('state change');
+    UserService.setHeaders();
+  });
+});
 
 },{"./app-content/index":2,"./app-core/index":6,"./app-layout/index":8,"./app-subscriber/index":13,"./app-user/index":17,"angular":25,"chart.js":22}],20:[function(require,module,exports){
 /**

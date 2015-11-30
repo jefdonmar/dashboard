@@ -11,13 +11,12 @@ let subscriberSubjects = function(SubscriberService) {
     // controller: 'ViewSubscribersController as vm', // Not needed?
     template: `
       <tr>
-        <td>{{ subject }}</td>
+        <td>{{ subject.subject }}</td>
         <td>
           <input 
             type="checkbox"
-            ng-click="subject = true"
-            // ng-model="subject.subject_names"
-          >
+            ng-click="subject.selected=true"
+            ng-model="vm.selectedSubjects[s.selected]">
         </td>
       </tr>
     `,

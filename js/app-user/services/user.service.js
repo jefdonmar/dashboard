@@ -9,6 +9,7 @@ let UserService = function($http, HEROKU, $cookies, $state) {
   this.signup    = signup;
   this.login     = login;
   this.storeAuth = storeAuth;
+  this.setHeaders = setHeaders;
   // this.checkAuth = checkAuth;
 
   // SERVICE FUNCTIONS
@@ -32,14 +33,14 @@ let UserService = function($http, HEROKU, $cookies, $state) {
     // $state.go('root.home');
   }
 
-  // function checkAuth (user) {
-  //   let t = $cookies.get('streamline-sessionToken');
-  //   if (t) {
-  //     setHeaders(t);
-  //   } else {
-  //     $state.go('root.login');
-  //   }
-  // }
+  function checkAuth (user) {
+    let t = $cookies.get('auth_token');
+    if (t) {
+      setHeaders(t);
+    } else {
+      $state.go('root.login');
+    }
+  }
 
   // ^^^ Re-purpose this based on requirements of our Heroku App ^^^
 
