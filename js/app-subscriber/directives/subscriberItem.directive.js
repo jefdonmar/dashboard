@@ -11,6 +11,7 @@ let subscriberItem = function(SubscriberService) {
     // controller: 'ViewSubscribersController as vm', // Not needed?
     template: `
       <tr>
+        <td>{{ sub.user_id }}</td>
         <td>{{ sub.email }}</td>
         <td>{{ sub.subject_names }}</td>
       </tr>

@@ -8,7 +8,7 @@ let SubscriberService = function($http, HEROKU, $cookies) {
 
   function Subscriber (subObj) {
     this.email     = subObj.email;
-    this.subject_names = "Baseball";
+    this.subject_names = subObj.subject_names;
     // subObj.selectedSubjects;
     // subObj.subject_names;
   }
