@@ -22,7 +22,7 @@
     <!-- <td class="table-titles"><a href="#" ng-click="sortType = 'firstName'">First Name <span ng-show="sortType == 'firstName'" class="fa fa-caret-down"></a></span></td>
     <td class="table-titles"><a href="#" ng-click="sortType = 'lastName'">Last Name <span ng-show="sortType == 'lastName'" class="fa fa-caret-down"></a></span></td> -->
 
-    <td class="table-titles"><a href="#" ng-click="sortType = 'user_id'">User ID <span ng-show="sortType == 'user_id'" class="fa fa-caret-down"></a></span></td>
+  <!--   <td class="table-titles"><a href="#" ng-click="sortType = 'user_id'">User ID <span ng-show="sortType == 'user_id'" class="fa fa-caret-down"></a></span></td> -->
 
     <td class="table-titles"><a href="#" ng-click="sortType = 'email'">Email <span ng-show="sortType == 'email'" class="fa fa-caret-down"></a></span></td>
 
@@ -36,10 +36,13 @@
     <!-- <td class="table-titles">Baseball</td> -->
   </tr>
 
-  <tr subscriber-item 
+   <tr subscriber-item 
     ng-repeat="s in vm.subscribers | orderBy:sortType:sortReverse"
     sub="s">
   </tr>
+
+ <!--  <tr subscriber-item ng-repeat="subscriber in subscribers" subject="id">
+  </tr> -->
   
 </table>
   
