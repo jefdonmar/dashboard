@@ -216,52 +216,23 @@ Object.defineProperty(exports, '__esModule', {
 });
 var AddSubscriberController = function AddSubscriberController($state, $scope, SubscriberService) {
 
-  // console.log('Hello from the add subscriber controller');
+  console.log('We are the Add Controller People');
 
-  // set view model to this object
   var vm = this;
-
-  // set of functions we will define in the controller
   vm.addSubscriber = addSubscriber;
   vm.validateEmail = validateEmail;
-  vm.subjects = getSubjects();
-  vm.selectedSubjects = {};
 
-  console.log(vm.selectedSubjects);
-
-  function getSubjects() {
-    var subjects = [{
-      subject: 'Football',
-      selected: false
-    }, {
-      subject: 'Baseball',
-      selected: false
-    }, {
-      subject: 'Basketball',
-      selected: false
-    }, {
-      subject: 'Soccer',
-      selected: false
-    }, {
-      subject: 'Hockey',
-      selected: false
-    }];
-    return subjects;
-  }
-
-  console.log(vm.subjects);
-
-  // use the form inputs to add a subscriber to the database
+  $scope.subject_names = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
 
   function addSubscriber(subObj) {
     console.log('Supposed to add now');
-    SubscriberService.addSubscriber(subObj).then(function (response) {
-      console.log(response);
-      // $state.go('root.home');
+    SubscriberService.addSubscriber(subObj).then(function (res) {
+      array.toString(res);
+      console.log(res);
+      $state.go('root.home');
     });
   }
 
-  // watch the email entry field in the form and validate @ symbol with error msg
   $scope.$watch('sub.email', function (newVal) {
 
     if (!newVal) return;
@@ -387,6 +358,8 @@ var _angular = require('angular');
 
 var _angular2 = _interopRequireDefault(_angular);
 
+require('checklist-model');
+
 // CONTROLLERS
 
 var _controllersAddSubscriberController = require('./controllers/add-subscriber.controller');
@@ -413,9 +386,9 @@ var _servicesSubscriberService = require('./services/subscriber.service');
 
 var _servicesSubscriberService2 = _interopRequireDefault(_servicesSubscriberService);
 
-_angular2['default'].module('app.subscriber', []).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).directive('subscriberSubjects', _directivesSubscriberSubjectsDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
+_angular2['default'].module('app.subscriber', ['checklist-model']).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).directive('subscriberSubjects', _directivesSubscriberSubjectsDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
 
-},{"./controllers/add-subscriber.controller":9,"./controllers/view-subscribers.controller":10,"./directives/subscriberItem.directive":11,"./directives/subscriberSubjects.directive":12,"./services/subscriber.service":14,"angular":24}],14:[function(require,module,exports){
+},{"./controllers/add-subscriber.controller":9,"./controllers/view-subscribers.controller":10,"./directives/subscriberItem.directive":11,"./directives/subscriberSubjects.directive":12,"./services/subscriber.service":14,"angular":24,"checklist-model":26}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -429,17 +402,12 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
   this.getAllSubscribers = getAllSubscribers;
   // this.editSubscriber    = editSubscriber;
 
-  function Subscriber(subObj) {
+  function addSubscriber(subObj) {
     this.email = subObj.email;
     this.subject_names = subObj.subject_names;
-    // subObj.selectedSubjects;
-    // subObj.subject_names;
-  }
-
-  function addSubscriber(subObj) {
     var sub = new Subscriber(subObj);
     console.log(sub);
-    return $http.post(url, sub, HEROKU.CONFIG);
+    return $http.post(url, HEROKU.CONFIG);
   }
 
   function getAllSubscribers() {
@@ -37880,6 +37848,156 @@ module.exports = angular;
 
 
 }).call(this);
+},{}],26:[function(require,module,exports){
+/**
+ * Checklist-model
+ * AngularJS directive for list of checkboxes
+ * https://github.com/vitalets/checklist-model
+ * License: MIT http://opensource.org/licenses/MIT
+ */
+
+angular.module('checklist-model', [])
+.directive('checklistModel', ['$parse', '$compile', function($parse, $compile) {
+  // contains
+  function contains(arr, item, comparator) {
+    if (angular.isArray(arr)) {
+      for (var i = arr.length; i--;) {
+        if (comparator(arr[i], item)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  // add
+  function add(arr, item, comparator) {
+    arr = angular.isArray(arr) ? arr : [];
+      if(!contains(arr, item, comparator)) {
+          arr.push(item);
+      }
+    return arr;
+  }  
+
+  // remove
+  function remove(arr, item, comparator) {
+    if (angular.isArray(arr)) {
+      for (var i = arr.length; i--;) {
+        if (comparator(arr[i], item)) {
+          arr.splice(i, 1);
+          break;
+        }
+      }
+    }
+    return arr;
+  }
+
+  // http://stackoverflow.com/a/19228302/1458162
+  function postLinkFn(scope, elem, attrs) {
+     // exclude recursion, but still keep the model
+    var checklistModel = attrs.checklistModel;
+    attrs.$set("checklistModel", null);
+    // compile with `ng-model` pointing to `checked`
+    $compile(elem)(scope);
+    attrs.$set("checklistModel", checklistModel);
+
+    // getter / setter for original model
+    var getter = $parse(checklistModel);
+    var setter = getter.assign;
+    var checklistChange = $parse(attrs.checklistChange);
+    var checklistBeforeChange = $parse(attrs.checklistBeforeChange);
+
+    // value added to list
+    var value = attrs.checklistValue ? $parse(attrs.checklistValue)(scope.$parent) : attrs.value;
+
+
+    var comparator = angular.equals;
+
+    if (attrs.hasOwnProperty('checklistComparator')){
+      if (attrs.checklistComparator[0] == '.') {
+        var comparatorExpression = attrs.checklistComparator.substring(1);
+        comparator = function (a, b) {
+          return a[comparatorExpression] === b[comparatorExpression];
+        };
+        
+      } else {
+        comparator = $parse(attrs.checklistComparator)(scope.$parent);
+      }
+    }
+
+    // watch UI checked change
+    scope.$watch(attrs.ngModel, function(newValue, oldValue) {
+      if (newValue === oldValue) { 
+        return;
+      } 
+
+      if (checklistBeforeChange && (checklistBeforeChange(scope) === false)) {
+        scope[attrs.ngModel] = contains(getter(scope.$parent), value, comparator);
+        return;
+      }
+
+      setValueInChecklistModel(value, newValue);
+
+      if (checklistChange) {
+        checklistChange(scope);
+      }
+    });
+
+    function setValueInChecklistModel(value, checked) {
+      var current = getter(scope.$parent);
+      if (angular.isFunction(setter)) {
+        if (checked === true) {
+          setter(scope.$parent, add(current, value, comparator));
+        } else {
+          setter(scope.$parent, remove(current, value, comparator));
+        }
+      }
+      
+    }
+
+    // declare one function to be used for both $watch functions
+    function setChecked(newArr, oldArr) {
+      if (checklistBeforeChange && (checklistBeforeChange(scope) === false)) {
+        setValueInChecklistModel(value, scope[attrs.ngModel]);
+        return;
+      }
+      scope[attrs.ngModel] = contains(newArr, value, comparator);
+    }
+
+    // watch original model change
+    // use the faster $watchCollection method if it's available
+    if (angular.isFunction(scope.$parent.$watchCollection)) {
+        scope.$parent.$watchCollection(checklistModel, setChecked);
+    } else {
+        scope.$parent.$watch(checklistModel, setChecked, true);
+    }
+  }
+
+  return {
+    restrict: 'A',
+    priority: 1000,
+    terminal: true,
+    scope: true,
+    compile: function(tElement, tAttrs) {
+      if ((tElement[0].tagName !== 'INPUT' || tAttrs.type !== 'checkbox') && (tElement[0].tagName !== 'MD-CHECKBOX') && (!tAttrs.btnCheckbox)) {
+        throw 'checklist-model should be applied to `input[type="checkbox"]` or `md-checkbox`.';
+      }
+
+      if (!tAttrs.checklistValue && !tAttrs.value) {
+        throw 'You should provide `value` or `checklist-value`.';
+      }
+
+      // by default ngModel is 'checked', so we set it if not specified
+      if (!tAttrs.ngModel) {
+        // local scope var storing individual checkbox model
+        tAttrs.$set("ngModel", "checked");
+      }
+
+      return postLinkFn;
+    }
+  };
+}]);
+
 },{}]},{},[19])
 
 

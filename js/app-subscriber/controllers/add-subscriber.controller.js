@@ -1,57 +1,28 @@
 let AddSubscriberController = function($state, $scope, SubscriberService) {
-  
-  // console.log('Hello from the add subscriber controller');
 
-  // set view model to this object
-  let vm = this;
+  console.log('We are the Add Controller People');
 
-  // set of functions we will define in the controller
+  let vm = this; 
   vm.addSubscriber = addSubscriber;
   vm.validateEmail = validateEmail;
-  vm.subjects = getSubjects();
-  vm.selectedSubjects = {};
 
-  console.log(vm.selectedSubjects);
-
-  function getSubjects () {
-    var subjects = [
-      {
-        subject: 'Football',
-        selected: false
-      },
-      {
-        subject: 'Baseball',
-        selected: false
-      },
-      {
-        subject: 'Basketball',
-        selected: false
-      },
-      {
-        subject: 'Soccer',
-        selected: false
-      },
-      {
-        subject: 'Hockey',
-        selected: false
-      }
-    ];
-    return subjects;
-  }
-
-  console.log(vm.subjects);
-
-  // use the form inputs to add a subscriber to the database
+  $scope.subject_names = [
+   'Football',
+   'Baseball',
+   'Basketball',
+   'Soccer',
+   'Hockey'
+  ]; 
 
   function addSubscriber (subObj) {
     console.log('Supposed to add now');
-    SubscriberService.addSubscriber(subObj).then( (response)=>{
-      console.log(response);
-      // $state.go('root.home');
+    SubscriberService.addSubscriber(subObj).then( (res)=>{
+      array.toString(res);
+      console.log(res);
+      $state.go('root.home');
     });
   }
 
-  // watch the email entry field in the form and validate @ symbol with error msg
   $scope.$watch('sub.email', function (newVal) {
 
     if (!newVal) return;
@@ -64,7 +35,6 @@ let AddSubscriberController = function($state, $scope, SubscriberService) {
     }
 
   });
-
 
   function validateEmail (field) {
     return (field.indexOf('@') >= 0) ? true : false;
