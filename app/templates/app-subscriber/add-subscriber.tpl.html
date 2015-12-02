@@ -1,4 +1,5 @@
-<h3>Add subscriber page</h3>
+<h3> {{ user_id }} Add subscriber page</h3>
+
 
 <form ng-submit="vm.addSubscriber(sub)">
   <input placeholder="Email address..." ng-model="sub.email">
@@ -9,9 +10,11 @@
       <td class="table-titles">Subjects</td>
       <td class="table-titles">Opt in?</td>
     </tr>
-    <tr subscriber-subjects 
-      ng-repeat="s in vm.subjects"
-      subject="s">
+    <tr subscriber-subjects ng-repeat="subject_name in subject-names" subject="subject_name">
+      <label ng-repeat="subject_name in subject_names">
+        <input type="checkbox" checklist-model="user.subject_names"
+      checklist-value="subject_names"> {{ subject_name }}
+      </label>
     </tr>
   </table>
 

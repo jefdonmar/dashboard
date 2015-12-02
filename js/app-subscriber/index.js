@@ -1,4 +1,5 @@
 import angular from 'angular';
+import 'checklist-model';
 
 // CONTROLLERS
 import AddSubscriberController from './controllers/add-subscriber.controller';
@@ -12,7 +13,7 @@ import subscriberSubjects from './directives/subscriberSubjects.directive';
 import SubscriberService from './services/subscriber.service';
 
 angular
-  .module('app.subscriber', [])
+  .module('app.subscriber', ['checklist-model'])
   .controller('AddSubscriberController', AddSubscriberController)
   .controller('ViewSubscribersController', ViewSubscribersController)
   .directive('subscriberItem', subscriberItem)
