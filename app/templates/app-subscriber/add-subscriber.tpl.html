@@ -1,24 +1,22 @@
-<h3> {{ user_id }} Add subscriber page</h3>
+<h3>Add subscriber page</h3>
 
 
 <form ng-submit="vm.addSubscriber(sub)">
   <input placeholder="Email address..." ng-model="sub.email">
   <p ng-show="sub.emailError" class="form-error-message">{{ sub.emailError }}</p>
 
-  <table>
-    <tr class="subject-header">Article Subjects</tr>
-    <hr>
-    <tr subscriber-subjects ng-repeat="subject_name in subject-names" subject="subject_name">
-        <label ng-repeat="subject_name in subject_names">
-          <input
-            type="checkbox"
-            checklist-model="sub.subject_names"
-            checklist-value="subject_name.subject_names"> 
-            {{ subject_name }}
-        </label>
-      </td>
-    </tr>
-  </table>
+  <h5>Subject names</h5>
+  
+  <div ng-repeat="subject in subject_names">
+    <label>
+      <input
+        type="checkbox"
+        checklist-model="sub.subject_names"
+        checklist-value="subject"> 
+        {{ subject }}
+    </label>
+  </div>
 
   <button>Submit</button>
+
 </form>

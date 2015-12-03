@@ -4,7 +4,7 @@ let SubscriberService = function($http, HEROKU, $cookies) {
 
   function Subscriber (subObj) {
     this.email = subObj.email;
-    this.subject_names = subObj.subject_names;
+    this.subject_names = subObj.subject_names.toString();
   }
 
   this.addSubscriber = addSubscriber;
@@ -14,7 +14,7 @@ let SubscriberService = function($http, HEROKU, $cookies) {
   function addSubscriber (subObj) {
     let sub = new Subscriber(subObj);
     console.log(sub);
-    return $http.post(url, HEROKU.CONFIG);
+    return $http.post(url, sub, HEROKU.CONFIG);
   }
 
   function getAllSubscribers () {
