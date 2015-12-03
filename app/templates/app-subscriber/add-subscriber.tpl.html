@@ -6,15 +6,17 @@
   <p ng-show="sub.emailError" class="form-error-message">{{ sub.emailError }}</p>
 
   <table>
-    <tr class="header-row">
-      <td class="table-titles">Subjects</td>
-      <td class="table-titles">Opt in?</td>
-    </tr>
+    <tr class="subject-header">Article Subjects</tr>
+    <hr>
     <tr subscriber-subjects ng-repeat="subject_name in subject-names" subject="subject_name">
-      <label ng-repeat="subject_name in subject_names">
-        <input type="checkbox" checklist-model="user.subject_names"
-      checklist-value="subject_names"> {{ subject_name }}
-      </label>
+        <label ng-repeat="subject_name in subject_names">
+          <input
+            type="checkbox"
+            checklist-model="sub.subject_names"
+            checklist-value="subject_name.subject_names"> 
+            {{ subject_name }}
+        </label>
+      </td>
     </tr>
   </table>
 
