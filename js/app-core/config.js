@@ -46,6 +46,11 @@ let config = function($urlRouterProvider, $stateProvider) {
       url: '/article/:id',
       controller: 'SingleArticleController as vm',
       templateUrl: 'templates/app-content/view-single-article.tpl.html'
+    })
+    .state('root.edit-article', {
+      url: '/edit-article/:id',
+      controller: 'EditArticleController as vm',
+      templateUrl: 'templates/app-content/edit-article.tpl.html'
     });
 
 };
