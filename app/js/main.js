@@ -225,7 +225,6 @@ var AddSubscriberController = function AddSubscriberController($state, $scope, S
   function addSubscriber(subObj) {
     console.log('Supposed to add now');
     SubscriberService.addSubscriber(subObj).then(function (res) {
-      array.toString(res);
       console.log(res);
       $state.go('root.home');
     });
@@ -319,33 +318,40 @@ exports['default'] = subscriberItem;
 module.exports = exports['default'];
 
 },{}],12:[function(require,module,exports){
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var subscriberSubjects = function subscriberSubjects(SubscriberService) {
+// let subscriberSubjects = function(SubscriberService) {
 
-  return {
+//   return {
 
-    restrict: 'A', // Restrict to attribute only
-    replace: true, // Replace as opposed to inserting into
-    scope: {
-      subject: '='
-    },
-    // transclude: true,
-    // controller: 'ViewSubscribersController as vm', // Not needed?
-    template: '\n      <tr>\n        <td>{{ subject.subject }}</td>\n        <td>\n          <input \n            type="checkbox"\n            ng-click="subject.selected=true"\n            ng-model="vm.selectedSubjects[s.selected]">\n        </td>\n      </tr>\n    '
-  };
-};
+//     restrict: 'A', // Restrict to attribute only
+//     replace: true, // Replace as opposed to inserting into
+//     scope: {
+//       subject: '='
+//     },
+//     // transclude: true,
+//     // controller: 'ViewSubscribersController as vm', // Not needed?
+//     template: `
+//       <tr>
+//         <td>{{ subject.subject }}</td>
+//         <td>
+//           <input
+//             type="checkbox"
+//             ng-click="subject.selected=true"
+//             ng-model="vm.selectedSubjects[s.selected]">
+//         </td>
+//       </tr>
+//     `,
+//     // link: function (scope, element, attrs) {
+//     //   scope.sortType = 'First Name';
+//     // }
+//   };
 
-// link: function (scope, element, attrs) {
-//   scope.sortType = 'First Name';
-// }
-subscriberSubjects.$inject = ['SubscriberService'];
+// };
 
-exports['default'] = subscriberSubjects;
-module.exports = exports['default'];
+// subscriberSubjects.$inject = ['SubscriberService'];
+
+// export default subscriberSubjects;
 
 },{}],13:[function(require,module,exports){
 'use strict';
@@ -398,7 +404,7 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
 
   function Subscriber(subObj) {
     this.email = subObj.email;
-    this.subject_names = subObj.subject_names;
+    this.subject_names = subObj.subject_names.toString();
   }
 
   this.addSubscriber = addSubscriber;
@@ -408,7 +414,7 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
   function addSubscriber(subObj) {
     var sub = new Subscriber(subObj);
     console.log(sub);
-    return $http.post(url, HEROKU.CONFIG);
+    return $http.post(url, sub, HEROKU.CONFIG);
   }
 
   function getAllSubscribers() {
