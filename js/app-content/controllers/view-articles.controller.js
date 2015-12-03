@@ -4,10 +4,16 @@ let ViewArticlesController = function($state, ArticleService) {
 
   let vm = this;
 
+  vm.goToArticle = goToArticle;
+
   ArticleService.getAllArticles().then( (response)=> {
     vm.articles = response.data.article;
     console.log(vm.articles);
   });
+
+  function goToArticle (article) {
+    $state.go('root.single-article', {id: article.id });
+  }
 
 };
 

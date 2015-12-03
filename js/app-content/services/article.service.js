@@ -4,6 +4,7 @@ let ArticleService = function($http, HEROKU) {
 
   this.addArticle = addArticle;
   this.getAllArticles = getAllArticles;
+  this.getSingleArticle = getSingleArticle;
 
   function Article (article) {
     this.subject_names       = article.subject_names;
@@ -19,6 +20,11 @@ let ArticleService = function($http, HEROKU) {
   function getAllArticles () {
     console.log('getAllArticles function is called');
     return $http.get(url, HEROKU.CONFIG);
+  }
+
+  function getSingleArticle (articleId) {
+    console.log('getSingleArticle function called');
+    return $http.get(url + '/' + articleId, HEROKU.CONFIG);
   }
 
 };

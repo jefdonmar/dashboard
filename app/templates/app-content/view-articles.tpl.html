@@ -5,7 +5,7 @@
 <p class=" subject-headers medium-6 grid-block" class="article-title">Subjects</p>
 
 <div class="article-view-cards" class="grid-block" ng-repeat="article in vm.articles">
-  <p class="medium-5 grid-block">{{ article.title }}</p>
+  <p class="medium-5 grid-block article-title-link" ng-click="vm.goToArticle(article)">{{ article.title }}</p>
   <p class="medium-6 grid-block" class="article-title">{{ article.subject_names }}</p>
   <hr>
 </div>
