@@ -1,6 +1,17 @@
 <h4>Edit Article Page</h4>
 
-<form>
-  <input placeholder="starting value">
+<form ng-submit="vm.submitEdits(vm.article)">
+  <label>
+    Title
+    <input ng-model="vm.article.title">
+  </label>
+  <label>
+    Subject names
+    <input ng-model="vm.article.subject_names">
+  </label>
+  <label>
+    Content
+    <textarea ng-model="vm.article.content"></textarea>
+  </label>
   <button>Submit</button>
 </form>

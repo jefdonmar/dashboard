@@ -48,3 +48,17 @@ form {
   }
 
 }
+
+.single-article-nav {
+  list-style-type: none;
+  margin-left: 2px;
+
+  .article-nav-list-item {
+    color: black;
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 0px;
+    cursor: pointer;
+  }
+
+}

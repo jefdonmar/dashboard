@@ -29,8 +29,8 @@ let ArticleService = function($http, HEROKU) {
     return $http.get(url + '/' + articleId, HEROKU.CONFIG);
   }
 
-  function editArticle () {
-    console.log('edit article called');
+  function editArticle (article) {
+    return $http.put(url + '/' + article.id, article, HEROKU.CONFIG);
   }
 
   // PASS IN ARTICLE ID TO ^ and below

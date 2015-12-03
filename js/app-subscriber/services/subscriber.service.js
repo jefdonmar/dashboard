@@ -9,6 +9,7 @@ let SubscriberService = function($http, HEROKU, $cookies) {
 
   this.addSubscriber = addSubscriber;
   this.getAllSubscribers = getAllSubscribers;
+  this.deleteSubscriber = deleteSubscriber;
   // this.editSubscriber    = editSubscriber;
 
   function addSubscriber (subObj) {
@@ -19,6 +20,11 @@ let SubscriberService = function($http, HEROKU, $cookies) {
 
   function getAllSubscribers () {
     return $http.get(url, HEROKU.CONFIG);
+  }
+
+  function deleteSubscriber (subscriber) {
+    console.log(subscriber);
+    return $http.delete(url + '/' + subscriber.id, HEROKU.CONFIG);
   }
 
   function setHeaders () {
