@@ -308,7 +308,7 @@ var subscriberItem = function subscriberItem(SubscriberService) {
     },
     // transclude: true,
     // controller: 'ViewSubscribersController as vm', // Not needed?
-    template: '\n      <tr>\n        <td>{{ sub.user_id }}</td>\n        <td>{{ sub.email }}</td>\n        <td>{{ sub.subject_names }}</td>\n      </tr>\n    ',
+    template: '\n      <tr>\n        <td>{{ sub.email }}</td>\n        <td>{{ sub.subject_names }}</td>\n      </tr>\n    ',
     link: function link(scope, element, attrs) {
       scope.sortType = 'First Name';
     }
