@@ -5,22 +5,26 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
 
   // connect data to scope of the controller through view model
   vm.subscribers = [];
-  vm.clicked     = clicked;
+  // vm.clicked     = clicked;
+  // vm.deleteSub      = deleteSub;
 
-  $scope.sortType = 'firstName';
+  $scope.sortType = 'id';
+  $scope.sortReverse = false;
 
   activate();
 
   function activate () {
-    SubscriberService.getAllSubscribers().then( (response)=> {
-      vm.subscribers = response.data.subscriber;
-      console.log(vm.subscribers);
-    });
+    if (vm.subscribers.length === 0) {
+      SubscriberService.getAllSubscribers().then( (response)=> {
+        vm.subscribers = response.data.subscriber;
+        console.log(vm.subscribers);
+      });
+    }
   }
 
-  function clicked (sub) {
-    console.log('clicked', sub.firstName);
-  }
+  // function clicked (sub) {
+  //   console.log('clicked', sub.firstName);
+  // }
 
 };
 
