@@ -20,11 +20,7 @@ let SingleArticleController = function($state, ArticleService, $stateParams) {
   function editMe (article) {
     let articleId = article.id;
     console.log(articleId);
-    $state.go('root.edit-article', {id: articleId});
-    ArticleService.editArticle(articleId).then( () => {
-      alert('article edit page coming up...');
-      $state.go('root.view-articles');
-    });
+    $state.go('root.edit-article', {id: articleId}); 
   }
 
   function deleteMe (article) {

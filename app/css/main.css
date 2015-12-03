@@ -8437,4 +8437,14 @@ form div.large-6 {
     cursor: pointer;
     color: blue; }
 
+.single-article-nav {
+  list-style-type: none;
+  margin-left: 2px; }
+  .single-article-nav .article-nav-list-item {
+    color: black;
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 0px;
+    cursor: pointer; }
+
 /*# sourceMappingURL=main.css.map */

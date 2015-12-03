@@ -29,12 +29,33 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var EditArticleController = function EditArticleController($state) {
+var EditArticleController = function EditArticleController($state, ArticleService, $stateParams) {
 
-  console.log('Edit Article Controller');
+  var vm = this;
+
+  vm.submitEdits = submitEdits;
+
+  activate();
+
+  function activate() {
+    ArticleService.getSingleArticle($stateParams.id).then(function (response) {
+      vm.article = response.data.article;
+      console.log(vm.article);
+    });
+  }
+
+  function submitEdits(article) {
+    var articleId = article.id;
+    console.log(articleId);
+    ArticleService.editArticle(article).then(function (response) {
+      console.log(articleId);
+      $state.go('root.single-article', { id: articleId });
+      console.log(response);
+    });
+  }
 };
 
-EditArticleController.$inject = ['$state'];
+EditArticleController.$inject = ['$state', 'ArticleService', '$stateParams'];
 
 exports['default'] = EditArticleController;
 module.exports = exports['default'];
@@ -96,10 +117,6 @@ var SingleArticleController = function SingleArticleController($state, ArticleSe
     var articleId = article.id;
     console.log(articleId);
     $state.go('root.edit-article', { id: articleId });
-    ArticleService.editArticle(articleId).then(function () {
-      alert('article edit page coming up...');
-      $state.go('root.view-articles');
-    });
   }
 
   function deleteMe(article) {
@@ -198,8 +215,8 @@ var ArticleService = function ArticleService($http, HEROKU) {
     return $http.get(url + '/' + articleId, HEROKU.CONFIG);
   }
 
-  function editArticle() {
-    console.log('edit article called');
+  function editArticle(article) {
+    return $http.put(url + '/' + article.id, article, HEROKU.CONFIG);
   }
 
   // PASS IN ARTICLE ID TO ^ and below
