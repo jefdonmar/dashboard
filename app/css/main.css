@@ -8424,4 +8424,14 @@ button .change-button {
 form div.large-6 {
   padding: 0px; }
 
+.subject-headers {
+  display: inline-block;
+  border-bottom: 1px solid black; }
+
+.article-view-cards {
+  padding: 0;
+  margin: 0; }
+  .article-view-cards .grid-block {
+    display: inline-block; }
+
 /*# sourceMappingURL=main.css.map */

@@ -36,6 +36,11 @@ let config = function($urlRouterProvider, $stateProvider) {
       url: '/signup',
       controller: 'SignupController as vm',
       templateUrl: 'templates/app-user/signup.tpl.html'
+    })
+    .state('root.view-articles', {
+      url: '/view-articles',
+      controller: 'ViewArticlesController as vm',
+      templateUrl: 'templates/app-content/view-articles.tpl.html'
     });
 
 };
