@@ -8433,5 +8433,8 @@ form div.large-6 {
   margin: 0; }
   .article-view-cards .grid-block {
     display: inline-block; }
+  .article-view-cards .article-title-link {
+    cursor: pointer;
+    color: blue; }
 
 /*# sourceMappingURL=main.css.map */

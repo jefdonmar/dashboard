@@ -5,6 +5,8 @@ let ArticleService = function($http, HEROKU) {
   this.addArticle = addArticle;
   this.getAllArticles = getAllArticles;
   this.getSingleArticle = getSingleArticle;
+  this.editArticle = editArticle;
+  this.deleteArticle = deleteArticle;
 
   function Article (article) {
     this.subject_names       = article.subject_names;
@@ -26,6 +28,17 @@ let ArticleService = function($http, HEROKU) {
     console.log('getSingleArticle function called');
     return $http.get(url + '/' + articleId, HEROKU.CONFIG);
   }
+
+  function editArticle () {
+    console.log('edit article called');
+  }
+
+  // PASS IN ARTICLE ID TO ^ and below
+
+  function deleteArticle (articleId) {
+    return $http.delete(url + '/' + articleId, HEROKU.CONFIG);
+  }
+
 
 };
 
