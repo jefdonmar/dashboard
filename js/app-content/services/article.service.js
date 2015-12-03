@@ -1,21 +1,21 @@
 let ArticleService = function($http, HEROKU) {
   
-  // console.log('Hello from the ArticleService');
+  console.log('Hello from the ArticleService');
 
-  // let url = HEROKU.URL + 'content';
+  let url = HEROKU.URL + 'articles';
 
-  // this.addArticle = addArticle;
+  this.addArticle = addArticle;
 
-  // function Article (article) {
-  //   this.tag       = article.tag;
-  //   this.headline  = article.headline;
-  //   this.paragraph = article.paragraph;
-  // }
+  function Article (article) {
+    this.subject_names       = article.subject_names;
+    this.title  = article.title;
+    this.content = article.content;
+  }
 
-  // function addArticle (article) {
-  //   let a = new Article (article);
-  //   return $http.post(url, a, HEROKU.CONFIG.headers);
-  // }
+  function addArticle (article) {
+    let a = new Article (article);
+    return $http.post(url, a, HEROKU.CONFIG);
+  }
 
 };
 

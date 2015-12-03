@@ -8,15 +8,14 @@ var AddArticleController = function AddArticleController($state, $scope, Article
 
   console.log('Hello from the add article controller');
 
-  // let vm = this;
+  var vm = this;
+  vm.addArticle = addArticle;
 
-  // vm.addArticle = addArticle;
-
-  // function addArticle (article) {
-  //   ArticleService.addArticle(article).then( (response)=> {
-  //     console.log(response.data.results);
-  //   });
-  // }
+  function addArticle(article) {
+    ArticleService.addArticle(article).then(function (response) {
+      console.log(response);
+    });
+  }
 };
 
 AddArticleController.$inject = ['$state', '$scope', 'ArticleService'];
@@ -63,23 +62,22 @@ Object.defineProperty(exports, '__esModule', {
 });
 var ArticleService = function ArticleService($http, HEROKU) {
 
-  // console.log('Hello from the ArticleService');
+  console.log('Hello from the ArticleService');
 
-  // let url = HEROKU.URL + 'content';
+  var url = HEROKU.URL + 'articles';
 
-  // this.addArticle = addArticle;
+  this.addArticle = addArticle;
 
-  // function Article (article) {
-  //   this.tag       = article.tag;
-  //   this.headline  = article.headline;
-  //   this.paragraph = article.paragraph;
-  // }
+  function Article(article) {
+    this.subject_names = article.subject_names;
+    this.title = article.title;
+    this.content = article.content;
+  }
 
-  // function addArticle (article) {
-  //   let a = new Article (article);
-  //   return $http.post(url, a, HEROKU.CONFIG.headers);
-  // }
-
+  function addArticle(article) {
+    var a = new Article(article);
+    return $http.post(url, a, HEROKU.CONFIG);
+  }
 };
 
 ArticleService.$inject = ['$http', 'HEROKU'];
