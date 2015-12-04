@@ -10,7 +10,6 @@ import SingleSubscriberController from './controllers/single-subscriber.controll
 
 // DIRECTIVES
 import subscriberItem from './directives/subscriberItem.directive';
-import subscriberSubjects from './directives/subscriberSubjects.directive';
 
 // SERVICES
 import SubscriberService from './services/subscriber.service';
@@ -23,6 +22,5 @@ angular
   .controller('EditSubscriberController', EditSubscriberController)
   .controller('SingleSubscriberController', SingleSubscriberController)
   .directive('subscriberItem', subscriberItem)
-  .directive('subscriberSubjects', subscriberSubjects)
   .service('SubscriberService', SubscriberService)
 ;
