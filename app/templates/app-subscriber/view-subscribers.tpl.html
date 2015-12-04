@@ -30,22 +30,16 @@
     <td>Edit</td>
     <td>Delete</td>
     <td>Baseball</td>
-
-    <!-- CREATE A COLUMN FOR EACH CATEGORY/TAG -->
-    <!-- CREATE A NEW DIRECTIVE TO NG-REPEAT FOR EACH TAG - SHOULD BE RELATIVELY SIMPLE -->
-    <!-- <td category-preferences></td> -->
-
-
-    <!-- <td class="table-titles">Baseball</td> -->
+    <td>Basketball</td>
+    <td>Football</td>
+    <td>Hockey</td>
+    <td>Soccer</td>
   </tr>
 
    <tr subscriber-item 
     ng-repeat="s in vm.subscribers | orderBy:sortType:sortReverse"
     sub="s">
   </tr>
-
- <!--  <tr subscriber-item ng-repeat="subscriber in subscribers" subject="id">
-  </tr> -->
   
 </table>
   

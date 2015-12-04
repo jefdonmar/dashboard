@@ -35,14 +35,15 @@ let SubscriberService = function($http, HEROKU, $cookies) {
 
   function editSubscriber (subscriber) {
     console.log(subscriber);
+    return $http.put(url + '/' + subscriber.id, subscriber, HEROKU.CONFIG);
   }
 
-  function setHeaders () {
-    HEROKU.CONFIG.headers['auth_token'] = $cookies.get('auth_token');
-    // user.auth;
-    HEROKU.CONFIG.headers['user_id'] = $cookies.get('user_id');
-    // token;
-  } 
+  // function setHeaders () {
+  //   HEROKU.CONFIG.headers['auth_token'] = $cookies.get('auth_token');
+  //   // user.auth;
+  //   HEROKU.CONFIG.headers['user_id'] = $cookies.get('user_id');
+  //   // token;
+  // } 
 
 };
 

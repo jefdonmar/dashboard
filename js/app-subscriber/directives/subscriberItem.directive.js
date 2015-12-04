@@ -23,7 +23,31 @@ let subscriberItem = function(SubscriberService) {
         <td ng-click="vm.deleteSub(sub)">
           <a>Delete</a>
         </td>
-        <td>Yes or No</td>
+        <td>
+          <span>
+            {{ sub.subject_names.includes('Baseball') ? "Yes" : "" }}
+          </span>
+        </td>
+        <td>
+          <span>
+            {{ sub.subject_names.includes('Basketball') ? "Yes" : "" }}
+          </span>
+        </td>
+        <td>
+          <span>
+            {{ sub.subject_names.includes('Football') ? "Yes" : "" }}
+          </span>
+        </td>
+        <td>
+          <span>
+            {{ sub.subject_names.includes('Hockey') ? "Yes" : "" }}
+          </span>
+        </td>
+        <td>
+          <span>
+            {{ sub.subject_names.includes('Soccer') ? "Yes" : "" }}
+          </span>
+        </td>
       </tr>
     `,
     link: function (scope, element, attrs) {

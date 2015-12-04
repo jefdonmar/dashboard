@@ -1,1 +1,16 @@
 <h3>Edit subscriber</h3>
+
+<p><a href="#/view-subscribers">View all subscribers</a></p>
+
+
+<form ng-submit="vm.submitSubEdits(vm.subscriber)">
+  <label>
+    Email address: 
+    <input ng-model="vm.subscriber.email">
+  </label>
+  <label>
+    Subjects: 
+    <input ng-model="vm.subscriber.subject_names">
+  </label>
+  <button>Submit</button>
+</form>
