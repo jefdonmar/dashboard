@@ -61,6 +61,11 @@ let config = function($urlRouterProvider, $stateProvider) {
       url: '/edit-subscriber/:id',
       controller: 'EditSubscriberController as vm',
       templateUrl: 'templates/app-subscriber/edit-subscriber.tpl.html'
+    })
+    .state ('root.view-by-subject', {
+      url: '/view-by-subject',
+      controller: 'ArticleBySubjectController as vm',
+      templateUrl: 'templates/app-content/view-by-subject.tpl.html'
     });
 
 };

@@ -1,12 +1,14 @@
 let ArticleService = function($http, HEROKU) {
 
   let url = HEROKU.URL + 'articles';
+  let subjectURL = HEROKU.URL + 'subject/';
 
   this.addArticle = addArticle;
   this.getAllArticles = getAllArticles;
   this.getSingleArticle = getSingleArticle;
   this.editArticle = editArticle;
   this.deleteArticle = deleteArticle;
+  this.getSubjectArticles = getSubjectArticles;
 
   function Article (article) {
     this.subject_names       = article.subject_names;
@@ -37,6 +39,10 @@ let ArticleService = function($http, HEROKU) {
 
   function deleteArticle (articleId) {
     return $http.delete(url + '/' + articleId, HEROKU.CONFIG);
+  }
+
+  function getSubjectArticles (subjectName) {
+    return $http.get(subjectURL + subjectName, HEROKU.CONFIG)
   }
 
 
