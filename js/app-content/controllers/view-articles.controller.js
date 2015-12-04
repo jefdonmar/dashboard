@@ -1,10 +1,15 @@
-let ViewArticlesController = function($state, ArticleService) {
+let ViewArticlesController = function($state, $scope, ArticleService) {
   
   // console.log('Hello from the view articles controller');
 
   let vm = this;
 
   vm.goToArticle = goToArticle;
+
+  // vm.articles = [];
+
+  $scope.sortType = 'title';
+  $scope.sortReverse = false;
 
   ArticleService.getAllArticles().then( (response)=> {
     vm.articles = response.data.article;
@@ -17,6 +22,6 @@ let ViewArticlesController = function($state, ArticleService) {
 
 };
 
-ViewArticlesController.$inject = ['$state', 'ArticleService'];
+ViewArticlesController.$inject = ['$state', '$scope', 'ArticleService'];
 
 export default ViewArticlesController;

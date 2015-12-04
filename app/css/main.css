@@ -8447,4 +8447,7 @@ form div.large-6 {
     margin-left: 0px;
     cursor: pointer; }
 
+ul.subject-button-list {
+  list-style-type: none; }
+
 /*# sourceMappingURL=main.css.map */
