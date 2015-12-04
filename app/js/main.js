@@ -424,12 +424,35 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var EditSubscriberController = function EditSubscriberController($state) {
+var EditSubscriberController = function EditSubscriberController($state, SubscriberService, $stateParams) {
 
   console.log('Edit Subscriber Controller');
+
+  var vm = this;
+
+  vm.submitSubEdits = submitSubEdits;
+
+  activate();
+
+  function activate() {
+    SubscriberService.getSingleSubscriber($stateParams.id).then(function (response) {
+      console.log(response);
+      vm.subscriber = response.data.subscriber;
+      console.log(vm.subscriber);
+    });
+  }
+
+  function submitSubEdits(subscriber) {
+    var subscriberId = subscriber.id;
+    console.log(subscriberId);
+    SubscriberService.editSubscriber(subscriber).then(function (response) {
+      console.log(response);
+      $state.go('root.view-subscriber', { id: subscriberId });
+    });
+  }
 };
 
-EditSubscriberController.$inject = ['$state'];
+EditSubscriberController.$inject = ['$state', 'SubscriberService', '$stateParams'];
 
 exports['default'] = EditSubscriberController;
 module.exports = exports['default'];
@@ -696,6 +719,7 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
 
   function editSubscriber(subscriber) {
     console.log(subscriber);
+    return $http.put(url + '/' + subscriber.id, subscriber, HEROKU.CONFIG);
   }
 
   function setHeaders() {
