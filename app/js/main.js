@@ -178,7 +178,7 @@ _angular2['default'].module('app.content', [])
 
 // DIRECTIVES
 
-},{"./controllers/add-article.controller":1,"./controllers/edit-article.controller":2,"./controllers/view-articles.controller":3,"./controllers/view-single-article.controller":4,"./services/article.service":6,"angular":28}],6:[function(require,module,exports){
+},{"./controllers/add-article.controller":1,"./controllers/edit-article.controller":2,"./controllers/view-articles.controller":3,"./controllers/view-single-article.controller":4,"./services/article.service":6,"angular":30}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -280,6 +280,14 @@ var config = function config($urlRouterProvider, $stateProvider) {
     url: '/edit-article/:id',
     controller: 'EditArticleController as vm',
     templateUrl: 'templates/app-content/edit-article.tpl.html'
+  }).state('root.view-subscriber', {
+    url: '/view-subscriber/:id',
+    controller: 'SingleSubscriberController as vm',
+    templateUrl: 'templates/app-subscriber/single-subscriber.tpl.html'
+  }).state('root.edit-subscriber', {
+    url: '/edit-subscriber/:id',
+    controller: 'EditSubscriberController as vm',
+    templateUrl: 'templates/app-subscriber/edit-subscriber.tpl.html'
   });
 };
 
@@ -332,7 +340,7 @@ var _herokuConstant2 = _interopRequireDefault(_herokuConstant);
 
 _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).config(_config2['default']).constant('HEROKU', _herokuConstant2['default']);
 
-},{"./config":7,"./heroku.constant":8,"angular":28,"angular-cookies":25,"angular-ui-router":26}],10:[function(require,module,exports){
+},{"./config":7,"./heroku.constant":8,"angular":30,"angular-cookies":27,"angular-ui-router":28}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -364,7 +372,7 @@ var _controllersHomeController2 = _interopRequireDefault(_controllersHomeControl
 
 _angular2['default'].module('app.layout', []).controller('HomeController', _controllersHomeController2['default']);
 
-},{"./controllers/home.controller":10,"angular":28}],12:[function(require,module,exports){
+},{"./controllers/home.controller":10,"angular":30}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -416,17 +424,79 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
+var EditSubscriberController = function EditSubscriberController($state) {
+
+  console.log('Edit Subscriber Controller');
+};
+
+EditSubscriberController.$inject = ['$state'];
+
+exports['default'] = EditSubscriberController;
+module.exports = exports['default'];
+
+},{}],14:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var SingleSubscriberController = function SingleSubscriberController($state, SubscriberService, $stateParams) {
+
+  console.log('SingleSubscriberController');
+
+  var vm = this;
+
+  vm.goToEditSub = goToEditSub;
+
+  activate();
+
+  function activate() {
+    SubscriberService.getSingleSubscriber($stateParams.id).then(function (response) {
+      console.log(response);
+      vm.subscriber = response.data.subscriber;
+      console.log(vm.subscriber);
+    });
+  }
+
+  function goToEditSub() {
+    $state.go('root.edit-subscriber', { id: $stateParams.id });
+  }
+};
+
+SingleSubscriberController.$inject = ['$state', 'SubscriberService', '$stateParams'];
+
+exports['default'] = SingleSubscriberController;
+module.exports = exports['default'];
+
+},{}],15:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 var SubscriberRowController = function SubscriberRowController(SubscriberService, $state) {
 
   var vm = this;
 
   vm.deleteSub = deleteSub;
+  vm.viewSub = viewSub;
+  vm.editSub = editSub;
 
   function deleteSub(subscriber) {
     SubscriberService.deleteSubscriber(subscriber).then(function (response) {
       console.log(response);
       $state.reload();
     });
+  }
+
+  function viewSub(subscriber) {
+    console.log(subscriber.id);
+    $state.go('root.view-subscriber', { id: subscriber.id });
+  }
+
+  function editSub(subscriber) {
+    console.log(subscriber.id);
+    $state.go('root.edit-subscriber', { id: subscriber.id });
   }
 };
 
@@ -435,7 +505,7 @@ SubscriberRowController.$inject = ['SubscriberService', '$state'];
 exports['default'] = SubscriberRowController;
 module.exports = exports['default'];
 
-},{}],14:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -448,8 +518,6 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
 
   // connect data to scope of the controller through view model
   vm.subscribers = [];
-  // vm.clicked     = clicked;
-  // vm.deleteSub      = deleteSub;
 
   $scope.sortType = 'id';
   $scope.sortReverse = false;
@@ -460,14 +528,10 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     if (vm.subscribers.length === 0) {
       SubscriberService.getAllSubscribers().then(function (response) {
         vm.subscribers = response.data.subscriber;
-        console.log(vm.subscribers);
+        console.log('Subscribers', vm.subscribers);
       });
     }
   }
-
-  // function clicked (sub) {
-  //   console.log('clicked', sub.firstName);
-  // }
 };
 
 ViewSubscribersController.$inject = ['$state', '$scope', 'SubscriberService'];
@@ -475,7 +539,7 @@ ViewSubscribersController.$inject = ['$state', '$scope', 'SubscriberService'];
 exports['default'] = ViewSubscribersController;
 module.exports = exports['default'];
 
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -492,13 +556,8 @@ var subscriberItem = function subscriberItem(SubscriberService) {
     },
     // transclude: true,
     controller: 'SubscriberRowController as vm', // Not needed?
-    template: '\n      <tr>\n        <td>{{ sub.id }}</td>\n        <td>{{ sub.email }}</td>\n        <td>{{ sub.subject_names }}</td>\n        <td>Edit</td>\n        <td\n          ng-click="vm.deleteSub(sub)"\n        >\n            Delete\n          </td>\n        <td>Yes or No</td>\n      </tr>\n    ',
-    link: function link(scope, element, attrs) {
-      // element.find()on('click', function() {
-      //   element[0].childNodes[9]
-      //   console.log('subscriber clicked');
-      // });
-    }
+    template: '\n      <tr>\n        <td>{{ sub.id }}</td>\n        <td>{{ sub.email }}</td>\n        <td>{{ sub.subject_names }}</td>\n        <td ng-click="vm.viewSub(sub)">\n          <a>View</a>\n        </td>\n        <td ng-click="vm.editSub(sub)">\n          <a>Edit</a>\n        </td>\n        <td ng-click="vm.deleteSub(sub)">\n          <a>Delete</a>\n        </td>\n        <td>Yes or No</td>\n      </tr>\n    ',
+    link: function link(scope, element, attrs) {}
   };
 };
 
@@ -507,7 +566,7 @@ subscriberItem.$inject = ['SubscriberService'];
 exports['default'] = subscriberItem;
 module.exports = exports['default'];
 
-},{}],16:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 "use strict";
 
 // let subscriberSubjects = function(SubscriberService) {
@@ -543,7 +602,7 @@ module.exports = exports['default'];
 
 // export default subscriberSubjects;
 
-},{}],17:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -568,6 +627,14 @@ var _controllersSubscriberRowDirectiveController = require('./controllers/subscr
 
 var _controllersSubscriberRowDirectiveController2 = _interopRequireDefault(_controllersSubscriberRowDirectiveController);
 
+var _controllersEditSubscriberController = require('./controllers/edit-subscriber.controller');
+
+var _controllersEditSubscriberController2 = _interopRequireDefault(_controllersEditSubscriberController);
+
+var _controllersSingleSubscriberController = require('./controllers/single-subscriber.controller');
+
+var _controllersSingleSubscriberController2 = _interopRequireDefault(_controllersSingleSubscriberController);
+
 // DIRECTIVES
 
 var _directivesSubscriberItemDirective = require('./directives/subscriberItem.directive');
@@ -584,9 +651,9 @@ var _servicesSubscriberService = require('./services/subscriber.service');
 
 var _servicesSubscriberService2 = _interopRequireDefault(_servicesSubscriberService);
 
-_angular2['default'].module('app.subscriber', ['checklist-model']).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).controller('SubscriberRowController', _controllersSubscriberRowDirectiveController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).directive('subscriberSubjects', _directivesSubscriberSubjectsDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
+_angular2['default'].module('app.subscriber', ['checklist-model']).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).controller('SubscriberRowController', _controllersSubscriberRowDirectiveController2['default']).controller('EditSubscriberController', _controllersEditSubscriberController2['default']).controller('SingleSubscriberController', _controllersSingleSubscriberController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).directive('subscriberSubjects', _directivesSubscriberSubjectsDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
 
-},{"./controllers/add-subscriber.controller":12,"./controllers/subscriber-row-directive.controller":13,"./controllers/view-subscribers.controller":14,"./directives/subscriberItem.directive":15,"./directives/subscriberSubjects.directive":16,"./services/subscriber.service":18,"angular":28,"checklist-model":30}],18:[function(require,module,exports){
+},{"./controllers/add-subscriber.controller":12,"./controllers/edit-subscriber.controller":13,"./controllers/single-subscriber.controller":14,"./controllers/subscriber-row-directive.controller":15,"./controllers/view-subscribers.controller":16,"./directives/subscriberItem.directive":17,"./directives/subscriberSubjects.directive":18,"./services/subscriber.service":20,"angular":30,"checklist-model":32}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -604,7 +671,8 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
   this.addSubscriber = addSubscriber;
   this.getAllSubscribers = getAllSubscribers;
   this.deleteSubscriber = deleteSubscriber;
-  // this.editSubscriber    = editSubscriber;
+  this.getSingleSubscriber = getSingleSubscriber;
+  this.editSubscriber = editSubscriber;
 
   function addSubscriber(subObj) {
     var sub = new Subscriber(subObj);
@@ -621,6 +689,15 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
     return $http['delete'](url + '/' + subscriber.id, HEROKU.CONFIG);
   }
 
+  function getSingleSubscriber(subscriberId) {
+    console.log(subscriberId);
+    return $http.get(url + '/' + subscriberId, HEROKU.CONFIG);
+  }
+
+  function editSubscriber(subscriber) {
+    console.log(subscriber);
+  }
+
   function setHeaders() {
     HEROKU.CONFIG.headers['auth_token'] = $cookies.get('auth_token');
     // user.auth;
@@ -634,7 +711,7 @@ SubscriberService.$inject = ['$http', 'HEROKU', '$cookies'];
 exports['default'] = SubscriberService;
 module.exports = exports['default'];
 
-},{}],19:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -666,7 +743,7 @@ LoginController.$inject = ['$scope', '$state', 'UserService'];
 exports['default'] = LoginController;
 module.exports = exports['default'];
 
-},{}],20:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -715,7 +792,7 @@ SignupController.$inject = ['$state', '$scope', 'UserService'];
 exports['default'] = SignupController;
 module.exports = exports['default'];
 
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -738,7 +815,7 @@ var _servicesUserService2 = _interopRequireDefault(_servicesUserService);
 
 _angular2['default'].module('app.user', []).controller('LoginController', _controllersLoginController2['default']).controller('SignupController', _controllersSignupController2['default']).service('UserService', _servicesUserService2['default']);
 
-},{"./controllers/login.controller":19,"./controllers/signup.controller":20,"./services/user.service":22,"angular":28}],22:[function(require,module,exports){
+},{"./controllers/login.controller":21,"./controllers/signup.controller":22,"./services/user.service":24,"angular":30}],24:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -819,7 +896,7 @@ UserService.$inject = ['$http', 'HEROKU', '$cookies', '$state'];
 exports['default'] = UserService;
 module.exports = exports['default'];
 
-},{}],23:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 // Import Chart JS - move to another file later
 'use strict';
 
@@ -856,7 +933,7 @@ console.dir(_chartJs2['default']);_angular2['default'].module('app', ['app.core'
   });
 });
 
-},{"./app-content/index":5,"./app-core/index":9,"./app-layout/index":11,"./app-subscriber/index":17,"./app-user/index":21,"angular":28,"chart.js":29}],24:[function(require,module,exports){
+},{"./app-content/index":5,"./app-core/index":9,"./app-layout/index":11,"./app-subscriber/index":19,"./app-user/index":23,"angular":30,"chart.js":31}],26:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -1179,11 +1256,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],25:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":24}],26:[function(require,module,exports){
+},{"./angular-cookies":26}],28:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -5554,7 +5631,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],27:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -34573,11 +34650,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],28:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":27}],29:[function(require,module,exports){
+},{"./angular":29}],31:[function(require,module,exports){
 /*!
  * Chart.js
  * http://chartjs.org/
@@ -38055,7 +38132,7 @@ module.exports = angular;
 
 
 }).call(this);
-},{}],30:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 /**
  * Checklist-model
  * AngularJS directive for list of checkboxes
@@ -38205,7 +38282,7 @@ angular.module('checklist-model', [])
   };
 }]);
 
-},{}]},{},[23])
+},{}]},{},[25])
 
 
 //# sourceMappingURL=main.js.map

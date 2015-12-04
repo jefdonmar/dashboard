@@ -5,8 +5,6 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
 
   // connect data to scope of the controller through view model
   vm.subscribers = [];
-  // vm.clicked     = clicked;
-  // vm.deleteSub      = deleteSub;
 
   $scope.sortType = 'id';
   $scope.sortReverse = false;
@@ -17,14 +15,10 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
     if (vm.subscribers.length === 0) {
       SubscriberService.getAllSubscribers().then( (response)=> {
         vm.subscribers = response.data.subscriber;
-        console.log(vm.subscribers);
+        console.log('Subscribers', vm.subscribers);
       });
     }
   }
-
-  // function clicked (sub) {
-  //   console.log('clicked', sub.firstName);
-  // }
 
 };
 

@@ -51,6 +51,16 @@ let config = function($urlRouterProvider, $stateProvider) {
       url: '/edit-article/:id',
       controller: 'EditArticleController as vm',
       templateUrl: 'templates/app-content/edit-article.tpl.html'
+    })
+    .state('root.view-subscriber', {
+      url: '/view-subscriber/:id',
+      controller: 'SingleSubscriberController as vm',
+      templateUrl: 'templates/app-subscriber/single-subscriber.tpl.html'
+    })
+    .state('root.edit-subscriber', {
+      url: '/edit-subscriber/:id',
+      controller: 'EditSubscriberController as vm',
+      templateUrl: 'templates/app-subscriber/edit-subscriber.tpl.html'
     });
 
 };
