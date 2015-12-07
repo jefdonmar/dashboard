@@ -66,6 +66,11 @@ let config = function($urlRouterProvider, $stateProvider) {
       url: '/view-by-subject',
       controller: 'ArticleBySubjectController as vm',
       templateUrl: 'templates/app-content/view-by-subject.tpl.html'
+    })
+    .state('root.main-dashboard', {
+      url: '/main-dashboard',
+      controller: 'MainDashboardController as vm',
+      templateUrl: 'templates/app-dashboard/main-dashboard.tpl.html'
     });
 
 };
