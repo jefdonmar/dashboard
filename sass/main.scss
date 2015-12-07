@@ -66,3 +66,33 @@ form {
 ul.subject-button-list {
   list-style-type: none;
 }
+
+
+
+
+// ---- ARTICLE CARDS ON VIEW ARTICLES ---
+
+div.view-article-card {
+
+  margin: 0 auto;
+
+  img {
+    display: inline-block;
+  }
+
+  .art-card-text {
+    vertical-align: top;
+    border: 1px solid black;
+    height: 150px;
+    display: inline-block;
+    line-height: .5em;
+    min-width: 500px;
+  }
+
+  p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+
+}

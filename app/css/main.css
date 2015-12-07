@@ -8450,4 +8450,19 @@ form div.large-6 {
 ul.subject-button-list {
   list-style-type: none; }
 
+div.view-article-card {
+  margin: 0 auto; }
+  div.view-article-card img {
+    display: inline-block; }
+  div.view-article-card .art-card-text {
+    vertical-align: top;
+    border: 1px solid black;
+    height: 150px;
+    display: inline-block;
+    line-height: .5em;
+    min-width: 500px; }
+  div.view-article-card p {
+    margin-top: 5px;
+    margin-bottom: 5px; }
+
 /*# sourceMappingURL=main.css.map */

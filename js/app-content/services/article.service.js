@@ -42,7 +42,7 @@ let ArticleService = function($http, HEROKU) {
   }
 
   function getSubjectArticles (subjectName) {
-    return $http.get(subjectURL + subjectName, HEROKU.CONFIG)
+    return $http.get(subjectURL + subjectName, HEROKU.CONFIG);
   }
 
 
