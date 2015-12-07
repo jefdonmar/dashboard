@@ -2,6 +2,7 @@
 import Chart from 'chart.js';
 console.dir(Chart);
 
+
 import $ from 'jquery';
 import 'foundation';
 

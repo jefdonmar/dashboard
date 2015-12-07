@@ -2,15 +2,13 @@
 <form class="login" ng-submit="vm.login(user)">
   <h3>Log in</h3>
   <div class="formGroup1">
-    <span class="userIcon">
-     <i class="fa fa-user"></i>
+    <span class="fa fa-user">
      <input ng-model="user.email" placeholder="Email Address"> 
     </span>
   </div>
   <div class="formGroup2">
-    <span class="passIcon">
-      <i class="fa fa-key"></i>
-      <input ng-model="user.password" type="password" placeholder="   Password">  
+    <span class="fa fa-key">
+      <input ng-model="user.password" type="password" placeholder="Password">  
     </span>
   </div>
   <button class="change-button">Log in</button>

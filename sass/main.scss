@@ -26,10 +26,38 @@ button .change-button {
 
 form {
 
-  input {
-    width: 100px;
+  h3 {
+
   }
 
+  div.user {
+    position: relative;
+
+    span {
+
+      .user input{
+        width: 300px;
+        margin-left: 20px;
+
+      }
+    }
+
+    
+  }
+
+  div.password {
+
+    span {
+      i {
+        display: inline-block;
+      }
+
+      input{
+        width: 300px;
+        margin-left: 20px;
+      }
+    }
+  }
 
 
   // border: 1px solid yellow;
