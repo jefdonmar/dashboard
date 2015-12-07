@@ -7,7 +7,14 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
   vm.subscribers = [];
   vm.clicked     = clicked;
 
-  $scope.sortType = 'firstName';
+  $scope.sortType = 'email';
+
+  function selectSubjects (subject_name) {
+    SubscriberService.Subscriber(subject_name).then((res) => {
+      console.log(res);
+    });
+  }
+
 
   activate();
 
@@ -19,7 +26,7 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
   }
 
   function clicked (sub) {
-    console.log('clicked', sub.firstName);
+    console.log('clicked', sub.email);
   }
 
 };

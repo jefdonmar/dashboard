@@ -267,7 +267,13 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
   vm.subscribers = [];
   vm.clicked = clicked;
 
-  $scope.sortType = 'firstName';
+  $scope.sortType = 'email';
+
+  function selectSubjects(subject_name) {
+    SubscriberService.Subscriber(subject_name).then(function (res) {
+      console.log(res);
+    });
+  }
 
   activate();
 
@@ -279,7 +285,7 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
   }
 
   function clicked(sub) {
-    console.log('clicked', sub.firstName);
+    console.log('clicked', sub.email);
   }
 };
 
@@ -305,7 +311,7 @@ var subscriberItem = function subscriberItem(SubscriberService) {
     },
     // transclude: true,
     // controller: 'ViewSubscribersController as vm', // Not needed?
-    template: '\n      <tr>\n        <td>{{ sub.email }}</td>\n        <td>{{ sub.subject_names }}</td>\n      </tr>\n    ',
+    template: '\n      <tr>\n        <td>{{ sub.email }}</td>\n        <td>{{ sub.subject_names }}</td>\n        <td>{{ sub.subject_names[0] }}</td>\n      </tr>\n    ',
     link: function link(scope, element, attrs) {
       scope.sortType = 'First Name';
     }

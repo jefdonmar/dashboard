@@ -13,6 +13,7 @@ let subscriberItem = function(SubscriberService) {
       <tr>
         <td>{{ sub.email }}</td>
         <td>{{ sub.subject_names }}</td>
+        <td>{{ sub.subject_names[0] }}</td>
       </tr>
     `,
     link: function (scope, element, attrs) {
