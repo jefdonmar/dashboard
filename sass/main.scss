@@ -4,6 +4,9 @@
 @import "foundation";
 @import "font-awesome";
 
+$Navy: #082c38; 
+$BrightBlue: #39bced;
+
 body {
   background: #e2ebf3;
 }
@@ -22,9 +25,42 @@ button .change-button {
 }
 
 form {
-  
-  div.large-6 {
-  padding: 0px;
+  border: 1px solid yellow;
+  padding: 20px;
+  background-color: $BrightBlue;
+
+  span {
+    position: relative; 
+    padding: 3px 5px 5px 25px; 
+
+    input {
+     border: none;
+    }
+
+    span:before {
+      content: '\f007';
+      position: absolute;
+      left: 5px;
+      font-family: fontAwesome;
+      color: #888; /* Your desired color */
+    }
+  }
+
+  h3 {
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid white;
+    background-color: white;
+  }
+
+  button {
+    background-color: $Navy;
+
+    button .change-button {
+      background-color: green;
+      border: 1px solid black;
+    }
+
   }
 
 }

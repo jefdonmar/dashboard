@@ -71,6 +71,11 @@ let config = function($urlRouterProvider, $stateProvider) {
       url: '/main-dashboard',
       controller: 'MainDashboardController as vm',
       templateUrl: 'templates/app-dashboard/main-dashboard.tpl.html'
+    })
+    .state('root.welcome', {
+      url: '/welcome',
+      controller: 'WelcomeController as vm',
+      templateUrl: 'templates/app-user/welcome.tpl.html'
     });
 
 };
