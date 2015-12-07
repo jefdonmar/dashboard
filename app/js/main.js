@@ -26,6 +26,162 @@ module.exports = exports['default'];
 },{}],2:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var ArticleBySubjectController = function ArticleBySubjectController($state, $scope, ArticleService) {
+
+  // console.log('Hello from the view articles controller');
+
+  var vm = this;
+
+  vm.goToArticle = goToArticle;
+  vm.subjectName = subjectName;
+
+  // vm.articles = [];
+
+  $scope.sortType = 'title';
+  $scope.sortReverse = false;
+
+  function subjectName(subjNAME) {
+    console.log(subjNAME);
+    ArticleService.getSubjectArticles(subjNAME).then(function (response) {
+      console.log(response);
+      // vm.articles = response;
+      // console.log(vm.articles);
+    });
+  }
+
+  function goToArticle(article) {
+    $state.go('root.single-article', { id: article.id });
+  }
+};
+
+ArticleBySubjectController.$inject = ['$state', '$scope', 'ArticleService'];
+
+exports['default'] = ArticleBySubjectController;
+module.exports = exports['default'];
+
+},{}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var EditArticleController = function EditArticleController($state, ArticleService, $stateParams) {
+
+  var vm = this;
+
+  vm.submitEdits = submitEdits;
+
+  activate();
+
+  function activate() {
+    ArticleService.getSingleArticle($stateParams.id).then(function (response) {
+      vm.article = response.data.article;
+      console.log(vm.article);
+    });
+  }
+
+  function submitEdits(article) {
+    var articleId = article.id;
+    console.log(articleId);
+    ArticleService.editArticle(article).then(function (response) {
+      console.log(articleId);
+      $state.go('root.single-article', { id: articleId });
+      console.log(response);
+    });
+  }
+};
+
+EditArticleController.$inject = ['$state', 'ArticleService', '$stateParams'];
+
+exports['default'] = EditArticleController;
+module.exports = exports['default'];
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var ViewArticlesController = function ViewArticlesController($state, $scope, ArticleService) {
+
+  // console.log('Hello from the view articles controller');
+
+  var vm = this;
+
+  vm.goToArticle = goToArticle;
+
+  // vm.articles = [];
+
+  $scope.sortType = 'title';
+  $scope.sortReverse = false;
+
+  ArticleService.getAllArticles().then(function (response) {
+    vm.articles = response.data.article;
+    console.log(vm.articles);
+  });
+
+  function goToArticle(article) {
+    $state.go('root.single-article', { id: article.id });
+  }
+};
+
+ViewArticlesController.$inject = ['$state', '$scope', 'ArticleService'];
+
+exports['default'] = ViewArticlesController;
+module.exports = exports['default'];
+
+},{}],5:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var SingleArticleController = function SingleArticleController($state, ArticleService, $stateParams) {
+
+  // console.log('SingleArticleController controller')
+
+  var vm = this;
+
+  vm.editMe = editMe;
+  vm.deleteMe = deleteMe;
+
+  activate();
+
+  function activate() {
+    ArticleService.getSingleArticle($stateParams.id).then(function (response) {
+      vm.article = response.data.article;
+      console.log(vm.article);
+    });
+  }
+
+  function editMe(article) {
+    var articleId = article.id;
+    console.log(articleId);
+    $state.go('root.edit-article', { id: articleId });
+  }
+
+  function deleteMe(article) {
+    var articleId = article.id;
+    console.log(articleId);
+    ArticleService.deleteArticle(articleId).then(function (response) {
+      console.log(response);
+      alert('Article was deleted');
+      $state.go('root.view-articles');
+    });
+  }
+};
+
+SingleArticleController.$inject = ['$state', 'ArticleService', '$stateParams'];
+
+exports['default'] = SingleArticleController;
+module.exports = exports['default'];
+
+},{}],6:[function(require,module,exports){
+'use strict';
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _angular = require('angular');
@@ -38,6 +194,22 @@ var _controllersAddArticleController = require('./controllers/add-article.contro
 
 var _controllersAddArticleController2 = _interopRequireDefault(_controllersAddArticleController);
 
+var _controllersViewArticlesController = require('./controllers/view-articles.controller');
+
+var _controllersViewArticlesController2 = _interopRequireDefault(_controllersViewArticlesController);
+
+var _controllersViewSingleArticleController = require('./controllers/view-single-article.controller');
+
+var _controllersViewSingleArticleController2 = _interopRequireDefault(_controllersViewSingleArticleController);
+
+var _controllersEditArticleController = require('./controllers/edit-article.controller');
+
+var _controllersEditArticleController2 = _interopRequireDefault(_controllersEditArticleController);
+
+var _controllersArticleBySubjectController = require('./controllers/article-by-subject.controller');
+
+var _controllersArticleBySubjectController2 = _interopRequireDefault(_controllersArticleBySubjectController);
+
 // SERVICES
 
 var _servicesArticleService = require('./services/article.service');
@@ -48,13 +220,13 @@ var _servicesArticleService2 = _interopRequireDefault(_servicesArticleService);
 
 _angular2['default'].module('app.content', [])
 // CONTROLLERS
-.controller('AddArticleController', _controllersAddArticleController2['default'])
+.controller('AddArticleController', _controllersAddArticleController2['default']).controller('ViewArticlesController', _controllersViewArticlesController2['default']).controller('SingleArticleController', _controllersViewSingleArticleController2['default']).controller('EditArticleController', _controllersEditArticleController2['default']).controller('ArticleBySubjectController', _controllersArticleBySubjectController2['default'])
 // SERVICES
 .service('ArticleService', _servicesArticleService2['default']);
 
 // DIRECTIVES
 
-},{"./controllers/add-article.controller":1,"./services/article.service":3,"angular":24}],3:[function(require,module,exports){
+},{"./controllers/add-article.controller":1,"./controllers/article-by-subject.controller":2,"./controllers/edit-article.controller":3,"./controllers/view-articles.controller":4,"./controllers/view-single-article.controller":5,"./services/article.service":7,"angular":33}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -62,11 +234,15 @@ Object.defineProperty(exports, '__esModule', {
 });
 var ArticleService = function ArticleService($http, HEROKU) {
 
-  console.log('Hello from the ArticleService');
-
   var url = HEROKU.URL + 'articles';
+  var subjectURL = HEROKU.URL + 'subject/';
 
   this.addArticle = addArticle;
+  this.getAllArticles = getAllArticles;
+  this.getSingleArticle = getSingleArticle;
+  this.editArticle = editArticle;
+  this.deleteArticle = deleteArticle;
+  this.getSubjectArticles = getSubjectArticles;
 
   function Article(article) {
     this.subject_names = article.subject_names;
@@ -78,6 +254,30 @@ var ArticleService = function ArticleService($http, HEROKU) {
     var a = new Article(article);
     return $http.post(url, a, HEROKU.CONFIG);
   }
+
+  function getAllArticles() {
+    console.log('getAllArticles function is called');
+    return $http.get(url, HEROKU.CONFIG);
+  }
+
+  function getSingleArticle(articleId) {
+    console.log('getSingleArticle function called');
+    return $http.get(url + '/' + articleId, HEROKU.CONFIG);
+  }
+
+  function editArticle(article) {
+    return $http.put(url + '/' + article.id, article, HEROKU.CONFIG);
+  }
+
+  // PASS IN ARTICLE ID TO ^ and below
+
+  function deleteArticle(articleId) {
+    return $http['delete'](url + '/' + articleId, HEROKU.CONFIG);
+  }
+
+  function getSubjectArticles(subjectName) {
+    return $http.get(subjectURL + subjectName, HEROKU.CONFIG);
+  }
 };
 
 ArticleService.$inject = ['$http', 'HEROKU'];
@@ -85,7 +285,7 @@ ArticleService.$inject = ['$http', 'HEROKU'];
 exports['default'] = ArticleService;
 module.exports = exports['default'];
 
-},{}],4:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -122,6 +322,34 @@ var config = function config($urlRouterProvider, $stateProvider) {
     url: '/signup',
     controller: 'SignupController as vm',
     templateUrl: 'templates/app-user/signup.tpl.html'
+  }).state('root.view-articles', {
+    url: '/view-articles',
+    controller: 'ViewArticlesController as vm',
+    templateUrl: 'templates/app-content/view-articles.tpl.html'
+  }).state('root.single-article', {
+    url: '/article/:id',
+    controller: 'SingleArticleController as vm',
+    templateUrl: 'templates/app-content/view-single-article.tpl.html'
+  }).state('root.edit-article', {
+    url: '/edit-article/:id',
+    controller: 'EditArticleController as vm',
+    templateUrl: 'templates/app-content/edit-article.tpl.html'
+  }).state('root.view-subscriber', {
+    url: '/view-subscriber/:id',
+    controller: 'SingleSubscriberController as vm',
+    templateUrl: 'templates/app-subscriber/single-subscriber.tpl.html'
+  }).state('root.edit-subscriber', {
+    url: '/edit-subscriber/:id',
+    controller: 'EditSubscriberController as vm',
+    templateUrl: 'templates/app-subscriber/edit-subscriber.tpl.html'
+  }).state('root.view-by-subject', {
+    url: '/view-by-subject',
+    controller: 'ArticleBySubjectController as vm',
+    templateUrl: 'templates/app-content/view-by-subject.tpl.html'
+  }).state('root.main-dashboard', {
+    url: '/main-dashboard',
+    controller: 'MainDashboardController as vm',
+    templateUrl: 'templates/app-dashboard/main-dashboard.tpl.html'
   });
 };
 
@@ -130,7 +358,7 @@ config.$inject = ['$urlRouterProvider', '$stateProvider'];
 exports['default'] = config;
 module.exports = exports['default'];
 
-},{}],5:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 // ACTUALLY PARSE AS OF NOW -- NEED TO REPLACE WITH HEROKU APP INFO
 
 'use strict';
@@ -151,7 +379,7 @@ exports['default'] = {
 // 'X-Parse-REST-API-Key': 'zROPKm2h7Zj1PvbejjaVmaI9KgU1TK4YwOim5wLS'
 module.exports = exports['default'];
 
-},{}],6:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -174,7 +402,67 @@ var _herokuConstant2 = _interopRequireDefault(_herokuConstant);
 
 _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).config(_config2['default']).constant('HEROKU', _herokuConstant2['default']);
 
-},{"./config":4,"./heroku.constant":5,"angular":24,"angular-cookies":21,"angular-ui-router":22}],7:[function(require,module,exports){
+},{"./config":8,"./heroku.constant":9,"angular":33,"angular-cookies":30,"angular-ui-router":31}],11:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var MainDashboardController = function MainDashboardController($state, DashboardService) {
+
+  console.log('MainDashboardController check');
+};
+
+MainDashboardController.$inject = ['$state', 'DashboardService'];
+
+exports['default'] = MainDashboardController;
+module.exports = exports['default'];
+
+},{}],12:[function(require,module,exports){
+'use strict';
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _angular = require('angular');
+
+var _angular2 = _interopRequireDefault(_angular);
+
+// CONTROLLERS
+
+var _controllersMainDashboardController = require('./controllers/main-dashboard.controller');
+
+var _controllersMainDashboardController2 = _interopRequireDefault(_controllersMainDashboardController);
+
+// SERVICES
+
+var _servicesDashboardService = require('./services/dashboard.service');
+
+var _servicesDashboardService2 = _interopRequireDefault(_servicesDashboardService);
+
+_angular2['default'].module('app.dashboard', []).controller('MainDashboardController', _controllersMainDashboardController2['default']).service('DashboardService', _servicesDashboardService2['default']);
+
+},{"./controllers/main-dashboard.controller":11,"./services/dashboard.service":13,"angular":33}],13:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var DashboardService = function DashboardService($http, HEROKU) {
+
+  console.log(HEROKU);
+
+  // FIND OUT NEW ROUTE FROM BACKEND
+  // let url = HEROKU.URL + '/'
+
+  // -- PULL DATA OBJECT FOR THE USER ---
+};
+
+DashboardService.$inject = ['$http', 'HEROKU'];
+
+exports['default'] = DashboardService;
+module.exports = exports['default'];
+
+},{}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -191,7 +479,7 @@ HomeController.$inject = ['$state'];
 exports['default'] = HomeController;
 module.exports = exports['default'];
 
-},{}],8:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -206,7 +494,7 @@ var _controllersHomeController2 = _interopRequireDefault(_controllersHomeControl
 
 _angular2['default'].module('app.layout', []).controller('HomeController', _controllersHomeController2['default']);
 
-},{"./controllers/home.controller":7,"angular":24}],9:[function(require,module,exports){
+},{"./controllers/home.controller":14,"angular":33}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -252,7 +540,117 @@ AddSubscriberController.$inject = ['$state', '$scope', 'SubscriberService'];
 exports['default'] = AddSubscriberController;
 module.exports = exports['default'];
 
-},{}],10:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var EditSubscriberController = function EditSubscriberController($state, SubscriberService, $stateParams) {
+
+  console.log('Edit Subscriber Controller');
+
+  var vm = this;
+
+  vm.submitSubEdits = submitSubEdits;
+
+  activate();
+
+  function activate() {
+    SubscriberService.getSingleSubscriber($stateParams.id).then(function (response) {
+      console.log(response);
+      vm.subscriber = response.data.subscriber;
+      console.log(vm.subscriber);
+    });
+  }
+
+  function submitSubEdits(subscriber) {
+    var subscriberId = subscriber.id;
+    console.log(subscriberId);
+    SubscriberService.editSubscriber(subscriber).then(function (response) {
+      console.log(response);
+      $state.go('root.view-subscriber', { id: subscriberId });
+    });
+  }
+};
+
+EditSubscriberController.$inject = ['$state', 'SubscriberService', '$stateParams'];
+
+exports['default'] = EditSubscriberController;
+module.exports = exports['default'];
+
+},{}],18:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var SingleSubscriberController = function SingleSubscriberController($state, SubscriberService, $stateParams) {
+
+  console.log('SingleSubscriberController');
+
+  var vm = this;
+
+  vm.goToEditSub = goToEditSub;
+
+  activate();
+
+  function activate() {
+    SubscriberService.getSingleSubscriber($stateParams.id).then(function (response) {
+      console.log(response);
+      vm.subscriber = response.data.subscriber;
+      console.log(vm.subscriber);
+    });
+  }
+
+  function goToEditSub() {
+    $state.go('root.edit-subscriber', { id: $stateParams.id });
+  }
+};
+
+SingleSubscriberController.$inject = ['$state', 'SubscriberService', '$stateParams'];
+
+exports['default'] = SingleSubscriberController;
+module.exports = exports['default'];
+
+},{}],19:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var SubscriberRowController = function SubscriberRowController(SubscriberService, $state) {
+
+  var vm = this;
+
+  vm.deleteSub = deleteSub;
+  vm.viewSub = viewSub;
+  vm.editSub = editSub;
+
+  function deleteSub(subscriber) {
+    SubscriberService.deleteSubscriber(subscriber).then(function (response) {
+      console.log(response);
+      $state.reload();
+    });
+  }
+
+  function viewSub(subscriber) {
+    console.log(subscriber.id);
+    $state.go('root.view-subscriber', { id: subscriber.id });
+  }
+
+  function editSub(subscriber) {
+    console.log(subscriber.id);
+    $state.go('root.edit-subscriber', { id: subscriber.id });
+  }
+};
+
+SubscriberRowController.$inject = ['SubscriberService', '$state'];
+
+exports['default'] = SubscriberRowController;
+module.exports = exports['default'];
+
+},{}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -265,8 +663,8 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
 
   // connect data to scope of the controller through view model
   vm.subscribers = [];
-  vm.clicked = clicked;
 
+<<<<<<< HEAD
   $scope.sortType = 'email';
 
   function selectSubjects(subject_name) {
@@ -274,10 +672,15 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
       console.log(res);
     });
   }
+=======
+  $scope.sortType = 'id';
+  $scope.sortReverse = false;
+>>>>>>> 9d2e6c7d67b5047e43f898f453a47e0546146d33
 
   activate();
 
   function activate() {
+<<<<<<< HEAD
     SubscriberService.getAllSubscribers().then(function (response) {
       vm.subscribers = response.data.subscriber;
       console.log(vm.subscribers);
@@ -286,6 +689,14 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
 
   function clicked(sub) {
     console.log('clicked', sub.email);
+=======
+    if (vm.subscribers.length === 0) {
+      SubscriberService.getAllSubscribers().then(function (response) {
+        vm.subscribers = response.data.subscriber;
+        console.log('Subscribers', vm.subscribers);
+      });
+    }
+>>>>>>> 9d2e6c7d67b5047e43f898f453a47e0546146d33
   }
 };
 
@@ -294,7 +705,7 @@ ViewSubscribersController.$inject = ['$state', '$scope', 'SubscriberService'];
 exports['default'] = ViewSubscribersController;
 module.exports = exports['default'];
 
-},{}],11:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -310,11 +721,17 @@ var subscriberItem = function subscriberItem(SubscriberService) {
       sub: '='
     },
     // transclude: true,
+<<<<<<< HEAD
     // controller: 'ViewSubscribersController as vm', // Not needed?
     template: '\n      <tr>\n        <td>{{ sub.email }}</td>\n        <td>{{ sub.subject_names }}</td>\n        <td>{{ sub.subject_names[0] }}</td>\n      </tr>\n    ',
     link: function link(scope, element, attrs) {
       scope.sortType = 'First Name';
     }
+=======
+    controller: 'SubscriberRowController as vm', // Not needed?
+    template: '\n      <tr>\n        <td>{{ sub.id }}</td>\n        <td>{{ sub.email }}</td>\n        <td>{{ sub.subject_names }}</td>\n        <td ng-click="vm.viewSub(sub)">\n          <a>View</a>\n        </td>\n        <td ng-click="vm.editSub(sub)">\n          <a>Edit</a>\n        </td>\n        <td ng-click="vm.deleteSub(sub)">\n          <a>Delete</a>\n        </td>\n        <td>\n          <span>\n            {{ sub.subject_names.includes(\'Baseball\') ? "Yes" : "" }}\n          </span>\n        </td>\n        <td>\n          <span>\n            {{ sub.subject_names.includes(\'Basketball\') ? "Yes" : "" }}\n          </span>\n        </td>\n        <td>\n          <span>\n            {{ sub.subject_names.includes(\'Football\') ? "Yes" : "" }}\n          </span>\n        </td>\n        <td>\n          <span>\n            {{ sub.subject_names.includes(\'Hockey\') ? "Yes" : "" }}\n          </span>\n        </td>\n        <td>\n          <span>\n            {{ sub.subject_names.includes(\'Soccer\') ? "Yes" : "" }}\n          </span>\n        </td>\n      </tr>\n    ',
+    link: function link(scope, element, attrs) {}
+>>>>>>> 9d2e6c7d67b5047e43f898f453a47e0546146d33
   };
 };
 
@@ -323,43 +740,7 @@ subscriberItem.$inject = ['SubscriberService'];
 exports['default'] = subscriberItem;
 module.exports = exports['default'];
 
-},{}],12:[function(require,module,exports){
-"use strict";
-
-// let subscriberSubjects = function(SubscriberService) {
-
-//   return {
-
-//     restrict: 'A', // Restrict to attribute only
-//     replace: true, // Replace as opposed to inserting into
-//     scope: {
-//       subject: '='
-//     },
-//     // transclude: true,
-//     // controller: 'ViewSubscribersController as vm', // Not needed?
-//     template: `
-//       <tr>
-//         <td>{{ subject.subject }}</td>
-//         <td>
-//           <input
-//             type="checkbox"
-//             ng-click="subject.selected=true"
-//             ng-model="vm.selectedSubjects[s.selected]">
-//         </td>
-//       </tr>
-//     `,
-//     // link: function (scope, element, attrs) {
-//     //   scope.sortType = 'First Name';
-//     // }
-//   };
-
-// };
-
-// subscriberSubjects.$inject = ['SubscriberService'];
-
-// export default subscriberSubjects;
-
-},{}],13:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -380,15 +761,23 @@ var _controllersViewSubscribersController = require('./controllers/view-subscrib
 
 var _controllersViewSubscribersController2 = _interopRequireDefault(_controllersViewSubscribersController);
 
+var _controllersSubscriberRowDirectiveController = require('./controllers/subscriber-row-directive.controller');
+
+var _controllersSubscriberRowDirectiveController2 = _interopRequireDefault(_controllersSubscriberRowDirectiveController);
+
+var _controllersEditSubscriberController = require('./controllers/edit-subscriber.controller');
+
+var _controllersEditSubscriberController2 = _interopRequireDefault(_controllersEditSubscriberController);
+
+var _controllersSingleSubscriberController = require('./controllers/single-subscriber.controller');
+
+var _controllersSingleSubscriberController2 = _interopRequireDefault(_controllersSingleSubscriberController);
+
 // DIRECTIVES
 
 var _directivesSubscriberItemDirective = require('./directives/subscriberItem.directive');
 
 var _directivesSubscriberItemDirective2 = _interopRequireDefault(_directivesSubscriberItemDirective);
-
-var _directivesSubscriberSubjectsDirective = require('./directives/subscriberSubjects.directive');
-
-var _directivesSubscriberSubjectsDirective2 = _interopRequireDefault(_directivesSubscriberSubjectsDirective);
 
 // SERVICES
 
@@ -396,9 +785,9 @@ var _servicesSubscriberService = require('./services/subscriber.service');
 
 var _servicesSubscriberService2 = _interopRequireDefault(_servicesSubscriberService);
 
-_angular2['default'].module('app.subscriber', ['checklist-model']).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).directive('subscriberSubjects', _directivesSubscriberSubjectsDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
+_angular2['default'].module('app.subscriber', ['checklist-model']).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).controller('SubscriberRowController', _controllersSubscriberRowDirectiveController2['default']).controller('EditSubscriberController', _controllersEditSubscriberController2['default']).controller('SingleSubscriberController', _controllersSingleSubscriberController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
 
-},{"./controllers/add-subscriber.controller":9,"./controllers/view-subscribers.controller":10,"./directives/subscriberItem.directive":11,"./directives/subscriberSubjects.directive":12,"./services/subscriber.service":14,"angular":24,"checklist-model":26}],14:[function(require,module,exports){
+},{"./controllers/add-subscriber.controller":16,"./controllers/edit-subscriber.controller":17,"./controllers/single-subscriber.controller":18,"./controllers/subscriber-row-directive.controller":19,"./controllers/view-subscribers.controller":20,"./directives/subscriberItem.directive":21,"./services/subscriber.service":23,"angular":33,"checklist-model":35}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -415,7 +804,9 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
 
   this.addSubscriber = addSubscriber;
   this.getAllSubscribers = getAllSubscribers;
-  // this.editSubscriber    = editSubscriber;
+  this.deleteSubscriber = deleteSubscriber;
+  this.getSingleSubscriber = getSingleSubscriber;
+  this.editSubscriber = editSubscriber;
 
   function addSubscriber(subObj) {
     var sub = new Subscriber(subObj);
@@ -427,12 +818,27 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
     return $http.get(url, HEROKU.CONFIG);
   }
 
-  function setHeaders() {
-    HEROKU.CONFIG.headers['auth_token'] = $cookies.get('auth_token');
-    // user.auth;
-    HEROKU.CONFIG.headers['user_id'] = $cookies.get('user_id');
-    // token;
+  function deleteSubscriber(subscriber) {
+    console.log(subscriber);
+    return $http['delete'](url + '/' + subscriber.id, HEROKU.CONFIG);
   }
+
+  function getSingleSubscriber(subscriberId) {
+    console.log(subscriberId);
+    return $http.get(url + '/' + subscriberId, HEROKU.CONFIG);
+  }
+
+  function editSubscriber(subscriber) {
+    console.log(subscriber);
+    return $http.put(url + '/' + subscriber.id, subscriber, HEROKU.CONFIG);
+  }
+
+  // function setHeaders () {
+  //   HEROKU.CONFIG.headers['auth_token'] = $cookies.get('auth_token');
+  //   // user.auth;
+  //   HEROKU.CONFIG.headers['user_id'] = $cookies.get('user_id');
+  //   // token;
+  // }
 };
 
 SubscriberService.$inject = ['$http', 'HEROKU', '$cookies'];
@@ -440,7 +846,7 @@ SubscriberService.$inject = ['$http', 'HEROKU', '$cookies'];
 exports['default'] = SubscriberService;
 module.exports = exports['default'];
 
-},{}],15:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -472,7 +878,7 @@ LoginController.$inject = ['$scope', '$state', 'UserService'];
 exports['default'] = LoginController;
 module.exports = exports['default'];
 
-},{}],16:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -521,7 +927,7 @@ SignupController.$inject = ['$state', '$scope', 'UserService'];
 exports['default'] = SignupController;
 module.exports = exports['default'];
 
-},{}],17:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -544,7 +950,7 @@ var _servicesUserService2 = _interopRequireDefault(_servicesUserService);
 
 _angular2['default'].module('app.user', []).controller('LoginController', _controllersLoginController2['default']).controller('SignupController', _controllersSignupController2['default']).service('UserService', _servicesUserService2['default']);
 
-},{"./controllers/login.controller":15,"./controllers/signup.controller":16,"./services/user.service":18,"angular":24}],18:[function(require,module,exports){
+},{"./controllers/login.controller":24,"./controllers/signup.controller":25,"./services/user.service":27,"angular":33}],27:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -625,7 +1031,7 @@ UserService.$inject = ['$http', 'HEROKU', '$cookies', '$state'];
 exports['default'] = UserService;
 module.exports = exports['default'];
 
-},{}],19:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 // Import Chart JS - move to another file later
 'use strict';
 
@@ -653,16 +1059,18 @@ require('./app-user/index');
 
 require('./app-content/index');
 
+require('./app-dashboard/index');
+
 // Instantiate angular module
 
-console.dir(_chartJs2['default']);_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber', 'app.user', 'app.content']).run(function ($rootScope, UserService) {
+console.dir(_chartJs2['default']);_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber', 'app.user', 'app.content', 'app.dashboard']).run(function ($rootScope, UserService) {
   $rootScope.$on('$stateChangeSuccess', function () {
     console.log('state change');
     UserService.setHeaders();
   });
 });
 
-},{"./app-content/index":2,"./app-core/index":6,"./app-layout/index":8,"./app-subscriber/index":13,"./app-user/index":17,"angular":24,"chart.js":25}],20:[function(require,module,exports){
+},{"./app-content/index":6,"./app-core/index":10,"./app-dashboard/index":12,"./app-layout/index":15,"./app-subscriber/index":22,"./app-user/index":26,"angular":33,"chart.js":34}],29:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -985,11 +1393,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],21:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":20}],22:[function(require,module,exports){
+},{"./angular-cookies":29}],31:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -5360,7 +5768,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],23:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -34379,11 +34787,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],24:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":23}],25:[function(require,module,exports){
+},{"./angular":32}],34:[function(require,module,exports){
 /*!
  * Chart.js
  * http://chartjs.org/
@@ -37861,7 +38269,7 @@ module.exports = angular;
 
 
 }).call(this);
-},{}],26:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 /**
  * Checklist-model
  * AngularJS directive for list of checkboxes
@@ -38011,7 +38419,7 @@ angular.module('checklist-model', [])
   };
 }]);
 
-},{}]},{},[19])
+},{}]},{},[28])
 
 
 //# sourceMappingURL=main.js.map

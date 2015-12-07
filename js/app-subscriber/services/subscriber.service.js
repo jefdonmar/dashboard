@@ -7,9 +7,11 @@ let SubscriberService = function($http, HEROKU, $cookies) {
     this.subject_names = subObj.subject_names.toString();
   }
 
-  this.addSubscriber = addSubscriber;
-  this.getAllSubscribers = getAllSubscribers;
-  // this.editSubscriber    = editSubscriber;
+  this.addSubscriber       = addSubscriber;
+  this.getAllSubscribers   = getAllSubscribers;
+  this.deleteSubscriber    = deleteSubscriber;
+  this.getSingleSubscriber = getSingleSubscriber;
+  this.editSubscriber      = editSubscriber;
 
   function addSubscriber (subObj) {
     let sub = new Subscriber(subObj);
@@ -21,12 +23,27 @@ let SubscriberService = function($http, HEROKU, $cookies) {
     return $http.get(url, HEROKU.CONFIG);
   }
 
-  function setHeaders () {
-    HEROKU.CONFIG.headers['auth_token'] = $cookies.get('auth_token');
-    // user.auth;
-    HEROKU.CONFIG.headers['user_id'] = $cookies.get('user_id');
-    // token;
-  } 
+  function deleteSubscriber (subscriber) {
+    console.log(subscriber);
+    return $http.delete(url + '/' + subscriber.id, HEROKU.CONFIG);
+  }
+
+  function getSingleSubscriber (subscriberId) {
+    console.log(subscriberId);
+    return $http.get(url + '/' + subscriberId, HEROKU.CONFIG);
+  }
+
+  function editSubscriber (subscriber) {
+    console.log(subscriber);
+    return $http.put(url + '/' + subscriber.id, subscriber, HEROKU.CONFIG);
+  }
+
+  // function setHeaders () {
+  //   HEROKU.CONFIG.headers['auth_token'] = $cookies.get('auth_token');
+  //   // user.auth;
+  //   HEROKU.CONFIG.headers['user_id'] = $cookies.get('user_id');
+  //   // token;
+  // } 
 
 };
 

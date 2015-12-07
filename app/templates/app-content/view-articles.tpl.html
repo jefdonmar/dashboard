@@ -1,0 +1,41 @@
+<h3>View all articles</h3>
+
+<a href="#/view-by-subject">
+  <button>
+    View by subject
+  </button>
+</a>
+
+<table>
+  <tr class="header-row">
+    <td class="table-titles"><a ng-click="sortType = 'title'; sortReverse = !sortReverse">Title<span ng-show="sortType == 'title'" class="fa fa-caret-down"></a></span></td>
+
+    <td class="table-titles">
+      <a ng-click="sortType = 'subject'; sortReverse = !sortReverse">Subject<span ng-show="sortType == 'subject'" class="fa fa-caret-down"></a></span>
+    </td>
+    <td class="table-titles">
+      <a ng-click="sortType = 'words'; sortReverse = !sortReverse">Words<span ng-show="sortType == 'words'" class="fa fa-caret-down"></a></span>
+    </td>
+  </tr>
+  <tr ng-repeat="article in vm.articles">
+    <td ng-click="vm.goToArticle(article)">
+      <span class="article-title-link">
+        {{ article.title }}
+      </span>
+    </td>
+    <td>
+      {{ article.subject_names }}
+    </td>
+    <td>
+      {{ article.content.length }}
+    </td>
+  </tr>
+</table>
+
+<!-- OLD VERSION -->
+<!-- 
+<div class="article-view-cards" class="grid-block" ng-repeat="article in vm.articles">
+  <p class="medium-5 grid-block article-title-link" ng-click="vm.goToArticle(article)">{{ article.title }}</p>
+  <p class="medium-6 grid-block" class="article-title">{{ article.subject_names }}</p>
+  <hr>
+</div> -->

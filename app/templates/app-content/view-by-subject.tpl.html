@@ -1,0 +1,23 @@
+<h3>View articles by subject</h3>
+
+<ul class="subject-button-list">
+  <button ng-click="vm.subjectName('Baseball')"><li>Baseball</li></button>
+  <button ng-click="vm.subjectName('basketball')"><li>Basketball</li></button>
+  <button ng-click="vm.subjectName('Football')"><li>Football</li></button>
+  <button ng-click="vm.subjectName('Hockey')"><li>Hockey</li></button>
+  <button ng-click="vm.subjectName('Soccer')"><li>Soccer</li></button>
+</ul>
+
+<div ng-repeat="article in vm.articles">
+  <p ng-click="vm.goToArticle(article)">
+    <span class="article-title-link">
+      {{ article.title }}
+    </span>
+  </p>
+  <p>
+    {{ article.subject_names }}
+  </p>
+  <p>
+    {{ article.content.length }}
+  </p>
+</div>

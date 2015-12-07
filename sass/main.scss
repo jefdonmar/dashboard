@@ -10,7 +10,7 @@ body {
 
 body .container {
   margin: 10px auto;
-  max-width: 600px;
+  max-width: 800px;
 }
 
 button .change-button {
@@ -27,4 +27,42 @@ form {
   padding: 0px;
   }
 
+}
+
+.subject-headers {
+  display: inline-block;
+  border-bottom: 1px solid black;
+}
+
+.article-view-cards {
+  padding: 0;
+  margin: 0;
+
+  .grid-block {
+    display: inline-block;
+  }
+
+  .article-title-link{
+    cursor: pointer;
+    color: blue;
+  }
+
+}
+
+.single-article-nav {
+  list-style-type: none;
+  margin-left: 2px;
+
+  .article-nav-list-item {
+    color: black;
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 0px;
+    cursor: pointer;
+  }
+
+}
+
+ul.subject-button-list {
+  list-style-type: none;
 }

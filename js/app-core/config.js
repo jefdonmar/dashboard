@@ -36,6 +36,41 @@ let config = function($urlRouterProvider, $stateProvider) {
       url: '/signup',
       controller: 'SignupController as vm',
       templateUrl: 'templates/app-user/signup.tpl.html'
+    })
+    .state('root.view-articles', {
+      url: '/view-articles',
+      controller: 'ViewArticlesController as vm',
+      templateUrl: 'templates/app-content/view-articles.tpl.html'
+    })
+    .state('root.single-article', {
+      url: '/article/:id',
+      controller: 'SingleArticleController as vm',
+      templateUrl: 'templates/app-content/view-single-article.tpl.html'
+    })
+    .state('root.edit-article', {
+      url: '/edit-article/:id',
+      controller: 'EditArticleController as vm',
+      templateUrl: 'templates/app-content/edit-article.tpl.html'
+    })
+    .state('root.view-subscriber', {
+      url: '/view-subscriber/:id',
+      controller: 'SingleSubscriberController as vm',
+      templateUrl: 'templates/app-subscriber/single-subscriber.tpl.html'
+    })
+    .state('root.edit-subscriber', {
+      url: '/edit-subscriber/:id',
+      controller: 'EditSubscriberController as vm',
+      templateUrl: 'templates/app-subscriber/edit-subscriber.tpl.html'
+    })
+    .state ('root.view-by-subject', {
+      url: '/view-by-subject',
+      controller: 'ArticleBySubjectController as vm',
+      templateUrl: 'templates/app-content/view-by-subject.tpl.html'
+    })
+    .state('root.main-dashboard', {
+      url: '/main-dashboard',
+      controller: 'MainDashboardController as vm',
+      templateUrl: 'templates/app-dashboard/main-dashboard.tpl.html'
     });
 
 };
