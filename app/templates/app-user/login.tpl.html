@@ -1,7 +1,18 @@
-<h3>Log in</h3>
 
 <form ng-submit="vm.login(user)">
-  <input ng-model="user.email" placeholder="Email Address">
-  <input ng-model="user.password" type="password" placeholder="Password">
-  <button>Log in</button>
+  <h3>Log in</h3>
+  <div class="formGroup1">
+    <span class="userIcon">
+     <i class="fa fa-user"></i>
+     <input ng-model="user.email" placeholder="Email Address"> 
+    </span>
+  </div>
+  <div class="formGroup2">
+    <span class="passIcon">
+      <i class="fa fa-key"></i>
+      <input ng-model="user.password" type="password" placeholder="   Password">  
+    </span>
+  </div>
+  <button class="change-button">Log in</button>
+  <p> If you do not have an account click <a href="#/signup">HERE</a></p>
 </form>

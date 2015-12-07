@@ -15,7 +15,7 @@ let LoginController = function($scope, $state, UserService) {
       console.log(loginRES);
       UserService.storeAuth(loginRES);
     });
-    $state.go('root.view-subscribers');
+    $state.go('root.main-dashboard');
   }
 
 };

@@ -12,6 +12,7 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
   activate();
 
   function activate () {
+
     if (vm.subscribers.length === 0) {
       SubscriberService.getAllSubscribers().then( (response)=> {
         vm.subscribers = response.data.subscriber;

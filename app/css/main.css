@@ -8421,8 +8421,32 @@ button .change-button {
   border: 1px solid black;
   font-size: .9em; }
 
-form div.large-6 {
-  padding: 0px; }
+form {
+  border: 1px solid yellow;
+  padding: 20px;
+  background-color: #39bced; }
+  form span {
+    position: relative;
+    padding: 3px 5px 5px 25px; }
+    form span input {
+      border: none; }
+    form span span:before {
+      content: '\f007';
+      position: absolute;
+      left: 5px;
+      font-family: fontAwesome;
+      color: #888;
+      /* Your desired color */ }
+  form h3 {
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid white;
+    background-color: white; }
+  form button {
+    background-color: #082c38; }
+    form button button .change-button {
+      background-color: green;
+      border: 1px solid black; }
 
 .subject-headers {
   display: inline-block;

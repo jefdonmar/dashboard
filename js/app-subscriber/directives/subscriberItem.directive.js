@@ -14,6 +14,9 @@ let subscriberItem = function(SubscriberService) {
         <td>{{ sub.id }}</td>
         <td>{{ sub.email }}</td>
         <td>{{ sub.subject_names }}</td>
+<<<<<<< HEAD
+        <td>{{ sub.subject_names[0] }}</td>
+=======
         <td ng-click="vm.viewSub(sub)">
           <a>View</a>
         </td>
@@ -48,6 +51,7 @@ let subscriberItem = function(SubscriberService) {
             {{ sub.subject_names.includes('Soccer') ? "Yes" : "" }}
           </span>
         </td>
+>>>>>>> 9d2e6c7d67b5047e43f898f453a47e0546146d33
       </tr>
     `,
     link: function (scope, element, attrs) {

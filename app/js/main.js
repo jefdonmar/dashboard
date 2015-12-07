@@ -350,6 +350,10 @@ var config = function config($urlRouterProvider, $stateProvider) {
     url: '/main-dashboard',
     controller: 'MainDashboardController as vm',
     templateUrl: 'templates/app-dashboard/main-dashboard.tpl.html'
+  }).state('root.welcome', {
+    url: '/welcome',
+    controller: 'WelcomeController as vm',
+    templateUrl: 'templates/app-user/welcome.tpl.html'
   });
 };
 
@@ -403,7 +407,11 @@ var _herokuConstant2 = _interopRequireDefault(_herokuConstant);
 _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).config(_config2['default']).constant('HEROKU', _herokuConstant2['default']);
 
 },{"./config":8,"./heroku.constant":9,"angular":34,"angular-cookies":31,"angular-ui-router":32}],11:[function(require,module,exports){
+<<<<<<< HEAD
 "use strict";
+=======
+'use strict';
+>>>>>>> master
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -457,9 +465,13 @@ var _servicesDashboardService2 = _interopRequireDefault(_servicesDashboardServic
 
 console.dir(_angularChartJs2['default']);
 
+<<<<<<< HEAD
 _angular2['default'].module('app.dashboard', ['chart.js']).controller('MainDashboardController', _controllersMainDashboardController2['default']).service('DashboardService', _servicesDashboardService2['default']);
 
 },{"./controllers/main-dashboard.controller":11,"./services/dashboard.service":13,"angular":34,"angular-chart.js":29}],13:[function(require,module,exports){
+=======
+},{"./controllers/main-dashboard.controller":11,"./services/dashboard.service":13,"angular":34}],13:[function(require,module,exports){
+>>>>>>> master
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -688,6 +700,7 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
   activate();
 
   function activate() {
+
     if (vm.subscribers.length === 0) {
       SubscriberService.getAllSubscribers().then(function (response) {
         vm.subscribers = response.data.subscriber;
@@ -719,7 +732,7 @@ var subscriberItem = function subscriberItem(SubscriberService) {
     },
     // transclude: true,
     controller: 'SubscriberRowController as vm', // Not needed?
-    template: '\n      <tr>\n        <td>{{ sub.id }}</td>\n        <td>{{ sub.email }}</td>\n        <td>{{ sub.subject_names }}</td>\n        <td ng-click="vm.viewSub(sub)">\n          <a>View</a>\n        </td>\n        <td ng-click="vm.editSub(sub)">\n          <a>Edit</a>\n        </td>\n        <td ng-click="vm.deleteSub(sub)">\n          <a>Delete</a>\n        </td>\n        <td>\n          <span>\n            {{ sub.subject_names.includes(\'Baseball\') ? "Yes" : "" }}\n          </span>\n        </td>\n        <td>\n          <span>\n            {{ sub.subject_names.includes(\'Basketball\') ? "Yes" : "" }}\n          </span>\n        </td>\n        <td>\n          <span>\n            {{ sub.subject_names.includes(\'Football\') ? "Yes" : "" }}\n          </span>\n        </td>\n        <td>\n          <span>\n            {{ sub.subject_names.includes(\'Hockey\') ? "Yes" : "" }}\n          </span>\n        </td>\n        <td>\n          <span>\n            {{ sub.subject_names.includes(\'Soccer\') ? "Yes" : "" }}\n          </span>\n        </td>\n      </tr>\n    ',
+    template: '\n      <tr>\n        <td>{{ sub.id }}</td>\n        <td>{{ sub.email }}</td>\n        <td>{{ sub.subject_names }}</td>\n<<<<<<< HEAD\n        <td>{{ sub.subject_names[0] }}</td>\n=======\n        <td ng-click="vm.viewSub(sub)">\n          <a>View</a>\n        </td>\n        <td ng-click="vm.editSub(sub)">\n          <a>Edit</a>\n        </td>\n        <td ng-click="vm.deleteSub(sub)">\n          <a>Delete</a>\n        </td>\n        <td>\n          <span>\n            {{ sub.subject_names.includes(\'Baseball\') ? "Yes" : "" }}\n          </span>\n        </td>\n        <td>\n          <span>\n            {{ sub.subject_names.includes(\'Basketball\') ? "Yes" : "" }}\n          </span>\n        </td>\n        <td>\n          <span>\n            {{ sub.subject_names.includes(\'Football\') ? "Yes" : "" }}\n          </span>\n        </td>\n        <td>\n          <span>\n            {{ sub.subject_names.includes(\'Hockey\') ? "Yes" : "" }}\n          </span>\n        </td>\n        <td>\n          <span>\n            {{ sub.subject_names.includes(\'Soccer\') ? "Yes" : "" }}\n          </span>\n        </td>\n>>>>>>> 9d2e6c7d67b5047e43f898f453a47e0546146d33\n      </tr>\n    ',
     link: function link(scope, element, attrs) {}
   };
 };
@@ -858,7 +871,7 @@ var LoginController = function LoginController($scope, $state, UserService) {
       console.log(loginRES);
       UserService.storeAuth(loginRES);
     });
-    $state.go('root.view-subscribers');
+    $state.go('root.main-dashboard');
   }
 };
 
@@ -891,6 +904,7 @@ var SignupController = function SignupController($state, $scope, UserService) {
       console.log(userRES);
       UserService.storeAuth(userRES);
     });
+    $state.go('root.welcome');
   }
 
   // watch the email entry field in the form and validate @ symbol with error msg
@@ -919,6 +933,25 @@ module.exports = exports['default'];
 },{}],26:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var WelcomeController = function WelcomeController($scope, $state, UserService) {
+
+  console.log('Hello from the LoginController');
+
+  // set view model to this object
+  var vm = this;
+};
+
+WelcomeController.$inject = ['$scope', '$state', 'UserService'];
+
+exports['default'] = WelcomeController;
+module.exports = exports['default'];
+
+},{}],27:[function(require,module,exports){
+'use strict';
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _angular = require('angular');
@@ -933,13 +966,21 @@ var _controllersSignupController = require('./controllers/signup.controller');
 
 var _controllersSignupController2 = _interopRequireDefault(_controllersSignupController);
 
+var _controllersWelcomeController = require('./controllers/welcome.controller');
+
+var _controllersWelcomeController2 = _interopRequireDefault(_controllersWelcomeController);
+
 var _servicesUserService = require('./services/user.service');
 
 var _servicesUserService2 = _interopRequireDefault(_servicesUserService);
 
-_angular2['default'].module('app.user', []).controller('LoginController', _controllersLoginController2['default']).controller('SignupController', _controllersSignupController2['default']).service('UserService', _servicesUserService2['default']);
+_angular2['default'].module('app.user', []).controller('LoginController', _controllersLoginController2['default']).controller('SignupController', _controllersSignupController2['default']).controller('WelcomeController', _controllersWelcomeController2['default']).service('UserService', _servicesUserService2['default']);
 
+<<<<<<< HEAD
 },{"./controllers/login.controller":24,"./controllers/signup.controller":25,"./services/user.service":27,"angular":34}],27:[function(require,module,exports){
+=======
+},{"./controllers/login.controller":24,"./controllers/signup.controller":25,"./controllers/welcome.controller":26,"./services/user.service":28,"angular":34}],28:[function(require,module,exports){
+>>>>>>> master
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1020,8 +1061,13 @@ UserService.$inject = ['$http', 'HEROKU', '$cookies', '$state'];
 exports['default'] = UserService;
 module.exports = exports['default'];
 
+<<<<<<< HEAD
 },{}],28:[function(require,module,exports){
 // Import angular
+=======
+},{}],29:[function(require,module,exports){
+// Import Chart JS - move to another file later
+>>>>>>> master
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -1052,6 +1098,7 @@ _angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber', 
   });
 });
 
+<<<<<<< HEAD
 },{"./app-content/index":6,"./app-core/index":10,"./app-dashboard/index":12,"./app-layout/index":15,"./app-subscriber/index":22,"./app-user/index":26,"angular":34}],29:[function(require,module,exports){
 (function (factory) {
   'use strict';
@@ -1417,6 +1464,9 @@ _angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber', 
 }));
 
 },{"angular":34,"chart.js":35}],30:[function(require,module,exports){
+=======
+},{"./app-content/index":6,"./app-core/index":10,"./app-dashboard/index":12,"./app-layout/index":15,"./app-subscriber/index":22,"./app-user/index":27,"angular":34,"chart.js":35}],30:[function(require,module,exports){
+>>>>>>> master
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -38765,7 +38815,7 @@ angular.module('checklist-model', [])
   };
 }]);
 
-},{}]},{},[28])
+},{}]},{},[29])
 
 
 //# sourceMappingURL=main.js.map
