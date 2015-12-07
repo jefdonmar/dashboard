@@ -2,6 +2,10 @@
 
 <a href="#/main-dashboard"><span>Go to dashboard</span></a>
 
+<br>
+
+<a href="#/build-segment"><span>Build a segment</span></a>
+
 <p>Click column headers to sort</p>
 
 <!-- <form>
@@ -31,7 +35,11 @@
     <td>View</td>
     <td>Edit</td>
     <td>Delete</td>
-    <td>Baseball</td>
+    <td class="table-titles">
+      <!-- <a ng-click="sortType = 'baseball'; sortReverse = !sortReverse"> -->
+        Baseball 
+      <!-- <span ng-show="sortType == 'baseball'" class="fa fa-caret-down"></a></span> -->
+    </td>
     <td>Basketball</td>
     <td>Football</td>
     <td>Hockey</td>

@@ -8480,11 +8480,10 @@ div.view-article-card {
     display: inline-block; }
   div.view-article-card .art-card-text {
     vertical-align: top;
-    border: 1px solid black;
     height: 150px;
     display: inline-block;
     line-height: .5em;
-    min-width: 500px; }
+    margin-left: 15px; }
   div.view-article-card p {
     margin-top: 5px;
     margin-bottom: 5px; }
@@ -8496,7 +8495,7 @@ div.view-article-card {
 .small-block-grid-2 {
   margin-top: 10px; }
 
-h3 {
+h4 {
   text-align: center; }
 
 h5 {
@@ -8509,5 +8508,9 @@ h5 {
 .Two-big-number-dash {
   font-size: 2em;
   text-align: center; }
+
+.demo-pics {
+  display: block;
+  margin: 0 auto; }
 
 /*# sourceMappingURL=main.css.map */

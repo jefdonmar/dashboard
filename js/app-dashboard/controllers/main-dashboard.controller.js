@@ -10,7 +10,7 @@ let MainDashboardController = function($state, DashboardService, $scope) {
 
   // Subject subscriber bar graph
   $scope.subBarLabels = ['Baseball', 'Basketball', 'Football', 'Hockey', 'Soccer'];
-  $scope.subBarSeries = ['Series A', 'Series B'];
+  // $scope.subBarSeries = ['Series A', 'Series B'];
 
   $scope.subBarData = [
     [65, 59, 80, 81, 56, 55, 40]

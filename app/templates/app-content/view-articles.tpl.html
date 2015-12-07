@@ -6,18 +6,24 @@
   </button>
 </a>
 
-<div class="view-article-card">
+<div ng-repeat="article in vm.articles" class="view-article-card" ng-click="vm.goToArticle(article)">
   <img src="http://fpoimg.com/150x150">
   <div class="art-card-text">
-    <h3 class="art-card-headline">Article Headline</h3>
-    <p class="art-card-subjects">Subjects</p>
-    <p class="art-card-content">Content</p>
-    <p class="art-card-time">Time Stamp</p>
+    <h3 class="art-card-headline">
+      {{ article.title }}
+    </h3>
+    <p class="art-card-subjects">
+      {{ article.subject_names }}
+    </p>
+    <p class="art-card-content">
+      {{ article.content }}
+    </p>
+    <!-- <p class="art-card-time">Time Stamp</p> -->
   </div>
   <hr>
 </div>
 
-<table>
+<!-- <table>
   <tr class="header-row">
     <td class="table-titles"><a ng-click="sortType = 'title'; sortReverse = !sortReverse">Title<span ng-show="sortType == 'title'" class="fa fa-caret-down"></a></span></td>
 
@@ -41,12 +47,4 @@
       {{ article.content.length }}
     </td>
   </tr>
-</table>
-
-<!-- OLD VERSION -->
-<!-- 
-<div class="article-view-cards" class="grid-block" ng-repeat="article in vm.articles">
-  <p class="medium-5 grid-block article-title-link" ng-click="vm.goToArticle(article)">{{ article.title }}</p>
-  <p class="medium-6 grid-block" class="article-title">{{ article.subject_names }}</p>
-  <hr>
-</div> -->
+</table> -->
