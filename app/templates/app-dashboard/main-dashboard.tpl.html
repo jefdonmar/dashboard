@@ -8,31 +8,68 @@
 </ol> -->
 
 
-<h3>Subscribers</h3>
+<h3 class="dash-headlines">Subscribers</h3>
 <ul class="small-block-grid-2">
   <li class="dash-3-block">
     <h5>Total Subscribers</h5>
+    <p class="big-number-dash">100</p>
   </li>
   <li class="dash-3-block">
-    <h5>New subscribers</h5>
-    <ul>
-      <li>New over last 5 days</li>
-    </ul>
+    <h5>Last 10 days growth</h5>
+    <p class="big-number-dash">10%</p>
   </li>
 </ul>
 
-<h3>Preferences</h3>
+<h3 class="dash-headlines">Preferences</h3>
 <ul class="small-block-grid-2">
+
   <li class="dash-3-block">
-    <h5>Pie chart of preferences</h5>
+    <h5>Preferences breakdown</h5>
+    <canvas 
+      id="doughnut"
+      class="chart chart-doughnut"
+      chart-data="piePrefData"
+      chart-labels="piePrefLabels">
+    </canvas> 
   </li>
+
   <li class="dash-3-block">
-    <h5># by subject</h5>
-    <ul>
-      <li>Last Five Subscribers</li>
-      <li>Last Five Subscribers</li>
-    </ul>
+    <h5>Subscribers by subject</h5>
+    <canvas 
+      id="bar" 
+      class="chart chart-bar"
+      chart-data="subBarData" 
+      chart-labels="subBarLabels" 
+      chart-series="subBarSeries">
+    </canvas>
   </li>
+</ul>
+
+
+<h3 class="dash-headlines">Content</h3>
+<ul class="small-block-grid-2">
+
+  <li class="dash-3-block">
+    <h5>Content breakdown</h5>
+    <canvas 
+      id="doughnut"
+      class="chart chart-doughnut"
+      chart-data="piePrefData"
+      chart-labels="piePrefLabels">
+    </canvas> 
+  </li>
+
+  <li class="dash-3-block">
+    <h5>Articles by subject</h5>
+    <canvas 
+      id="bar" 
+      class="chart chart-bar"
+      chart-data="subBarData" 
+      chart-labels="subBarLabels" 
+      chart-series="subBarSeries">
+    </canvas>
+  </li>
+
 </ul>
 
 

@@ -8411,7 +8411,7 @@ body {
   background: #e2ebf3; }
 
 body .container {
-  margin: 10px auto;
+  margin: 20px auto;
   max-width: 800px; }
 
 button .change-button {
@@ -8465,7 +8465,25 @@ div.view-article-card {
     margin-top: 5px;
     margin-bottom: 5px; }
 
-.dash-3-block h3 {
+.dash-headlines {
+  font-size: 2em;
+  margin-top: 20px; }
+
+.small-block-grid-2 {
+  margin-top: 10px; }
+
+h3 {
+  text-align: center; }
+
+h5 {
+  text-align: center; }
+
+.big-number-dash {
+  font-size: 5em;
+  text-align: center; }
+
+.Two-big-number-dash {
+  font-size: 2em;
   text-align: center; }
 
 /*# sourceMappingURL=main.css.map */
