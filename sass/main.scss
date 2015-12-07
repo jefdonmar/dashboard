@@ -12,7 +12,7 @@ body {
 }
 
 body .container {
-  margin: 10px auto;
+  margin: 20px auto;
   max-width: 800px;
 }
 
@@ -101,4 +101,65 @@ form {
 
 ul.subject-button-list {
   list-style-type: none;
+}
+
+
+
+
+// ---- ARTICLE CARDS ON VIEW ARTICLES ---
+
+div.view-article-card {
+
+  margin: 0 auto;
+
+  img {
+    display: inline-block;
+  }
+
+  .art-card-text {
+    vertical-align: top;
+    border: 1px solid black;
+    height: 150px;
+    display: inline-block;
+    line-height: .5em;
+    min-width: 500px;
+  }
+
+  p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+
+}
+
+
+// --- DASHBOARD VIEWS ----
+
+.dash-headlines {
+  font-size: 2em;
+  margin-top: 20px;
+}
+
+.small-block-grid-2 {
+  margin-top: 10px;
+}
+
+h3 {
+  text-align: center;
+}
+
+h5 {
+  text-align: center;
+  // border-bottom: 1px solid black;
+}
+
+.big-number-dash {
+  font-size: 5em;
+  text-align: center;
+}
+
+.Two-big-number-dash {
+  font-size: 2em;
+  text-align: center;
 }
