@@ -77,10 +77,10 @@ let config = function($urlRouterProvider, $stateProvider) {
       controller: 'WelcomeController as vm',
       templateUrl: 'templates/app-user/welcome.tpl.html'
     })
-    .state('root.build-segment', {
-      url: '/build-segment',
-      controller: 'BuildSegmentController as vm',
-      templateUrl: 'templates/app-subscriber/build-segment.tpl.html'
+    .state('root.build-newsletter', {
+      url: '/build-newsletter',
+      controller: 'BuildNewsletterController as vm',
+      templateUrl: 'templates/app-content/build-newsletter.tpl.html'
     });
 
 };

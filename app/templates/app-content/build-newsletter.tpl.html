@@ -1,15 +1,17 @@
 <h5>Build segment page</h5>
 
 
-<form ng-submit="vm.addSubscriber(sub)">
+<form ng-submit="vm.getSubjectsForNewsletter(news)">
+
+  <input placeholder="Name of newsletter..." ng-model="news.name">
 
   <h5>Subject names</h5>
   
-  <div ng-repeat="subject in subject_names">
+  <div ng-repeat="subject in subjects">
     <label>
       <input
         type="checkbox"
-        checklist-model="sub.subject_names"
+        checklist-model="news.subjectNames"
         checklist-value="subject"> 
         {{ subject }}
     </label>
