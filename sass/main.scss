@@ -24,81 +24,24 @@ button .change-button {
   font-size: .9em;
 }
 
-form {
-
-  h3 {
-
-  }
-
-  div.user {
-    position: relative;
-
-    span {
-
-      .user input{
-        width: 300px;
-        margin-left: 20px;
-
-      }
-    }
-
-    
-  }
-
-  div.password {
-
-    span {
-      i {
-        display: inline-block;
-      }
-
-      input{
-        width: 300px;
-        margin-left: 20px;
-      }
-    }
-  }
-
-
-  // border: 1px solid yellow;
-  // padding: 20px;
-  // background-color: $BrightBlue;
-
-  // span {
-  //   position: relative; 
-  //   padding: 3px 5px 5px 25px; 
-
-  //   input {
-  //    border: none;
-  //   }
-
-  //   span:before {
-  //     content: '\f007';
-  //     position: absolute;
-  //     left: 5px;
-  //     font-family: fontAwesome;
-  //     color: #888; /* Your desired color */
-  //   }
-  // }
-
-  // h3 {
-  //   font-weight: bold;
-  //   text-align: center;
-  //   border: 1px solid white;
-  //   background-color: white;
-  // }
-
-  // button {
-  //   background-color: $Navy;
-
-  //   button .change-button {
-  //     background-color: green;
-  //     border: 1px solid black;
-  //   }
-
-  // }
-
+.user-ph {
+  display: inline-block;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  padding: 5px auto;
 }
+
+.custom-text {
+  padding: 6px 6px 6px 30px;
+  margin-left: 15px;
+}
+
+.user-container {
+  position: relative;
+}
+
+
 
 .subject-headers {
   display: inline-block;

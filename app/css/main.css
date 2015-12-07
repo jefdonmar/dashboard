@@ -8421,18 +8421,19 @@ button .change-button {
   border: 1px solid black;
   font-size: .9em; }
 
-form div.user {
+.user-ph {
+  display: inline-block;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  padding: 5px auto; }
+
+.custom-text {
+  padding: 6px 6px 6px 30px;
+  margin-left: 15px; }
+
+.user-container {
   position: relative; }
-  form div.user span .user input {
-    width: 300px;
-    margin-left: 20px; }
-
-form div.password span i {
-  display: inline-block; }
-
-form div.password span input {
-  width: 300px;
-  margin-left: 20px; }
 
 .subject-headers {
   display: inline-block;
