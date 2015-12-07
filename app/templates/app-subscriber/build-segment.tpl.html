@@ -1,0 +1,21 @@
+<h5>Build segment page</h5>
+
+
+<form ng-submit="vm.addSubscriber(sub)">
+
+  <h5>Subject names</h5>
+  
+  <div ng-repeat="subject in subject_names">
+    <label>
+      <input
+        type="checkbox"
+        checklist-model="sub.subject_names"
+        checklist-value="subject"> 
+        {{ subject }}
+    </label>
+  </div>
+
+  <button>Submit</button>
+
+</form>
+

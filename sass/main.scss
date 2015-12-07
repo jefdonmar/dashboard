@@ -109,7 +109,6 @@ ul.subject-button-list {
 // ---- ARTICLE CARDS ON VIEW ARTICLES ---
 
 div.view-article-card {
-
   margin: 0 auto;
 
   img {
@@ -118,18 +117,17 @@ div.view-article-card {
 
   .art-card-text {
     vertical-align: top;
-    border: 1px solid black;
+    // border: 1px solid black;
     height: 150px;
     display: inline-block;
     line-height: .5em;
-    min-width: 500px;
+    margin-left: 15px;
   }
 
   p {
     margin-top: 5px;
     margin-bottom: 5px;
   }
-
 
 }
 
@@ -145,7 +143,7 @@ div.view-article-card {
   margin-top: 10px;
 }
 
-h3 {
+h4 {
   text-align: center;
 }
 
@@ -162,4 +160,9 @@ h5 {
 .Two-big-number-dash {
   font-size: 2em;
   text-align: center;
+}
+
+.demo-pics {
+  display: block;
+  margin: 0 auto;
 }

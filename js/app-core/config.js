@@ -76,6 +76,11 @@ let config = function($urlRouterProvider, $stateProvider) {
       url: '/welcome',
       controller: 'WelcomeController as vm',
       templateUrl: 'templates/app-user/welcome.tpl.html'
+    })
+    .state('root.build-segment', {
+      url: '/build-segment',
+      controller: 'BuildSegmentController as vm',
+      templateUrl: 'templates/app-subscriber/build-segment.tpl.html'
     });
 
 };
