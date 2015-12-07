@@ -2,6 +2,12 @@
 import Chart from 'chart.js';
 console.dir(Chart);
 
+import $ from 'jquery';
+import 'foundation';
+
+//Initialize Foundation
+$(document).foundation();
+
 // Import angular
 import angular from 'angular';
 

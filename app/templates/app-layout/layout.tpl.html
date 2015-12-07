@@ -1,4 +1,4 @@
-<nav class="top-bar" data-topbar role="navigation">
+<!-- <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
       <h1><a href="#/">Streamline Dashboard</a></h1>
@@ -8,7 +8,7 @@
     <ul class="right">
       <li><a href="#/">Landing</a></li>
       <li><a href="#/login">Login</a></li>
-    <!--   <li><a href="#/signup">Sign up</a></li> -->
+      <li><a href="#/signup">Sign up</a></li>
       <li><a href="#/add-subscriber">Add subscriber</a></li>
       <li><a href="#/view-subscribers">View subscribers</a></li>
       <li><a href="#/main-dashboard">Dashboard</a></li>
@@ -16,7 +16,34 @@
       <li><a href="#/view-articles">View articles</a></li>
     </ul>
   </section>
-</nav>
+</nav> -->
 
+
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#">Streamline</a></h1>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <ul class="right">
+      <li class="has-dropdown">
+        <a href="#">Log-In/Sign-Up</a>
+        <ul class="dropdown">
+          <li><a href="#/login">Log-In</a></li>
+          <li><a href="#/signup">Sign-Up</a></li>
+        </ul>
+      </li>
+      <li class="has-dropdown">
+        <a href="">Dashboard</a>
+        <ul class="dropdown">
+          <li><a href="#/view-subscribers">Subscriber View</a></li>
+          <li><a href="#/view-articles">Article View</a></li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</nav>
 
 <section class="container" ui-view></section>
