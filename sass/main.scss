@@ -180,38 +180,46 @@ body {
 } 
 
 // Add-Subscriber View
-.add-subscriber {
-  text-align: center;
+
+.addsubscriber {
 
   h3 {
     font-weight: bold;
   }
 
-  form { 
+  .add-subscriber {
     background-color: white;
     height: 50%;
     width: 50%;
     margin-left: 25%;
     border: 1px solid black;
 
-    input.email {
-      background-color: yellow;
+    .email-containter {
+      position: relative;
+      width: 30%;
+
+      .custom-text {
+        padding:6px 6px 6px 30px;
+      }
     }
 
     h5 {
       font-weight: bold;
     }
-
-    button {
+    .sports {
+      text-align: center;
+    }
+  }
+  .submit {
       display: inline-block;
       background-color: red;
       width: 30%;
       height: auto;
       border-radius: 5px;
-      text-align: center;
-    }
+      margin-left: 130px;
   }
 }
+
 
 //Add-Article View 
 

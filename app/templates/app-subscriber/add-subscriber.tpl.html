@@ -1,12 +1,14 @@
-<div class="add-subscriber">
+<div class="addsubscriber">
   <h3>Add subscriber page</h3>
-  <form ng-submit="vm.addSubscriber(sub)">
-    <input class="email" placeholder="Email address..." ng-model="sub.email">
+  <form class="add-subscriber" ng-submit="vm.addSubscriber(sub)">
+    <div class="email-container">
+      <input class="custom-text" placeholder="Email address..." ng-model="sub.email">
+    </div>
     <p ng-show="sub.emailError" class="form-error-message">{{ sub.emailError }}</p>
 
     <h5>Subject names</h5>
   
-    <div ng-repeat="subject in subject_names">
+    <div class="sports" ng-repeat="subject in subject_names">
       <label class="checklist">
         <input class="list"
           type="checkbox"
@@ -15,6 +17,6 @@
           {{ subject }}
       </label>
     </div>
-    <button>Submit</button>
+    <button class="submit">Submit</button>
   </form>
 </div>
