@@ -8413,121 +8413,142 @@ body {
     margin: 10px auto;
     max-width: 800px; }
 
-.login .log-in .user-container {
-  position: relative;
-  width: 30%; }
-  .login .log-in .user-container .user-ph {
-    display: inline-block;
-    width: 20px;
-    height: auto;
-    font-size: 14px;
-    font-weight: normal;
-    position: absolute;
-    text-align: center;
-    text-shadow: 0 1px 0 #ffffff;
-    background-color: #eeeeee;
-    left: 3px;
-    top: 3px;
-    bottom: 3px;
-    z-index: 3; }
-  .login .log-in .user-container .custom-text {
-    padding: 6px 6px 6px 30px; }
-
-.login .log-in .password-container {
-  position: relative;
-  width: 30%; }
-  .login .log-in .password-container .password-ph {
-    display: inline-block;
-    width: auto;
-    height: auto;
-    font-size: 14px;
-    font-weight: normal;
-    position: absolute;
-    text-align: center;
-    text-shadow: 0 1px 0 #ffffff;
-    background-color: #eeeeee;
-    left: 3px;
-    top: 3px;
-    bottom: 3px;
-    z-index: 3; }
-  .login .log-in .password-container .custom-text {
-    padding: 6px 6px 6px 30px; }
-
-.login .log-in button {
-  display: inline-block;
-  background-color: red;
+.login {
   width: 30%;
-  height: auto;
-  border-radius: 5px;
-  text-align: center; }
-
-.signup .sign-up .company-container {
-  position: relative;
-  width: 30%; }
-  .signup .sign-up .company-container .company-ph {
-    display: inline-block;
-    width: auto;
-    height: auto;
-    font-size: 14px;
-    font-weight: normal;
-    position: absolute;
+  position: fixed;
+  top: 30%;
+  left: 35%;
+  background-color: white;
+  border: 6px solid #082c38; }
+  .login .logo {
+    padding: 10px;
     text-align: center;
-    text-shadow: 0 1px 0 #ffffff;
-    background-color: #eeeeee;
-    left: 3px;
-    top: 3px;
-    bottom: 3px;
-    z-index: 3; }
-  .signup .sign-up .company-container .custom-text {
-    padding: 6px 6px 6px 30px; }
+    font-size: 25px; }
+  .login .log-in {
+    padding: 5px; }
+    .login .log-in .user-container {
+      position: relative; }
+      .login .log-in .user-container .user-ph {
+        display: inline-block;
+        width: 20px;
+        height: auto;
+        font-size: 14px;
+        font-weight: normal;
+        position: absolute;
+        text-align: center;
+        text-shadow: 0 1px 0 #ffffff;
+        background-color: #eeeeee;
+        left: 3px;
+        top: 3px;
+        bottom: 3px;
+        z-index: 3; }
+      .login .log-in .user-container .custom-text {
+        padding: 6px 6px 6px 30px; }
+    .login .log-in .password-container {
+      position: relative; }
+      .login .log-in .password-container .password-ph {
+        display: inline-block;
+        width: auto;
+        height: auto;
+        font-size: 14px;
+        font-weight: normal;
+        position: absolute;
+        text-align: center;
+        text-shadow: 0 1px 0 #ffffff;
+        background-color: #eeeeee;
+        left: 3px;
+        top: 3px;
+        bottom: 3px;
+        z-index: 3; }
+      .login .log-in .password-container .custom-text {
+        padding: 6px 6px 6px 30px; }
+    .login .log-in button {
+      display: inline-block;
+      background-color: #39bced;
+      height: auto;
+      width: 100%;
+      border-radius: 5px;
+      text-align: center; }
 
-.signup .sign-up .user-container {
-  position: relative;
-  width: 30%; }
-  .signup .sign-up .user-container .user-ph {
-    display: inline-block;
-    width: 20px;
-    height: auto;
-    font-size: 14px;
-    font-weight: normal;
-    position: absolute;
-    text-align: center;
-    text-shadow: 0 1px 0 #ffffff;
-    background-color: #eeeeee;
-    left: 3px;
-    top: 3px;
-    bottom: 3px;
-    z-index: 3; }
-  .signup .sign-up .user-container .custom-text {
-    padding: 6px 6px 6px 30px; }
-
-.signup .sign-up .password-container {
-  position: relative;
-  width: 30%; }
-  .signup .sign-up .password-container .password-ph {
-    display: inline-block;
-    width: auto;
-    height: auto;
-    font-size: 14px;
-    font-weight: normal;
-    position: absolute;
-    text-align: center;
-    text-shadow: 0 1px 0 #ffffff;
-    background-color: #eeeeee;
-    left: 3px;
-    top: 3px;
-    bottom: 3px;
-    z-index: 3; }
-  .signup .sign-up .password-container .custom-text {
-    padding: 6px 6px 6px 30px; }
-
-.signup .sign-up button {
-  display: inline-block;
-  background-color: red;
+.signup {
   width: 30%;
-  height: auto;
-  border-radius: 5px;
-  text-align: center; }
+  position: fixed;
+  top: 25%;
+  left: 35%;
+  background-color: white;
+  border: 6px solid #082c38; }
+  .signup .logo {
+    padding: 10px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold; }
+  .signup p {
+    font-size: 15px;
+    text-align: center;
+    padding: 5px; }
+  .signup .sign-up {
+    padding: 5px; }
+    .signup .sign-up .company-container {
+      position: relative; }
+      .signup .sign-up .company-container .company-ph {
+        display: inline-block;
+        width: auto;
+        height: auto;
+        font-size: 14px;
+        font-weight: normal;
+        position: absolute;
+        text-align: center;
+        text-shadow: 0 1px 0 #ffffff;
+        background-color: #eeeeee;
+        left: 3px;
+        top: 3px;
+        bottom: 3px;
+        z-index: 3; }
+      .signup .sign-up .company-container .custom-text {
+        padding: 6px 6px 6px 30px; }
+    .signup .sign-up .user-container {
+      position: relative; }
+      .signup .sign-up .user-container .user-ph {
+        display: inline-block;
+        width: 20px;
+        height: auto;
+        font-size: 14px;
+        font-weight: normal;
+        position: absolute;
+        text-align: center;
+        text-shadow: 0 1px 0 #ffffff;
+        background-color: #eeeeee;
+        left: 3px;
+        top: 3px;
+        bottom: 3px;
+        z-index: 3; }
+      .signup .sign-up .user-container .custom-text {
+        padding: 6px 6px 6px 30px; }
+    .signup .sign-up .password-container {
+      position: relative; }
+      .signup .sign-up .password-container .password-ph {
+        display: inline-block;
+        width: auto;
+        height: auto;
+        font-size: 14px;
+        font-weight: normal;
+        position: absolute;
+        text-align: center;
+        text-shadow: 0 1px 0 #ffffff;
+        background-color: #eeeeee;
+        left: 3px;
+        top: 3px;
+        bottom: 3px;
+        z-index: 3; }
+      .signup .sign-up .password-container .custom-text {
+        padding: 6px 6px 6px 30px; }
+    .signup .sign-up button {
+      display: inline-block;
+      background-color: #39bced;
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      text-align: center; }
 
 .welcome .welcome-info {
   text-align: center; }
@@ -8537,7 +8558,7 @@ body {
   .welcome .welcome-info button {
     display: inline-block;
     position: relative;
-    background-color: red;
+    background-color: #082c38;
     width: 30%;
     height: 60px;
     border-radius: 5px;
@@ -8564,7 +8585,7 @@ body {
 
 .addsubscriber .submit {
   display: inline-block;
-  background-color: red;
+  background-color: #39bced;
   width: 30%;
   height: auto;
   border-radius: 5px;
