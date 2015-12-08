@@ -307,7 +307,7 @@ var emailArticle = function emailArticle(ArticleService) {
     },
     // transclude: true,
     // controller: 'SubscriberRowController as vm', // Not needed?
-    template: '\n      <table width="100%" style="border: none;background-color: white;">\n        <tbody>\n          <tr width="600" style="padding = 0px;">\n            <td width="100%" style="padding = 0px;" >\n              <h5 ng-click="upload = !upload"\n                style="border-bottom: 1px solid black; padding-bottom: 3px;">\n                {{ article.title }}\n              </h5>\n            </td>\n          </tr>\n          <tr width="600"  style="background-color: white; float: right;">\n            <td height:"50" width="100%">\n              <p>{{ article.subject_names }}</p>\n            </td>\n          </tr>\n          <tr ng-show="upload">\n            <td>\n              <img src="http://fpoimg.com/600x150">\n              <button>Click to upload</button>\n            </td>\n          </tr>\n          <tr width="600" style="background-color: white;">\n            <td  width="100%">\n              <p>{{ article.content }}</p>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    ',
+    template: '\n     <table style="border: none;background-color: white;">\n        <tr width="600" style="padding = 0px;">\n          <td width="100%" style="padding = 0px;" >\n            <h5 ng-click="upload = !upload"\n              style="border-bottom: 1px solid black; padding-bottom: 3px;">\n              {{ article.title }}\n            </h5>\n          </td>\n        </tr>\n        <tr width="600"  style="background-color: white; float: right;">\n          <td height:"50" width="100%">\n            <p>{{ article.subject_names }}</p>\n          </td>\n        </tr>\n        <tr ng-show="upload">\n          <td>\n            <img src="http://fpoimg.com/600x150">\n            <button>Click to upload</button>\n          </td>\n        </tr>\n        <tr width="600" style="background-color: white;">\n          <td  width="100%">\n            <p>{{ article.content }}</p>\n          </td>\n        </tr>\n      </table>\n    ',
     link: function link(scope, element, attrs) {
       console.log(element[0]);
       console.log(element[0].toString());
@@ -393,11 +393,7 @@ _angular2['default'].module('app.content', ['checklist-model'])
 // DIRECTIVES
 .directive('emailArticle', _directivesEmailArticleDirective2['default']).directive('addImage', _directivesAddImageDirective2['default']);
 
-<<<<<<< HEAD
 },{"./controllers/add-article.controller":1,"./controllers/article-by-subject.controller":2,"./controllers/build-newsletter.controller":3,"./controllers/edit-article.controller":4,"./controllers/preview-newsletter.controller":5,"./controllers/view-articles.controller":6,"./controllers/view-single-article.controller":7,"./directives/add-image.directive":8,"./directives/email-article.directive":9,"./services/article.service":11,"./services/newsletter.service":12,"./services/upload.service":13,"angular":41,"checklist-model":43}],11:[function(require,module,exports){
-=======
-},{"./controllers/add-article.controller":1,"./controllers/article-by-subject.controller":2,"./controllers/build-newsletter.controller":3,"./controllers/edit-article.controller":4,"./controllers/preview-newsletter.controller":5,"./controllers/view-articles.controller":6,"./controllers/view-single-article.controller":7,"./directives/email-article.directive":8,"./services/article.service":10,"./services/newsletter.service":11,"angular":39,"checklist-model":41}],10:[function(require,module,exports){
->>>>>>> master
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -646,11 +642,7 @@ var _herokuConstant2 = _interopRequireDefault(_herokuConstant);
 
 _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).config(_config2['default']).constant('HEROKU', _herokuConstant2['default']);
 
-<<<<<<< HEAD
 },{"./config":14,"./heroku.constant":15,"angular":41,"angular-cookies":38,"angular-ui-router":39}],17:[function(require,module,exports){
-=======
-},{"./config":12,"./heroku.constant":13,"angular":39,"angular-cookies":36,"angular-ui-router":37}],15:[function(require,module,exports){
->>>>>>> master
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -707,11 +699,7 @@ console.dir(_angularChartJs2['default']);
 
 _angular2['default'].module('app.dashboard', ['chart.js']).controller('MainDashboardController', _controllersMainDashboardController2['default']).service('DashboardService', _servicesDashboardService2['default']);
 
-<<<<<<< HEAD
 },{"./controllers/main-dashboard.controller":17,"./services/dashboard.service":19,"angular":41,"angular-chart.js":36}],19:[function(require,module,exports){
-=======
-},{"./controllers/main-dashboard.controller":15,"./services/dashboard.service":17,"angular":39,"angular-chart.js":34}],17:[function(require,module,exports){
->>>>>>> master
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -764,11 +752,7 @@ var _controllersHomeController2 = _interopRequireDefault(_controllersHomeControl
 
 _angular2['default'].module('app.layout', []).controller('HomeController', _controllersHomeController2['default']);
 
-<<<<<<< HEAD
 },{"./controllers/home.controller":20,"angular":41}],22:[function(require,module,exports){
-=======
-},{"./controllers/home.controller":18,"angular":39}],20:[function(require,module,exports){
->>>>>>> master
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -997,6 +981,8 @@ var _angular2 = _interopRequireDefault(_angular);
 
 require('checklist-model');
 
+// import 'angular-ui-grid' from 'node_modules/angular-ui-grid/ui-grid.min.css';
+
 // CONTROLLERS
 
 var _controllersAddSubscriberController = require('./controllers/add-subscriber.controller');
@@ -1033,11 +1019,7 @@ var _servicesSubscriberService2 = _interopRequireDefault(_servicesSubscriberServ
 
 _angular2['default'].module('app.subscriber', ['checklist-model']).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).controller('SubscriberRowController', _controllersSubscriberRowDirectiveController2['default']).controller('EditSubscriberController', _controllersEditSubscriberController2['default']).controller('SingleSubscriberController', _controllersSingleSubscriberController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
 
-<<<<<<< HEAD
 },{"./controllers/add-subscriber.controller":22,"./controllers/edit-subscriber.controller":23,"./controllers/single-subscriber.controller":24,"./controllers/subscriber-row-directive.controller":25,"./controllers/view-subscribers.controller":26,"./directives/subscriberItem.directive":27,"./services/subscriber.service":29,"angular":41,"checklist-model":43}],29:[function(require,module,exports){
-=======
-},{"./controllers/add-subscriber.controller":20,"./controllers/edit-subscriber.controller":21,"./controllers/single-subscriber.controller":22,"./controllers/subscriber-row-directive.controller":23,"./controllers/view-subscribers.controller":24,"./directives/subscriberItem.directive":25,"./services/subscriber.service":27,"angular":39,"checklist-model":41}],27:[function(require,module,exports){
->>>>>>> master
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1224,11 +1206,7 @@ var _servicesUserService2 = _interopRequireDefault(_servicesUserService);
 
 _angular2['default'].module('app.user', []).controller('LoginController', _controllersLoginController2['default']).controller('SignupController', _controllersSignupController2['default']).controller('WelcomeController', _controllersWelcomeController2['default']).service('UserService', _servicesUserService2['default']);
 
-<<<<<<< HEAD
 },{"./controllers/login.controller":30,"./controllers/signup.controller":31,"./controllers/welcome.controller":32,"./services/user.service":34,"angular":41}],34:[function(require,module,exports){
-=======
-},{"./controllers/login.controller":28,"./controllers/signup.controller":29,"./controllers/welcome.controller":30,"./services/user.service":32,"angular":39}],32:[function(require,module,exports){
->>>>>>> master
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1309,11 +1287,7 @@ UserService.$inject = ['$http', 'HEROKU', '$cookies', '$state'];
 exports['default'] = UserService;
 module.exports = exports['default'];
 
-<<<<<<< HEAD
 },{}],35:[function(require,module,exports){
-=======
-},{}],33:[function(require,module,exports){
->>>>>>> master
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -1362,11 +1336,7 @@ require('./app-dashboard/index');
   });
 });
 
-<<<<<<< HEAD
 },{"./app-content/index":10,"./app-core/index":16,"./app-dashboard/index":18,"./app-layout/index":21,"./app-subscriber/index":28,"./app-user/index":33,"angular":41,"foundation":44,"jquery":45}],36:[function(require,module,exports){
-=======
-},{"./app-content/index":9,"./app-core/index":14,"./app-dashboard/index":16,"./app-layout/index":19,"./app-subscriber/index":26,"./app-user/index":31,"angular":39,"foundation":42,"jquery":43}],34:[function(require,module,exports){
->>>>>>> master
 (function (factory) {
   'use strict';
   if (typeof exports === 'object') {
@@ -1730,11 +1700,7 @@ require('./app-dashboard/index');
   }
 }));
 
-<<<<<<< HEAD
 },{"angular":41,"chart.js":42}],37:[function(require,module,exports){
-=======
-},{"angular":39,"chart.js":40}],35:[function(require,module,exports){
->>>>>>> master
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -2057,19 +2023,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-<<<<<<< HEAD
 },{}],38:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
 },{"./angular-cookies":37}],39:[function(require,module,exports){
-=======
-},{}],36:[function(require,module,exports){
-require('./angular-cookies');
-module.exports = 'ngCookies';
-
-},{"./angular-cookies":35}],37:[function(require,module,exports){
->>>>>>> master
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -6440,11 +6398,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-<<<<<<< HEAD
 },{}],40:[function(require,module,exports){
-=======
-},{}],38:[function(require,module,exports){
->>>>>>> master
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -35463,19 +35417,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-<<<<<<< HEAD
 },{}],41:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
 },{"./angular":40}],42:[function(require,module,exports){
-=======
-},{}],39:[function(require,module,exports){
-require('./angular');
-module.exports = angular;
-
-},{"./angular":38}],40:[function(require,module,exports){
->>>>>>> master
 /*!
  * Chart.js
  * http://chartjs.org/
@@ -38953,11 +38899,7 @@ module.exports = angular;
 
 
 }).call(this);
-<<<<<<< HEAD
 },{}],43:[function(require,module,exports){
-=======
-},{}],41:[function(require,module,exports){
->>>>>>> master
 /**
  * Checklist-model
  * AngularJS directive for list of checkboxes
@@ -39107,11 +39049,7 @@ angular.module('checklist-model', [])
   };
 }]);
 
-<<<<<<< HEAD
 },{}],44:[function(require,module,exports){
-=======
-},{}],42:[function(require,module,exports){
->>>>>>> master
 (function (global){
 ; var __browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 /*
@@ -45702,11 +45640,7 @@ angular.module('checklist-model', [])
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-<<<<<<< HEAD
 },{}],45:[function(require,module,exports){
-=======
-},{}],43:[function(require,module,exports){
->>>>>>> master
 (function (global){
 ; var __browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 /*!

@@ -1,21 +1,44 @@
 <h4>Newsletter preview</h4>
 
 <button ng-click="vm.getArticles()">Get all articles</button>
-<button>Upload banner img</button>
+
+<form>
+  <input 
+    type="text" 
+    placeholder="Insert logo URL for your newsletter"
+    ng-model="bannerImg">
+  <button>Upload banner image</button>
+</form>
 
 <div class="html-email-container">
-  
-<table width="100%">
 
-<p>Click to view in your browser</p>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width"/>
+  </head>
 
-<img class="banner-img" src="http://fpoimg.com/600x150">
+  <body>
+    <table class="body" style="width: 100%;">
+      <tr>
+        <td class="center" align="center" valign="center">
+          <p style="text-align: center;">Click to view in your browser</p>
+          <img class="banner-img" src="{{ bannerImg }}" ng-show="bannerImg">
+        </td>
+      </tr>
+      <tr>
+        <td class="wrapper">
+          <table email-article 
+          ng-repeat="a in vm.articles"
+          article="a"
+          class="row">
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+<!-- http://fpoimg.com/600x150 -->
 
-
-  <tr email-article 
-    ng-repeat="a in vm.articles"
-    article="a">
-  </tr>
-</table>
-
+</html>
 </div>
+  

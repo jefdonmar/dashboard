@@ -1,5 +1,6 @@
 import angular from 'angular';
 import 'checklist-model';
+// import 'angular-ui-grid' from 'node_modules/angular-ui-grid/ui-grid.min.css';
 
 // CONTROLLERS
 import AddSubscriberController from './controllers/add-subscriber.controller';
