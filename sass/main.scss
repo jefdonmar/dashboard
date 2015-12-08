@@ -174,9 +174,32 @@ body {
 // Welcome View
 
 .welcome {
-  position: absolute;
-  top: 25%;
-  left: 25%;
+  // position: absolute;
+  // top: 25%;
+  // left: 25%;
+
+  .welcome-info {
+    text-align: center;
+
+    p {
+      font-weight: bold;
+      font-size: 40px;
+    }
+
+    button{
+      display: inline-block;
+      position: relative;
+      background-color: red;
+      width: 30%;
+      height: 60px;
+      border-radius: 5px;
+      font: white;
+    }
+  }
+
+  .product1 {
+
+  }
 } 
 
 // Add-Subscriber View
@@ -211,12 +234,12 @@ body {
     }
   }
   .submit {
-      display: inline-block;
-      background-color: red;
-      width: 30%;
-      height: auto;
-      border-radius: 5px;
-      margin-left: 130px;
+    display: inline-block;
+    background-color: red;
+    width: 30%;
+    height: auto;
+    border-radius: 5px;
+    margin-left: 130px;
   }
 }
 
@@ -232,7 +255,6 @@ body {
     .custom-text {
 
     }
-
     .submit {
       display: inline-block;
       background-color: red;
@@ -243,7 +265,6 @@ body {
     }
 
   }
-
 }
 
 

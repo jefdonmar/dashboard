@@ -8529,10 +8529,19 @@ body {
   border-radius: 5px;
   text-align: center; }
 
-.welcome {
-  position: absolute;
-  top: 25%;
-  left: 25%; }
+.welcome .welcome-info {
+  text-align: center; }
+  .welcome .welcome-info p {
+    font-weight: bold;
+    font-size: 40px; }
+  .welcome .welcome-info button {
+    display: inline-block;
+    position: relative;
+    background-color: red;
+    width: 30%;
+    height: 60px;
+    border-radius: 5px;
+    font: white; }
 
 .addsubscriber h3 {
   font-weight: bold; }
