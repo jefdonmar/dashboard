@@ -145,6 +145,8 @@ var PreviewNewsletterController = function PreviewNewsletterController($scope, N
 
   vm.getArticles = getArticles;
 
+  getArticles();
+
   function getArticles() {
     ArticleService.getAllArticles().then(function (response) {
       vm.articles = response.data.article;
@@ -255,8 +257,11 @@ var emailArticle = function emailArticle(ArticleService) {
     },
     // transclude: true,
     // controller: 'SubscriberRowController as vm', // Not needed?
-    template: '\n      <tr>\n        <td>{{ article.title }}</td>\n        <td>{{ article.content }}</td>\n      </tr>\n    ',
-    link: function link(scope, element, attrs) {}
+    template: '\n      <table width="100%" style="border: none;background-color: white;">\n        <tbody>\n          <tr width="600" style="padding = 0px;">\n            <td width="100%" style="padding = 0px;" >\n              <h5 ng-click="upload = !upload"\n                style="border-bottom: 1px solid black; padding-bottom: 3px;">\n                {{ article.title }}\n              </h5>\n            </td>\n          </tr>\n          <tr width="600"  style="background-color: white; float: right;">\n            <td height:"50" width="100%">\n              <p>{{ article.subject_names }}</p>\n            </td>\n          </tr>\n          <tr ng-show="upload">\n            <td>\n              <img src="http://fpoimg.com/600x150">\n              <button>Click to upload</button>\n            </td>\n          </tr>\n          <tr width="600" style="background-color: white;">\n            <td  width="100%">\n              <p>{{ article.content }}</p>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    ',
+    link: function link(scope, element, attrs) {
+      console.log(element[0]);
+      console.log(element[0].toString());
+    }
   };
 };
 
