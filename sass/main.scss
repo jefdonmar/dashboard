@@ -9,37 +9,75 @@ $BrightBlue: #39bced;
 
 body {
   background: #e2ebf3;
+
+  .container {
+    margin: 10px auto;
+    max-width: 800px;
+  }
 }
 
-body .container {
-  margin: 10px auto;
-  max-width: 800px;
+// Log-IN Page 
+
+form {
+  .user-container {
+    position: relative;
+    width: 200px;
+
+    .user-ph {
+      display: inline-block;
+      width: 20px;
+      height: auto;
+      font-size: 14px;
+      font-weight: normal;
+      position: absolute;
+      text-align: center;
+      text-shadow: 0 1px 0 #ffffff;
+      background-color: #eeeeee;
+      left: 3px;
+      top: 3px;
+      bottom: 3px;
+      z-index: 3;
+    }
+
+    .custom-text {
+      padding:6px 6px 6px 30px;
+    }
+  }
+  
+  .password-container{
+    position: relative;
+    width: 200px;
+
+    .password-ph {
+      display: inline-block;
+      width:  auto;
+      height: auto;
+      font-size: 14px;
+      font-weight: normal;
+      position: absolute;
+      text-align: center;
+      text-shadow: 0 1px 0 #ffffff;
+      background-color: #eeeeee;
+      left: 3px;
+      top: 3px;
+      bottom: 3px;
+      z-index: 3;
+    }
+    .custom-text {
+      padding:6px 6px 6px 30px;
+    }
+  }
+  button {
+    display: inline-block;
+    background-color: red;
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
+    text-align: center;
+  }
 }
 
-button .change-button {
-  width: 100px;
-  padding: 5px;
-  background-color: green;
-  border: 1px solid black;
-  font-size: .9em;
-}
 
-.user-ph {
-  display: inline-block;
-  position: absolute;
-  left: 5px;
-  top: 5px;
-  padding: 5px auto;
-}
-
-.custom-text {
-  padding: 6px 6px 6px 30px;
-  margin-left: 15px;
-}
-
-.user-container {
-  position: relative;
-}
 
 
 
