@@ -1,0 +1,14 @@
+<h4>Newsletter preview</h4>
+
+<button ng-click="vm.getArticles()">Get all articles</button>
+
+<div class="html-email-container">
+  
+<table>
+  <tr email-article 
+    ng-repeat="a in vm.articles"
+    article="a">
+  </tr>
+</table>
+
+</div>

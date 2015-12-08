@@ -81,6 +81,11 @@ let config = function($urlRouterProvider, $stateProvider) {
       url: '/build-newsletter',
       controller: 'BuildNewsletterController as vm',
       templateUrl: 'templates/app-content/build-newsletter.tpl.html'
+    })
+    .state('root.preview-newsletter', {
+      url: '/preview-newsletter',
+      controller: 'PreviewNewsletterController as vm',
+      templateUrl: 'templates/app-content/preview-newsletter.tpl.html'
     });
 
 };
