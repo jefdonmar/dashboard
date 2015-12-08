@@ -6,6 +6,6 @@ import HomeController from './controllers/home.controller';
 
 
 angular
-  .module('app.layout', ['mm.foundation'])
+  .module('app.layout', [])
   .controller('HomeController', HomeController)
 ;
