@@ -8413,11 +8413,6 @@ body {
     margin: 10px auto;
     max-width: 800px; }
 
-<<<<<<< HEAD
-body .container {
-  margin: 20px auto;
-  max-width: 800px; }
-=======
 .login .user-container {
   position: relative;
   width: 30%; }
@@ -8465,7 +8460,6 @@ body .container {
   height: auto;
   border-radius: 5px;
   text-align: center; }
->>>>>>> jeff
 
 .welcome {
   position: absolute;
