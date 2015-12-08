@@ -8410,7 +8410,8 @@ th.hide-for-touch {
 body {
   background: #e2ebf3; }
   body .container {
-    margin: 10px auto;
+    margin: 20px auto;
+    width: 80%;
     max-width: 800px; }
 
 .login .log-in .user-container {
