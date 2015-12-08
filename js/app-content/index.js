@@ -15,7 +15,7 @@ import ArticleService from './services/article.service';
 import NewsletterService from './services/newsletter.service';
 
 // DIRECTIVES
-
+import emailArticle from './directives/email-article.directive';
 
 angular
   .module('app.content', ['checklist-model'])
@@ -31,4 +31,5 @@ angular
   .service('ArticleService', ArticleService)
   .service('NewsletterService', NewsletterService)
   // DIRECTIVES
+  .directive('emailArticle', emailArticle)
 ;
