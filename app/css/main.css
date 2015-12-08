@@ -8409,44 +8409,90 @@ th.hide-for-touch {
 
 body {
   background: #e2ebf3; }
+  body .container {
+    margin: 10px auto;
+    max-width: 800px; }
 
+<<<<<<< HEAD
 body .container {
   margin: 20px auto;
   max-width: 800px; }
-
-button .change-button {
-  width: 100px;
-  padding: 5px;
-  background-color: green;
-  border: 1px solid black;
-  font-size: .9em; }
-
-form {
-  border: 1px solid yellow;
-  padding: 20px;
-  background-color: #39bced; }
-  form span {
-    position: relative;
-    padding: 3px 5px 5px 25px; }
-    form span input {
-      border: none; }
-    form span span:before {
-      content: '\f007';
-      position: absolute;
-      left: 5px;
-      font-family: fontAwesome;
-      color: #888;
-      /* Your desired color */ }
-  form h3 {
-    font-weight: bold;
+=======
+.login .user-container {
+  position: relative;
+  width: 30%; }
+  .login .user-container .user-ph {
+    display: inline-block;
+    width: 20px;
+    height: auto;
+    font-size: 14px;
+    font-weight: normal;
+    position: absolute;
     text-align: center;
-    border: 1px solid white;
-    background-color: white; }
-  form button {
-    background-color: #082c38; }
-    form button button .change-button {
-      background-color: green;
-      border: 1px solid black; }
+    text-shadow: 0 1px 0 #ffffff;
+    background-color: #eeeeee;
+    left: 3px;
+    top: 3px;
+    bottom: 3px;
+    z-index: 3; }
+  .login .user-container .custom-text {
+    padding: 6px 6px 6px 30px; }
+
+.login .password-container {
+  position: relative;
+  width: 30%; }
+  .login .password-container .password-ph {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    font-size: 14px;
+    font-weight: normal;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 1px 0 #ffffff;
+    background-color: #eeeeee;
+    left: 3px;
+    top: 3px;
+    bottom: 3px;
+    z-index: 3; }
+  .login .password-container .custom-text {
+    padding: 6px 6px 6px 30px; }
+
+.login button {
+  display: inline-block;
+  background-color: red;
+  width: 30%;
+  height: auto;
+  border-radius: 5px;
+  text-align: center; }
+>>>>>>> jeff
+
+.welcome {
+  position: absolute;
+  top: 25%;
+  left: 25%; }
+
+.add-subscriber {
+  text-align: center; }
+  .add-subscriber h3 {
+    font-weight: bold; }
+  .add-subscriber form {
+    background-color: white;
+    height: 50%;
+    width: 50%;
+    margin-left: 25%;
+    border: 1px solid black; }
+    .add-subscriber form input.email {
+      background-color: yellow; }
+    .add-subscriber form h5 {
+      font-weight: bold; }
+    .add-subscriber form button {
+      display: inline-block;
+      background-color: red;
+      width: 30%;
+      height: auto;
+      border-radius: 5px;
+      text-align: center; }
 
 .subject-headers {
   display: inline-block;

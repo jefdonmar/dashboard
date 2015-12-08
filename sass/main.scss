@@ -9,61 +9,128 @@ $BrightBlue: #39bced;
 
 body {
   background: #e2ebf3;
-}
 
+<<<<<<< HEAD
 body .container {
   margin: 20px auto;
   max-width: 800px;
+=======
+  .container {
+    margin: 10px auto;
+    max-width: 800px;
+  }
+>>>>>>> jeff
 }
 
-button .change-button {
-  width: 100px;
-  padding: 5px;
-  background-color: green;
-  border: 1px solid black;
-  font-size: .9em;
-}
+// Log-In Page 
 
-form {
-  border: 1px solid yellow;
-  padding: 20px;
-  background-color: $BrightBlue;
+.login {
 
-  span {
-    position: relative; 
-    padding: 3px 5px 5px 25px; 
+  .user-container {
+    position: relative;
+    width: 30%;
 
-    input {
-     border: none;
+    .user-ph {
+      display: inline-block;
+      width: 20px;
+      height: auto;
+      font-size: 14px;
+      font-weight: normal;
+      position: absolute;
+      text-align: center;
+      text-shadow: 0 1px 0 #ffffff;
+      background-color: #eeeeee;
+      left: 3px;
+      top: 3px;
+      bottom: 3px;
+      z-index: 3;
     }
 
-    span:before {
-      content: '\f007';
-      position: absolute;
-      left: 5px;
-      font-family: fontAwesome;
-      color: #888; /* Your desired color */
+    .custom-text {
+      padding:6px 6px 6px 30px;
     }
   }
+  
+  .password-container{
+    position: relative;
+    width: 30%;
+
+    .password-ph {
+      display: inline-block;
+      width:  auto;
+      height: auto;
+      font-size: 14px;
+      font-weight: normal;
+      position: absolute;
+      text-align: center;
+      text-shadow: 0 1px 0 #ffffff;
+      background-color: #eeeeee;
+      left: 3px;
+      top: 3px;
+      bottom: 3px;
+      z-index: 3;
+    }
+    .custom-text {
+      padding:6px 6px 6px 30px;
+    }
+  }
+  button {
+    display: inline-block;
+    background-color: red;
+    width: 30%;
+    height: auto;
+    border-radius: 5px;
+    text-align: center;
+  }
+}
+
+// Welcome Page 
+
+.welcome {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+} 
+
+// Add-Subscriber Page
+.add-subscriber {
+  text-align: center;
 
   h3 {
     font-weight: bold;
-    text-align: center;
-    border: 1px solid white;
-    background-color: white;
   }
 
-  button {
-    background-color: $Navy;
+  form { 
+    background-color: white;
+    height: 50%;
+    width: 50%;
+    margin-left: 25%;
+    border: 1px solid black;
 
-    button .change-button {
-      background-color: green;
-      border: 1px solid black;
+    input.email {
+      background-color: yellow;
+    }
+
+    h5 {
+      font-weight: bold;
+    }
+
+    button {
+      display: inline-block;
+      background-color: red;
+      width: 30%;
+      height: auto;
+      border-radius: 5px;
+      text-align: center;
     }
 
   }
-
 }
+
+
+
+
+
 
 .subject-headers {
   display: inline-block;
