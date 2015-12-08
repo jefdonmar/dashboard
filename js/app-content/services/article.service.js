@@ -10,15 +10,19 @@ let ArticleService = function($http, HEROKU) {
   this.deleteArticle = deleteArticle;
   this.getSubjectArticles = getSubjectArticles;
 
-  function Article (article) {
-    this.subject_names       = article.subject_names;
-    this.title  = article.title;
-    this.content = article.content;
-  }
 
-  function addArticle (article) {
-    let a = new Article (article);
-    return $http.post(url, a, HEROKU.CONFIG);
+  function addArticle (article, fileObj) {
+
+    let formData = new FormData();
+
+    formData.append('subject_names', article.subject_names);
+    formData.append('title', article.title);
+    formData.append('content', article.content);
+    formData.append('media', fileObj);
+
+    HEROKU.CONFIG.headers['Content-Type'] = undefined;
+
+    return $http.post(url, formData, HEROKU.CONFIG);
   }
 
   function getAllArticles () {

@@ -8410,7 +8410,8 @@ th.hide-for-touch {
 body {
   background: #e2ebf3; }
   body .container {
-    margin: 10px auto;
+    margin: 20px auto;
+    width: 80%;
     max-width: 800px; }
 
 .login {
@@ -8677,5 +8678,24 @@ div.html-email-container {
   min-height: 500px;
   margin: 10px auto;
   background-color: white; }
+
+#input-article-table {
+  border: none;
+  background-color: white;
+  padding: 10px; }
+  #input-article-table tr {
+    border: none;
+    background-color: #082c38;
+    margin: 10px; }
+
+#input-headlines {
+  font-size: 1.5em;
+  border: none;
+  background-color: white;
+  color: #082c38; }
+
+#input-text-content {
+  font-size: 1.2em;
+  min-height: 150px; }
 
 /*# sourceMappingURL=main.css.map */
