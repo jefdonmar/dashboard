@@ -13,8 +13,8 @@ $(document).foundation();
 import angular from 'angular';
 
 // Import browserify-shim for nav bar things
-import $ from 'jquery';
-import 'foundation';
+// import $ from 'jquery';
+// import 'foundation';
 
 // Import other app modules
 import './app-core/index';
@@ -32,6 +32,11 @@ angular
       console.log('state change');
       UserService.setHeaders();
     });
+
+    $rootScope.$on('$viewContentLoaded', function () {
+      $(document).foundation();
+    });
+
   })
 ;
 
