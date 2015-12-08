@@ -6,6 +6,8 @@ let PreviewNewsletterController = function($scope, NewsletterService, ArticleSer
 
   vm.getArticles = getArticles;
 
+  getArticles();
+
   function getArticles () {
     ArticleService.getAllArticles().then( (response)=> {
       vm.articles = response.data.article;
