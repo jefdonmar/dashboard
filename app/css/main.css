@@ -8649,4 +8649,23 @@ div.html-email-container {
   margin: 10px auto;
   background-color: white; }
 
+#input-article-table {
+  border: none;
+  background-color: white;
+  padding: 10px; }
+  #input-article-table tr {
+    border: none;
+    background-color: #082c38;
+    margin: 10px; }
+
+#input-headlines {
+  font-size: 1.5em;
+  border: none;
+  background-color: white;
+  color: #082c38; }
+
+#input-text-content {
+  font-size: 1.2em;
+  min-height: 150px; }
+
 /*# sourceMappingURL=main.css.map */

@@ -1,7 +1,3 @@
-// Import Chart JS - move to another file later
-import Chart from 'chart.js';
-console.dir(Chart);
-
 import $ from 'jquery';
 import 'foundation';
 

@@ -371,3 +371,26 @@ div.html-email-container {
   margin: 10px auto;
   background-color: white;
 }
+
+#input-article-table {
+  border: none;
+  background-color: white;
+  padding: 10px;
+    tr {
+      border: none;
+      background-color: $Navy; 
+      margin: 10px;
+    }
+}
+
+#input-headlines {
+  font-size: 1.5em;
+  border: none;
+  background-color: white;
+  color: $Navy;
+}
+
+#input-text-content {
+  font-size: 1.2em;
+  min-height: 150px;
+}

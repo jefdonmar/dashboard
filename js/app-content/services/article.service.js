@@ -9,11 +9,13 @@ let ArticleService = function($http, HEROKU) {
   this.editArticle = editArticle;
   this.deleteArticle = deleteArticle;
   this.getSubjectArticles = getSubjectArticles;
+  this.addImage = addImage;
 
   function Article (article) {
-    this.subject_names       = article.subject_names;
-    this.title  = article.title;
-    this.content = article.content;
+    this.subject_names = article.subject_names;
+    this.title         = article.title;
+    this.content       = article.content;
+    this.media         = article.media;
   }
 
   function addArticle (article) {
@@ -43,6 +45,11 @@ let ArticleService = function($http, HEROKU) {
 
   function getSubjectArticles (subjectName) {
     return $http.get(subjectURL + subjectName, HEROKU.CONFIG);
+  }
+
+  function addImage (imageUrl, article) {
+    article.media = imageUrl;
+    console.log(article.media);
   }
 
 

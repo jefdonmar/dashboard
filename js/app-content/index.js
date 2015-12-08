@@ -13,9 +13,11 @@ import PreviewNewsletterController from './controllers/preview-newsletter.contro
 // SERVICES
 import ArticleService from './services/article.service';
 import NewsletterService from './services/newsletter.service';
+import UploadService from './services/upload.service';
 
 // DIRECTIVES
 import emailArticle from './directives/email-article.directive';
+import addImage from './directives/add-image.directive';
 
 angular
   .module('app.content', ['checklist-model'])
@@ -30,6 +32,8 @@ angular
   // SERVICES
   .service('ArticleService', ArticleService)
   .service('NewsletterService', NewsletterService)
+  .service('UploadService', UploadService)
   // DIRECTIVES
   .directive('emailArticle', emailArticle)
+  .directive('addImage', addImage)
 ;
