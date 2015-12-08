@@ -8413,10 +8413,10 @@ body {
     margin: 10px auto;
     max-width: 800px; }
 
-.login .user-container {
+.login .log-in .user-container {
   position: relative;
   width: 30%; }
-  .login .user-container .user-ph {
+  .login .log-in .user-container .user-ph {
     display: inline-block;
     width: 20px;
     height: auto;
@@ -8430,13 +8430,13 @@ body {
     top: 3px;
     bottom: 3px;
     z-index: 3; }
-  .login .user-container .custom-text {
+  .login .log-in .user-container .custom-text {
     padding: 6px 6px 6px 30px; }
 
-.login .password-container {
+.login .log-in .password-container {
   position: relative;
   width: 30%; }
-  .login .password-container .password-ph {
+  .login .log-in .password-container .password-ph {
     display: inline-block;
     width: auto;
     height: auto;
@@ -8450,10 +8450,78 @@ body {
     top: 3px;
     bottom: 3px;
     z-index: 3; }
-  .login .password-container .custom-text {
+  .login .log-in .password-container .custom-text {
     padding: 6px 6px 6px 30px; }
 
-.login button {
+.login .log-in button {
+  display: inline-block;
+  background-color: red;
+  width: 30%;
+  height: auto;
+  border-radius: 5px;
+  text-align: center; }
+
+.signup .sign-up .company-container {
+  position: relative;
+  width: 30%; }
+  .signup .sign-up .company-container .company-ph {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    font-size: 14px;
+    font-weight: normal;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 1px 0 #ffffff;
+    background-color: #eeeeee;
+    left: 3px;
+    top: 3px;
+    bottom: 3px;
+    z-index: 3; }
+  .signup .sign-up .company-container .custom-text {
+    padding: 6px 6px 6px 30px; }
+
+.signup .sign-up .user-container {
+  position: relative;
+  width: 30%; }
+  .signup .sign-up .user-container .user-ph {
+    display: inline-block;
+    width: 20px;
+    height: auto;
+    font-size: 14px;
+    font-weight: normal;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 1px 0 #ffffff;
+    background-color: #eeeeee;
+    left: 3px;
+    top: 3px;
+    bottom: 3px;
+    z-index: 3; }
+  .signup .sign-up .user-container .custom-text {
+    padding: 6px 6px 6px 30px; }
+
+.signup .sign-up .password-container {
+  position: relative;
+  width: 30%; }
+  .signup .sign-up .password-container .password-ph {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    font-size: 14px;
+    font-weight: normal;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 1px 0 #ffffff;
+    background-color: #eeeeee;
+    left: 3px;
+    top: 3px;
+    bottom: 3px;
+    z-index: 3; }
+  .signup .sign-up .password-container .custom-text {
+    padding: 6px 6px 6px 30px; }
+
+.signup .sign-up button {
   display: inline-block;
   background-color: red;
   width: 30%;

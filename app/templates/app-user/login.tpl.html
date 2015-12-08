@@ -1,16 +1,17 @@
-
-<form class="login" ng-submit="vm.login(user)">
-  <div class="user-container">
-    <div class="user-ph">
-      <i class="fa fa-user"></i>  
+<div class="login">
+  <form class="log-in" ng-submit="vm.login(user)">
+    <div class="user-container">
+      <div class="user-ph">
+        <i class="fa fa-user"></i>  
+      </div>
+      <input class="custom-text" ng-model="user.email" placeholder="Email Address">
     </div>
-    <input class="custom-text" ng-model="user.email" placeholder="Email Address">
-  </div>
-  <div class="password-container">
-    <div class="password-ph">
-      <i class="fa fa-key"></i>  
+    <div class="password-container">
+      <div class="password-ph">
+        <i class="fa fa-key"></i>  
+      </div>
+      <input class="custom-text" ng-model="user.password" placeholder="Password">
     </div>
-    <input class="custom-text" ng-model="user.password" placeholder="Password">
-  </div>
-  <button>Log-In</button>
-</form>
+    <button>Log-In</button>
+  </form>
+</div>

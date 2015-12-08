@@ -3,21 +3,23 @@
   <h3>Sign up form</h3>
   <form class="sign-up" ng-submit="vm.signup(user)">
     <div class="company-container">
-      <div class="envelope-ph">
+      <div class="company-ph">
         <i class="fa fa-envelope"></i>
-         <input ng-model="user.name" placeholder="Company name">
       </div>
+      <input class="custom-text" ng-model="user.name" placeholder="Company name">
     </div>
-    <div class="company-container">
-      <div class="envelope-ph">
-        <i class="fa fa-envelope"></i>
-        <input ng-model="user.email" placeholder="Email">
+    <div class="user-container">
+      <div class="user-ph">
+        <i class="fa fa-user"></i> 
       </div>
+      <input class="custom-text" ng-model="user.email" placeholder="Email">
     </div>
-    <input ng-model="user.name" placeholder="Company name">
-    <input ng-model="user.email" placeholder="Email">
-    <p ng-show="user.emailError" class="form-error-message">{{ user.emailError }}</p>
-    <input ng-model="user.password" type="password" placeholder="Password">
+     <div class="password-container">
+      <div class="password-ph">
+        <i class="fa fa-key"></i> 
+      </div>
+      <input class="custom-text" ng-model="user.password" type="password" placeholder="Password">
+    </div>
     <button>Sign up</button>
   </form>
 </div>
