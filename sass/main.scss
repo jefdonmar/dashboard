@@ -18,10 +18,11 @@ body {
 
 // Log-IN Page 
 
-form {
+.login {
+
   .user-container {
     position: relative;
-    width: 200px;
+    width: 30%;
 
     .user-ph {
       display: inline-block;
@@ -46,7 +47,7 @@ form {
   
   .password-container{
     position: relative;
-    width: 200px;
+    width: 30%;
 
     .password-ph {
       display: inline-block;
@@ -70,13 +71,55 @@ form {
   button {
     display: inline-block;
     background-color: red;
-    width: 200px;
+    width: 30%;
     height: auto;
     border-radius: 5px;
     text-align: center;
   }
 }
 
+// Welcome Page 
+
+.welcome {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+} 
+
+// Add-Subscriber Page
+.add-subscriber {
+  text-align: center;
+
+  h3 {
+    font-weight: bold;
+  }
+
+  form { 
+    background-color: white;
+    height: 50%;
+    width: 50%;
+    margin-left: 25%;
+    border: 1px solid black;
+
+    input.email {
+      background-color: yellow;
+    }
+
+    h5 {
+      font-weight: bold;
+    }
+
+    button {
+      display: inline-block;
+      background-color: red;
+      width: 30%;
+      height: auto;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+  }
+}
 
 
 

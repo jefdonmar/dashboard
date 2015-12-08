@@ -8413,10 +8413,10 @@ body {
     margin: 10px auto;
     max-width: 800px; }
 
-form .user-container {
+.login .user-container {
   position: relative;
-  width: 200px; }
-  form .user-container .user-ph {
+  width: 30%; }
+  .login .user-container .user-ph {
     display: inline-block;
     width: 20px;
     height: auto;
@@ -8430,13 +8430,13 @@ form .user-container {
     top: 3px;
     bottom: 3px;
     z-index: 3; }
-  form .user-container .custom-text {
+  .login .user-container .custom-text {
     padding: 6px 6px 6px 30px; }
 
-form .password-container {
+.login .password-container {
   position: relative;
-  width: 200px; }
-  form .password-container .password-ph {
+  width: 30%; }
+  .login .password-container .password-ph {
     display: inline-block;
     width: auto;
     height: auto;
@@ -8450,16 +8450,43 @@ form .password-container {
     top: 3px;
     bottom: 3px;
     z-index: 3; }
-  form .password-container .custom-text {
+  .login .password-container .custom-text {
     padding: 6px 6px 6px 30px; }
 
-form button {
+.login button {
   display: inline-block;
   background-color: red;
-  width: 200px;
+  width: 30%;
   height: auto;
   border-radius: 5px;
   text-align: center; }
+
+.welcome {
+  position: absolute;
+  top: 25%;
+  left: 25%; }
+
+.add-subscriber {
+  text-align: center; }
+  .add-subscriber h3 {
+    font-weight: bold; }
+  .add-subscriber form {
+    background-color: white;
+    height: 50%;
+    width: 50%;
+    margin-left: 25%;
+    border: 1px solid black; }
+    .add-subscriber form input.email {
+      background-color: yellow; }
+    .add-subscriber form h5 {
+      font-weight: bold; }
+    .add-subscriber form button {
+      display: inline-block;
+      background-color: red;
+      width: 30%;
+      height: auto;
+      border-radius: 5px;
+      text-align: center; }
 
 .subject-headers {
   display: inline-block;

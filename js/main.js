@@ -12,6 +12,10 @@ $(document).foundation();
 // Import angular
 import angular from 'angular';
 
+// Import browserify-shim for nav bar things
+import $ from 'jquery';
+import 'foundation';
+
 // Import other app modules
 import './app-core/index';
 import './app-layout/index';

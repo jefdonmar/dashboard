@@ -496,9 +496,17 @@ var _controllersHomeController = require('./controllers/home.controller');
 
 var _controllersHomeController2 = _interopRequireDefault(_controllersHomeController);
 
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+require('foundation');
+
+(0, _jquery2['default'])(document).foundation();
+
 _angular2['default'].module('app.layout', []).controller('HomeController', _controllersHomeController2['default']);
 
-},{"./controllers/home.controller":14,"angular":34}],16:[function(require,module,exports){
+},{"./controllers/home.controller":14,"angular":34,"foundation":37,"jquery":38}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
