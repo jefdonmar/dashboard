@@ -8561,6 +8561,16 @@ body {
   border-radius: 5px;
   margin-left: 130px; }
 
+.addarticle .add-article {
+  position: relative;
+  width: 30%; }
+  .addarticle .add-article .submit {
+    display: inline-block;
+    background-color: red;
+    width: 100%;
+    height: auto;
+    border-radius: 5px; }
+
 .subject-headers {
   display: inline-block;
   border-bottom: 1px solid black; }
