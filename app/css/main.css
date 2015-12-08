@@ -8513,4 +8513,9 @@ h5 {
   display: block;
   margin: 0 auto; }
 
+li.view-articles-news {
+  border: 1px solid black;
+  text-align: center;
+  margin: 10px 0; }
+
 /*# sourceMappingURL=main.css.map */

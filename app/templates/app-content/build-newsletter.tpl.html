@@ -21,3 +21,10 @@
 
 </form>
 
+<ul class="small-block-grid-2">
+  <li class="view-articles-news" ng-repeat="subject in subjectsChosen">
+    <span>{{ subject }}</span>
+    <span ng-repeat="article in articles">{{ article.title }}</span>
+  </li>
+</ul>
+

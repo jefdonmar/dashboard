@@ -78,14 +78,14 @@ var BuildNewsletterController = function BuildNewsletterController($scope, Newsl
   $scope.subjects = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
 
   function getSubjectsForNewsletter(newsObj) {
-    console.log(newsObj);
+    // console.log(newsObj);
+    // console.log(newsObj.subjectNames);
+    $scope.subjectsChosen = newsObj.subjectNames;
     NewsletterService.getSubjects(newsObj).then(function (response) {
       console.log(response);
+      // once server is up, set articles and subjectsChosen based on response
+      $scope.articles = response.data.articles;
     });
-    // SubscriberService.addSubscriber(subObj).then( (res)=>{
-    //   console.log(res);
-    //   $state.go('root.home');
-    // });
   }
 };
 
