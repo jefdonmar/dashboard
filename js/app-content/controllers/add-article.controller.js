@@ -4,6 +4,7 @@ let AddArticleController = function($state, $scope, ArticleService) {
 
   let vm = this;
   vm.addArticle = addArticle;
+  vm.addImage = addImage;
 
   $scope.subjects = [
    'Football',
@@ -14,9 +15,21 @@ let AddArticleController = function($state, $scope, ArticleService) {
   ]; 
 
   function addArticle (article) {
-    ArticleService.addArticle(article).then( (response)=> {
+
+    let fileField = document.getElementById('articleImg');
+    let fileObj = fileField.files[0];  
+
+    ArticleService.addArticle(article, fileObj).then( (response)=> {
       console.log(response);
     });
+  }
+
+  function addImage (file) {
+    // $scope.article.media = file;
+    // $scope.article.media = file;
+    console.log('called function');
+    console.log(file);
+    $scope.article.media = file.name;
   }
 
 };

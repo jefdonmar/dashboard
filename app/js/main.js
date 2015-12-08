@@ -10,13 +10,26 @@ var AddArticleController = function AddArticleController($state, $scope, Article
 
   var vm = this;
   vm.addArticle = addArticle;
+  vm.addImage = addImage;
 
   $scope.subjects = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
 
   function addArticle(article) {
-    ArticleService.addArticle(article).then(function (response) {
+
+    var fileField = document.getElementById('articleImg');
+    var fileObj = fileField.files[0];
+
+    ArticleService.addArticle(article, fileObj).then(function (response) {
       console.log(response);
     });
+  }
+
+  function addImage(file) {
+    // $scope.article.media = file;
+    // $scope.article.media = file;
+    console.log('called function');
+    console.log(file);
+    $scope.article.media = file.name;
   }
 };
 
@@ -257,17 +270,16 @@ var addImage = function addImage(ArticleService, UploadService) {
     restrict: 'E', // Restrict to attribute only
     replace: true, // Replace as opposed to inserting into
     scope: {
-      article: '='
+      a: '='
     },
     // transclude: true,
-    // controller: 'SubscriberRowController as vm', // Not needed?
-    templateUrl: 'templates/app-content/add-image-form.tpl.html',
+    controller: 'AddArticleController as vm', // Not needed?
+    template: '\n      <form class="uploadForm">\n        <input type="file" id="articleImg" ng-model="article.media">\n        <button ng-click="imageAdded=true">Add Image</button>\n      </form>\n    ',
     link: function link(scope, element, attrs) {
       element.on('submit', function () {
         var file = element.find('input')[0].files[0];
-        scope.article = file;
-        // UploadService.upload(file, scope.article).then( (res) => {
-        // ArticleService.addImage(file, scope);
+        console.log(file);
+        scope.$parent.vm.addImage(file);
       });
     }
   };
@@ -398,18 +410,19 @@ var ArticleService = function ArticleService($http, HEROKU) {
   this.editArticle = editArticle;
   this.deleteArticle = deleteArticle;
   this.getSubjectArticles = getSubjectArticles;
-  this.addImage = addImage;
 
-  function Article(article) {
-    this.subject_names = article.subject_names;
-    this.title = article.title;
-    this.content = article.content;
-    this.media = article.media;
-  }
+  function addArticle(article, fileObj) {
 
-  function addArticle(article) {
-    var a = new Article(article);
-    return $http.post(url, a, HEROKU.CONFIG);
+    var formData = new FormData();
+
+    formData.append('subject_names', article.subject_names);
+    formData.append('title', article.title);
+    formData.append('content', article.content);
+    formData.append('media', fileObj);
+
+    HEROKU.CONFIG.headers['Content-Type'] = undefined;
+
+    return $http.post(url, formData, HEROKU.CONFIG);
   }
 
   function getAllArticles() {
@@ -434,11 +447,6 @@ var ArticleService = function ArticleService($http, HEROKU) {
 
   function getSubjectArticles(subjectName) {
     return $http.get(subjectURL + subjectName, HEROKU.CONFIG);
-  }
-
-  function addImage(imageUrl, article) {
-    article.media = imageUrl;
-    console.log(article.media);
   }
 };
 
@@ -497,8 +505,6 @@ var UploadService = function UploadService($http, HEROKU) {
     var formData = new FormData();
     formData.append('upload', file);
     // formData.append('details', JSON.stringify({ name: 'Tim' }));
-
-    return $http.post(HEROKU.URL + 'articles/', formData, HEROKU.CONFIG);
   }
 };
 

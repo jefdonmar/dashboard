@@ -7,17 +7,21 @@ let addImage = function(ArticleService, UploadService) {
     restrict: 'E', // Restrict to attribute only
     replace: true, // Replace as opposed to inserting into
     scope: {
-      article: '='
+      a: '='
     },
     // transclude: true,
-    // controller: 'SubscriberRowController as vm', // Not needed?
-    templateUrl: 'templates/app-content/add-image-form.tpl.html',
+    controller: 'AddArticleController as vm', // Not needed?
+    template: `
+      <form class="uploadForm">
+        <input type="file" id="articleImg" ng-model="article.media">
+        <button ng-click="imageAdded=true">Add Image</button>
+      </form>
+    `,
     link: function (scope, element, attrs) {
       element.on('submit', function () {
         let file = element.find('input')[0].files[0];
-        scope.article = file;
-        // UploadService.upload(file, scope.article).then( (res) => {
-        // ArticleService.addImage(file, scope);
+        console.log(file);
+        scope.$parent.vm.addImage(file);
       });
     }
   };

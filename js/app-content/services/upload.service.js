@@ -6,8 +6,6 @@ let UploadService = function($http, HEROKU) {
     let formData = new FormData();
     formData.append('upload', file);
     // formData.append('details', JSON.stringify({ name: 'Tim' }));
-
-    return $http.post(HEROKU.URL + 'articles/', formData, HEROKU.CONFIG);
   }
   
 

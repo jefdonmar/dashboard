@@ -18,11 +18,11 @@
           <textarea id="input-text-content" class="custom-text" ng-model="article.content" placeholder="Article Content..."> </textarea>
         </td>
       </tr>
-    </table>
-
+    </table>  
+    
+    <input type="file" id="articleImg">
+    <button ng-click="imageAdded=true">Add Image</button>
 
     <button class="submit">Submit</button>
-    <add-image article="vm.article">
-    </add-image>
   </form>
 </div>
