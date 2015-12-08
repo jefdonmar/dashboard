@@ -20,12 +20,24 @@ body {
 // Log-In View
 
 .login {
+  width: 30%;
+  position: fixed;
+  top: 30%;
+  left: 35%;
+  background-color: white;
+  border: 6px solid $Navy;
+
+  .logo{
+    padding: 10px;
+    text-align: center;
+    font-size: 25px;
+  }
 
   .log-in {
+    padding: 5px;
 
     .user-container {
       position: relative;
-      width: 30%;
 
       .user-ph {
         display: inline-block;
@@ -50,7 +62,6 @@ body {
   
     .password-container{
       position: relative;
-      width: 30%;
 
       .password-ph {
         display: inline-block;
@@ -73,9 +84,9 @@ body {
     }
     button {
       display: inline-block;
-      background-color: red;
-      width: 30%;
+      background-color: $BrightBlue;
       height: auto;
+      width: 100%;
       border-radius: 5px;
       text-align: center;
     }
@@ -85,12 +96,32 @@ body {
 // Sign-up View 
 
 .signup {
+  width: 30%;
+  position: fixed;
+  top: 25%;
+  left: 35%;
+  background-color: white;
+  border: 6px solid $Navy;
+
+  .logo{
+    padding: 10px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 15px;
+    text-align: center;
+    padding: 5px;
+  }
 
   .sign-up{
+    padding: 5px;
 
     .company-container{
       position: relative;
-      width: 30%;
+      
 
       .company-ph {
         display: inline-block;
@@ -114,7 +145,7 @@ body {
 
     .user-container {
       position: relative;
-      width: 30%;
+      
 
       .user-ph {
         display: inline-block;
@@ -139,7 +170,7 @@ body {
   
     .password-container{
       position: relative;
-      width: 30%;
+      
 
       .password-ph {
         display: inline-block;
@@ -162,8 +193,8 @@ body {
     }
     button {
       display: inline-block;
-      background-color: red;
-      width: 30%;
+      background-color: $BrightBlue;
+      width: 100%;
       height: auto;
       border-radius: 5px;
       text-align: center;
@@ -175,9 +206,32 @@ body {
 // Welcome View
 
 .welcome {
-  position: absolute;
-  top: 25%;
-  left: 25%;
+  // position: absolute;
+  // top: 25%;
+  // left: 25%;
+
+  .welcome-info {
+    text-align: center;
+
+    p {
+      font-weight: bold;
+      font-size: 40px;
+    }
+
+    button{
+      display: inline-block;
+      position: relative;
+      background-color: $Navy;
+      width: 30%;
+      height: 60px;
+      border-radius: 5px;
+      font: white;
+    }
+  }
+
+  .product1 {
+
+  }
 } 
 
 // Add-Subscriber View
@@ -212,12 +266,12 @@ body {
     }
   }
   .submit {
-      display: inline-block;
-      background-color: red;
-      width: 30%;
-      height: auto;
-      border-radius: 5px;
-      margin-left: 130px;
+    display: inline-block;
+    background-color: $BrightBlue;
+    width: 30%;
+    height: auto;
+    border-radius: 5px;
+    margin-left: 130px;
   }
 }
 
@@ -233,7 +287,6 @@ body {
     .custom-text {
 
     }
-
     .submit {
       display: inline-block;
       background-color: red;
@@ -244,7 +297,6 @@ body {
     }
 
   }
-
 }
 
 
