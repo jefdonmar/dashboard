@@ -8465,7 +8465,7 @@ body {
         padding: 6px 6px 6px 30px; }
     .login .log-in button {
       display: inline-block;
-      background-color: #39bced;
+      background-color: #082c38;
       height: auto;
       width: 100%;
       border-radius: 5px;
@@ -8545,7 +8545,7 @@ body {
         padding: 6px 6px 6px 30px; }
     .signup .sign-up button {
       display: inline-block;
-      background-color: #39bced;
+      background-color: #082c38;
       width: 100%;
       height: auto;
       border-radius: 5px;
@@ -8555,7 +8555,7 @@ body {
   text-align: center; }
   .welcome .welcome-info p {
     font-weight: bold;
-    font-size: 40px; }
+    font-size: 30px; }
   .welcome .welcome-info button {
     display: inline-block;
     position: relative;
@@ -8564,6 +8564,7 @@ body {
     height: 70px;
     border-radius: 5px;
     font: white;
+    font-size: 13px;
     margin-right: 20px; }
 
 .addsubscriber h3 {
@@ -8571,9 +8572,9 @@ body {
 
 .addsubscriber .add-subscriber {
   background-color: white;
-  height: 50%;
-  width: 50%;
-  margin-left: 25%;
+  height: 60%;
+  width: 80%;
+  margin-left: 15%;
   border: 6px solid #082c38; }
   .addsubscriber .add-subscriber p {
     text-align: center;
@@ -8592,32 +8593,10 @@ body {
 .addsubscriber .submit {
   display: inline-block;
   background-color: #082c38;
-  width: 30%;
+  width: 50%;
   height: auto;
   border-radius: 5px;
-  margin-left: 140px; }
-
-.addarticle {
-  width: 60%;
-  position: fixed;
-  margin-left: 15%;
-  margin-top: 5%;
-  background-color: white;
-  border: 6px solid #082c38;
-  padding: 10px; }
-  .addarticle h3 {
-    text-align: center;
-    font-weight: bold; }
-  .addarticle p {
-    text-align: center; }
-  .addarticle .add-article {
-    position: relative; }
-    .addarticle .add-article .submit {
-      display: inline-block;
-      background-color: #082c38;
-      width: 100%;
-      height: auto;
-      border-radius: 5px; }
+  margin-left: 27%; }
 
 .subject-headers {
   display: inline-block;
