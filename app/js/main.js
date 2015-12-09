@@ -83,7 +83,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var BuildNewsletterController = function BuildNewsletterController($scope, NewsletterService) {
+var BuildNewsletterController = function BuildNewsletterController($state, $scope, NewsletterService) {
 
   console.log('BuildNewsletterController is working');
 
@@ -93,18 +93,18 @@ var BuildNewsletterController = function BuildNewsletterController($scope, Newsl
   $scope.subjects = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
 
   function getSubjectsForNewsletter(newsObj) {
-    // console.log(newsObj);
+    console.log(newsObj);
     // console.log(newsObj.subjectNames);
     $scope.subjectsChosen = newsObj.subjectNames;
     NewsletterService.getSubjects(newsObj).then(function (response) {
       console.log(response);
       // once server is up, set articles and subjectsChosen based on response
-      $scope.articles = response.data.articles;
+      $scope.articles = response.articles;
     });
   }
 };
 
-BuildNewsletterController.$inject = ['$scope', 'NewsletterService'];
+BuildNewsletterController.$inject = ['$state', '$scope', 'NewsletterService'];
 
 exports['default'] = BuildNewsletterController;
 module.exports = exports['default'];
@@ -307,10 +307,9 @@ var emailArticle = function emailArticle(ArticleService) {
     },
     // transclude: true,
     // controller: 'SubscriberRowController as vm', // Not needed?
-    template: '\n     <table style="border: none;background-color: white;">\n        <tr width="600" style="padding = 0px;">\n          <td width="100%" style="padding = 0px;" >\n            <h5 ng-click="upload = !upload"\n              style="border-bottom: 1px solid black; padding-bottom: 3px;">\n              {{ article.title }}\n            </h5>\n          </td>\n        </tr>\n        <tr width="600"  style="background-color: white; float: right;">\n          <td height:"50" width="100%">\n            <p>{{ article.subject_names }}</p>\n          </td>\n        </tr>\n        <tr ng-show="upload">\n          <td>\n            <img src="http://fpoimg.com/600x150">\n            <button>Click to upload</button>\n          </td>\n        </tr>\n        <tr width="600" style="background-color: white;">\n          <td  width="100%">\n            <p>{{ article.content }}</p>\n          </td>\n        </tr>\n      </table>\n    ',
+    template: '\n     <table style="border: none;background-color: white;">\n        <tr width="600" style="padding = 0px;">\n          <td width="100%" style="padding = 0px;" >\n            <h5 style="border-bottom: 1px solid black; padding-bottom: 3px;">\n              {{ article.title }}\n            </h5>\n          </td>\n        </tr>\n        <tr width="600"  style="background-color: white; float: right;">\n          <td height:"10" width="100%" style="padding-top: 0px; padding-bottom:0px; color: blue;">\n            {{ article.subject_names }}\n          </td>\n        </tr>\n        <tr ng-show="{{ article.media }}">\n          <td>\n            <img src="{{ article.media }}">\n            <button>Click to upload</button>\n          </td>\n        </tr>\n        <tr width="600" style="background-color: white;">\n          <td  width="100%">\n            <p>{{ article.content }}</p>\n          </td>\n        </tr>\n      </table>\n    ',
     link: function link(scope, element, attrs) {
       console.log(element[0]);
-      console.log(element[0].toString());
     }
   };
 };

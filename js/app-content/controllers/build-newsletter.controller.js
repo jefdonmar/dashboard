@@ -1,4 +1,4 @@
-let BuildNewsletterController = function($scope, NewsletterService) {
+let BuildNewsletterController = function($state, $scope, NewsletterService) {
   
   console.log('BuildNewsletterController is working');
 
@@ -14,18 +14,18 @@ let BuildNewsletterController = function($scope, NewsletterService) {
   ]; 
 
   function getSubjectsForNewsletter (newsObj) {
-    // console.log(newsObj);
+    console.log(newsObj);
     // console.log(newsObj.subjectNames);
     $scope.subjectsChosen = newsObj.subjectNames;
     NewsletterService.getSubjects(newsObj).then( (response) => {
       console.log(response);
       // once server is up, set articles and subjectsChosen based on response
-      $scope.articles = response.data.articles;
+      $scope.articles = response.articles;
     });
   }
 
 };
 
-BuildNewsletterController.$inject = ['$scope', 'NewsletterService'];
+BuildNewsletterController.$inject = ['$state','$scope', 'NewsletterService'];
 
 export default BuildNewsletterController;  

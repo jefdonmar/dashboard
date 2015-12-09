@@ -13,20 +13,19 @@ let emailArticle = function(ArticleService) {
      <table style="border: none;background-color: white;">
         <tr width="600" style="padding = 0px;">
           <td width="100%" style="padding = 0px;" >
-            <h5 ng-click="upload = !upload"
-              style="border-bottom: 1px solid black; padding-bottom: 3px;">
+            <h5 style="border-bottom: 1px solid black; padding-bottom: 3px;">
               {{ article.title }}
             </h5>
           </td>
         </tr>
         <tr width="600"  style="background-color: white; float: right;">
-          <td height:"50" width="100%">
-            <p>{{ article.subject_names }}</p>
+          <td height:"10" width="100%" style="padding-top: 0px; padding-bottom:0px; color: blue;">
+            {{ article.subject_names }}
           </td>
         </tr>
-        <tr ng-show="upload">
+        <tr ng-show="{{ article.media }}">
           <td>
-            <img src="http://fpoimg.com/600x150">
+            <img src="{{ article.media }}">
             <button>Click to upload</button>
           </td>
         </tr>
@@ -39,7 +38,6 @@ let emailArticle = function(ArticleService) {
     `,
     link: function (scope, element, attrs) {
       console.log(element[0]);
-      console.log(element[0].toString());
     }
   };
 
