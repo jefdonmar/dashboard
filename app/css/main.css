@@ -8592,15 +8592,27 @@ body {
   border-radius: 5px;
   margin-left: 130px; }
 
-.addarticle .add-article {
-  position: relative;
-  width: 30%; }
-  .addarticle .add-article .submit {
-    display: inline-block;
-    background-color: red;
-    width: 100%;
-    height: auto;
-    border-radius: 5px; }
+.addarticle {
+  width: 60%;
+  position: fixed;
+  margin-left: 15%;
+  margin-top: 5%;
+  background-color: white;
+  border: 6px solid #082c38;
+  padding: 10px; }
+  .addarticle h3 {
+    text-align: center;
+    font-weight: bold; }
+  .addarticle p {
+    text-align: center; }
+  .addarticle .add-article {
+    position: relative; }
+    .addarticle .add-article .submit {
+      display: inline-block;
+      background-color: #082c38;
+      width: 100%;
+      height: auto;
+      border-radius: 5px; }
 
 .subject-headers {
   display: inline-block;
