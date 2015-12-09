@@ -1,5 +1,7 @@
 import angular from 'angular';
 import 'checklist-model';
+// import 'angular-ui-grid' from 'node_modules/angular-ui-grid/ui-grid.min.css';
+import 'angular-ui-grid';
 
 // CONTROLLERS
 import AddSubscriberController from './controllers/add-subscriber.controller';
@@ -15,7 +17,7 @@ import subscriberItem from './directives/subscriberItem.directive';
 import SubscriberService from './services/subscriber.service';
 
 angular
-  .module('app.subscriber', ['checklist-model'])
+  .module('app.subscriber', ['checklist-model', 'ui.grid'])
   .controller('AddSubscriberController', AddSubscriberController)
   .controller('ViewSubscribersController', ViewSubscribersController)
   .controller('SubscriberRowController', SubscriberRowController)

@@ -10,15 +10,11 @@ let UserService = function($http, HEROKU, $cookies, $state) {
   this.login     = login;
   this.storeAuth = storeAuth;
   this.setHeaders = setHeaders;
-  // this.checkAuth = checkAuth;
+  this.checkAuth = checkAuth;
 
   // SERVICE FUNCTIONS
   function User (userObj) {
-    // -- COMMENTING OUR FIELDS NOT IN USE --
-    // this.firstName   = userObj.firstName;
-    // this.lastName    = userObj.lastName;
-    // this.companyName = userObj.companyName;
-    // this.username    = userObj.username;
+    // name is company name
     this.name        = userObj.name;
     this.email       = userObj.email;
     this.password    = userObj.password;
@@ -33,10 +29,11 @@ let UserService = function($http, HEROKU, $cookies, $state) {
     // $state.go('root.home');
   }
 
-  function checkAuth (user) {
+  function checkAuth () {
     let t = $cookies.get('auth_token');
+    HEROKU.CONFIG.headers['auth_token'] = t;
     if (t) {
-      setHeaders(t);
+      return console.log('Headers were checked');
     } else {
       $state.go('root.login');
     }

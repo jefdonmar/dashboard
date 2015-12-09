@@ -9,6 +9,7 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
   $scope.sortType = 'id';
   $scope.sortReverse = false;
 
+
   activate();
 
   function activate () {

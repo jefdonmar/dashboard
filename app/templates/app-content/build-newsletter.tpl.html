@@ -1,9 +1,9 @@
 <h5>Build segment page</h5>
 
 
-<form ng-submit="vm.getSubjectsForNewsletter(news)">
+<form ng-submit="vm.getSubjectsForNewsletter(newsObj)">
 
-  <input placeholder="Name of newsletter..." ng-model="news.name">
+  <input placeholder="Name of newsletter..." ng-model="newsObj.name">
 
   <h5>Subject names</h5>
   
@@ -11,7 +11,7 @@
     <label>
       <input
         type="checkbox"
-        checklist-model="news.subjectNames"
+        checklist-model="newsObj.subjectNames"
         checklist-value="subject"> 
         {{ subject }}
     </label>
@@ -21,12 +21,14 @@
 
 </form>
 
-<a href="#/preview-newsletter"><button>Preview</button></a>
-
 <ul class="small-block-grid-2">
   <li class="view-articles-news" ng-repeat="subject in subjectsChosen">
     <span>{{ subject }}</span>
     <span ng-repeat="article in articles">{{ article.title }}</span>
   </li>
 </ul>
+
+<a href="#/preview-newsletter"><button>Preview</button></a>
+
+
 
