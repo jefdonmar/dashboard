@@ -8698,6 +8698,10 @@ div.html-email-container {
   font-size: 1.2em;
   min-height: 150px; }
 
+.myGrid {
+  width: 500px;
+  height: 250px; }
+
 /*!
  * ui-grid - v3.0.7 - 2015-10-06
  * Copyright (c) 2015 ; License: MIT 
