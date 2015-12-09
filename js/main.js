@@ -27,6 +27,7 @@ angular
     $rootScope.$on('$stateChangeSuccess', function() {
       console.log('state change');
       UserService.setHeaders();
+      UserService.checkAuth();
     });
 
     $rootScope.$on('$viewContentLoaded', function () {
