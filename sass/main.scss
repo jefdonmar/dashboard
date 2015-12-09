@@ -247,7 +247,13 @@ body {
     height: 50%;
     width: 50%;
     margin-left: 25%;
-    border: 1px solid black;
+    border: 6px solid $Navy;
+
+    p {
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+    }
 
     .email-containter {
       position: relative;
@@ -267,11 +273,11 @@ body {
   }
   .submit {
     display: inline-block;
-    background-color: $BrightBlue;
+    background-color: $Navy;
     width: 30%;
     height: auto;
     border-radius: 5px;
-    margin-left: 130px;
+    margin-left: 140px;
   }
 }
 

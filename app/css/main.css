@@ -8573,7 +8573,11 @@ body {
   height: 50%;
   width: 50%;
   margin-left: 25%;
-  border: 1px solid black; }
+  border: 6px solid #082c38; }
+  .addsubscriber .add-subscriber p {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px; }
   .addsubscriber .add-subscriber .email-containter {
     position: relative;
     width: 30%; }
@@ -8586,11 +8590,11 @@ body {
 
 .addsubscriber .submit {
   display: inline-block;
-  background-color: #39bced;
+  background-color: #082c38;
   width: 30%;
   height: auto;
   border-radius: 5px;
-  margin-left: 130px; }
+  margin-left: 140px; }
 
 .addarticle {
   width: 60%;
