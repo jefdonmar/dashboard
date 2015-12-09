@@ -8560,9 +8560,10 @@ body {
     position: relative;
     background-color: #082c38;
     width: 30%;
-    height: 60px;
+    height: 70px;
     border-radius: 5px;
-    font: white; }
+    font: white;
+    margin-right: 20px; }
 
 .addsubscriber h3 {
   font-weight: bold; }
