@@ -10,11 +10,16 @@
 
 
 <!-- If you comment this out, the other table shows up -->
+<strong>Last Cell Edited:</strong> {{msg.lastCellEdited}}
 <div 
   ui-grid="gridObject" 
   class="myGrid"
-  ui-grid-resize-columns>
+  ui-grid-resize-columns
+  ui-grid-edit
+  ui-grid-cellNav>
 </div>
+
+<button ng-click="vm.submitedits()">Submit Edit</button>
 
 <!-- ui-grid="{data: vm.subscribers}" -->
 

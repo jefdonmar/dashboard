@@ -7,29 +7,49 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
 
   // connect data to scope of the controller through view model
   vm.subscribers = [];
+  vm.submitedits = submit;
 
   $scope.sortType = 'id';
   $scope.sortReverse = false;
 
 
-  // scope grid options  object
+  function submit (currentData) {
+    // console.log($scope.gridObject.data);
+    let currentData = $scope.gridObject.data;
+    console.log(currentData);
+    // SubscriberService.updateSubscribers(currentData).then( (response) => {
+    //   console.log(response);
+    // });
+  }
 
-  // can add max and minWidth (s) to each field
 
 
+  $scope.msg = {};
+
+ 
   $scope.gridObject = {
     enableSorting: true,
     enableFiltering: true,
     enableColumnResizing: true,
     columnDefs: [
       { field: 'id', width: '10%', minWidth: 20},
-      { field: 'email', width: '30%'},
-      { field: 'subject_names', width: '30%'},
-      { field: 'created_at.substring(0,4)', name: 'Year', width: '15%'},
-      { field: 'created_at.substring(5,7)', name: 'Month', width: '15%'},
-    ]
+      { field: 'email', width: '10%'},
+      { field: 'subject_names', width: '10%'},
+      // { field: 'subject_names.includes(`${'baseball'}`)', width: '10%'},
+      { field: 'created_at.substring(0,4)', name: 'Year', width: '10%'},
+      { field: 'created_at.substring(5,7)', name: 'Month', width: '10%'},
+      { field: 'created_at.substring(8,10)', name: 'Day', width: '10%'},
+    ],
   };
 
+  $scope.gridObject.onRegisterApi = function(gridApi){
+    //set gridApi on scope
+    $scope.gridApi = gridApi;
+    gridApi.edit.on.afterCellEdit($scope,function(rowEntity, colDef, newValue, oldValue){
+      console.clear();
+      console.log(newValue);
+    });
+  };
   // use a function to return it?
 
   // data has to be attached to this as data: {data} --- look at docs

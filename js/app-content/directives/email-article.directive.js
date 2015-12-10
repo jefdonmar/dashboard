@@ -1,4 +1,4 @@
-let emailArticle = function(ArticleService) {
+let emailArticle = function(ArticleService, $compile) {
   
   return {
 
@@ -18,17 +18,6 @@ let emailArticle = function(ArticleService) {
             </h5>
           </td>
         </tr>
-        <tr width="600"  style="background-color: white; float: right;">
-          <td height:"10" width="100%" style="padding-top: 0px; padding-bottom:0px; color: blue;">
-            {{ article.subject_names }}
-          </td>
-        </tr>
-        <tr ng-show="{{ article.media }}">
-          <td>
-            <img src="{{ article.media }}">
-            <button>Click to upload</button>
-          </td>
-        </tr>
         <tr width="600" style="background-color: white;">
           <td  width="100%">
             <p>{{ article.content }}</p>
@@ -38,11 +27,20 @@ let emailArticle = function(ArticleService) {
     `,
     link: function (scope, element, attrs) {
       console.log(element[0]);
+      // console.log($compile(element[0])(scope));
     }
   };
 
 };
 
-emailArticle.$inject = ['ArticleService'];
+emailArticle.$inject = ['ArticleService', '$compile'];
 
 export default emailArticle;
+
+
+ // <tr ng-show="{{ article.media }}">
+ //          <td>
+ //            <img src="{{ article.media }}">
+ //            <button>Click to upload</button>
+ //          </td>
+ //        </tr>
