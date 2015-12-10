@@ -11,15 +11,8 @@ let NewsletterService = function($state, $http, HEROKU) {
 
   this.getSubjects = getSubjects;
 
-  function getSubjects (newsObj) {
-    let newsletter = new Newsletter(newsObj);
-    let subjectNames = newsletter.subjects;
-    console.log(subjectNames);
-    let cleanedList = subjectNames.split(',');
-    console.log(cleanedList);
-    return cleanedList.forEach( function(subject) {
-      $http.get(url + 'subject/' + subject, HEROKU.CONFIG);
-    });
+  function getSubjects (subject) {
+    return $http.get(url + 'subject/' + subject, HEROKU.CONFIG);
   }
 };
 

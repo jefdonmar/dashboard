@@ -4,6 +4,9 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
 
   let vm = this; 
   vm.getSubjectsForNewsletter = getSubjectsForNewsletter;
+  vm.articles = articles;
+
+  let articles = [];
 
   $scope.subjects = [
    'Football',
@@ -15,12 +18,17 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
 
   function getSubjectsForNewsletter (newsObj) {
     console.log(newsObj);
-    // console.log(newsObj.subjectNames);
-    $scope.subjectsChosen = newsObj.subjectNames;
-    NewsletterService.getSubjects(newsObj).then( (response) => {
-      console.log(response);
-      // once server is up, set articles and subjectsChosen based on response
-      $scope.articles = response.articles;
+    console.log(newsObj.subjectNames);
+    let subjects = newsObj.subjectNames;
+    subjects.forEach( function(subject) {
+      NewsletterService.getSubjects(subject).then( (response) => {
+        console.log(response.data.subject.articles);
+        let newArticles = response.data.subject.articles;
+        newArticles.forEach(function (article) {
+          console.log(article);
+          articles.push(article);
+        });
+      });
     });
   }
 

@@ -11,6 +11,7 @@ let UserService = function($http, HEROKU, $cookies, $state) {
   this.storeAuth = storeAuth;
   this.setHeaders = setHeaders;
   this.checkAuth = checkAuth;
+  this.sendKey = sendKey;
 
   // SERVICE FUNCTIONS
   function User (userObj) {
@@ -63,6 +64,12 @@ let UserService = function($http, HEROKU, $cookies, $state) {
     console.log('User should have been logged In');
     console.log(userObj);
     return $http.post(url + 'login', userObj, HEROKU.CONFIG);
+  }
+
+
+  function sendKey (user) {
+    console.log(user.key);
+    // return $http.post(url + 'user', user, HEROKU.CONFIG);
   }
 
 

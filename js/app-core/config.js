@@ -86,6 +86,11 @@ let config = function($urlRouterProvider, $stateProvider) {
       url: '/preview-newsletter',
       controller: 'PreviewNewsletterController as vm',
       templateUrl: 'templates/app-content/preview-newsletter.tpl.html'
+    })
+    .state('root.profile', {
+      url: '/profile',
+      controller: 'ProfileController as vm',
+      templateUrl: 'templates/app-user/profile.tpl.html'
     });
 
 };
