@@ -8695,8 +8695,9 @@ div.html-email-container {
   min-height: 150px; }
 
 .myGrid {
-  width: 500px;
-  height: 250px; }
+  width: 100%;
+  display: block;
+  margin: 10px auto; }
 
 /*!
  * ui-grid - v3.0.7 - 2015-10-06

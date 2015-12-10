@@ -1,5 +1,7 @@
 import $ from 'jquery';
 import 'foundation';
+import moment from 'moment';
+console.log(moment);
 
 //Initialize Foundation
 $(document).foundation();
