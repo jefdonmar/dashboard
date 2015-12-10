@@ -918,7 +918,14 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ViewSubscribersController = function ViewSubscribersController($state, $scope, SubscriberService, moment) {
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _moment = require('moment');
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var ViewSubscribersController = function ViewSubscribersController($state, $scope, SubscriberService) {
 
   // set view model to this object
   var vm = this;
@@ -937,7 +944,7 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     enableSorting: true,
     enableFiltering: true,
     enableColumnResizing: true,
-    columnDefs: [{ field: 'id', width: '10%', minWidth: 20 }, { field: 'email', width: '30%' }, { field: 'subject_names', width: '40%' }, { field: 'created_at', width: '20%', type: 'date' }]
+    columnDefs: [{ field: 'id', width: '10%', minWidth: 20 }, { field: 'email', width: '30%' }, { field: 'subject_names', width: '30%' }, { field: 'created_at.substring(0,4)', name: 'Year', width: '15%' }, { field: 'created_at.substring(5,7)', name: 'Month', width: '15%' }]
   };
 
   // use a function to return it?
@@ -950,14 +957,12 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
 
     if (vm.subscribers.length === 0) {
       SubscriberService.getAllSubscribers().then(function (response) {
-        response.data.subscriber.forEach(function (sub) {
-          console.log(sub.created_at);
-          // let newDates = moment(sub.created_at).format('YYYY');
-          // console.log(newDates);
-        });
-
-        // forEach(funct)
-
+        // response.data.subscriber.forEach( function (sub) {
+        //   // console.log(sub.created_at);
+        //   // console.log(moment(sub.created_at, 'YYYY'));
+        //   // let newDates = angularMoment(sub.created_at).format('YYYY');
+        //   // console.log(newDates);
+        // });
         vm.subscribers = response.data.subscriber;
         $scope.gridObject.data = response.data.subscriber;
         console.log('Subscribers', vm.subscribers);
@@ -966,12 +971,12 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
   }
 };
 
-ViewSubscribersController.$inject = ['$state', '$scope', 'SubscriberService', 'moment'];
+ViewSubscribersController.$inject = ['$state', '$scope', 'SubscriberService'];
 
 exports['default'] = ViewSubscribersController;
 module.exports = exports['default'];
 
-},{}],27:[function(require,module,exports){
+},{"moment":49}],27:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1011,7 +1016,9 @@ require('checklist-model');
 
 require('angular-ui-grid');
 
-// import moment from 'moment';
+var _moment = require('moment');
+
+var _moment2 = _interopRequireDefault(_moment);
 
 require('angular-moment');
 
@@ -1051,7 +1058,7 @@ var _servicesSubscriberService2 = _interopRequireDefault(_servicesSubscriberServ
 
 _angular2['default'].module('app.subscriber', ['checklist-model', 'ui.grid', 'ui.grid.resizeColumns', 'angularMoment']).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).controller('SubscriberRowController', _controllersSubscriberRowDirectiveController2['default']).controller('EditSubscriberController', _controllersEditSubscriberController2['default']).controller('SingleSubscriberController', _controllersSingleSubscriberController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
 
-},{"./controllers/add-subscriber.controller":22,"./controllers/edit-subscriber.controller":23,"./controllers/single-subscriber.controller":24,"./controllers/subscriber-row-directive.controller":25,"./controllers/view-subscribers.controller":26,"./directives/subscriberItem.directive":27,"./services/subscriber.service":29,"angular":44,"angular-moment":40,"angular-ui-grid":41,"checklist-model":46}],29:[function(require,module,exports){
+},{"./controllers/add-subscriber.controller":22,"./controllers/edit-subscriber.controller":23,"./controllers/single-subscriber.controller":24,"./controllers/subscriber-row-directive.controller":25,"./controllers/view-subscribers.controller":26,"./directives/subscriberItem.directive":27,"./services/subscriber.service":29,"angular":44,"angular-moment":40,"angular-ui-grid":41,"checklist-model":46,"moment":49}],29:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1362,7 +1369,9 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 require('foundation');
 
-//Initialize Foundation
+var _moment = require('moment');
+
+var _moment2 = _interopRequireDefault(_moment);
 
 // Import angular
 
@@ -1389,6 +1398,10 @@ require('./app-content/index');
 require('./app-dashboard/index');
 
 // Instantiate angular module
+
+console.log(_moment2['default']);
+
+//Initialize Foundation
 (0, _jquery2['default'])(document).foundation();_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber', 'app.user', 'app.content', 'app.dashboard']).run(function ($rootScope, UserService) {
   $rootScope.$on('$stateChangeSuccess', function () {
     console.log('state change');
@@ -1401,7 +1414,7 @@ require('./app-dashboard/index');
   });
 });
 
-},{"./app-content/index":10,"./app-core/index":16,"./app-dashboard/index":18,"./app-layout/index":21,"./app-subscriber/index":28,"./app-user/index":34,"angular":44,"foundation":47,"jquery":48}],37:[function(require,module,exports){
+},{"./app-content/index":10,"./app-core/index":16,"./app-dashboard/index":18,"./app-layout/index":21,"./app-subscriber/index":28,"./app-user/index":34,"angular":44,"foundation":47,"jquery":48,"moment":49}],37:[function(require,module,exports){
 (function (factory) {
   'use strict';
   if (typeof exports === 'object') {

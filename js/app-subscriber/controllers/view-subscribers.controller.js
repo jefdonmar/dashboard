@@ -1,4 +1,6 @@
-let ViewSubscribersController = function($state, $scope, SubscriberService, moment) {
+import moment from 'moment';
+
+let ViewSubscribersController = function($state, $scope, SubscriberService) {
   
   // set view model to this object
   let vm = this;
@@ -22,8 +24,9 @@ let ViewSubscribersController = function($state, $scope, SubscriberService, mome
     columnDefs: [
       { field: 'id', width: '10%', minWidth: 20},
       { field: 'email', width: '30%'},
-      { field: 'subject_names', width: '40%'},
-      { field: 'created_at', width: '20%', type: 'date'}
+      { field: 'subject_names', width: '30%'},
+      { field: 'created_at.substring(0,4)', name: 'Year', width: '15%'},
+      { field: 'created_at.substring(5,7)', name: 'Month', width: '15%'},
     ]
   };
 
@@ -38,15 +41,12 @@ let ViewSubscribersController = function($state, $scope, SubscriberService, mome
 
     if (vm.subscribers.length === 0) {
       SubscriberService.getAllSubscribers().then( (response)=> {
-        response.data.subscriber.forEach( function (sub) {
-          console.log(sub.created_at);
-          // let newDates = moment(sub.created_at).format('YYYY');
-          // console.log(newDates);
-        });
-        
-
-        // forEach(funct)
-
+        // response.data.subscriber.forEach( function (sub) {
+        //   // console.log(sub.created_at);
+        //   // console.log(moment(sub.created_at, 'YYYY'));
+        //   // let newDates = angularMoment(sub.created_at).format('YYYY');
+        //   // console.log(newDates);
+        // });
         vm.subscribers = response.data.subscriber;
         $scope.gridObject.data = response.data.subscriber;
         console.log('Subscribers', vm.subscribers);
@@ -56,6 +56,6 @@ let ViewSubscribersController = function($state, $scope, SubscriberService, mome
 
 };
 
-ViewSubscribersController.$inject = ['$state', '$scope', 'SubscriberService', 'moment'];
+ViewSubscribersController.$inject = ['$state', '$scope', 'SubscriberService'];
 
 export default ViewSubscribersController;

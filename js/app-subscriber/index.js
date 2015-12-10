@@ -1,7 +1,7 @@
 import angular from 'angular';
 import 'checklist-model';
 import 'angular-ui-grid';
-// import moment from 'moment';
+import moment from 'moment';
 import 'angular-moment';
 
 // CONTROLLERS
