@@ -21,11 +21,37 @@
 
 </form>
 
-<ul class="small-block-grid-2">
-  <li class="view-articles-news" ng-repeat="article in vm.articles">
-    <p>{{ article.title }}</p>
-  </li>
-</ul>
+<div class="html-email-container">
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width"/>
+  </head>
+
+  <body>
+    <table class="body" style="width: 100%;">
+      <tr>
+        <td class="center" align="center" valign="center">
+          <p style="text-align: center;">Click to view in your browser</p>
+          <img class="banner-img" src="{{ bannerImg }}" ng-show="bannerImg">
+        </td>
+      </tr>
+      <tr>
+        <td class="wrapper">
+          <table email-article 
+          ng-repeat="a in articles"
+          article="a"
+          class="row">
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+<!-- http://fpoimg.com/600x150 -->
+
+</html>
+</div>
 
 <a href="#/preview-newsletter"><button>Preview</button></a>
 

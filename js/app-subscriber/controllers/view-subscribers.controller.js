@@ -25,8 +25,9 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
       { field: 'id', width: '10%', minWidth: 20},
       { field: 'email', width: '30%'},
       { field: 'subject_names', width: '30%'},
-      { field: 'created_at.substring(0,4)', name: 'Year', width: '15%'},
-      { field: 'created_at.substring(5,7)', name: 'Month', width: '15%'},
+      { field: 'created_at.substring(0,4)', name: 'Year', width: '10%'},
+      { field: 'created_at.substring(5,7)', name: 'Month', width: '10%'},
+      { field: 'created_at.substring(8,10)', name: 'Day', width: '10%'},
     ]
   };
 

@@ -89,7 +89,6 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
 
   var vm = this;
   vm.getSubjectsForNewsletter = getSubjectsForNewsletter;
-  vm.articles = articles;
 
   var articles = [];
 
@@ -106,6 +105,8 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
         newArticles.forEach(function (article) {
           console.log(article);
           articles.push(article);
+          console.log(articles);
+          $scope.articles = articles;
         });
       });
     });
@@ -944,7 +945,7 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     enableSorting: true,
     enableFiltering: true,
     enableColumnResizing: true,
-    columnDefs: [{ field: 'id', width: '10%', minWidth: 20 }, { field: 'email', width: '30%' }, { field: 'subject_names', width: '30%' }, { field: 'created_at.substring(0,4)', name: 'Year', width: '15%' }, { field: 'created_at.substring(5,7)', name: 'Month', width: '15%' }]
+    columnDefs: [{ field: 'id', width: '10%', minWidth: 20 }, { field: 'email', width: '30%' }, { field: 'subject_names', width: '30%' }, { field: 'created_at.substring(0,4)', name: 'Year', width: '10%' }, { field: 'created_at.substring(5,7)', name: 'Month', width: '10%' }, { field: 'created_at.substring(8,10)', name: 'Day', width: '10%' }]
   };
 
   // use a function to return it?

@@ -4,7 +4,6 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
 
   let vm = this; 
   vm.getSubjectsForNewsletter = getSubjectsForNewsletter;
-  vm.articles = articles;
 
   let articles = [];
 
@@ -27,6 +26,8 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
         newArticles.forEach(function (article) {
           console.log(article);
           articles.push(article);
+          console.log(articles);
+          $scope.articles = articles;
         });
       });
     });
