@@ -89,6 +89,7 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
 
   var vm = this;
   vm.getSubjectsForNewsletter = getSubjectsForNewsletter;
+  vm.sendNews = sendNews;
 
   var articles = [];
 
@@ -110,6 +111,10 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
         });
       });
     });
+  }
+
+  function sendNews() {
+    console.log('Newsletter sent here');
   }
 };
 
@@ -305,7 +310,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var emailArticle = function emailArticle(ArticleService) {
+var emailArticle = function emailArticle(ArticleService, $compile) {
 
   return {
 
@@ -316,16 +321,24 @@ var emailArticle = function emailArticle(ArticleService) {
     },
     // transclude: true,
     // controller: 'SubscriberRowController as vm', // Not needed?
-    template: '\n     <table style="border: none;background-color: white;">\n        <tr width="600" style="padding = 0px;">\n          <td width="100%" style="padding = 0px;" >\n            <h5 style="border-bottom: 1px solid black; padding-bottom: 3px;">\n              {{ article.title }}\n            </h5>\n          </td>\n        </tr>\n        <tr width="600"  style="background-color: white; float: right;">\n          <td height:"10" width="100%" style="padding-top: 0px; padding-bottom:0px; color: blue;">\n            {{ article.subject_names }}\n          </td>\n        </tr>\n        <tr ng-show="{{ article.media }}">\n          <td>\n            <img src="{{ article.media }}">\n            <button>Click to upload</button>\n          </td>\n        </tr>\n        <tr width="600" style="background-color: white;">\n          <td  width="100%">\n            <p>{{ article.content }}</p>\n          </td>\n        </tr>\n      </table>\n    ',
+    template: '\n     <table style="border: none;background-color: white;">\n        <tr width="600" style="padding = 0px;">\n          <td width="100%" style="padding = 0px;" >\n            <h5 style="border-bottom: 1px solid black; padding-bottom: 3px;">\n              {{ article.title }}\n            </h5>\n          </td>\n        </tr>\n        <tr width="600" style="background-color: white;">\n          <td  width="100%">\n            <p>{{ article.content }}</p>\n          </td>\n        </tr>\n      </table>\n    ',
     link: function link(scope, element, attrs) {
       console.log(element[0]);
+      // console.log($compile(element[0])(scope));
     }
   };
 };
 
-emailArticle.$inject = ['ArticleService'];
+emailArticle.$inject = ['ArticleService', '$compile'];
 
 exports['default'] = emailArticle;
+
+// <tr ng-show="{{ article.media }}">
+//          <td>
+//            <img src="{{ article.media }}">
+//            <button>Click to upload</button>
+//          </td>
+//        </tr>
 module.exports = exports['default'];
 
 },{}],10:[function(require,module,exports){
@@ -933,9 +946,15 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
 
   // connect data to scope of the controller through view model
   vm.subscribers = [];
+  vm.submitedits = submit;
 
   $scope.sortType = 'id';
   $scope.sortReverse = false;
+
+  function submit(currentData) {
+    console.log($scope.gridObject.data);
+    console.log('Hello');
+  }
 
   // scope grid options  object
 
@@ -945,7 +964,9 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     enableSorting: true,
     enableFiltering: true,
     enableColumnResizing: true,
-    columnDefs: [{ field: 'id', width: '10%', minWidth: 20 }, { field: 'email', width: '30%' }, { field: 'subject_names', width: '30%' }, { field: 'created_at.substring(0,4)', name: 'Year', width: '10%' }, { field: 'created_at.substring(5,7)', name: 'Month', width: '10%' }, { field: 'created_at.substring(8,10)', name: 'Day', width: '10%' }]
+    columnDefs: [{ field: 'id', width: '10%', minWidth: 20 }, { field: 'email', width: '10%' }, { field: 'subject_names', width: '10%' },
+    // { field: 'subject_names.includes(`${'baseball'}`)', width: '10%'},
+    { field: 'created_at.substring(0,4)', name: 'Year', width: '10%' }, { field: 'created_at.substring(5,7)', name: 'Month', width: '10%' }, { field: 'created_at.substring(8,10)', name: 'Day', width: '10%' }]
   };
 
   // use a function to return it?
@@ -1057,7 +1078,7 @@ var _servicesSubscriberService = require('./services/subscriber.service');
 
 var _servicesSubscriberService2 = _interopRequireDefault(_servicesSubscriberService);
 
-_angular2['default'].module('app.subscriber', ['checklist-model', 'ui.grid', 'ui.grid.resizeColumns', 'angularMoment']).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).controller('SubscriberRowController', _controllersSubscriberRowDirectiveController2['default']).controller('EditSubscriberController', _controllersEditSubscriberController2['default']).controller('SingleSubscriberController', _controllersSingleSubscriberController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
+_angular2['default'].module('app.subscriber', ['checklist-model', 'ui.grid', 'ui.grid.resizeColumns', 'angularMoment', 'ui.grid.edit']).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).controller('SubscriberRowController', _controllersSubscriberRowDirectiveController2['default']).controller('EditSubscriberController', _controllersEditSubscriberController2['default']).controller('SingleSubscriberController', _controllersSingleSubscriberController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
 
 },{"./controllers/add-subscriber.controller":22,"./controllers/edit-subscriber.controller":23,"./controllers/single-subscriber.controller":24,"./controllers/subscriber-row-directive.controller":25,"./controllers/view-subscribers.controller":26,"./directives/subscriberItem.directive":27,"./services/subscriber.service":29,"angular":44,"angular-moment":40,"angular-ui-grid":41,"checklist-model":46,"moment":49}],29:[function(require,module,exports){
 'use strict';

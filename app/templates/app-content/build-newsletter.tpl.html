@@ -7,8 +7,8 @@
 
   <h5>Subject names</h5>
   
-  <div ng-repeat="subject in subjects">
-    <label>
+  <div id="subjectBuildDiv" ng-repeat="subject in subjects">
+    <label class="subjectList">
       <input
         type="checkbox"
         checklist-model="newsObj.subjectNames"
@@ -16,9 +16,17 @@
         {{ subject }}
     </label>
   </div>
-
+  <br>
   <button>Submit</button>
 
+</form>
+
+<form>
+  <input 
+    type="text" 
+    placeholder="Insert logo URL for your newsletter"
+    ng-model="bannerImg">
+  <button>Upload banner image</button>
 </form>
 
 <div class="html-email-container">
@@ -53,7 +61,7 @@
 </html>
 </div>
 
-<a href="#/preview-newsletter"><button>Preview</button></a>
+<button ng-click="vm.sendNews()">Send</button>
 
 
 

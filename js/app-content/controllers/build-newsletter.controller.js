@@ -4,6 +4,7 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
 
   let vm = this; 
   vm.getSubjectsForNewsletter = getSubjectsForNewsletter;
+  vm.sendNews = sendNews;
 
   let articles = [];
 
@@ -32,6 +33,11 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
       });
     });
   }
+
+  function sendNews () {
+    console.log('Newsletter sent here');
+  }
+
 
 };
 
