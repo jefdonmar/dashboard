@@ -8414,6 +8414,11 @@ body {
     width: 80%;
     max-width: 800px; }
 
+.top-bar .name img {
+  margin-top: -5.75px;
+  width: 170px;
+  height: 47px; }
+
 .login {
   width: 30%;
   position: fixed;
