@@ -8694,10 +8694,11 @@ div.html-email-container {
   font-size: 1.2em;
   min-height: 150px; }
 
-.myGrid {
+.grid {
   width: 800px;
   display: block;
-  margin: 10px auto; }
+  margin: 10px auto;
+  height: 600px; }
 
 #subjectBuildDiv {
   display: inline-block; }

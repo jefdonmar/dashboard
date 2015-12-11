@@ -39,8 +39,8 @@ let SubscriberService = function($http, HEROKU, $cookies) {
     return $http.put(url + '/' + subscriber.id, subscriber, HEROKU.CONFIG);
   }
 
-  function updateSubscribers (subscribers) {
-    return $http.put(url, subscribers, HEROKU.CONFIG);
+  function updateSubscribers (subscriber) {
+    return $http.put(url + '/' + subscriber.id, subscriber, HEROKU.CONFIG);
   }
 
   // function setHeaders () {

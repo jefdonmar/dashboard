@@ -90,10 +90,20 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
   var vm = this;
   vm.getSubjectsForNewsletter = getSubjectsForNewsletter;
   vm.sendNews = sendNews;
+  vm.getAllSubscribers = getAllSubscribers;
 
   var articles = [];
 
   $scope.subjects = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
+
+  getAllSubscribers();
+
+  function getAllSubscribers() {
+    NewsletterService.getAllSubscribers().then(function (response) {
+      console.log(response);
+      vm.subscribers = response.data.subscriber;
+    });
+  }
 
   function getSubjectsForNewsletter(newsObj) {
     console.log(newsObj);
@@ -494,9 +504,14 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
   }
 
   this.getSubjects = getSubjects;
+  this.getAllSubscribers = getAllSubscribers;
 
   function getSubjects(subject) {
     return $http.get(url + 'subject/' + subject, HEROKU.CONFIG);
+  }
+
+  function getAllSubscribers() {
+    return $http.get(url + 'subscribers', HEROKU.CONFIG);
   }
 };
 
@@ -951,27 +966,52 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
   $scope.sortType = 'id';
   $scope.sortReverse = false;
 
-  function submit(currentData) {
-    console.log($scope.gridObject.data);
-    console.log('Hello');
+  function submit() {
+    // console.log($scope.gridObject.data);
+    var currentData = $scope.gridOptions.data;
+    console.log(currentData);
+    // SubscriberService.updateSubscribers(currentData).then( (response) => {
+    //   console.log(response);
+    // });
   }
 
-  // scope grid options  object
-
-  // can add max and minWidth (s) to each field
-
-  $scope.gridObject = {
+  $scope.gridOptions = {
     enableSorting: true,
     enableFiltering: true,
     enableColumnResizing: true,
-    columnDefs: [{ field: 'id', width: '10%', minWidth: 20 }, { field: 'email', width: '10%' }, { field: 'subject_names', width: '10%' },
-    // { field: 'subject_names.includes(`${'baseball'}`)', width: '10%'},
+    columnDefs: [{ field: 'id', width: '10%', minWidth: 20 }, { field: 'email', width: '10%' }, { field: 'subject_names', width: '30%' },
+    // { field: 'subject_names.includes(\'baseball\'), width: '10%'},
     { field: 'created_at.substring(0,4)', name: 'Year', width: '10%' }, { field: 'created_at.substring(5,7)', name: 'Month', width: '10%' }, { field: 'created_at.substring(8,10)', name: 'Day', width: '10%' }]
   };
 
-  // use a function to return it?
-
-  // data has to be attached to this as data: {data} --- look at docs
+  $scope.gridOptions.onRegisterApi = function (gridApi) {
+    //set gridApi on scope
+    console.log(gridApi);
+    $scope.gridApi = gridApi;
+    // gridApi.selection.getSelectedRows($scope, function(rowEntity){
+    //   console.log(rowEntity);
+    // });
+    $scope.deleteMe = function () {
+      var rowToDelete = gridApi.grid.selection.lastSelectedRow.entity;
+      console.log(rowToDelete);
+      SubscriberService.deleteSubscriber(rowToDelete).then(function (response) {
+        console.log(response);
+        $state.reload();
+      });
+    };
+    $scope.viewMe = function () {
+      var rowToView = gridApi.grid.selection.lastSelectedRow.entity;
+      console.log(rowToView);
+      $state.go('root.edit-subscriber', { id: rowToView.id });
+    };
+    gridApi.edit.on.afterCellEdit($scope, function (rowEntity, colDef, newValue, oldValue) {
+      console.clear();
+      console.log(rowEntity);
+      SubscriberService.updateSubscribers(rowEntity).then(function (response) {
+        console.log(response);
+      });
+    });
+  };
 
   activate();
 
@@ -986,7 +1026,7 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
         //   // console.log(newDates);
         // });
         vm.subscribers = response.data.subscriber;
-        $scope.gridObject.data = response.data.subscriber;
+        $scope.gridOptions.data = response.data.subscriber;
         console.log('Subscribers', vm.subscribers);
       });
     }
@@ -1078,7 +1118,7 @@ var _servicesSubscriberService = require('./services/subscriber.service');
 
 var _servicesSubscriberService2 = _interopRequireDefault(_servicesSubscriberService);
 
-_angular2['default'].module('app.subscriber', ['checklist-model', 'ui.grid', 'ui.grid.resizeColumns', 'angularMoment', 'ui.grid.edit']).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).controller('SubscriberRowController', _controllersSubscriberRowDirectiveController2['default']).controller('EditSubscriberController', _controllersEditSubscriberController2['default']).controller('SingleSubscriberController', _controllersSingleSubscriberController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
+_angular2['default'].module('app.subscriber', ['checklist-model', 'ui.grid', 'ui.grid.resizeColumns', 'angularMoment', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.selection']).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).controller('SubscriberRowController', _controllersSubscriberRowDirectiveController2['default']).controller('EditSubscriberController', _controllersEditSubscriberController2['default']).controller('SingleSubscriberController', _controllersSingleSubscriberController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
 
 },{"./controllers/add-subscriber.controller":22,"./controllers/edit-subscriber.controller":23,"./controllers/single-subscriber.controller":24,"./controllers/subscriber-row-directive.controller":25,"./controllers/view-subscribers.controller":26,"./directives/subscriberItem.directive":27,"./services/subscriber.service":29,"angular":44,"angular-moment":40,"angular-ui-grid":41,"checklist-model":46,"moment":49}],29:[function(require,module,exports){
 'use strict';
@@ -1100,6 +1140,7 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
   this.deleteSubscriber = deleteSubscriber;
   this.getSingleSubscriber = getSingleSubscriber;
   this.editSubscriber = editSubscriber;
+  this.updateSubscribers = updateSubscribers;
 
   function addSubscriber(subObj) {
     var sub = new Subscriber(subObj);
@@ -1123,6 +1164,10 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
 
   function editSubscriber(subscriber) {
     console.log(subscriber);
+    return $http.put(url + '/' + subscriber.id, subscriber, HEROKU.CONFIG);
+  }
+
+  function updateSubscribers(subscriber) {
     return $http.put(url + '/' + subscriber.id, subscriber, HEROKU.CONFIG);
   }
 
