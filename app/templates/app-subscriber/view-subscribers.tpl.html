@@ -6,24 +6,22 @@
 
 <a href="#/build-newsletter"><span>Build a newsletter</span></a>
 
-<p>Click column headers to sort</p>
 
+<button ng-click="deleteMe()">Delete selected row</button>
+<button ng-click="viewMe()">Edit selected subscriber</button>
 
 <!-- If you comment this out, the other table shows up -->
-<strong>Last Cell Edited:</strong> {{msg.lastCellEdited}}
 <div 
-  ui-grid="gridObject" 
-  class="myGrid"
+  ui-grid="gridOptions" 
+  class="grid"
   ui-grid-resize-columns
   ui-grid-edit
-  ui-grid-cellNav>
+  ui-grid-cellNav
+  ui-grid-selection>
 </div>
 
-<button ng-click="vm.submitedits()">Submit Edit</button>
 
-<!-- ui-grid="{data: vm.subscribers}" -->
-
-<table>
+<!-- <table>
   <tr class="header-row">
 
     <td class="table-titles"><a ng-click="sortType = 'id'; sortReverse = !sortReverse">Id<span ng-show="sortType == 'id'" class="fa fa-caret-down"></a></span></td>
@@ -37,9 +35,9 @@
     <td>Delete</td>
     <td class="table-titles">
       <!-- <a ng-click="sortType = 'baseball'; sortReverse = !sortReverse"> -->
-        Baseball 
+        <!-- Baseball  -->
       <!-- <span ng-show="sortType == 'baseball'" class="fa fa-caret-down"></a></span> -->
-    </td>
+   <!--  </td>
     <td>Basketball</td>
     <td>Football</td>
     <td>Hockey</td>
@@ -51,7 +49,7 @@
     sub="s">
   </tr>
   
-</table>
+</table> --> 
   
 
 

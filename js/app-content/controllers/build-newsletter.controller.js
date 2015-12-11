@@ -5,6 +5,8 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
   let vm = this; 
   vm.getSubjectsForNewsletter = getSubjectsForNewsletter;
   vm.sendNews = sendNews;
+  vm.getAllSubscribers = getAllSubscribers;
+
 
   let articles = [];
 
@@ -15,6 +17,15 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
    'Soccer',
    'Hockey'
   ]; 
+
+  getAllSubscribers();
+
+  function getAllSubscribers () {
+    NewsletterService.getAllSubscribers().then( (response) => {
+      console.log(response);
+      vm.subscribers = response.data.subscriber;
+    });
+  }
 
   function getSubjectsForNewsletter (newsObj) {
     console.log(newsObj);
