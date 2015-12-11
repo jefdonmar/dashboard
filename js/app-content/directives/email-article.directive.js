@@ -1,4 +1,4 @@
-let emailArticle = function(ArticleService, $compile) {
+let emailArticle = function(ArticleService, $compile, NewsletterService) {
   
   return {
 
@@ -26,14 +26,24 @@ let emailArticle = function(ArticleService, $compile) {
       </table>
     `,
     link: function (scope, element, attrs) {
-      console.log(element[0]);
-      // console.log($compile(element[0])(scope));
+      // console.log(element[0]);
+      // console.clear();
+
+      var template = angular.element(element[0].innerHTML);
+      var linkFunction = $compile(template);
+      var content = linkFunction(scope);
+
+      setTimeout( function () {
+        NewsletterService.tempContent = content[0].outerHTML;
+        // console.log(content[0].outerHTML);
+        console.log(NewsletterService.tempContent);
+      }, 0);
     }
   };
 
 };
 
-emailArticle.$inject = ['ArticleService', '$compile'];
+emailArticle.$inject = ['ArticleService', '$compile', 'NewsletterService'];
 
 export default emailArticle;
 

@@ -124,7 +124,10 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
   }
 
   function sendNews() {
+    console.clear();
     console.log('Newsletter sent here');
+    var content = NewsletterService.tempContent;
+    NewsletterService.sendContent(content);
   }
 };
 
@@ -320,7 +323,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var emailArticle = function emailArticle(ArticleService, $compile) {
+var emailArticle = function emailArticle(ArticleService, $compile, NewsletterService) {
 
   return {
 
@@ -333,13 +336,23 @@ var emailArticle = function emailArticle(ArticleService, $compile) {
     // controller: 'SubscriberRowController as vm', // Not needed?
     template: '\n     <table style="border: none;background-color: white;">\n        <tr width="600" style="padding = 0px;">\n          <td width="100%" style="padding = 0px;" >\n            <h5 style="border-bottom: 1px solid black; padding-bottom: 3px;">\n              {{ article.title }}\n            </h5>\n          </td>\n        </tr>\n        <tr width="600" style="background-color: white;">\n          <td  width="100%">\n            <p>{{ article.content }}</p>\n          </td>\n        </tr>\n      </table>\n    ',
     link: function link(scope, element, attrs) {
-      console.log(element[0]);
-      // console.log($compile(element[0])(scope));
+      // console.log(element[0]);
+      // console.clear();
+
+      var template = angular.element(element[0].innerHTML);
+      var linkFunction = $compile(template);
+      var content = linkFunction(scope);
+
+      setTimeout(function () {
+        NewsletterService.tempContent = content[0].outerHTML;
+        // console.log(content[0].outerHTML);
+        console.log(NewsletterService.tempContent);
+      }, 0);
     }
   };
 };
 
-emailArticle.$inject = ['ArticleService', '$compile'];
+emailArticle.$inject = ['ArticleService', '$compile', 'NewsletterService'];
 
 exports['default'] = emailArticle;
 
@@ -496,6 +509,10 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
 
   var url = HEROKU.URL;
 
+  this.tempContent = tempContent;
+
+  var tempContent = {};
+
   console.log('NewsletterService is working');
 
   function Newsletter(newsObj) {
@@ -505,6 +522,7 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
 
   this.getSubjects = getSubjects;
   this.getAllSubscribers = getAllSubscribers;
+  this.sendContent = sendContent;
 
   function getSubjects(subject) {
     return $http.get(url + 'subject/' + subject, HEROKU.CONFIG);
@@ -512,6 +530,23 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
 
   function getAllSubscribers() {
     return $http.get(url + 'subscribers', HEROKU.CONFIG);
+  }
+
+  function sendContent(content) {
+    console.log(content);
+    return $http.post(url + 'emails', {
+      html: content,
+      subject: 'Test',
+      email: 'robertbcramer@icloud.com'
+    }, HEROKU.CONFIG);
+    // return $http({
+    //   url: url + 'emails',
+    //   method: POST,
+    //   data: {
+
+    //   },
+    //   headers: HEROKU.CONFIG
+    // });
   }
 };
 
