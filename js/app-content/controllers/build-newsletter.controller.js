@@ -4,6 +4,11 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
 
   let vm = this; 
   vm.getSubjectsForNewsletter = getSubjectsForNewsletter;
+  vm.sendNews = sendNews;
+  vm.getAllSubscribers = getAllSubscribers;
+
+
+  let articles = [];
 
   $scope.subjects = [
    'Football',
@@ -13,16 +18,44 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
    'Hockey'
   ]; 
 
-  function getSubjectsForNewsletter (newsObj) {
-    console.log(newsObj);
-    // console.log(newsObj.subjectNames);
-    $scope.subjectsChosen = newsObj.subjectNames;
-    NewsletterService.getSubjects(newsObj).then( (response) => {
+  getAllSubscribers();
+
+  function getAllSubscribers () {
+    NewsletterService.getAllSubscribers().then( (response) => {
       console.log(response);
-      // once server is up, set articles and subjectsChosen based on response
-      $scope.articles = response.articles;
+      vm.subscribers = response.data.subscriber;
     });
   }
+
+  function getSubjectsForNewsletter (newsObj) {
+    console.log(newsObj);
+    console.log(newsObj.subjectNames);
+    let subjects = newsObj.subjectNames;
+    subjects.forEach( function(subject) {
+      NewsletterService.getSubjects(subject).then( (response) => {
+        console.log(response.data.subject.articles);
+        let newArticles = response.data.subject.articles;
+        newArticles.forEach(function (article) {
+          console.log(article);
+          articles.push(article);
+          console.log(articles);
+          $scope.articles = articles;
+        });
+      });
+    });
+  }
+
+  function sendNews () {
+    console.clear();
+    console.log('Newsletter sent here');
+    let content = NewsletterService.tempContent;
+    let preContent = NewsletterService.preContent;
+    let postContent = NewsletterService.postContent;
+    NewsletterService.sendContent(content, preContent, postContent).then( (response) => {
+      console.log(response);
+    });
+  }
+
 
 };
 

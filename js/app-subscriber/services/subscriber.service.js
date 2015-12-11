@@ -12,6 +12,7 @@ let SubscriberService = function($http, HEROKU, $cookies) {
   this.deleteSubscriber    = deleteSubscriber;
   this.getSingleSubscriber = getSingleSubscriber;
   this.editSubscriber      = editSubscriber;
+  this.updateSubscribers   = updateSubscribers;
 
   function addSubscriber (subObj) {
     let sub = new Subscriber(subObj);
@@ -35,6 +36,10 @@ let SubscriberService = function($http, HEROKU, $cookies) {
 
   function editSubscriber (subscriber) {
     console.log(subscriber);
+    return $http.put(url + '/' + subscriber.id, subscriber, HEROKU.CONFIG);
+  }
+
+  function updateSubscribers (subscriber) {
     return $http.put(url + '/' + subscriber.id, subscriber, HEROKU.CONFIG);
   }
 

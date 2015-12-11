@@ -576,9 +576,23 @@ div.html-email-container {
 }
 
 
-.myGrid {
-  width: 500px;
-  height: 250px;
+.grid {
+  width: 800px;
+  display: block;
+  margin: 10px auto;
+  height: 600px;
+
+}
+
+
+#subjectBuildDiv {
+  display: inline-block;
+
+  .subjectList {
+    margin: 10px;
+    display: flex-box;
+    justify-content: distribute-space;
+  }
 }
 
 @import "ui-grid";
