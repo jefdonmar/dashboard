@@ -49,7 +49,11 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
     console.clear();
     console.log('Newsletter sent here');
     let content = NewsletterService.tempContent;
-    NewsletterService.sendContent(content);
+    let preContent = NewsletterService.preContent;
+    let postContent = NewsletterService.postContent;
+    NewsletterService.sendContent(content, preContent, postContent).then( (response) => {
+      console.log(response);
+    });
   }
 
 
