@@ -33,16 +33,14 @@ let emailArticle = function(ArticleService, $compile, NewsletterService) {
     link: function (scope, element, attrs) {
       console.clear();
       console.log('scope', scope);
+      console.log('element', element);
+      console.log('attrs', attrs);
       // console.log(element[0]);
       // console.clear();
-      console.log(element[0].parentElement.innerHTML);
       console.log(element[0].innerHTML);
       // old param for angular.element 
       // element[0].innerHTML
-      // new param
-      // element[0].parentElement.outerHTML
-      var template = angular.element(element[0].parentElement);
-      console.log(template);
+      var template = angular.element(element[0].innerHTML);
       var linkFunction = $compile(template);
       var content = linkFunction(scope);
       // console.log(content[0].children);
@@ -66,9 +64,7 @@ let emailArticle = function(ArticleService, $compile, NewsletterService) {
 
 
       setTimeout( function () {
-        // content[0].innerHTML
-        NewsletterService.tempContent = content[0].outerHTML;
-        // NewsletterService.tempContent = content[0].innerHTML;
+        NewsletterService.tempContent.push(content[0].innerHTML);
         // console.log(content[0].outerHTML);
         console.log(NewsletterService.tempContent);
       }, 0);

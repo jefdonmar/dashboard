@@ -48,7 +48,7 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
   function sendNews () {
     console.clear();
     console.log('Newsletter sent here');
-    let content = NewsletterService.tempContent;
+    let content = NewsletterService.tempContent.join();
     let preContent = NewsletterService.preContent;
     let postContent = NewsletterService.postContent;
     NewsletterService.sendContent(content, preContent, postContent).then( (response) => {

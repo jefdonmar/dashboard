@@ -126,7 +126,7 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
   function sendNews() {
     console.clear();
     console.log('Newsletter sent here');
-    var content = NewsletterService.tempContent;
+    var content = NewsletterService.tempContent.join();
     var preContent = NewsletterService.preContent;
     var postContent = NewsletterService.postContent;
     NewsletterService.sendContent(content, preContent, postContent).then(function (response) {
@@ -342,16 +342,14 @@ var emailArticle = function emailArticle(ArticleService, $compile, NewsletterSer
     link: function link(scope, element, attrs) {
       console.clear();
       console.log('scope', scope);
+      console.log('element', element);
+      console.log('attrs', attrs);
       // console.log(element[0]);
       // console.clear();
-      console.log(element[0].parentElement.innerHTML);
       console.log(element[0].innerHTML);
       // old param for angular.element
       // element[0].innerHTML
-      // new param
-      // element[0].parentElement.outerHTML
-      var template = angular.element(element[0].parentElement);
-      console.log(template);
+      var template = angular.element(element[0].innerHTML);
       var linkFunction = $compile(template);
       var content = linkFunction(scope);
       // console.log(content[0].children);
@@ -374,9 +372,7 @@ var emailArticle = function emailArticle(ArticleService, $compile, NewsletterSer
       console.log(content);
 
       setTimeout(function () {
-        // content[0].innerHTML
-        NewsletterService.tempContent = content[0].outerHTML;
-        // NewsletterService.tempContent = content[0].innerHTML;
+        NewsletterService.tempContent.push(content[0].innerHTML);
         // console.log(content[0].outerHTML);
         console.log(NewsletterService.tempContent);
       }, 0);
@@ -541,9 +537,7 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
 
   var url = HEROKU.URL;
 
-  this.tempContent = tempContent;
-
-  var tempContent = {};
+  this.tempContent = [];
 
   console.log('NewsletterService is working');
 
@@ -555,8 +549,8 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
   this.getSubjects = getSubjects;
   this.getAllSubscribers = getAllSubscribers;
   this.sendContent = sendContent;
-  this.preContent = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="viewport" content="width=device-width"/></head><body><table class="body" style="width: 100%;"><tr><td class="center" align="center" valign="center"><p style="text-align: center;">Click to view in your browser</p></td></tr><tr>';
-  this.postContent = '</tr></table></body></html>';
+  this.preContent = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="viewport" content="width=device-width"/></head><body><table class="body" style="width: 100%;"><tr><td class="center" align="center" valign="center"><p style="text-align: center;">Click to view in your browser</p></td></tr><tr><td class="wrapper"><table>';
+  this.postContent = '</table></td></tr></table></body></html>';
 
   // was preContent
   // <td class="wrapper"><table>
@@ -578,7 +572,7 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
     return $http.post(url + 'emails', {
       html: preContent + content + postContent,
       subject: 'Test',
-      email: 'robertbcramer@icloud.com'
+      email: 'andrewkfaircloth@gmail.com'
     }, HEROKU.CONFIG);
   }
 };
