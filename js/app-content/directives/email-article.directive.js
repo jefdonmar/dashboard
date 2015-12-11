@@ -1,4 +1,4 @@
-let emailArticle = function(ArticleService, $compile) {
+let emailArticle = function(ArticleService, $compile, NewsletterService) {
   
   return {
 
@@ -20,20 +20,64 @@ let emailArticle = function(ArticleService, $compile) {
         </tr>
         <tr width="600" style="background-color: white;">
           <td  width="100%">
+            <img src="{{ article.media }}">
+          </td>
+        </tr>
+        <tr width="600" style="background-color: white;">
+          <td  width="100%">
             <p>{{ article.content }}</p>
           </td>
         </tr>
       </table>
     `,
     link: function (scope, element, attrs) {
-      console.log(element[0]);
-      // console.log($compile(element[0])(scope));
+      console.clear();
+      console.log('scope', scope);
+      // console.log(element[0]);
+      // console.clear();
+      console.log(element[0].parentElement.innerHTML);
+      console.log(element[0].innerHTML);
+      // old param for angular.element 
+      // element[0].innerHTML
+      // new param
+      // element[0].parentElement.outerHTML
+      var template = angular.element(element[0].parentElement);
+      console.log(template);
+      var linkFunction = $compile(template);
+      var content = linkFunction(scope);
+      // console.log(content[0].children);
+      console.log(content);
+      // var contentChildren = content[0].children;
+      // console.log(contentChildren);
+      // var contentCode = [];
+      // console.log('jd', typeof contentChildren, contentChildren, contentChildren.forEach);
+      // Array.from(contentChildren).forEach( function(child) {
+      //   console.log(child);
+      //   contentCode.push(child.outerHTML);
+      // });
+      // for(let child of contentChildren) {
+      //   console.log(child);
+      //   contentCode.push(child.outerHTML);
+      // }
+      // console.clear();
+      // console.log(contentCode);
+      // console.log(contentCode.join(''));
+      console.log(content);
+
+
+      setTimeout( function () {
+        // content[0].innerHTML
+        NewsletterService.tempContent = content[0].outerHTML;
+        // NewsletterService.tempContent = content[0].innerHTML;
+        // console.log(content[0].outerHTML);
+        console.log(NewsletterService.tempContent);
+      }, 0);
     }
   };
 
 };
 
-emailArticle.$inject = ['ArticleService', '$compile'];
+emailArticle.$inject = ['ArticleService', '$compile', 'NewsletterService'];
 
 export default emailArticle;
 

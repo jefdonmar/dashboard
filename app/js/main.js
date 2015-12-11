@@ -124,7 +124,14 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
   }
 
   function sendNews() {
+    console.clear();
     console.log('Newsletter sent here');
+    var content = NewsletterService.tempContent;
+    var preContent = NewsletterService.preContent;
+    var postContent = NewsletterService.postContent;
+    NewsletterService.sendContent(content, preContent, postContent).then(function (response) {
+      console.log(response);
+    });
   }
 };
 
@@ -320,7 +327,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var emailArticle = function emailArticle(ArticleService, $compile) {
+var emailArticle = function emailArticle(ArticleService, $compile, NewsletterService) {
 
   return {
 
@@ -331,15 +338,53 @@ var emailArticle = function emailArticle(ArticleService, $compile) {
     },
     // transclude: true,
     // controller: 'SubscriberRowController as vm', // Not needed?
-    template: '\n     <table style="border: none;background-color: white;">\n        <tr width="600" style="padding = 0px;">\n          <td width="100%" style="padding = 0px;" >\n            <h5 style="border-bottom: 1px solid black; padding-bottom: 3px;">\n              {{ article.title }}\n            </h5>\n          </td>\n        </tr>\n        <tr width="600" style="background-color: white;">\n          <td  width="100%">\n            <p>{{ article.content }}</p>\n          </td>\n        </tr>\n      </table>\n    ',
+    template: '\n     <table style="border: none;background-color: white;">\n        <tr width="600" style="padding = 0px;">\n          <td width="100%" style="padding = 0px;" >\n            <h5 style="border-bottom: 1px solid black; padding-bottom: 3px;">\n              {{ article.title }}\n            </h5>\n          </td>\n        </tr>\n        <tr width="600" style="background-color: white;">\n          <td  width="100%">\n            <img src="{{ article.media }}">\n          </td>\n        </tr>\n        <tr width="600" style="background-color: white;">\n          <td  width="100%">\n            <p>{{ article.content }}</p>\n          </td>\n        </tr>\n      </table>\n    ',
     link: function link(scope, element, attrs) {
-      console.log(element[0]);
-      // console.log($compile(element[0])(scope));
+      console.clear();
+      console.log('scope', scope);
+      // console.log(element[0]);
+      // console.clear();
+      console.log(element[0].parentElement.innerHTML);
+      console.log(element[0].innerHTML);
+      // old param for angular.element
+      // element[0].innerHTML
+      // new param
+      // element[0].parentElement.outerHTML
+      var template = angular.element(element[0].parentElement);
+      console.log(template);
+      var linkFunction = $compile(template);
+      var content = linkFunction(scope);
+      // console.log(content[0].children);
+      console.log(content);
+      // var contentChildren = content[0].children;
+      // console.log(contentChildren);
+      // var contentCode = [];
+      // console.log('jd', typeof contentChildren, contentChildren, contentChildren.forEach);
+      // Array.from(contentChildren).forEach( function(child) {
+      //   console.log(child);
+      //   contentCode.push(child.outerHTML);
+      // });
+      // for(let child of contentChildren) {
+      //   console.log(child);
+      //   contentCode.push(child.outerHTML);
+      // }
+      // console.clear();
+      // console.log(contentCode);
+      // console.log(contentCode.join(''));
+      console.log(content);
+
+      setTimeout(function () {
+        // content[0].innerHTML
+        NewsletterService.tempContent = content[0].outerHTML;
+        // NewsletterService.tempContent = content[0].innerHTML;
+        // console.log(content[0].outerHTML);
+        console.log(NewsletterService.tempContent);
+      }, 0);
     }
   };
 };
 
-emailArticle.$inject = ['ArticleService', '$compile'];
+emailArticle.$inject = ['ArticleService', '$compile', 'NewsletterService'];
 
 exports['default'] = emailArticle;
 
@@ -496,6 +541,10 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
 
   var url = HEROKU.URL;
 
+  this.tempContent = tempContent;
+
+  var tempContent = {};
+
   console.log('NewsletterService is working');
 
   function Newsletter(newsObj) {
@@ -505,6 +554,14 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
 
   this.getSubjects = getSubjects;
   this.getAllSubscribers = getAllSubscribers;
+  this.sendContent = sendContent;
+  this.preContent = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="viewport" content="width=device-width"/></head><body><table class="body" style="width: 100%;"><tr><td class="center" align="center" valign="center"><p style="text-align: center;">Click to view in your browser</p></td></tr><tr>';
+  this.postContent = '</tr></table></body></html>';
+
+  // was preContent
+  // <td class="wrapper"><table>
+  // was postContent
+  // </table></td>
 
   function getSubjects(subject) {
     return $http.get(url + 'subject/' + subject, HEROKU.CONFIG);
@@ -512,6 +569,17 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
 
   function getAllSubscribers() {
     return $http.get(url + 'subscribers', HEROKU.CONFIG);
+  }
+
+  function sendContent(content, preContent, postContent) {
+    console.log(content);
+    console.log(preContent);
+    console.log(postContent);
+    return $http.post(url + 'emails', {
+      html: preContent + content + postContent,
+      subject: 'Test',
+      email: 'robertbcramer@icloud.com'
+    }, HEROKU.CONFIG);
   }
 };
 
