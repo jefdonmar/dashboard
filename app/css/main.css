@@ -8412,12 +8412,52 @@ body {
   body .container {
     margin: 20px auto;
     width: 80%;
-    max-width: 800px; }
+    max-width: 1000px;
+    max-height: 1000px; }
 
 .top-bar .name img {
   margin-top: -5.75px;
   width: 170px;
   height: 47px; }
+
+.home .homeImage img {
+  border: 6px solid #082c38;
+  float: left;
+  height: 43.75%;
+  width: 43.75%; }
+
+.home .homeImage .text {
+  margin-left: 50%; }
+
+.home .manageImage img {
+  border: 6px solid #082c38;
+  float: right;
+  height: 43.75%;
+  width: 43.75%; }
+
+.home .generateImage img {
+  border: 6px solid #082c38;
+  float: left;
+  height: 43.75%;
+  width: 43.75%; }
+
+.home .generateImage .text {
+  margin-left: 50%; }
+
+.home .publishContent img {
+  border: 6px solid #082c38;
+  float: right;
+  height: 43.75%;
+  width: 43.75%; }
+
+.home .trackImage img {
+  border: 6px solid #082c38;
+  float: left;
+  height: 43.75%;
+  width: 43.75%; }
+
+.home .trackImage .text {
+  margin-left: 50%; }
 
 .login {
   width: 30%;

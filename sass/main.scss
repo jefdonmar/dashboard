@@ -13,11 +13,13 @@ body {
   .container {
     margin: 20px auto;
     width: 80%;
-    max-width: 800px;
+    max-width: 1000px;
+    max-height: 1000px;
+
   }
 }
 
-// Navigation Bar
+// Navigation Bar View 
 .top-bar {
 
   .name {
@@ -29,6 +31,84 @@ body {
   }
 
 }
+
+// Home Page View
+
+.home {
+
+  .homeImage {
+
+    img {
+      border: 6px solid $Navy;
+      float: left;
+      height: 43.75%;
+      width: 43.75%;
+    }
+
+    .text {
+      margin-left: 50%;
+    }
+  }
+  .manageImage {
+
+    img {
+      border: 6px solid $Navy;
+      float: right;
+      height: 43.75%;
+      width: 43.75%;
+    }
+
+    .text {
+     
+    }
+  }
+  .generateImage {
+
+    img {
+      border: 6px solid $Navy;
+      float: left;
+      height: 43.75%;
+      width: 43.75%;
+    }
+
+    .text {
+      margin-left: 50%;
+    }
+  }
+  .publishContent {
+
+    img {
+      border: 6px solid $Navy;
+      float: right;
+      height: 43.75%;
+      width: 43.75%;
+    }
+
+    .text {
+     
+    }
+  }
+
+  .trackImage {
+
+    img {
+      border: 6px solid $Navy;
+      float: left;
+      height: 43.75%;
+      width: 43.75%;
+    }
+
+    .text {
+      margin-left: 50%;
+    }
+  }
+
+
+
+
+}
+
+
 
 
 // Log-In View
