@@ -572,7 +572,7 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
     return $http.post(url + 'emails', {
       html: preContent + content + postContent,
       subject: 'Test',
-      email: 'andrewkfaircloth@gmail.com'
+      email: 'sara.e.klein@gmail.com'
     }, HEROKU.CONFIG);
   }
 };

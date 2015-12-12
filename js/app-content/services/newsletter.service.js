@@ -38,7 +38,7 @@ let NewsletterService = function($state, $http, HEROKU) {
       {
         html: preContent + content + postContent,
         subject: 'Test',
-        email: 'andrewkfaircloth@gmail.com'
+        email: 'sara.e.klein@gmail.com'
       },
       HEROKU.CONFIG);
   }
