@@ -62,6 +62,21 @@ body {
       text-align: center;
 
     }
+
+    .home-info {
+      text-align: center;
+      background-color: $BrightBlue;
+      margin-top: -5px;
+      font-weight: bold;
+
+      h2 {
+        color: $Navy;
+      }
+
+      button {
+        background-color: $Navy;
+      }
+    }
   }
   .manageImage {
     display: inline-block;

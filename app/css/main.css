@@ -8434,6 +8434,15 @@ body {
       width: 100%; }
     .home .homeImage .text {
       text-align: center; }
+    .home .homeImage .home-info {
+      text-align: center;
+      background-color: #39bced;
+      margin-top: -5px;
+      font-weight: bold; }
+      .home .homeImage .home-info h2 {
+        color: #082c38; }
+      .home .homeImage .home-info button {
+        background-color: #082c38; }
   .home .manageImage {
     display: inline-block;
     background: #EDEDED; }
