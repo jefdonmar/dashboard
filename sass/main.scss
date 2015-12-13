@@ -403,7 +403,72 @@ body {
 // Welcome View
 
 .welcome {
+  background-color: $LightGrey;
+  border: 5px solid $Navy;
 
+  p {
+    padding: 10px;
+    text-align: center;
+
+  }
+
+  .rowOne {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    .leftOne {
+      float: left;
+      margin-right: 20px;
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+
+    }
+
+    .rightOne{
+      float: right;
+      margin-left: 20px;
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+
+    }
+
+  }
+
+  .rowTwo {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    .leftTwo {
+      float: left;
+      margin-right: 20px;
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+
+    }
+
+    .rightTwo{
+      float: right;
+      margin-left: 20px;
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+
+    }
+
+  }
 } 
 
 // Add-Subscriber View

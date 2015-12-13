@@ -8654,6 +8654,45 @@ body {
     .signup .sign-up p {
       text-align: center; }
 
+.welcome {
+  background-color: #EDEDED;
+  border: 5px solid #082c38; }
+  .welcome p {
+    padding: 10px;
+    text-align: center; }
+  .welcome .rowOne {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px; }
+    .welcome .rowOne .leftOne {
+      float: left;
+      margin-right: 20px; }
+      .welcome .rowOne .leftOne img {
+        width: 300px;
+        height: 300px; }
+    .welcome .rowOne .rightOne {
+      float: right;
+      margin-left: 20px; }
+      .welcome .rowOne .rightOne img {
+        width: 300px;
+        height: 300px; }
+  .welcome .rowTwo {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px; }
+    .welcome .rowTwo .leftTwo {
+      float: left;
+      margin-right: 20px; }
+      .welcome .rowTwo .leftTwo img {
+        width: 300px;
+        height: 300px; }
+    .welcome .rowTwo .rightTwo {
+      float: right;
+      margin-left: 20px; }
+      .welcome .rowTwo .rightTwo img {
+        width: 300px;
+        height: 300px; }
+
 .addsubscriber h3 {
   font-weight: bold; }
 
