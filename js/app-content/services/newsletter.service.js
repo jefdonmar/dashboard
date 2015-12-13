@@ -3,6 +3,7 @@ let NewsletterService = function($state, $http, HEROKU) {
   let url = HEROKU.URL;
 
   this.tempContent = [];
+  this.segmentEmails = [];
 
   console.log('NewsletterService is working');
 
@@ -26,22 +27,37 @@ let NewsletterService = function($state, $http, HEROKU) {
     return $http.get(url + 'subscribers', HEROKU.CONFIG);
   }
 
-  function sendContent (content, preContent, postContent, newsletter) {
-    console.log(content);
-    console.log(preContent);
-    console.log(postContent);
+  function sendContent (content, preContent, postContent, newsletter, emailRecipients) {
+    // console.log(content);
+    // console.log(preContent);
+    // console.log(postContent);
     console.log('NEWSLETTER', newsletter);
+    console.log('EMAIL IS TO:', emailRecipients.toString());
     return $http.post(url + 'emails', 
       {
         html: preContent + content + postContent,
         subject: newsletter.name,
-        email: newsletter.to
+        email: emailRecipients.toString()
       },
       HEROKU.CONFIG);
   }
 
-  function getMatchedSubscribers (subjects) {
+  function getMatchedSubscribers (subjects, subscribers) {
     console.log('SUBJECTS TO MATCH', subjects);
+    console.log('ALL SUBSCRIBERS', subscribers);
+    let segmentEmails = [];
+    subscribers.forEach( function (subscriber) {
+      subjects.forEach( function (subject) {
+        if ( subscriber.subject_names.includes(subject) && !segmentEmails.includes(subscriber.email) ){
+          segmentEmails.push(subscriber.email);
+        }
+      });
+    });
+    console.log('SEGMENT EMAILS', segmentEmails);
+    if (segmentEmails.length < 1) {
+      alert('No subscribers match selected subjects');
+    }
+    this.segmentEmails = segmentEmails;
   }
 
 };

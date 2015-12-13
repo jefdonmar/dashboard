@@ -40,12 +40,12 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
 
   function getSubjectsForNewsletter (newsObj) {
     newsletter.name = newsObj.name;
-    newsletter.to = newsObj.to;
+    // newsletter.to = newsObj.to;
     console.log('NEWSLETTER', newsletter);
     let subjects = newsObj.subjectNames;
 
     // Get the right subcribers associated with the subjects
-    NewsletterService.getMatchedSubscribers(subjects);
+    NewsletterService.getMatchedSubscribers(subjects, subscribers);
 
 
     // Populate newsletter preview with relevant subjects
@@ -63,13 +63,15 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
 
   function sendNews (newsletter, sub) {
     console.clear();
+    console.log('TEST', NewsletterService.segmentEmails);
     console.log('Newsletter sent here');
     console.log(newsletter.name);
-    console.log(newsletter.to);
+    // console.log(newsletter.to);
     let content = NewsletterService.tempContent.join();
     let preContent = NewsletterService.preContent;
     let postContent = NewsletterService.postContent;
-    NewsletterService.sendContent(content, preContent, postContent, newsletter).then( (response) => {
+    let emailRecipients = NewsletterService.segmentEmails;
+    NewsletterService.sendContent(content, preContent, postContent, newsletter, emailRecipients).then( (response) => {
       console.log(response);
     });
   }
