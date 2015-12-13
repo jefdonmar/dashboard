@@ -266,10 +266,10 @@ body {
 // Sign-up View 
 
 .signup {
-  width: 30%;
+  width: 550px;
+  margin-left: 20%;
+  margin-right: 20%;
   position: fixed;
-  top: 25%;
-  left: 35%;
   background-color: white;
   border: 6px solid $Navy;
 
@@ -278,12 +278,11 @@ body {
     text-align: center;
     font-size: 25px;
     font-weight: bold;
-  }
 
-  p {
-    font-size: 15px;
-    text-align: center;
-    padding: 5px;
+    p {
+      text-align: center;
+      font-weight: bold;
+    }
   }
 
   .sign-up{
@@ -361,12 +360,24 @@ body {
         padding:6px 6px 6px 30px;
       }
     }
+
+    .advice {
+
+      p{
+        text-align: center;
+      }
+    }
+
     button {
       display: inline-block;
       background-color: $Navy;
       width: 100%;
       height: auto;
       border-radius: 5px;
+      text-align: center;
+    }
+
+    p {
       text-align: center;
     }
   }

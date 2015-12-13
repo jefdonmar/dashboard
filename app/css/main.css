@@ -8562,10 +8562,10 @@ body {
       text-align: center; }
 
 .signup {
-  width: 30%;
+  width: 550px;
+  margin-left: 20%;
+  margin-right: 20%;
   position: fixed;
-  top: 25%;
-  left: 35%;
   background-color: white;
   border: 6px solid #082c38; }
   .signup .logo {
@@ -8573,10 +8573,9 @@ body {
     text-align: center;
     font-size: 25px;
     font-weight: bold; }
-  .signup p {
-    font-size: 15px;
-    text-align: center;
-    padding: 5px; }
+    .signup .logo p {
+      text-align: center;
+      font-weight: bold; }
   .signup .sign-up {
     padding: 5px; }
     .signup .sign-up .company-container {
@@ -8633,12 +8632,16 @@ body {
         z-index: 3; }
       .signup .sign-up .password-container .custom-text {
         padding: 6px 6px 6px 30px; }
+    .signup .sign-up .advice p {
+      text-align: center; }
     .signup .sign-up button {
       display: inline-block;
       background-color: #082c38;
       width: 100%;
       height: auto;
       border-radius: 5px;
+      text-align: center; }
+    .signup .sign-up p {
       text-align: center; }
 
 .welcome .welcome-info {
