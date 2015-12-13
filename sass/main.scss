@@ -6,11 +6,14 @@
 
 $Navy: #082c38; 
 $BrightBlue: #39bced;
+$White: #FFFFFF;
+$LightGrey: #EDEDED;
+$DarkGrey: #E5E5E0;
 
 
 
 body {
-  background: #e2ebf3;
+  background: $BrightBlue;
 
   .container {
     margin: 20px auto;
@@ -23,7 +26,6 @@ body {
 
 // Navigation Bar View 
 .top-bar {
-  box-sizing: border-box; 
 
   .name {
     img {
@@ -38,78 +40,119 @@ body {
 // Home Page View
 
 .home {
-  box-sizing: border-box; 
+  background: $White;
+
+  h3 {
+    text-align: center
+  }
 
   .homeImage {
+    display: inline-block;
+    background: $White;
+
 
     img {
       border: 6px solid $Navy;
       float: left;
-      height: 43.75%;
-      width: 43.75%;
+      height: 400px;
+      width: 100%;
     }
 
     .text {
-      margin-left: 50%;
+      text-align: center;
+
     }
   }
   .manageImage {
+    display: inline-block;
+    background: $LightGrey;
 
     img.managePic {
-      border: 6px solid $Navy;
       float: right;
-      height: 167px;
-      width: 292px;
+      height: 250px;
+      width: 250px;
+      border: 6px solid $Navy;
+      margin-left: 20px;
+      margin-right: 5px;
       
       
     }
 
     .text {
+      padding: 5px;
 
-      p {
-        width: 43.75%;
+      h3 {
+        text-align: center
       }
      
     }
   }
   .generateImage {
+    display: inline-block;
+    background: $White;
 
     img {
       border: 6px solid $Navy;
       float: left;
-      height: 200px;
-      width: 43.75%;
+      height: 250px;
+      width: 250px;
+      margin-right: 20px;
+      margin-left: 5px;
+      
     }
 
     .text {
-      margin-left: 50%;
+      padding: 5px;
+
+      h3 {
+        text-align: center
+      }
+     
     }
   }
   .publishContent {
+    display: inline-block;
+    background: $LightGrey;
+    
 
     img {
       border: 6px solid $Navy;
       float: right;
-      height: 43.75%;
-      width: 43.75%;
+      height: 250px;
+      width: 250px;
+      margin-left: 20px;
+      margin-right: 5px;
     }
 
     .text {
-     
+      padding: 5px;
+
+      h3 {
+        text-align: center
+      }
     }
   }
 
   .trackImage {
+    display: inline-block;
+    background: $White;
 
     img {
       border: 6px solid $Navy;
       float: left;
-      height: 43.75%;
-      width: 43.75%;
+      height: 250px;
+      width: 250px;
+      margin-right: 20px;
+      margin-left: 5px;
     }
 
     .text {
-      margin-left: 50%;
+      padding: 5px;
+
+      h3 {
+        text-align: center
+      }
+
     }
   }
 
