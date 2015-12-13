@@ -8442,7 +8442,8 @@ body {
       .home .homeImage .home-info h2 {
         color: #082c38; }
       .home .homeImage .home-info button {
-        background-color: #082c38; }
+        background-color: #082c38;
+        margin-right: 20px; }
   .home .manageImage {
     display: inline-block;
     background: #EDEDED; }
@@ -8652,22 +8653,6 @@ body {
       text-align: center; }
     .signup .sign-up p {
       text-align: center; }
-
-.welcome .welcome-info {
-  text-align: center; }
-  .welcome .welcome-info p {
-    font-weight: bold;
-    font-size: 30px; }
-  .welcome .welcome-info button {
-    display: inline-block;
-    position: relative;
-    background-color: #082c38;
-    width: 30%;
-    height: 70px;
-    border-radius: 5px;
-    font: white;
-    font-size: 13px;
-    margin-right: 20px; }
 
 .addsubscriber h3 {
   font-weight: bold; }

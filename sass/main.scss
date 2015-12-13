@@ -75,6 +75,7 @@ body {
 
       button {
         background-color: $Navy;
+        margin-right: 20px;
       }
     }
   }
@@ -402,34 +403,7 @@ body {
 // Welcome View
 
 .welcome {
-  // position: absolute;
-  // top: 25%;
-  // left: 25%;
 
-  .welcome-info {
-    text-align: center;
-
-    p {
-      font-weight: bold;
-      font-size: 30px;
-    }
-
-    button{
-      display: inline-block;
-      position: relative;
-      background-color: $Navy;
-      width: 30%;
-      height: 70px;
-      border-radius: 5px;
-      font: white;
-      font-size: 13px;
-      margin-right: 20px;
-    }
-  }
-
-  .product1 {
-
-  }
 } 
 
 // Add-Subscriber View
