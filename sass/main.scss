@@ -155,10 +155,6 @@ body {
 
     }
   }
-
-
-
-
 }
 
 
@@ -167,10 +163,10 @@ body {
 // Log-In View
 
 .login {
-  width: 30%;
+  width: 500px;
+  margin-left: 20%;
+  margin-right: 20%;
   position: fixed;
-  top: 30%;
-  left: 35%;
   background-color: white;
   border: 6px solid $Navy;
 
@@ -178,6 +174,10 @@ body {
     padding: 10px;
     text-align: center;
     font-size: 25px;
+
+    p {
+      font-weight: bold;
+    }
   }
 
   .log-in {
@@ -229,12 +229,35 @@ body {
         padding:6px 6px 6px 30px;
       }
     }
+
+    .extra { 
+
+      input {
+        margin-left: 10px;
+      }
+
+      a{
+        float: right;
+        margin-right: 20px;
+      }
+
+      p {
+        font-weight: bold;
+        color: red;
+        margin-left: 10px;
+      }
+    }
+
     button {
       display: inline-block;
       background-color: $Navy;
       height: auto;
       width: 100%;
       border-radius: 5px;
+      text-align: center;
+    }
+
+    p {
       text-align: center;
     }
   }

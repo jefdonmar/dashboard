@@ -8492,16 +8492,18 @@ body {
         text-align: center; }
 
 .login {
-  width: 30%;
+  width: 500px;
+  margin-left: 20%;
+  margin-right: 20%;
   position: fixed;
-  top: 30%;
-  left: 35%;
   background-color: white;
   border: 6px solid #082c38; }
   .login .logo {
     padding: 10px;
     text-align: center;
     font-size: 25px; }
+    .login .logo p {
+      font-weight: bold; }
   .login .log-in {
     padding: 5px; }
     .login .log-in .user-container {
@@ -8540,12 +8542,23 @@ body {
         z-index: 3; }
       .login .log-in .password-container .custom-text {
         padding: 6px 6px 6px 30px; }
+    .login .log-in .extra input {
+      margin-left: 10px; }
+    .login .log-in .extra a {
+      float: right;
+      margin-right: 20px; }
+    .login .log-in .extra p {
+      font-weight: bold;
+      color: red;
+      margin-left: 10px; }
     .login .log-in button {
       display: inline-block;
       background-color: #082c38;
       height: auto;
       width: 100%;
       border-radius: 5px;
+      text-align: center; }
+    .login .log-in p {
       text-align: center; }
 
 .signup {
