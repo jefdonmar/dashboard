@@ -577,7 +577,7 @@ div.html-email-container {
 
 
 .grid {
-  width: 800px;
+  // width: 800px;
   display: block;
   margin: 10px auto;
   height: 600px;
@@ -595,6 +595,12 @@ div.html-email-container {
   }
 }
 
+.small-article-img {
+  width: 100px;
+  height: 100px;
+}
+
 @import "ui-grid";
+@import "build-newsletter";
 
 

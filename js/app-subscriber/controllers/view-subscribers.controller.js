@@ -21,19 +21,23 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
     //   console.log(response);
     // });
   }
- 
+
   $scope.gridOptions = {
     enableSorting: true,
     enableFiltering: true,
     enableColumnResizing: true,
     columnDefs: [
-      { field: 'id', width: '10%', minWidth: 20},
-      { field: 'email', width: '10%'},
-      { field: 'subject_names', width: '30%'},
-      // { field: 'subject_names.includes(\'baseball\'), width: '10%'},
-      { field: 'created_at.substring(0,4)', name: 'Year', width: '10%'},
-      { field: 'created_at.substring(5,7)', name: 'Month', width: '10%'},
-      { field: 'created_at.substring(8,10)', name: 'Day', width: '10%'},
+      // { field: 'id', width: '5%'},
+      { field: 'email', width: '30%'},
+      { field: 'subject_names', width: '35%'},
+      // { field: 'subject_names.includes("Baseball")', name: 'Baseball', width: '*'},
+      // { field: 'subject_names.includes("Basketball")', name: 'Basketball', width: '*'},
+      // { field: 'subject_names.includes("Football")', name: 'Football', width: '*'},
+      // { field: 'subject_names.includes("Hockey")', name: 'Hockey', width: '*'},
+      // { field: 'subject_names.includes("Soccer")', name: 'Soccer', width: '*'},
+      { field: 'created_at.substring(0,4)', name: 'Yr', width: '10%', enableCellEdit: false},
+      { field: 'created_at.substring(5,7)', name: 'Mo', width: '10%', enableCellEdit: false},
+      { field: 'created_at.substring(8,10)', name: 'Day', width: '*', enableCellEdit: false},
     ],
   };
 

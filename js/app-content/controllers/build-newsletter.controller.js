@@ -8,7 +8,11 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
   vm.getAllSubscribers = getAllSubscribers;
 
 
+
+  let newsletter = {};
   let articles = [];
+  let subscribers = [];
+  let allEmails = [];
 
   $scope.subjects = [
    'Football',
@@ -22,36 +26,50 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
 
   function getAllSubscribers () {
     NewsletterService.getAllSubscribers().then( (response) => {
-      console.log(response);
-      vm.subscribers = response.data.subscriber;
+      // console.log(response);
+      let allSubscribers = response.data.subscriber;
+      vm.subscribers = allSubscribers;
+      subscribers = allSubscribers;
+      subscribers.forEach( function (subscriber) {
+        allEmails.push(subscriber.email);
+      });
+      console.log('ALL SUBSCRIBERS', subscribers);
+      console.log('EMAILS', allEmails);
     });
   }
 
   function getSubjectsForNewsletter (newsObj) {
-    console.log(newsObj);
-    console.log(newsObj.subjectNames);
+    newsletter.name = newsObj.name;
+    newsletter.to = newsObj.to;
+    console.log('NEWSLETTER', newsletter);
     let subjects = newsObj.subjectNames;
+
+    // Get the right subcribers associated with the subjects
+    NewsletterService.getMatchedSubscribers(subjects);
+
+
+    // Populate newsletter preview with relevant subjects
     subjects.forEach( function(subject) {
       NewsletterService.getSubjects(subject).then( (response) => {
-        console.log(response.data.subject.articles);
+        // console.log(response.data.subject.articles);
         let newArticles = response.data.subject.articles;
         newArticles.forEach(function (article) {
-          console.log(article);
-          articles.push(article);
-          console.log(articles);
+          articles.push(article); 
           $scope.articles = articles;
         });
       });
     });
   }
 
-  function sendNews () {
+  function sendNews (newsletter, sub) {
     console.clear();
     console.log('Newsletter sent here');
+    console.log(newsletter.name);
+    console.log(newsletter.to);
     let content = NewsletterService.tempContent.join();
     let preContent = NewsletterService.preContent;
     let postContent = NewsletterService.postContent;
-    NewsletterService.sendContent(content, preContent, postContent).then( (response) => {
+    NewsletterService.sendContent(content, preContent, postContent, newsletter).then( (response) => {
       console.log(response);
     });
   }

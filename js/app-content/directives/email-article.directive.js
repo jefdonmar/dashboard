@@ -31,42 +31,14 @@ let emailArticle = function(ArticleService, $compile, NewsletterService) {
       </table>
     `,
     link: function (scope, element, attrs) {
-      console.clear();
-      console.log('scope', scope);
-      console.log('element', element);
-      console.log('attrs', attrs);
-      // console.log(element[0]);
-      // console.clear();
-      console.log(element[0].innerHTML);
-      // old param for angular.element 
-      // element[0].innerHTML
+      // console.log(element[0].innerHTML);
       var template = angular.element(element[0].innerHTML);
       var linkFunction = $compile(template);
       var content = linkFunction(scope);
-      // console.log(content[0].children);
-      console.log(content);
-      // var contentChildren = content[0].children;
-      // console.log(contentChildren);
-      // var contentCode = [];
-      // console.log('jd', typeof contentChildren, contentChildren, contentChildren.forEach);
-      // Array.from(contentChildren).forEach( function(child) {
-      //   console.log(child);
-      //   contentCode.push(child.outerHTML);
-      // });
-      // for(let child of contentChildren) {
-      //   console.log(child);
-      //   contentCode.push(child.outerHTML);
-      // }
-      // console.clear();
-      // console.log(contentCode);
-      // console.log(contentCode.join(''));
-      console.log(content);
-
 
       setTimeout( function () {
         NewsletterService.tempContent.push(content[0].innerHTML);
-        // console.log(content[0].outerHTML);
-        console.log(NewsletterService.tempContent);
+        // console.log(NewsletterService.tempContent);
       }, 0);
     }
   };

@@ -92,7 +92,10 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
   vm.sendNews = sendNews;
   vm.getAllSubscribers = getAllSubscribers;
 
+  var newsletter = {};
   var articles = [];
+  var subscribers = [];
+  var allEmails = [];
 
   $scope.subjects = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
 
@@ -100,36 +103,49 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
 
   function getAllSubscribers() {
     NewsletterService.getAllSubscribers().then(function (response) {
-      console.log(response);
-      vm.subscribers = response.data.subscriber;
+      // console.log(response);
+      var allSubscribers = response.data.subscriber;
+      vm.subscribers = allSubscribers;
+      subscribers = allSubscribers;
+      subscribers.forEach(function (subscriber) {
+        allEmails.push(subscriber.email);
+      });
+      console.log('ALL SUBSCRIBERS', subscribers);
+      console.log('EMAILS', allEmails);
     });
   }
 
   function getSubjectsForNewsletter(newsObj) {
-    console.log(newsObj);
-    console.log(newsObj.subjectNames);
+    newsletter.name = newsObj.name;
+    newsletter.to = newsObj.to;
+    console.log('NEWSLETTER', newsletter);
     var subjects = newsObj.subjectNames;
+
+    // Get the right subcribers associated with the subjects
+    NewsletterService.getMatchedSubscribers(subjects);
+
+    // Populate newsletter preview with relevant subjects
     subjects.forEach(function (subject) {
       NewsletterService.getSubjects(subject).then(function (response) {
-        console.log(response.data.subject.articles);
+        // console.log(response.data.subject.articles);
         var newArticles = response.data.subject.articles;
         newArticles.forEach(function (article) {
-          console.log(article);
           articles.push(article);
-          console.log(articles);
           $scope.articles = articles;
         });
       });
     });
   }
 
-  function sendNews() {
+  function sendNews(newsletter, sub) {
     console.clear();
     console.log('Newsletter sent here');
+    console.log(newsletter.name);
+    console.log(newsletter.to);
     var content = NewsletterService.tempContent.join();
     var preContent = NewsletterService.preContent;
     var postContent = NewsletterService.postContent;
-    NewsletterService.sendContent(content, preContent, postContent).then(function (response) {
+    NewsletterService.sendContent(content, preContent, postContent, newsletter).then(function (response) {
       console.log(response);
     });
   }
@@ -340,41 +356,14 @@ var emailArticle = function emailArticle(ArticleService, $compile, NewsletterSer
     // controller: 'SubscriberRowController as vm', // Not needed?
     template: '\n     <table style="border: none;background-color: white;">\n        <tr width="600" style="padding = 0px;">\n          <td width="100%" style="padding = 0px;" >\n            <h5 style="border-bottom: 1px solid black; padding-bottom: 3px;">\n              {{ article.title }}\n            </h5>\n          </td>\n        </tr>\n        <tr width="600" style="background-color: white;">\n          <td  width="100%">\n            <img src="{{ article.media }}">\n          </td>\n        </tr>\n        <tr width="600" style="background-color: white;">\n          <td  width="100%">\n            <p>{{ article.content }}</p>\n          </td>\n        </tr>\n      </table>\n    ',
     link: function link(scope, element, attrs) {
-      console.clear();
-      console.log('scope', scope);
-      console.log('element', element);
-      console.log('attrs', attrs);
-      // console.log(element[0]);
-      // console.clear();
-      console.log(element[0].innerHTML);
-      // old param for angular.element
-      // element[0].innerHTML
+      // console.log(element[0].innerHTML);
       var template = angular.element(element[0].innerHTML);
       var linkFunction = $compile(template);
       var content = linkFunction(scope);
-      // console.log(content[0].children);
-      console.log(content);
-      // var contentChildren = content[0].children;
-      // console.log(contentChildren);
-      // var contentCode = [];
-      // console.log('jd', typeof contentChildren, contentChildren, contentChildren.forEach);
-      // Array.from(contentChildren).forEach( function(child) {
-      //   console.log(child);
-      //   contentCode.push(child.outerHTML);
-      // });
-      // for(let child of contentChildren) {
-      //   console.log(child);
-      //   contentCode.push(child.outerHTML);
-      // }
-      // console.clear();
-      // console.log(contentCode);
-      // console.log(contentCode.join(''));
-      console.log(content);
 
       setTimeout(function () {
         NewsletterService.tempContent.push(content[0].innerHTML);
-        // console.log(content[0].outerHTML);
-        console.log(NewsletterService.tempContent);
+        // console.log(NewsletterService.tempContent);
       }, 0);
     }
   };
@@ -542,7 +531,7 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
   console.log('NewsletterService is working');
 
   function Newsletter(newsObj) {
-    this.newsName = newsObj.name;
+    // this.newsName     = newsObj.name;
     this.subjects = newsObj.subjectNames.toString();
   }
 
@@ -551,11 +540,7 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
   this.sendContent = sendContent;
   this.preContent = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="viewport" content="width=device-width"/></head><body><table class="body" style="width: 100%;"><tr><td class="center" align="center" valign="center"><p style="text-align: center;">Click to view in your browser</p></td></tr><tr><td class="wrapper"><table>';
   this.postContent = '</table></td></tr></table></body></html>';
-
-  // was preContent
-  // <td class="wrapper"><table>
-  // was postContent
-  // </table></td>
+  this.getMatchedSubscribers = getMatchedSubscribers;
 
   function getSubjects(subject) {
     return $http.get(url + 'subject/' + subject, HEROKU.CONFIG);
@@ -565,15 +550,20 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
     return $http.get(url + 'subscribers', HEROKU.CONFIG);
   }
 
-  function sendContent(content, preContent, postContent) {
+  function sendContent(content, preContent, postContent, newsletter) {
     console.log(content);
     console.log(preContent);
     console.log(postContent);
+    console.log('NEWSLETTER', newsletter);
     return $http.post(url + 'emails', {
       html: preContent + content + postContent,
-      subject: 'Test',
-      email: 'sara.e.klein@gmail.com'
+      subject: newsletter.name,
+      email: newsletter.to
     }, HEROKU.CONFIG);
+  }
+
+  function getMatchedSubscribers(subjects) {
+    console.log('SUBJECTS TO MATCH', subjects);
   }
 };
 
@@ -899,7 +889,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var EditSubscriberController = function EditSubscriberController($state, SubscriberService, $stateParams) {
+var EditSubscriberController = function EditSubscriberController($state, SubscriberService, $stateParams, $scope) {
 
   console.log('Edit Subscriber Controller');
 
@@ -908,6 +898,8 @@ var EditSubscriberController = function EditSubscriberController($state, Subscri
   vm.submitSubEdits = submitSubEdits;
 
   activate();
+
+  $scope.subject_names = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
 
   function activate() {
     SubscriberService.getSingleSubscriber($stateParams.id).then(function (response) {
@@ -922,12 +914,12 @@ var EditSubscriberController = function EditSubscriberController($state, Subscri
     console.log(subscriberId);
     SubscriberService.editSubscriber(subscriber).then(function (response) {
       console.log(response);
-      $state.go('root.view-subscriber', { id: subscriberId });
+      $state.go('root.view-subscribers');
     });
   }
 };
 
-EditSubscriberController.$inject = ['$state', 'SubscriberService', '$stateParams'];
+EditSubscriberController.$inject = ['$state', 'SubscriberService', '$stateParams', '$scope'];
 
 exports['default'] = EditSubscriberController;
 module.exports = exports['default'];
@@ -1041,9 +1033,15 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     enableSorting: true,
     enableFiltering: true,
     enableColumnResizing: true,
-    columnDefs: [{ field: 'id', width: '10%', minWidth: 20 }, { field: 'email', width: '10%' }, { field: 'subject_names', width: '30%' },
-    // { field: 'subject_names.includes(\'baseball\'), width: '10%'},
-    { field: 'created_at.substring(0,4)', name: 'Year', width: '10%' }, { field: 'created_at.substring(5,7)', name: 'Month', width: '10%' }, { field: 'created_at.substring(8,10)', name: 'Day', width: '10%' }]
+    columnDefs: [
+    // { field: 'id', width: '5%'},
+    { field: 'email', width: '30%' }, { field: 'subject_names', width: '35%' },
+    // { field: 'subject_names.includes("Baseball")', name: 'Baseball', width: '*'},
+    // { field: 'subject_names.includes("Basketball")', name: 'Basketball', width: '*'},
+    // { field: 'subject_names.includes("Football")', name: 'Football', width: '*'},
+    // { field: 'subject_names.includes("Hockey")', name: 'Hockey', width: '*'},
+    // { field: 'subject_names.includes("Soccer")', name: 'Soccer', width: '*'},
+    { field: 'created_at.substring(0,4)', name: 'Yr', width: '10%', enableCellEdit: false }, { field: 'created_at.substring(5,7)', name: 'Mo', width: '10%', enableCellEdit: false }, { field: 'created_at.substring(8,10)', name: 'Day', width: '*', enableCellEdit: false }]
   };
 
   $scope.gridOptions.onRegisterApi = function (gridApi) {
