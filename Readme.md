@@ -10,6 +10,7 @@ In this application we used:
   + Angular-UI-Grid
   + Angular-Moment
   + Angular-Cookies
+  +
 
 Here is a link to our repository : 
 
