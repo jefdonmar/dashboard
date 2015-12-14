@@ -9,6 +9,9 @@ $BrightBlue: #39bced;
 $White: #FFFFFF;
 $LightGrey: #EDEDED;
 $DarkGrey: #E5E5E0;
+$iconBoxWidth: 30px;
+$customTextPadding: 6px 6px 6px 40px;
+$iconBoxBorder: 1px solid $LightGrey;
 
 
 
@@ -41,6 +44,7 @@ body {
 
 .home {
   background: $White;
+  width: 100%;
 
   h3 {
     text-align: center
@@ -199,27 +203,34 @@ body {
   .log-in {
     padding: 5px;
 
+    .fa {
+      display: block;
+      margin: 30% auto;
+    }
+
     .user-container {
       position: relative;
 
       .user-ph {
         display: inline-block;
-        width: 20px;
-        height: auto;
+        width: $iconBoxWidth;
+        height: 100%;
         font-size: 14px;
         font-weight: normal;
         position: absolute;
         text-align: center;
         text-shadow: 0 1px 0 #ffffff;
         background-color: #eeeeee;
-        left: 3px;
-        top: 3px;
-        bottom: 3px;
+        // left: 3px;
+        // top: 3px;
+        // bottom: 3px;
         z-index: 3;
+        border: $iconBoxBorder;
+        border-right: none;
       }
 
       .custom-text {
-        padding:6px 6px 6px 30px;
+        padding: $customTextPadding;
       }
     }
   
@@ -228,21 +239,23 @@ body {
 
       .password-ph {
         display: inline-block;
-        width:  auto;
-        height: auto;
+        width: $iconBoxWidth;
+        height: 100%;
         font-size: 14px;
         font-weight: normal;
         position: absolute;
         text-align: center;
         text-shadow: 0 1px 0 #ffffff;
         background-color: #eeeeee;
-        left: 3px;
-        top: 3px;
-        bottom: 3px;
+        // left: 3px;
+        // top: 3px;
+        // bottom: 3px;
         z-index: 3;
+        border: $iconBoxBorder;
+        border-right: none;
       }
       .custom-text {
-        padding:6px 6px 6px 30px;
+        padding: $customTextPadding;
       }
     }
 
@@ -304,27 +317,34 @@ body {
   .sign-up{
     padding: 5px;
 
+    .fa {
+      display: block;
+      margin: 30% auto;
+    }
+
     .company-container{
       position: relative;
       
 
       .company-ph {
         display: inline-block;
-        width:  auto;
-        height: auto;
+        width: $iconBoxWidth;
+        height: 100%;
         font-size: 14px;
         font-weight: normal;
         position: absolute;
         text-align: center;
         text-shadow: 0 1px 0 #ffffff;
         background-color: #eeeeee;
-        left: 3px;
-        top: 3px;
-        bottom: 3px;
+        // left: 3px;
+        // top: 3px;
+        // bottom: 3px;
         z-index: 3;
+        border: $iconBoxBorder;
+        border-right: none;
       }
       .custom-text {
-        padding:6px 6px 6px 30px;
+        padding: $customTextPadding;
       }
     }
 
@@ -334,22 +354,24 @@ body {
 
       .user-ph {
         display: inline-block;
-        width: 20px;
-        height: auto;
+        width: $iconBoxWidth;
+        height: 100%;
         font-size: 14px;
         font-weight: normal;
         position: absolute;
         text-align: center;
         text-shadow: 0 1px 0 #ffffff;
         background-color: #eeeeee;
-        left: 3px;
-        top: 3px;
-        bottom: 3px;
+        // left: 3px;
+        // top: 3px;
+        // bottom: 3px;
         z-index: 3;
+        border: $iconBoxBorder;
+        border-right: none;
       }
 
       .custom-text {
-        padding:6px 6px 6px 30px;
+        padding: $customTextPadding;
       }
     }
   
@@ -359,21 +381,23 @@ body {
 
       .password-ph {
         display: inline-block;
-        width:  auto;
-        height: auto;
+        width: $iconBoxWidth;
+        height: 100%;
         font-size: 14px;
         font-weight: normal;
         position: absolute;
         text-align: center;
         text-shadow: 0 1px 0 #ffffff;
         background-color: #eeeeee;
-        left: 3px;
-        top: 3px;
-        bottom: 3px;
+        // left: 3px;
+        // top: 3px;
+        // bottom: 3px;
         z-index: 3;
+        border: $iconBoxBorder;
+        border-right: none;
       }
       .custom-text {
-        padding:6px 6px 6px 30px;
+        padding: $customTextPadding;
       }
     }
 
@@ -478,17 +502,31 @@ body {
 
   .logo {
     background-color: $White;
+    margin-bottom: 0px;
+    border: 6px solid $Navy;
+  }
+
+  #articleImg {
+    display: block;
+    margin: 0 auto;
+  }
+
+  h3, p {
+    text-align: center;
   }
   
   .article-form {
-    background-color: $White;
+    // background-color: $White;
+    padding: 15px;
 
     .article {
-      background-color: $White;
+      // background-color: $White;
     }
 
     button.submit {
-      color: $Navy;
+      background-color: $Navy;
+      display: block;
+      margin: 15px auto;
     }
   }  
 }
@@ -500,7 +538,17 @@ body {
   background-color: $White;
   padding: 10px;
 
+  .view-article-card {
+    border-bottom: 1px solid $Navy;
+    padding-top: 25px;
+    width: 90%;
+    margin: 0 auto;
+  }
+
   .top {
+
+     width: 90%;
+    margin: 0 auto;
 
     h3 {
       text-align: center; 
@@ -509,6 +557,9 @@ body {
 
     button {
       background-color: $Navy;
+      position: absolute;
+      right: 0;
+      top: 0;
 
     }
   }
@@ -542,6 +593,7 @@ body {
     width: 450px;
     margin-left: 15%;
     border: 6px solid $Navy;
+    padding: 15px;
 
     p {
       text-align: center;
@@ -568,12 +620,13 @@ body {
    
   }
   .submit {
-    display: inline-block;
+    display: block;
+    margin: 0 auto;
     background-color: $Navy;
     width: 50%;
     height: auto;
     border-radius: 5px;
-    margin-left: 27%;
+    margin-bottom: 20px;
   }
 }
 
