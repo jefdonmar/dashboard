@@ -43,76 +43,7 @@ body {
 
 
 
-// Welcome View
 
-.welcome {
-  background-color: $LightGrey;
-  border: 5px solid $Navy;
-
-  p {
-    padding: 10px;
-    text-align: center;
-
-  }
-
-  .rowOne {
-    display: inline-block;
-    margin-left: 10px;
-    margin-right: 10px;
-
-    .leftOne {
-      float: left;
-      margin-right: 20px;
-
-      img {
-        width: 300px;
-        height: 300px;
-      }
-
-    }
-
-    .rightOne{
-      float: right;
-      margin-left: 20px;
-
-      img {
-        width: 300px;
-        height: 300px;
-      }
-
-    }
-
-  }
-
-  .rowTwo {
-    display: inline-block;
-    margin-left: 10px;
-    margin-right: 10px;
-
-    .leftTwo {
-      float: left;
-      margin-right: 20px;
-
-      img {
-        width: 300px;
-        height: 300px;
-      }
-
-    }
-
-    .rightTwo{
-      float: right;
-      margin-left: 20px;
-
-      img {
-        width: 300px;
-        height: 300px;
-      }
-
-    }
-
-  }
-} 
 
 
 // Add- Article View 
@@ -201,6 +132,8 @@ body {
 // Add-Subscriber View
 
 .addsubscriber {
+display: block;
+
 
   h3 {
     font-weight: bold;
@@ -208,9 +141,6 @@ body {
 
   .add-subscriber {
     background-color: white;
-    height: 550px;
-    width: 450px;
-    margin-left: 15%;
     border: 6px solid $Navy;
     padding: 15px;
 
@@ -245,7 +175,7 @@ body {
     width: 50%;
     height: auto;
     border-radius: 5px;
-    margin-bottom: 20px;
+    padding: 10px;
   }
 }
 
@@ -454,7 +384,7 @@ div.ui-grid-pager-panel {
 }
 
 
-// view subs
+// View-Subscribers
 
 .view-subs-nav {
   display: inline-block;
@@ -479,6 +409,7 @@ div.ui-grid-pager-panel {
 @import "homepage";
 @import "login";
 @import "signup";
+@import "welcome";
 
 
 

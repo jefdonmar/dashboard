@@ -1,0 +1,346 @@
+// Welcome View
+
+.welcome {
+  background-color: $LightGrey;
+  border: 5px solid $Navy;
+  display: block;
+
+  p {
+    padding: 10px;
+    text-align: center;
+
+  }
+
+  .rowOne {
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    .leftOne {
+      float: left;
+      margin-right: 20px;
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+
+    }
+
+    .rightOne{
+      float: right;
+      margin-left: 20px;
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+
+    }
+
+  }
+
+  .rowTwo {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    .leftTwo {
+      float: left;
+      margin-right: 20px;
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+
+    }
+
+    .rightTwo{
+      float: right;
+      margin-left: 20px;
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+
+    }
+
+  }
+
+  @media screen and (max-width: 753px){
+
+    p {
+      padding: 10px;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+    }
+
+    .rowOne {
+      display: block;
+     
+
+      .leftOne {
+        float: left;
+        margin-right: 20px;
+        
+
+        img {
+          width: 200px;
+          height: 200px;
+        }
+
+      }
+
+      .rightOne{
+        float: right;
+        margin-left: 20px;
+
+
+        img {
+          width: 200px;
+          height: 200px;
+        }
+
+      }
+
+    }
+
+    .rowTwo {
+      display: inline-block;
+      margin-left: 10px;
+      margin-right: 10px;
+
+      .leftTwo {
+        float: left;
+        margin-right: 20px;
+
+        img {
+          width: 200px;
+          height: 200px;
+        }
+
+      }
+
+      .rightTwo{
+        float: right;
+        margin-left: 20px;
+
+        img {
+          width: 200px;
+          height: 200px;
+        }
+
+      }
+
+    }
+
+  }
+
+  @media screen and (max-width: 535px){
+
+    p {
+      padding: 10px;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+    }
+
+    .rowOne {
+      display: block;
+     
+
+      .leftOne {
+        float: left;
+        margin-right: 20px;
+        
+
+        img {
+          width: 150px;
+          height: 150px;
+        }
+
+      }
+
+      .rightOne{
+        float: right;
+        margin-left: 20px;
+
+
+        img {
+          width: 150px;
+          height: 150px;
+        }
+
+      }
+
+    }
+
+    .rowTwo {
+      display: inline-block;
+      margin-left: 10px;
+      margin-right: 10px;
+
+      .leftTwo {
+        float: left;
+        margin-right: 20px;
+
+        img {
+          width: 150px;
+          height: 150px;
+        }
+
+      }
+
+      .rightTwo{
+        float: right;
+        margin-left: 20px;
+
+        img {
+          width: 150px;
+          height: 150px;
+        }
+
+      }
+
+    }
+  }
+
+  @media screen and (max-width: 430px){
+
+    p {
+      padding: 10px;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+    }
+
+    .rowOne {
+      display: block;
+     
+
+      .leftOne {
+        float: left;
+        margin-right: 20px;
+        
+
+        img {
+          width: 125px;
+          height: 125px;
+        }
+
+      }
+
+      .rightOne{
+        float: right;
+        margin-left: 20px;
+
+
+        img {
+          width: 125px;
+          height: 125px;
+        }
+
+      }
+
+    }
+
+    .rowTwo {
+      display: inline-block;
+      margin-left: 10px;
+      margin-right: 10px;
+
+      .leftTwo {
+        float: left;
+        margin-right: 20px;
+
+        img {
+          width: 125px;
+          height: 125px;
+        }
+
+      }
+
+      .rightTwo{
+        float: right;
+        margin-left: 20px;
+
+        img {
+          width: 125px;
+          height: 125px;
+        }
+
+      }
+
+    }
+  }
+
+  @media screen and (max-width: 420px){
+
+    p {
+      padding: 10px;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+    }
+
+    .rowOne {
+      display: block;
+     
+
+      .leftOne {
+        float: left;
+        margin-right: 20px;
+        
+
+        img {
+          width: 75px;
+          height: 75px;
+        }
+
+      }
+
+      .rightOne{
+        float: right;
+        margin-left: 20px;
+
+
+        img {
+          width: 75px;
+          height: 75px;
+        }
+
+      }
+
+    }
+
+    .rowTwo {
+      display: block;
+
+      .leftTwo {
+        float: left;
+        margin-right: 20px;
+
+        img {
+          width: 100px;
+          height: 100px;
+        }
+
+      }
+
+      .rightTwo{
+        float: right;
+        margin-left: 20px;
+
+        img {
+          width: 100px;
+          height: 100px;
+        }
+
+      }
+
+    }
+  }
+} 
