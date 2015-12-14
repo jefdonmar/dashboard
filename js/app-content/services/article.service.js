@@ -9,6 +9,7 @@ let ArticleService = function($http, HEROKU) {
   this.editArticle = editArticle;
   this.deleteArticle = deleteArticle;
   this.getSubjectArticles = getSubjectArticles;
+  this.getSubscribers = getSubscribers;
 
 
   function addArticle (article, fileObj) {
@@ -47,6 +48,10 @@ let ArticleService = function($http, HEROKU) {
 
   function getSubjectArticles (subjectName) {
     return $http.get(subjectURL + subjectName, HEROKU.CONFIG);
+  }
+
+  function getSubscribers (articleId) {
+    return $http.get(url + '/' + articleId + '/' + 'subscribers', HEROKU.CONFIG);
   }
 
 

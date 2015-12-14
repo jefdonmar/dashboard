@@ -21,6 +21,11 @@ let EditSubscriberController = function($state, SubscriberService, $stateParams,
       console.log(response);
       vm.subscriber = response.data.subscriber;
       console.log(vm.subscriber);
+      let subscriber = vm.subscriber;
+      SubscriberService.getArticles(subscriber.id).then( (response) => {
+        console.log('ARTICLES', response.data.subscriber.articles);
+        vm.associatedArticles = response.data.subscriber.articles;
+      });
     });
   }
 

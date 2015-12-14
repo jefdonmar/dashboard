@@ -3,13 +3,17 @@
 <p><a href="#/view-subscribers">View all subscribers</a></p>
 
 
+<p>Current relevant articles: {{ vm.associatedArticles.length }}</p>
+
 <form ng-submit="vm.submitSubEdits(vm.subscriber)">
   <label>
     Email address: 
     <input ng-model="vm.subscriber.email">
   </label>
   <label>
+    Subject names:
     <input ng-model="vm.subscriber.subject_names">
   </label>
+  <p>Note: Separate subject names by commas</p>
   <button>Submit</button>
 </form>
