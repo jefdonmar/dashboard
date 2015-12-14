@@ -8421,7 +8421,8 @@ body {
   height: 47px; }
 
 .home {
-  background: #FFFFFF; }
+  background: #FFFFFF;
+  width: 100%; }
   .home h3 {
     text-align: center; }
   .home .homeImage {
@@ -8516,42 +8517,43 @@ body {
       font-weight: bold; }
   .login .log-in {
     padding: 5px; }
+    .login .log-in .fa {
+      display: block;
+      margin: 30% auto; }
     .login .log-in .user-container {
       position: relative; }
       .login .log-in .user-container .user-ph {
         display: inline-block;
-        width: 20px;
-        height: auto;
+        width: 30px;
+        height: 100%;
         font-size: 14px;
         font-weight: normal;
         position: absolute;
         text-align: center;
         text-shadow: 0 1px 0 #ffffff;
         background-color: #eeeeee;
-        left: 3px;
-        top: 3px;
-        bottom: 3px;
-        z-index: 3; }
+        z-index: 3;
+        border: 1px solid #EDEDED;
+        border-right: none; }
       .login .log-in .user-container .custom-text {
-        padding: 6px 6px 6px 30px; }
+        padding: 6px 6px 6px 40px; }
     .login .log-in .password-container {
       position: relative; }
       .login .log-in .password-container .password-ph {
         display: inline-block;
-        width: auto;
-        height: auto;
+        width: 30px;
+        height: 100%;
         font-size: 14px;
         font-weight: normal;
         position: absolute;
         text-align: center;
         text-shadow: 0 1px 0 #ffffff;
         background-color: #eeeeee;
-        left: 3px;
-        top: 3px;
-        bottom: 3px;
-        z-index: 3; }
+        z-index: 3;
+        border: 1px solid #EDEDED;
+        border-right: none; }
       .login .log-in .password-container .custom-text {
-        padding: 6px 6px 6px 30px; }
+        padding: 6px 6px 6px 40px; }
     .login .log-in .extra input {
       margin-left: 10px; }
     .login .log-in .extra a {
@@ -8588,60 +8590,60 @@ body {
       font-weight: bold; }
   .signup .sign-up {
     padding: 5px; }
+    .signup .sign-up .fa {
+      display: block;
+      margin: 30% auto; }
     .signup .sign-up .company-container {
       position: relative; }
       .signup .sign-up .company-container .company-ph {
         display: inline-block;
-        width: auto;
-        height: auto;
+        width: 30px;
+        height: 100%;
         font-size: 14px;
         font-weight: normal;
         position: absolute;
         text-align: center;
         text-shadow: 0 1px 0 #ffffff;
         background-color: #eeeeee;
-        left: 3px;
-        top: 3px;
-        bottom: 3px;
-        z-index: 3; }
+        z-index: 3;
+        border: 1px solid #EDEDED;
+        border-right: none; }
       .signup .sign-up .company-container .custom-text {
-        padding: 6px 6px 6px 30px; }
+        padding: 6px 6px 6px 40px; }
     .signup .sign-up .user-container {
       position: relative; }
       .signup .sign-up .user-container .user-ph {
         display: inline-block;
-        width: 20px;
-        height: auto;
+        width: 30px;
+        height: 100%;
         font-size: 14px;
         font-weight: normal;
         position: absolute;
         text-align: center;
         text-shadow: 0 1px 0 #ffffff;
         background-color: #eeeeee;
-        left: 3px;
-        top: 3px;
-        bottom: 3px;
-        z-index: 3; }
+        z-index: 3;
+        border: 1px solid #EDEDED;
+        border-right: none; }
       .signup .sign-up .user-container .custom-text {
-        padding: 6px 6px 6px 30px; }
+        padding: 6px 6px 6px 40px; }
     .signup .sign-up .password-container {
       position: relative; }
       .signup .sign-up .password-container .password-ph {
         display: inline-block;
-        width: auto;
-        height: auto;
+        width: 30px;
+        height: 100%;
         font-size: 14px;
         font-weight: normal;
         position: absolute;
         text-align: center;
         text-shadow: 0 1px 0 #ffffff;
         background-color: #eeeeee;
-        left: 3px;
-        top: 3px;
-        bottom: 3px;
-        z-index: 3; }
+        z-index: 3;
+        border: 1px solid #EDEDED;
+        border-right: none; }
       .signup .sign-up .password-container .custom-text {
-        padding: 6px 6px 6px 30px; }
+        padding: 6px 6px 6px 40px; }
     .signup .sign-up .advice p {
       text-align: center; }
     .signup .sign-up button {
@@ -8694,23 +8696,43 @@ body {
         height: 300px; }
 
 .addArticle .logo {
-  background-color: #FFFFFF; }
+  background-color: #FFFFFF;
+  margin-bottom: 0px;
+  border: 6px solid #082c38; }
+
+.addArticle #articleImg {
+  display: block;
+  margin: 0 auto; }
+
+.addArticle h3, .addArticle p {
+  text-align: center; }
 
 .addArticle .article-form {
-  background-color: #FFFFFF; }
-  .addArticle .article-form .article {
-    background-color: #FFFFFF; }
+  padding: 15px; }
   .addArticle .article-form button.submit {
-    color: #082c38; }
+    background-color: #082c38;
+    display: block;
+    margin: 15px auto; }
 
 .viewArticles {
   background-color: #FFFFFF;
   padding: 10px; }
-  .viewArticles .top h3 {
-    text-align: center;
-    font-weight: bold; }
-  .viewArticles .top button {
-    background-color: #082c38; }
+  .viewArticles .view-article-card {
+    border-bottom: 1px solid #082c38;
+    padding-top: 25px;
+    width: 90%;
+    margin: 0 auto; }
+  .viewArticles .top {
+    width: 90%;
+    margin: 0 auto; }
+    .viewArticles .top h3 {
+      text-align: center;
+      font-weight: bold; }
+    .viewArticles .top button {
+      background-color: #082c38;
+      position: absolute;
+      right: 0;
+      top: 0; }
 
 .viewArticleSubjects {
   background-color: #FFFFFF;
@@ -8726,7 +8748,8 @@ body {
   height: 550px;
   width: 450px;
   margin-left: 15%;
-  border: 6px solid #082c38; }
+  border: 6px solid #082c38;
+  padding: 15px; }
   .addsubscriber .add-subscriber p {
     text-align: center;
     font-weight: bold;
@@ -8742,12 +8765,13 @@ body {
     margin-left: 42%; }
 
 .addsubscriber .submit {
-  display: inline-block;
+  display: block;
+  margin: 0 auto;
   background-color: #082c38;
   width: 50%;
   height: auto;
   border-radius: 5px;
-  margin-left: 27%; }
+  margin-bottom: 20px; }
 
 .subject-headers {
   display: inline-block;
@@ -10267,7 +10291,6 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   background-color: #082c38;
   color: white;
   margin: 10px auto;
-  margin-bottom: 20px;
   width: 600px; }
   .newsletter-form span {
     padding-bottom: 10px; }
