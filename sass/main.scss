@@ -637,11 +637,10 @@ div.html-email-container {
 
 
 .grid {
-  width: 800px;
+  width: 100%;
+  max-width: 1200px;
   display: block;
   margin: 10px auto;
-  // height: 600px;
-
 }
 
 div.ui-grid-pager-panel {
@@ -712,6 +711,10 @@ div.ui-grid-pager-panel {
   margin-right: 10px;
 }
 
+
+.top-bar {
+  background-color: $Navy;
+}
 
 
 @import "ui-grid";
