@@ -775,11 +775,16 @@ div.html-email-container {
 
 
 .grid {
-  // width: 800px;
+  width: 800px;
   display: block;
   margin: 10px auto;
-  height: 600px;
+  // height: 600px;
 
+}
+
+div.ui-grid-pager-panel {
+  background-color: $Navy;
+  color: white;
 }
 
 
@@ -797,6 +802,55 @@ div.html-email-container {
   width: 100px;
   height: 100px;
 }
+
+
+
+// View articles by subject
+
+.view-sub-heading {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.view-article-card {
+    border-bottom: 1px solid $Navy;
+    padding-top: 25px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.view-sub-link {
+
+  ul {
+    text-align: center;
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+  }
+
+    li {  
+      display: inline-block;
+      margin: 0 10px;
+    }
+}
+
+
+// view subs
+
+.view-subs-nav {
+  display: inline-block;
+  color: black;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+.view-subs-btn {
+  background-color: $Navy;
+  margin-right: 10px;
+}
+
+
 
 @import "ui-grid";
 @import "build-newsletter";

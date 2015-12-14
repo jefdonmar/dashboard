@@ -1,48 +1,49 @@
 <div class="viewArticleSubjects">
   
-  <h3>View articles by subject</h3>
+  <h3 class="view-sub-heading">View articles by subject</h3>
 
   <ul class="subject-button-list">
-    <button ng-click="vm.subjectName('Baseball')">
+    <a class="view-sub-link" ng-click="vm.subjectName('Baseball')">
       <li>
         Baseball
       </li>
-    </button>
-    <button ng-click="vm.subjectName('Basketball')">
+    </a>
+    <a class="view-sub-link" ng-click="vm.subjectName('Basketball')">
       <li>
         Basketball
       </li>
-    </button>
-    <button ng-click="vm.subjectName('Football')">
+    </a>
+    <a class="view-sub-link" ng-click="vm.subjectName('Football')">
       <li>
         Football
       </li>
-    </button>
-    <button ng-click="vm.subjectName('Hockey')">
+    </a>
+    <a class="view-sub-link" ng-click="vm.subjectName('Hockey')">
       <li>
         Hockey
       </li>
-    </button>
-    <button ng-click="vm.subjectName('Soccer')">
+    </a>
+    <a class="view-sub-link" ng-click="vm.subjectName('Soccer')">
       <li>
         Soccer
       </li>
-    </button>
+    </a>
   </ul>
 
-  <div ng-repeat="article in vm.articles">
-    <p ng-click="vm.goToArticle(article)">
-      <span class="article-title-link">
+  <div ng-repeat="article in vm.articles" class="view-article-card" ng-click="vm.goToArticle(article)">
+    <img class="small-article-img" src="{{ article.media }}}">
+    <div class="art-card-text">
+      <h3 class="art-card-headline">
         {{ article.title }}
-      </span>
-    </p>
-    <p>
-      {{ article.subject_names }}
-    </p>
-    <p>
-      {{ article.content.length }}
-    </p>
-  </div>
+      </h3>
+      <p class="art-card-subjects">
+        {{ article.subject_names }}
+      </p>
+      <p class="art-card-content">
+        {{ article.content }}
+      </p>
+      <!-- <p class="art-card-time">Time Stamp</p> -->
+    </div>
 
 </div>
 

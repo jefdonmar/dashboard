@@ -61,9 +61,8 @@ var ArticleBySubjectController = function ArticleBySubjectController($state, $sc
   function subjectName(subjNAME) {
     console.log(subjNAME);
     ArticleService.getSubjectArticles(subjNAME).then(function (response) {
-      console.log(response);
-      // vm.articles = response;
-      // console.log(vm.articles);
+      console.log('ARTICLES', response.data.subject.articles);
+      vm.articles = response.data.subject.articles;
     });
   }
 
@@ -1198,6 +1197,7 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     enableSorting: true,
     enableFiltering: true,
     enableColumnResizing: true,
+    paginationPageSize: 20,
     columnDefs: [
     // { field: 'id', width: '5%'},
     { field: 'email', width: '30%' }, { field: 'subject_names', width: '35%' },
@@ -1343,7 +1343,7 @@ var _servicesSubscriberService = require('./services/subscriber.service');
 
 var _servicesSubscriberService2 = _interopRequireDefault(_servicesSubscriberService);
 
-_angular2['default'].module('app.subscriber', ['checklist-model', 'ui.grid', 'ui.grid.resizeColumns', 'angularMoment', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.selection']).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).controller('SubscriberRowController', _controllersSubscriberRowDirectiveController2['default']).controller('EditSubscriberController', _controllersEditSubscriberController2['default']).controller('SingleSubscriberController', _controllersSingleSubscriberController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
+_angular2['default'].module('app.subscriber', ['checklist-model', 'ui.grid', 'ui.grid.resizeColumns', 'angularMoment', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.selection', 'ui.grid.pagination']).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).controller('SubscriberRowController', _controllersSubscriberRowDirectiveController2['default']).controller('EditSubscriberController', _controllersEditSubscriberController2['default']).controller('SingleSubscriberController', _controllersSingleSubscriberController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
 
 },{"./controllers/add-subscriber.controller":22,"./controllers/edit-subscriber.controller":23,"./controllers/single-subscriber.controller":24,"./controllers/subscriber-row-directive.controller":25,"./controllers/view-subscribers.controller":26,"./directives/subscriberItem.directive":27,"./services/subscriber.service":29,"angular":44,"angular-moment":40,"angular-ui-grid":41,"checklist-model":46,"moment":49}],29:[function(require,module,exports){
 'use strict';

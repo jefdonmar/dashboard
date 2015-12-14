@@ -26,6 +26,7 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
     enableSorting: true,
     enableFiltering: true,
     enableColumnResizing: true,
+    paginationPageSize: 20,
     columnDefs: [
       // { field: 'id', width: '5%'},
       { field: 'email', width: '30%'},
