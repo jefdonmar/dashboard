@@ -8788,7 +8788,8 @@ div.html-email-container {
   min-height: 150px; }
 
 .grid {
-  width: 800px;
+  width: 100%;
+  max-width: 1200px;
   display: block;
   margin: 10px auto; }
 
@@ -8837,6 +8838,9 @@ div.ui-grid-pager-panel {
 .view-subs-btn {
   background-color: #082c38;
   margin-right: 10px; }
+
+.top-bar {
+  background-color: #082c38; }
 
 /*!
  * ui-grid - v3.0.7 - 2015-10-06
@@ -10303,5 +10307,19 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       height: 200px;
       width: 200px;
       border: 6px solid #082c38; }
+  @media screen and (max-width: 720px) {
+    .home .manageImage .grid-frame .grid-block {
+      display: block;
+      margin: 2% auto; }
+      .home .manageImage .grid-frame .grid-block h3 {
+        display: block;
+        width: 90%;
+        text-align: center; }
+      .home .manageImage .grid-frame .grid-block img.managePic {
+        display: block;
+        margin: 2% auto;
+        height: 200px;
+        width: 200px;
+        border: 6px solid #082c38; } }
 
 /*# sourceMappingURL=main.css.map */
