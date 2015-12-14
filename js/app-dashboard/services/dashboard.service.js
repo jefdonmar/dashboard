@@ -8,8 +8,10 @@ let DashboardService = function($http, HEROKU) {
     this.subject_names = subObj.subject_names.toString();
   }
 
-  this.getAllSubscribers   = getAllSubscribers;
-  this.cleanDates = cleanDates;
+  this.getAllSubscribers = getAllSubscribers;
+  this.cleanDates        = cleanDates;
+
+  this.addedToday = [];
 
   function getAllSubscribers () {
     return $http.get(subscriberURL, HEROKU.CONFIG);

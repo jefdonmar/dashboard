@@ -5,6 +5,14 @@ let MainDashboardController = function($state, DashboardService, $scope) {
 
   let vm = this;
 
+  let subjects = [
+   {name: 'Football', count: 0},
+   {name: 'Baseball', count: 0}, 
+   {name: 'Basketball', count: 0},
+   {name: 'Soccer', count: 0},
+   {name: 'Hockey', count: 0}
+  ]; 
+
   DashboardService.getAllSubscribers().then( (response) => {
     console.log('SUBSCRIBERS', response.data.subscriber);
     let subscribers = response.data.subscriber; 
@@ -12,12 +20,9 @@ let MainDashboardController = function($state, DashboardService, $scope) {
 
     let today = new Date ();
     let shortToday = today.toString().substring(0,15);
-    console.log('TODAY', shortToday);
-
     subscribers.forEach( function (subscriber) {
       DashboardService.cleanDates(subscriber);
     });
-    console.log('CLEANED DATES', subscribers);
 
     let addedToday = [];
     subscribers.forEach( function (subscriber) {
@@ -28,21 +33,36 @@ let MainDashboardController = function($state, DashboardService, $scope) {
       vm.newToday = addedToday;
     });
 
+    subscribers.forEach ( function (subscriber) {
+      subjects.forEach ( function (subject) {
+        if (subscriber.subject_names.includes(subject.name)) {
+          subject.count = subject.count + 1;
+        }
+      });
+    });
+   
+  console.log('AFTER SUBJECT', subjects);
+  let subjectNames = [];
+  let subjectCounts = [];
+
+  subjects.forEach ( function (subject) {
+    subjectNames.push(subject.name);
+    subjectCounts.push(subject.count);
   });
 
+  console.log('NAMES', subjectNames);
+  console.log('COUNTS', subjectCounts);
 
-  // Doughnut Chart for Subscriber Preferences
-  $scope.piePrefLabels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-  $scope.piePrefData = [300, 500, 100];
+  // Pie Chart for Subscriber Preferences
+  $scope.piePrefLabels = subjectNames;
+  $scope.piePrefData = subjectCounts;
 
+  // Preferences bar graph
+  $scope.subBarLabels = subjectNames;
+  $scope.subBarData = [subjectCounts];
 
-  // Subject subscriber bar graph
-  $scope.subBarLabels = ['Baseball', 'Basketball', 'Football', 'Hockey', 'Soccer'];
-  // $scope.subBarSeries = ['Series A', 'Series B'];
+  });
 
-  $scope.subBarData = [
-    [65, 59, 80, 81, 56, 55, 40]
-  ];
 
 
 };
