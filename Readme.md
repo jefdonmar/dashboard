@@ -1,6 +1,19 @@
-## Welcome to My Project
+## Welcome to StreamLine (The Iron Yard - ATL Final Project Dec 2015)
 
-> I am your Readme.md file, you should probably update me.
+This is our final demo day project called StreamLine. StreamLine is an email curation application that allows for users to send a variety of different newsletter campaigns based individualized subscriber preferences. The goal with this project was to build and automated  individualized email specifically catered to what a subscriber wants to see 100% of the time, versus them having to shift through a general campaign email to get the information that they way to see. We aimed to make each subscriber feel special in receiving content that they want, while also not creating extra work for the users that are supplying these emails to them. 
+
+In this application we used:
+  + AngularJS
+  + ChartJS
+  + Angular-Foundation
+  + Checklist-ModelJS
+  + Angular-UI-Grid
+  + Angular-Moment
+  + Angular-Cookies
+
+Here is a link to our repository : 
+
+We hope you enjoy! 
 
 
 ## Usage
