@@ -15,9 +15,8 @@ let ArticleBySubjectController = function($state, $scope, ArticleService) {
   function subjectName (subjNAME) {
     console.log(subjNAME);
     ArticleService.getSubjectArticles(subjNAME).then( (response)=> {
-      console.log(response);
-      // vm.articles = response;
-      // console.log(vm.articles);
+      console.log('ARTICLES', response.data.subject.articles);
+      vm.articles = response.data.subject.articles;
     });
   }
 

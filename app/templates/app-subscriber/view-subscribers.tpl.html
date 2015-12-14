@@ -1,14 +1,13 @@
 <h3>My subscribers</h3>
 
-<a href="#/main-dashboard"><span>Go to dashboard</span></a>
+<a class="view-subs-nav" href="#/main-dashboard"><span>Go to dashboard</span></a>
 
+<a class="view-subs-nav" href="#/build-newsletter"><span>Build a newsletter</span></a>
+<br>
 <br>
 
-<a href="#/build-newsletter"><span>Build a newsletter</span></a>
-
-
-<button ng-click="deleteMe()">Delete selected row</button>
-<button ng-click="viewMe()">Edit selected subscriber</button>
+<button class="view-subs-btn" ng-click="deleteMe()">Delete selected row</button>
+<button class="view-subs-btn" ng-click="viewMe()">Edit selected subscriber</button>
 
 <!-- If you comment this out, the other table shows up -->
 <div 
@@ -17,8 +16,10 @@
   ui-grid-resize-columns
   ui-grid-edit
   ui-grid-cellNav
-  ui-grid-selection>
+  ui-grid-selection
+  ui-grid-pagination>
 </div>
+
 
 
 <!-- <table>

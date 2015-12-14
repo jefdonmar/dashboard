@@ -8863,9 +8863,13 @@ div.html-email-container {
   min-height: 150px; }
 
 .grid {
+  width: 800px;
   display: block;
-  margin: 10px auto;
-  height: 600px; }
+  margin: 10px auto; }
+
+div.ui-grid-pager-panel {
+  background-color: #082c38;
+  color: white; }
 
 #subjectBuildDiv {
   display: inline-block; }
@@ -8877,6 +8881,37 @@ div.html-email-container {
 .small-article-img {
   width: 100px;
   height: 100px; }
+
+.view-sub-heading {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 10px; }
+
+.view-article-card {
+  border-bottom: 1px solid #082c38;
+  padding-top: 25px;
+  width: 90%;
+  margin: 0 auto; }
+
+.view-sub-link ul {
+  text-align: center;
+  width: 90%;
+  display: block;
+  margin: 0 auto; }
+
+.view-sub-link li {
+  display: inline-block;
+  margin: 0 10px; }
+
+.view-subs-nav {
+  display: inline-block;
+  color: black;
+  margin-right: 20px;
+  margin-top: 10px; }
+
+.view-subs-btn {
+  background-color: #082c38;
+  margin-right: 10px; }
 
 /*!
  * ui-grid - v3.0.7 - 2015-10-06

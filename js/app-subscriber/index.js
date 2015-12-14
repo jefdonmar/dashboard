@@ -18,7 +18,7 @@ import subscriberItem from './directives/subscriberItem.directive';
 import SubscriberService from './services/subscriber.service';
 
 angular
-  .module('app.subscriber', ['checklist-model', 'ui.grid', 'ui.grid.resizeColumns', 'angularMoment', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.selection'])
+  .module('app.subscriber', ['checklist-model', 'ui.grid', 'ui.grid.resizeColumns', 'angularMoment', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.selection', 'ui.grid.pagination'])
   .controller('AddSubscriberController', AddSubscriberController)
   .controller('ViewSubscribersController', ViewSubscribersController)
   .controller('SubscriberRowController', SubscriberRowController)
