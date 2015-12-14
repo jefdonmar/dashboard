@@ -1,0 +1,9 @@
+<h3>Send all</h3>
+
+<button ng-click="vm.sendToAll(vm.subscribers)">Send to all</button>
+
+<p>Number of subscribers: {{ vm.subscribers.length }}</p>
+
+<ul>
+  <li ng-repeat="subscriber in vm.subscribers">{{ subscriber.email }}</li>
+</ul>

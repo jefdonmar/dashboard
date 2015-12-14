@@ -95,8 +95,6 @@ let NewsletterService = function($state, $http, HEROKU) {
     console.log('FILTERED', filteredSegment);
 
 
-
-
     // ALERT USER THAT NO SUBSCRIBERS MATCH CRITERIA
     if (filteredSegment.length < 1) {
       alert('No subscribers match selected subjects');

@@ -9,6 +9,7 @@ import EditArticleController from './controllers/edit-article.controller';
 import ArticleBySubjectController from './controllers/article-by-subject.controller';
 import BuildNewsletterController from './controllers/build-newsletter.controller';
 import PreviewNewsletterController from './controllers/preview-newsletter.controller';
+import SendAllController from './controllers/send-all.controller';
 
 // SERVICES
 import ArticleService from './services/article.service';
@@ -29,6 +30,7 @@ angular
   .controller('ArticleBySubjectController', ArticleBySubjectController)
   .controller('BuildNewsletterController', BuildNewsletterController)
   .controller('PreviewNewsletterController', PreviewNewsletterController)
+  .controller('SendAllController', SendAllController)
   // SERVICES
   .service('ArticleService', ArticleService)
   .service('NewsletterService', NewsletterService)
