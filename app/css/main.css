@@ -8422,18 +8422,21 @@ body {
 
 .home {
   background: #FFFFFF;
-  width: 100%; }
+  display: block;
+  margin: 5px auto; }
   .home h3 {
     text-align: center; }
   .home .homeImage {
-    display: inline-block;
+    display: block;
+    margin: 5px auto;
     background: #FFFFFF; }
     .home .homeImage img {
       border: 6px solid #082c38;
       float: left;
-      height: 400px;
+      display: block;
       width: 100%; }
     .home .homeImage .text {
+      display: block;
       text-align: center; }
     .home .homeImage .home-info {
       text-align: center;
@@ -8445,20 +8448,10 @@ body {
       .home .homeImage .home-info button {
         background-color: #082c38;
         margin-right: 20px; }
-  .home .manageImage {
-    display: inline-block;
-    background: #EDEDED; }
-    .home .manageImage img.managePic {
-      float: right;
-      height: 250px;
-      width: 250px;
-      border: 6px solid #082c38;
-      margin-left: 20px;
-      margin-right: 5px; }
-    .home .manageImage .text {
-      padding: 5px; }
-      .home .manageImage .text h3 {
-        text-align: center; }
+  .home .manageImage .grid-frame .grid-block {
+    height: 100%; }
+    .home .manageImage .grid-frame .grid-block img {
+      height: 100%; }
   .home .generateImage {
     display: inline-block;
     background: #FFFFFF; }
