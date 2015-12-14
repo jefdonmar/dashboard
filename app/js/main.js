@@ -796,30 +796,105 @@ var _herokuConstant2 = _interopRequireDefault(_herokuConstant);
 _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).config(_config2['default']).constant('HEROKU', _herokuConstant2['default']);
 
 },{"./config":14,"./heroku.constant":15,"angular":44,"angular-cookies":39,"angular-ui-router":42}],17:[function(require,module,exports){
-"use strict";
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
 });
 var MainDashboardController = function MainDashboardController($state, DashboardService, $scope) {
 
-  console.log('MainDashboardController check');
+  // console.clear();
 
-  // Doughnut Chart for Subscriber Preferences
-  $scope.piePrefLabels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-  $scope.piePrefData = [300, 500, 100];
+  var vm = this;
 
-  // Subject subscriber bar graph
-  $scope.subBarLabels = ['Baseball', 'Basketball', 'Football', 'Hockey', 'Soccer'];
-  // $scope.subBarSeries = ['Series A', 'Series B'];
+  var subjects = [{ name: 'Football', count: 0, articles: 0 }, { name: 'Baseball', count: 0, articles: 0 }, { name: 'Basketball', count: 0, articles: 0 }, { name: 'Soccer', count: 0, articles: 0 }, { name: 'Hockey', count: 0, articles: 0 }];
 
-  $scope.subBarData = [[65, 59, 80, 81, 56, 55, 40]];
+  DashboardService.getAllSubscribers().then(function (response) {
+    console.log('SUBSCRIBERS', response.data.subscriber);
+    var subscribers = response.data.subscriber;
+    vm.subscribers = subscribers;
+
+    var today = new Date();
+    var shortToday = today.toString().substring(0, 15);
+    subscribers.forEach(function (subscriber) {
+      DashboardService.cleanDates(subscriber);
+    });
+
+    var addedToday = [];
+    subscribers.forEach(function (subscriber) {
+      var shortDate = subscriber.created_at.toString().substring(0, 15);
+      if (shortDate === shortToday) {
+        addedToday.push(subscriber.email);
+      }
+      vm.newToday = addedToday;
+    });
+
+    subscribers.forEach(function (subscriber) {
+      subjects.forEach(function (subject) {
+        if (subscriber.subject_names.includes(subject.name)) {
+          subject.count = subject.count + 1;
+        }
+      });
+    });
+
+    console.log('AFTER SUBJECT', subjects);
+    var subjectNames = [];
+    var subjectCounts = [];
+
+    subjects.forEach(function (subject) {
+      subjectNames.push(subject.name);
+      subjectCounts.push(subject.count);
+    });
+
+    console.log('NAMES', subjectNames);
+    console.log('COUNTS', subjectCounts);
+
+    // Pie Chart for Subscriber Preferences
+    $scope.piePrefData = subjectCounts;
+
+    // Preferences bar graph
+    $scope.subBarData = [subjectCounts];
+
+    // BAR LABELS
+    $scope.subBarLabels = subjectNames;
+    $scope.articleBarLabels = subjectNames;
+
+    // PIE CHART LABELS
+    $scope.piePrefLabels = subjectNames;
+    $scope.pieArticleLabels = subjectNames;
+  });
+
+  DashboardService.getAllArticles().then(function (response) {
+    var articles = response.data.article;
+    console.log('ARTICLES', articles);
+
+    var subjectArticles = [];
+
+    articles.forEach(function (article) {
+      subjects.forEach(function (subject) {
+        if (article.subject_names.includes(subject.name)) {
+          subject.articles = subject.articles + 1;
+        }
+      });
+    });
+
+    subjects.forEach(function (subject) {
+      subjectArticles.push(subject.articles);
+    });
+
+    console.log('ARTICLE COUNTS', subjectArticles);
+    console.log('SUBJECTS', subjects);
+
+    // bar graph values
+    $scope.articleBarData = [subjectArticles];
+    $scope.pieArticleData = subjectArticles;
+  });
 };
 
 MainDashboardController.$inject = ['$state', 'DashboardService', '$scope'];
 
-exports["default"] = MainDashboardController;
-module.exports = exports["default"];
+exports['default'] = MainDashboardController;
+module.exports = exports['default'];
 
 },{}],18:[function(require,module,exports){
 'use strict';
@@ -860,12 +935,34 @@ Object.defineProperty(exports, '__esModule', {
 });
 var DashboardService = function DashboardService($http, HEROKU) {
 
-  console.log(HEROKU);
+  var subscriberURL = HEROKU.URL + 'subscribers';
+  var articleURL = HEROKU.URL + 'articles';
+  var months = [{ Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 }];
 
-  // FIND OUT NEW ROUTE FROM BACKEND
-  // let url = HEROKU.URL + '/'
+  function Subscriber(subObj) {
+    this.email = subObj.email;
+    this.subject_names = subObj.subject_names.toString();
+  }
 
-  // -- PULL DATA OBJECT FOR THE USER ---
+  this.getAllSubscribers = getAllSubscribers;
+  this.cleanDates = cleanDates;
+  this.getAllArticles = getAllArticles;
+
+  this.addedToday = [];
+
+  function getAllSubscribers() {
+    return $http.get(subscriberURL, HEROKU.CONFIG);
+  }
+
+  function cleanDates(subscriber) {
+    subscriber.created_at = new Date(subscriber.created_at);
+    return $http.put(subscriberURL + '/' + subscriber.id, subscriber, HEROKU.CONFIG);
+  }
+
+  function getAllArticles() {
+    console.log('getAllArticles function is called');
+    return $http.get(articleURL, HEROKU.CONFIG);
+  }
 };
 
 DashboardService.$inject = ['$http', 'HEROKU'];
