@@ -471,6 +471,33 @@ body {
   }
 } 
 
+
+// Add- Article View 
+
+.addArticle {
+
+  .logo {
+    background-color: $White;
+  }
+  
+  .article-form {
+    background-color: $White;
+
+    .article {
+      background-color: $White;
+    }
+
+    button.submit {
+      color: $Navy;
+    }
+
+
+  }  
+
+}
+
+
+
 // Add-Subscriber View
 
 .addsubscriber {

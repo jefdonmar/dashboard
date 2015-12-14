@@ -8693,6 +8693,16 @@ body {
         width: 300px;
         height: 300px; }
 
+.addArticle .logo {
+  background-color: #FFFFFF; }
+
+.addArticle .article-form {
+  background-color: #FFFFFF; }
+  .addArticle .article-form .article {
+    background-color: #FFFFFF; }
+  .addArticle .article-form button.submit {
+    color: #082c38; }
+
 .addsubscriber h3 {
   font-weight: bold; }
 
