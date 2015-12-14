@@ -8,15 +8,20 @@
 </ol> -->
 
 
+<ul>
+  <li ng-repeat="subscriber in vm.subscribers">{{ subscriber.email }}</li>
+</ul>
+
+
 <h4 class="dash-headlines">Subscribers</h3>
 <ul class="small-block-grid-2">
   <li class="dash-3-block">
     <h5>Total Subscribers</h5>
-    <p class="big-number-dash">100</p>
+    <p class="big-number-dash">{{ vm.subscribers.length }}</p>
   </li>
   <li class="dash-3-block">
-    <h5>Last 10 days growth</h5>
-    <p class="big-number-dash">10%</p>
+    <h5>New subscribers today</h5>
+    <p class="big-number-dash">{{ vm.newToday.length }}</p>
   </li>
 </ul>
 

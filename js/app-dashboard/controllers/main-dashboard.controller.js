@@ -1,6 +1,34 @@
 let MainDashboardController = function($state, DashboardService, $scope) {
   
-  console.log('MainDashboardController check');
+  // console.clear();
+
+
+  let vm = this;
+
+  DashboardService.getAllSubscribers().then( (response) => {
+    console.log('SUBSCRIBERS', response.data.subscriber);
+    let subscribers = response.data.subscriber; 
+    vm.subscribers = subscribers;
+
+    let today = new Date ();
+    let shortToday = today.toString().substring(0,15);
+    console.log('TODAY', shortToday);
+
+    subscribers.forEach( function (subscriber) {
+      DashboardService.cleanDates(subscriber);
+    });
+    console.log('CLEANED DATES', subscribers);
+
+    let addedToday = [];
+    subscribers.forEach( function (subscriber) {
+      let shortDate = subscriber.created_at.toString().substring(0,15);
+      if (shortDate === shortToday) {
+        addedToday.push(subscriber.email);
+      }
+      vm.newToday = addedToday;
+    });
+
+  });
 
 
   // Doughnut Chart for Subscriber Preferences

@@ -796,14 +796,40 @@ var _herokuConstant2 = _interopRequireDefault(_herokuConstant);
 _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).config(_config2['default']).constant('HEROKU', _herokuConstant2['default']);
 
 },{"./config":14,"./heroku.constant":15,"angular":44,"angular-cookies":39,"angular-ui-router":42}],17:[function(require,module,exports){
-"use strict";
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
 });
 var MainDashboardController = function MainDashboardController($state, DashboardService, $scope) {
 
-  console.log('MainDashboardController check');
+  // console.clear();
+
+  var vm = this;
+
+  DashboardService.getAllSubscribers().then(function (response) {
+    console.log('SUBSCRIBERS', response.data.subscriber);
+    var subscribers = response.data.subscriber;
+    vm.subscribers = subscribers;
+
+    var today = new Date();
+    var shortToday = today.toString().substring(0, 15);
+    console.log('TODAY', shortToday);
+
+    subscribers.forEach(function (subscriber) {
+      DashboardService.cleanDates(subscriber);
+    });
+    console.log('CLEANED DATES', subscribers);
+
+    var addedToday = [];
+    subscribers.forEach(function (subscriber) {
+      var shortDate = subscriber.created_at.toString().substring(0, 15);
+      if (shortDate === shortToday) {
+        addedToday.push(subscriber.email);
+      }
+      vm.newToday = addedToday;
+    });
+  });
 
   // Doughnut Chart for Subscriber Preferences
   $scope.piePrefLabels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
@@ -818,8 +844,8 @@ var MainDashboardController = function MainDashboardController($state, Dashboard
 
 MainDashboardController.$inject = ['$state', 'DashboardService', '$scope'];
 
-exports["default"] = MainDashboardController;
-module.exports = exports["default"];
+exports['default'] = MainDashboardController;
+module.exports = exports['default'];
 
 },{}],18:[function(require,module,exports){
 'use strict';
@@ -860,12 +886,25 @@ Object.defineProperty(exports, '__esModule', {
 });
 var DashboardService = function DashboardService($http, HEROKU) {
 
-  console.log(HEROKU);
+  var subscriberURL = HEROKU.URL + 'subscribers';
+  var months = [{ Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 }];
 
-  // FIND OUT NEW ROUTE FROM BACKEND
-  // let url = HEROKU.URL + '/'
+  function Subscriber(subObj) {
+    this.email = subObj.email;
+    this.subject_names = subObj.subject_names.toString();
+  }
 
-  // -- PULL DATA OBJECT FOR THE USER ---
+  this.getAllSubscribers = getAllSubscribers;
+  this.cleanDates = cleanDates;
+
+  function getAllSubscribers() {
+    return $http.get(subscriberURL, HEROKU.CONFIG);
+  }
+
+  function cleanDates(subscriber) {
+    subscriber.created_at = new Date(subscriber.created_at);
+    return $http.put(subscriberURL + '/' + subscriber.id, subscriber, HEROKU.CONFIG);
+  }
 };
 
 DashboardService.$inject = ['$http', 'HEROKU'];
