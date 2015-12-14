@@ -1,3 +1,5 @@
+import _ from "underscore";
+
 let NewsletterService = function($state, $http, HEROKU) {
   
   let url = HEROKU.URL;
@@ -32,12 +34,12 @@ let NewsletterService = function($state, $http, HEROKU) {
     // console.log(preContent);
     // console.log(postContent);
     console.log('NEWSLETTER', newsletter);
-    console.log('EMAIL IS TO:', emailRecipients.toString());
+    console.log('EMAIL IS TO:', emailRecipients);
     return $http.post(url + 'emails', 
       {
         html: preContent + content + postContent,
         subject: newsletter.name,
-        email: emailRecipients.toString()
+        email: emailRecipients
       },
       HEROKU.CONFIG);
   }
@@ -45,19 +47,68 @@ let NewsletterService = function($state, $http, HEROKU) {
   function getMatchedSubscribers (subjects, subscribers) {
     console.log('SUBJECTS TO MATCH', subjects);
     console.log('ALL SUBSCRIBERS', subscribers);
+    let rawList = [];
     let segmentEmails = [];
-    subscribers.forEach( function (subscriber) {
+    let numberOfSubjects = subjects.length;
+    console.log('SUBJECT COUNT', numberOfSubjects);
+    subscribers.forEach( function (subscriber) {  
       subjects.forEach( function (subject) {
-        if ( subscriber.subject_names.includes(subject) && !segmentEmails.includes(subscriber.email) ){
+        if ( subscriber.subject_names.includes(subject)  ){
+          // && !segmentEmails.includes(subscriber.email)
+          // subscriber.subject_names.includes(subject);
           segmentEmails.push(subscriber.email);
         }
       });
     });
-    console.log('SEGMENT EMAILS', segmentEmails);
-    if (segmentEmails.length < 1) {
+    console.log('BEFORE', segmentEmails);
+
+
+    // CREATE ARRAYS WITH EMAILS AND COUNT OF TIMES IT MATCHES
+    function group(segmentEmails) {
+      var each = [], count = [], prev;
+      segmentEmails.sort();
+      for ( var i = 0; i < segmentEmails.length; i++ )
+      {
+        if ( segmentEmails[i] !== prev ) {
+          each.push(segmentEmails[i]);
+          count.push(1);
+        } else {
+          count[count.length - 1]++;
+        }
+        prev = segmentEmails[i];
+      }
+      return [each, count];
+    }
+    var groups = group (segmentEmails);
+    var unzipped =  _.unzip(groups);
+    // console.log('UNZIPPED', unzipped);
+
+
+
+    // FILTER SEGMENT FOR ONLY SUBS THAT MATCH ALL SUBJECTS
+    let filteredSegment = [];
+    unzipped.forEach( function (array) {
+      if (array[1] === numberOfSubjects) {
+        filteredSegment.push(array[0]);
+      }
+    });
+    console.log('FILTERED', filteredSegment);
+
+
+
+
+    // ALERT USER THAT NO SUBSCRIBERS MATCH CRITERIA
+    if (filteredSegment.length < 1) {
       alert('No subscribers match selected subjects');
     }
-    this.segmentEmails = segmentEmails;
+
+
+    // CONVERT EMAILS TO A STRING WITH , SPACE
+    let listOfEmails = filteredSegment.toString().split(',').join(', ');
+    console.log('TO FIELD:', listOfEmails);
+
+    // SET PROPERTY OF NEWSLETTER SERVICE TO PASS TO SEND FUNCTION 
+    this.segmentEmails = listOfEmails;
   }
 
 };

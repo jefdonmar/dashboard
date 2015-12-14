@@ -8713,7 +8713,7 @@ li.view-articles-news {
   margin: 10px 0; }
 
 div.html-email-container {
-  border: 1px solid black;
+  border: 2px solid #082c38;
   width: 600px;
   min-height: 500px;
   margin: 10px auto;
@@ -10159,7 +10159,9 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   padding: 15px;
   background-color: #082c38;
   color: white;
-  margin-bottom: 20px; }
+  margin: 10px auto;
+  margin-bottom: 20px;
+  width: 600px; }
   .newsletter-form span {
     padding-bottom: 10px; }
   .newsletter-form .build-newsletter-btn {
