@@ -13,6 +13,11 @@ let SingleArticleController = function($state, ArticleService, $stateParams) {
     ArticleService.getSingleArticle($stateParams.id).then ( (response) => {
       vm.article = response.data.article;
       console.log(vm.article);
+      let article = vm.article;
+      ArticleService.getSubscribers(article.id).then( (response) => {
+        console.log('SUBSCRIBERS', response.data.article.subscribers);
+        vm.associatedSubscribers = response.data.article.subscribers;
+      });
     });
     
   }

@@ -278,6 +278,11 @@ var SingleArticleController = function SingleArticleController($state, ArticleSe
     ArticleService.getSingleArticle($stateParams.id).then(function (response) {
       vm.article = response.data.article;
       console.log(vm.article);
+      var article = vm.article;
+      ArticleService.getSubscribers(article.id).then(function (response) {
+        console.log('SUBSCRIBERS', response.data.article.subscribers);
+        vm.associatedSubscribers = response.data.article.subscribers;
+      });
     });
   }
 
@@ -472,6 +477,7 @@ var ArticleService = function ArticleService($http, HEROKU) {
   this.editArticle = editArticle;
   this.deleteArticle = deleteArticle;
   this.getSubjectArticles = getSubjectArticles;
+  this.getSubscribers = getSubscribers;
 
   function addArticle(article, fileObj) {
 
@@ -509,6 +515,10 @@ var ArticleService = function ArticleService($http, HEROKU) {
 
   function getSubjectArticles(subjectName) {
     return $http.get(subjectURL + subjectName, HEROKU.CONFIG);
+  }
+
+  function getSubscribers(articleId) {
+    return $http.get(url + '/' + articleId + '/' + 'subscribers', HEROKU.CONFIG);
   }
 };
 
@@ -1070,6 +1080,11 @@ var EditSubscriberController = function EditSubscriberController($state, Subscri
       console.log(response);
       vm.subscriber = response.data.subscriber;
       console.log(vm.subscriber);
+      var subscriber = vm.subscriber;
+      SubscriberService.getArticles(subscriber.id).then(function (response) {
+        console.log('ARTICLES', response.data.subscriber.articles);
+        vm.associatedArticles = response.data.subscriber.articles;
+      });
     });
   }
 
@@ -1366,6 +1381,7 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
   this.getSingleSubscriber = getSingleSubscriber;
   this.editSubscriber = editSubscriber;
   this.updateSubscribers = updateSubscribers;
+  this.getArticles = getArticles;
 
   function addSubscriber(subObj) {
     var sub = new Subscriber(subObj);
@@ -1402,6 +1418,10 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
   //   HEROKU.CONFIG.headers['user_id'] = $cookies.get('user_id');
   //   // token;
   // }
+
+  function getArticles(subscriberId) {
+    return $http.get(url + '/' + subscriberId + '/' + 'articles', HEROKU.CONFIG);
+  }
 };
 
 SubscriberService.$inject = ['$http', 'HEROKU', '$cookies'];

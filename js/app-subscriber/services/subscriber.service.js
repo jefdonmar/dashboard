@@ -13,6 +13,7 @@ let SubscriberService = function($http, HEROKU, $cookies) {
   this.getSingleSubscriber = getSingleSubscriber;
   this.editSubscriber      = editSubscriber;
   this.updateSubscribers   = updateSubscribers;
+  this.getArticles         = getArticles;
 
   function addSubscriber (subObj) {
     let sub = new Subscriber(subObj);
@@ -49,6 +50,10 @@ let SubscriberService = function($http, HEROKU, $cookies) {
   //   HEROKU.CONFIG.headers['user_id'] = $cookies.get('user_id');
   //   // token;
   // } 
+
+  function getArticles (subscriberId) {
+    return $http.get(url + '/' + subscriberId + '/' + 'articles', HEROKU.CONFIG);
+  }
 
 };
 
