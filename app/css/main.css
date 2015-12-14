@@ -8418,7 +8418,7 @@ body {
 .top-bar .name img {
   margin-top: -5.75px;
   width: 170px;
-  height: 47px; }
+  height: 51px; }
 
 .login {
   width: 500px;
@@ -10284,18 +10284,6 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     text-align: center;
     width: 80%;
     padding-top: 10px; }
-  .home .btn-row {
-    margin: 0 auto;
-    position: absolute;
-    display: block;
-    width: 100%;
-    max-width: 600px; }
-    .home .btn-row button {
-      background-color: #082c38;
-      display: inline-block;
-      position: relative;
-      top: 0%;
-      left: 2%; }
   .home .manageImage .grid-frame .gray {
     background-color: #EDEDED; }
   .home .manageImage .grid-frame .grid-block {
@@ -10307,6 +10295,14 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       height: 200px;
       width: 200px;
       border: 6px solid #082c38; }
+  .home .manageImage .grid-frame .btn-row {
+    margin-left: 15%;
+    margin-right: 10%; }
+    @media screen and (max-width: 740px) {
+      .home .manageImage .grid-frame .btn-row .btn-row {
+        display: block; } }
+    .home .manageImage .grid-frame .btn-row button {
+      background-color: #082c38; }
   @media screen and (max-width: 720px) {
     .home .manageImage .grid-frame .grid-block {
       display: block;
