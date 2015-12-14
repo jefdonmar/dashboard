@@ -8703,6 +8703,15 @@ body {
   .addArticle .article-form button.submit {
     color: #082c38; }
 
+.viewArticles {
+  background-color: #FFFFFF;
+  padding: 10px; }
+  .viewArticles .top h3 {
+    text-align: center;
+    font-weight: bold; }
+  .viewArticles .top button {
+    background-color: #082c38; }
+
 .addsubscriber h3 {
   font-weight: bold; }
 
