@@ -4,6 +4,7 @@
 @import "foundation";
 @import "font-awesome";
 
+
 $Navy: #082c38; 
 $BrightBlue: #39bced;
 $White: #FFFFFF;
@@ -44,25 +45,29 @@ body {
 
 .home {
   background: $White;
-  width: 100%;
+  display: block;
+  margin: 5px auto;
 
   h3 {
     text-align: center
   }
 
   .homeImage {
-    display: inline-block;
+    display: block;
+    margin: 5px auto;
     background: $White;
 
 
     img {
       border: 6px solid $Navy;
       float: left;
-      height: 400px;
+      display: block;
       width: 100%;
+      
     }
 
     .text {
+      display: block;
       text-align: center;
 
     }
@@ -83,30 +88,46 @@ body {
       }
     }
   }
+
   .manageImage {
-    display: inline-block;
-    background: $LightGrey;
 
-    img.managePic {
-      float: right;
-      height: 250px;
-      width: 250px;
-      border: 6px solid $Navy;
-      margin-left: 20px;
-      margin-right: 5px;
-      
-      
-    }
+    .grid-frame {
 
-    .text {
-      padding: 5px;
+      .grid-block {
+        height: 100%;
 
-      h3 {
-        text-align: center
+        img {
+          height: 100%;
+        }
       }
-     
     }
   }
+
+  // .manageImage {
+  //   display: block;
+  //   background: $LightGrey;
+  //   width: 100%;
+
+  //   img.managePic {
+  //     float: right;
+  //     height: 100%;
+  //     width: 250px;
+  //     border: 6px solid $Navy;
+  //     margin-left: 20px;
+  //     margin-right: 5px;
+      
+      
+  //   }
+
+  //   .text {
+  //     padding: 5px;
+
+  //     h3 {
+  //       text-align: center
+  //     }
+     
+  //   }
+  // }
   .generateImage {
     display: inline-block;
     background: $White;

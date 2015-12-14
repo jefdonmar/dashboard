@@ -44,6 +44,7 @@
     "angular-moment": "^0.10.3",
     "angular-ui-grid": "^3.0.7",
     "angular-ui-router": "^0.2.15",
+    "bourbon": "^4.2.6",
     "browserify": "^12.0.1",
     "browserify-shim": "^3.8.11",
     "chart.js": "^1.0.2",
@@ -51,6 +52,7 @@
     "font-awesome": "^4.4.0",
     "jquery": "^2.1.4",
     "moment": "^2.10.6",
+    "neat": "^1.2.2",
     "normalize.css": "^3.0.3",
     "underscore": "^1.8.3"
   },
