@@ -1,8 +1,9 @@
 <div class="login">
-  <div>
-    <h1 class="logo">
-      Streamline Log-In
-    </h1>
+  <div class="logo">
+    <img src="assets/StreamLine_2_logo.png">
+    <p>
+      SIGN IN TO CONTINUE
+    </p>
   </div>
 
   <form class="log-in" ng-submit="vm.login(user)">
@@ -18,6 +19,19 @@
       </div>
       <input class="custom-text" ng-model="user.password" placeholder="Password">
     </div>
-    <button>Log-In</button>
+    <div class="extra">
+      <input type="checkbox"> Stay Signed In
+      <a href="#">Forgot Password ?</a>
+      <p>
+        Uncheck on all public devices 
+      </p>  
+    </div>
+    <button>LOG IN</button>
+    <p>
+      Not a Member yet? 
+      <a href="#/signup">
+        Get a SteamLine ID
+      </a>
+    </p>
   </form>
 </div>

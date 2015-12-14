@@ -6,11 +6,14 @@
 
 $Navy: #082c38; 
 $BrightBlue: #39bced;
+$White: #FFFFFF;
+$LightGrey: #EDEDED;
+$DarkGrey: #E5E5E0;
 
 
 
 body {
-  background: #e2ebf3;
+  background: $BrightBlue;
 
   .container {
     margin: 20px auto;
@@ -23,7 +26,6 @@ body {
 
 // Navigation Bar View 
 .top-bar {
-  box-sizing: border-box; 
 
   .name {
     img {
@@ -38,84 +40,137 @@ body {
 // Home Page View
 
 .home {
-  box-sizing: border-box; 
+  background: $White;
+
+  h3 {
+    text-align: center
+  }
 
   .homeImage {
+    display: inline-block;
+    background: $White;
+
 
     img {
       border: 6px solid $Navy;
       float: left;
-      height: 43.75%;
-      width: 43.75%;
+      height: 400px;
+      width: 100%;
     }
 
     .text {
-      margin-left: 50%;
+      text-align: center;
+
+    }
+
+    .home-info {
+      text-align: center;
+      background-color: $BrightBlue;
+      margin-top: -5px;
+      font-weight: bold;
+
+      h2 {
+        color: $Navy;
+      }
+
+      button {
+        background-color: $Navy;
+        margin-right: 20px;
+      }
     }
   }
   .manageImage {
+    display: inline-block;
+    background: $LightGrey;
 
     img.managePic {
-      border: 6px solid $Navy;
       float: right;
-      height: 167px;
-      width: 292px;
+      height: 250px;
+      width: 250px;
+      border: 6px solid $Navy;
+      margin-left: 20px;
+      margin-right: 5px;
       
       
     }
 
     .text {
+      padding: 5px;
 
-      p {
-        width: 43.75%;
+      h3 {
+        text-align: center
       }
      
     }
   }
   .generateImage {
+    display: inline-block;
+    background: $White;
 
     img {
       border: 6px solid $Navy;
       float: left;
-      height: 200px;
-      width: 43.75%;
+      height: 250px;
+      width: 250px;
+      margin-right: 20px;
+      margin-left: 5px;
+      
     }
 
     .text {
-      margin-left: 50%;
+      padding: 5px;
+
+      h3 {
+        text-align: center
+      }
+     
     }
   }
   .publishContent {
+    display: inline-block;
+    background: $LightGrey;
+    
 
     img {
       border: 6px solid $Navy;
       float: right;
-      height: 43.75%;
-      width: 43.75%;
+      height: 250px;
+      width: 250px;
+      margin-left: 20px;
+      margin-right: 5px;
     }
 
     .text {
-     
+      padding: 5px;
+
+      h3 {
+        text-align: center
+      }
     }
   }
 
   .trackImage {
+    display: inline-block;
+    background: $White;
 
     img {
       border: 6px solid $Navy;
       float: left;
-      height: 43.75%;
-      width: 43.75%;
+      height: 250px;
+      width: 250px;
+      margin-right: 20px;
+      margin-left: 5px;
     }
 
     .text {
-      margin-left: 50%;
+      padding: 5px;
+
+      h3 {
+        text-align: center
+      }
+
     }
   }
-
-
-
-
 }
 
 
@@ -124,10 +179,10 @@ body {
 // Log-In View
 
 .login {
-  width: 30%;
+  width: 500px;
+  margin-left: 20%;
+  margin-right: 20%;
   position: fixed;
-  top: 30%;
-  left: 35%;
   background-color: white;
   border: 6px solid $Navy;
 
@@ -135,6 +190,10 @@ body {
     padding: 10px;
     text-align: center;
     font-size: 25px;
+
+    p {
+      font-weight: bold;
+    }
   }
 
   .log-in {
@@ -186,6 +245,25 @@ body {
         padding:6px 6px 6px 30px;
       }
     }
+
+    .extra { 
+
+      input {
+        margin-left: 10px;
+      }
+
+      a{
+        float: right;
+        margin-right: 20px;
+      }
+
+      p {
+        font-weight: bold;
+        color: red;
+        margin-left: 10px;
+      }
+    }
+
     button {
       display: inline-block;
       background-color: $Navy;
@@ -194,16 +272,20 @@ body {
       border-radius: 5px;
       text-align: center;
     }
+
+    p {
+      text-align: center;
+    }
   }
 }
 
 // Sign-up View 
 
 .signup {
-  width: 30%;
+  width: 550px;
+  margin-left: 20%;
+  margin-right: 20%;
   position: fixed;
-  top: 25%;
-  left: 35%;
   background-color: white;
   border: 6px solid $Navy;
 
@@ -212,12 +294,11 @@ body {
     text-align: center;
     font-size: 25px;
     font-weight: bold;
-  }
 
-  p {
-    font-size: 15px;
-    text-align: center;
-    padding: 5px;
+    p {
+      text-align: center;
+      font-weight: bold;
+    }
   }
 
   .sign-up{
@@ -295,12 +376,24 @@ body {
         padding:6px 6px 6px 30px;
       }
     }
+
+    .advice {
+
+      p{
+        text-align: center;
+      }
+    }
+
     button {
       display: inline-block;
       background-color: $Navy;
       width: 100%;
       height: auto;
       border-radius: 5px;
+      text-align: center;
+    }
+
+    p {
       text-align: center;
     }
   }
@@ -310,35 +403,130 @@ body {
 // Welcome View
 
 .welcome {
-  // position: absolute;
-  // top: 25%;
-  // left: 25%;
+  background-color: $LightGrey;
+  border: 5px solid $Navy;
 
-  .welcome-info {
+  p {
+    padding: 10px;
     text-align: center;
 
-    p {
-      font-weight: bold;
-      font-size: 30px;
-    }
-
-    button{
-      display: inline-block;
-      position: relative;
-      background-color: $Navy;
-      width: 30%;
-      height: 70px;
-      border-radius: 5px;
-      font: white;
-      font-size: 13px;
-      margin-right: 20px;
-    }
   }
 
-  .product1 {
+  .rowOne {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    .leftOne {
+      float: left;
+      margin-right: 20px;
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+
+    }
+
+    .rightOne{
+      float: right;
+      margin-left: 20px;
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+
+    }
+
+  }
+
+  .rowTwo {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    .leftTwo {
+      float: left;
+      margin-right: 20px;
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+
+    }
+
+    .rightTwo{
+      float: right;
+      margin-left: 20px;
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+
+    }
 
   }
 } 
+
+
+// Add- Article View 
+
+.addArticle {
+
+  .logo {
+    background-color: $White;
+  }
+  
+  .article-form {
+    background-color: $White;
+
+    .article {
+      background-color: $White;
+    }
+
+    button.submit {
+      color: $Navy;
+    }
+  }  
+}
+
+
+// View-Articles View 
+
+.viewArticles {
+  background-color: $White;
+  padding: 10px;
+
+  .top {
+
+    h3 {
+      text-align: center; 
+      font-weight: bold;
+    }
+
+    button {
+      background-color: $Navy;
+
+    }
+  }
+}
+
+// View Articles by Subject View
+
+.viewArticleSubjects {
+  background-color: $White;
+  padding: 10px;
+
+  button {
+    background-color: $Navy;
+  }
+
+
+}
+
 
 // Add-Subscriber View
 
@@ -350,8 +538,8 @@ body {
 
   .add-subscriber {
     background-color: white;
-    height: 60%;
-    width: 80%;
+    height: 550px;
+    width: 450px;
     margin-left: 15%;
     border: 6px solid $Navy;
 
@@ -362,8 +550,8 @@ body {
     }
 
     .email-containter {
+      margin-top: 10px;
       position: relative;
-      width: 30%;
 
       .custom-text {
         padding:6px 6px 6px 30px;
@@ -373,9 +561,11 @@ body {
     h5 {
       font-weight: bold;
     }
+
     .sports {
-      text-align: center;
+      margin-left: 42%;
     }
+   
   }
   .submit {
     display: inline-block;
@@ -386,51 +576,6 @@ body {
     margin-left: 27%;
   }
 }
-
-
-//Add-Article View by Jeff(Commenting Out
-// to Nest Andrews new styling 
-
-// .addarticle {
-//   width: 60%;
-//   position: fixed;
-//   margin-left: 15%;
-//   margin-top: 5%;
-//   background-color: white;
-//   border: 6px solid $Navy;
-//   padding: 10px;
-
-//   h3 {
-//     text-align: center;
-//     font-weight: bold;
-//   }
-
-//   p {
-//     text-align: center;
-//   }
-
-//   .add-article {
-//     position: relative;
-
-//     .custom-text {
-
-//     }
-//     .submit {
-//       display: inline-block;
-//       background-color: $Navy;
-//       width: 100%;
-//       height: auto;
-//       border-radius: 5px;
-
-//     }
-
-//   }
-// }
-
-
-
-
-
 
 
 .subject-headers {

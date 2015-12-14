@@ -1,27 +1,35 @@
-<h3>View all articles</h3>
+<div class="viewArticles">
 
-<a href="#/view-by-subject">
-  <button>
-    View by subject
-  </button>
-</a>
+  <div class="top">
 
-<div ng-repeat="article in vm.articles" class="view-article-card" ng-click="vm.goToArticle(article)">
-  <img class="small-article-img" src="{{ article.media }}}">
-  <div class="art-card-text">
-    <h3 class="art-card-headline">
-      {{ article.title }}
-    </h3>
-    <p class="art-card-subjects">
-      {{ article.subject_names }}
-    </p>
-    <p class="art-card-content">
-      {{ article.content }}
-    </p>
-    <!-- <p class="art-card-time">Time Stamp</p> -->
+    <h3>View all articles</h3>
+
+    <a href="#/view-by-subject">
+      <button>
+        View by subject
+      </button>
+    </a>
   </div>
-  <hr>
+
+
+
+  <div ng-repeat="article in vm.articles" class="view-article-card" ng-click="vm.goToArticle(article)">
+    <img class="small-article-img" src="{{ article.media }}}">
+    <div class="art-card-text">
+      <h3 class="art-card-headline">
+        {{ article.title }}
+      </h3>
+      <p class="art-card-subjects">
+        {{ article.subject_names }}
+      </p>
+      <p class="art-card-content">
+        {{ article.content }}
+      </p>
+      <!-- <p class="art-card-time">Time Stamp</p> -->
+    </div>
+
 </div>
+
 
 <!-- <table>
   <tr class="header-row">

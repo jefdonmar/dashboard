@@ -8408,67 +8408,112 @@ th.hide-for-touch {
   content: ""; }
 
 body {
-  background: #e2ebf3; }
+  background: #39bced; }
   body .container {
     margin: 20px auto;
     width: 80%;
     max-width: 1000px;
     max-height: 1000px; }
 
-.top-bar {
-  box-sizing: border-box; }
-  .top-bar .name img {
-    margin-top: -5.75px;
-    width: 170px;
-    height: 47px; }
+.top-bar .name img {
+  margin-top: -5.75px;
+  width: 170px;
+  height: 47px; }
 
 .home {
-  box-sizing: border-box; }
-  .home .homeImage img {
-    border: 6px solid #082c38;
-    float: left;
-    height: 43.75%;
-    width: 43.75%; }
-  .home .homeImage .text {
-    margin-left: 50%; }
-  .home .manageImage img.managePic {
-    border: 6px solid #082c38;
-    float: right;
-    height: 167px;
-    width: 292px; }
-  .home .manageImage .text p {
-    width: 43.75%; }
-  .home .generateImage img {
-    border: 6px solid #082c38;
-    float: left;
-    height: 200px;
-    width: 43.75%; }
-  .home .generateImage .text {
-    margin-left: 50%; }
-  .home .publishContent img {
-    border: 6px solid #082c38;
-    float: right;
-    height: 43.75%;
-    width: 43.75%; }
-  .home .trackImage img {
-    border: 6px solid #082c38;
-    float: left;
-    height: 43.75%;
-    width: 43.75%; }
-  .home .trackImage .text {
-    margin-left: 50%; }
+  background: #FFFFFF; }
+  .home h3 {
+    text-align: center; }
+  .home .homeImage {
+    display: inline-block;
+    background: #FFFFFF; }
+    .home .homeImage img {
+      border: 6px solid #082c38;
+      float: left;
+      height: 400px;
+      width: 100%; }
+    .home .homeImage .text {
+      text-align: center; }
+    .home .homeImage .home-info {
+      text-align: center;
+      background-color: #39bced;
+      margin-top: -5px;
+      font-weight: bold; }
+      .home .homeImage .home-info h2 {
+        color: #082c38; }
+      .home .homeImage .home-info button {
+        background-color: #082c38;
+        margin-right: 20px; }
+  .home .manageImage {
+    display: inline-block;
+    background: #EDEDED; }
+    .home .manageImage img.managePic {
+      float: right;
+      height: 250px;
+      width: 250px;
+      border: 6px solid #082c38;
+      margin-left: 20px;
+      margin-right: 5px; }
+    .home .manageImage .text {
+      padding: 5px; }
+      .home .manageImage .text h3 {
+        text-align: center; }
+  .home .generateImage {
+    display: inline-block;
+    background: #FFFFFF; }
+    .home .generateImage img {
+      border: 6px solid #082c38;
+      float: left;
+      height: 250px;
+      width: 250px;
+      margin-right: 20px;
+      margin-left: 5px; }
+    .home .generateImage .text {
+      padding: 5px; }
+      .home .generateImage .text h3 {
+        text-align: center; }
+  .home .publishContent {
+    display: inline-block;
+    background: #EDEDED; }
+    .home .publishContent img {
+      border: 6px solid #082c38;
+      float: right;
+      height: 250px;
+      width: 250px;
+      margin-left: 20px;
+      margin-right: 5px; }
+    .home .publishContent .text {
+      padding: 5px; }
+      .home .publishContent .text h3 {
+        text-align: center; }
+  .home .trackImage {
+    display: inline-block;
+    background: #FFFFFF; }
+    .home .trackImage img {
+      border: 6px solid #082c38;
+      float: left;
+      height: 250px;
+      width: 250px;
+      margin-right: 20px;
+      margin-left: 5px; }
+    .home .trackImage .text {
+      padding: 5px; }
+      .home .trackImage .text h3 {
+        text-align: center; }
 
 .login {
-  width: 30%;
+  width: 500px;
+  margin-left: 20%;
+  margin-right: 20%;
   position: fixed;
-  top: 30%;
-  left: 35%;
   background-color: white;
   border: 6px solid #082c38; }
   .login .logo {
     padding: 10px;
     text-align: center;
     font-size: 25px; }
+    .login .logo p {
+      font-weight: bold; }
   .login .log-in {
     padding: 5px; }
     .login .log-in .user-container {
@@ -8507,6 +8552,15 @@ body {
         z-index: 3; }
       .login .log-in .password-container .custom-text {
         padding: 6px 6px 6px 30px; }
+    .login .log-in .extra input {
+      margin-left: 10px; }
+    .login .log-in .extra a {
+      float: right;
+      margin-right: 20px; }
+    .login .log-in .extra p {
+      font-weight: bold;
+      color: red;
+      margin-left: 10px; }
     .login .log-in button {
       display: inline-block;
       background-color: #082c38;
@@ -8514,12 +8568,14 @@ body {
       width: 100%;
       border-radius: 5px;
       text-align: center; }
+    .login .log-in p {
+      text-align: center; }
 
 .signup {
-  width: 30%;
+  width: 550px;
+  margin-left: 20%;
+  margin-right: 20%;
   position: fixed;
-  top: 25%;
-  left: 35%;
   background-color: white;
   border: 6px solid #082c38; }
   .signup .logo {
@@ -8527,10 +8583,9 @@ body {
     text-align: center;
     font-size: 25px;
     font-weight: bold; }
-  .signup p {
-    font-size: 15px;
-    text-align: center;
-    padding: 5px; }
+    .signup .logo p {
+      text-align: center;
+      font-weight: bold; }
   .signup .sign-up {
     padding: 5px; }
     .signup .sign-up .company-container {
@@ -8587,6 +8642,8 @@ body {
         z-index: 3; }
       .signup .sign-up .password-container .custom-text {
         padding: 6px 6px 6px 30px; }
+    .signup .sign-up .advice p {
+      text-align: center; }
     .signup .sign-up button {
       display: inline-block;
       background-color: #082c38;
@@ -8594,30 +8651,80 @@ body {
       height: auto;
       border-radius: 5px;
       text-align: center; }
+    .signup .sign-up p {
+      text-align: center; }
 
-.welcome .welcome-info {
-  text-align: center; }
-  .welcome .welcome-info p {
-    font-weight: bold;
-    font-size: 30px; }
-  .welcome .welcome-info button {
+.welcome {
+  background-color: #EDEDED;
+  border: 5px solid #082c38; }
+  .welcome p {
+    padding: 10px;
+    text-align: center; }
+  .welcome .rowOne {
     display: inline-block;
-    position: relative;
-    background-color: #082c38;
-    width: 30%;
-    height: 70px;
-    border-radius: 5px;
-    font: white;
-    font-size: 13px;
-    margin-right: 20px; }
+    margin-left: 10px;
+    margin-right: 10px; }
+    .welcome .rowOne .leftOne {
+      float: left;
+      margin-right: 20px; }
+      .welcome .rowOne .leftOne img {
+        width: 300px;
+        height: 300px; }
+    .welcome .rowOne .rightOne {
+      float: right;
+      margin-left: 20px; }
+      .welcome .rowOne .rightOne img {
+        width: 300px;
+        height: 300px; }
+  .welcome .rowTwo {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px; }
+    .welcome .rowTwo .leftTwo {
+      float: left;
+      margin-right: 20px; }
+      .welcome .rowTwo .leftTwo img {
+        width: 300px;
+        height: 300px; }
+    .welcome .rowTwo .rightTwo {
+      float: right;
+      margin-left: 20px; }
+      .welcome .rowTwo .rightTwo img {
+        width: 300px;
+        height: 300px; }
+
+.addArticle .logo {
+  background-color: #FFFFFF; }
+
+.addArticle .article-form {
+  background-color: #FFFFFF; }
+  .addArticle .article-form .article {
+    background-color: #FFFFFF; }
+  .addArticle .article-form button.submit {
+    color: #082c38; }
+
+.viewArticles {
+  background-color: #FFFFFF;
+  padding: 10px; }
+  .viewArticles .top h3 {
+    text-align: center;
+    font-weight: bold; }
+  .viewArticles .top button {
+    background-color: #082c38; }
+
+.viewArticleSubjects {
+  background-color: #FFFFFF;
+  padding: 10px; }
+  .viewArticleSubjects button {
+    background-color: #082c38; }
 
 .addsubscriber h3 {
   font-weight: bold; }
 
 .addsubscriber .add-subscriber {
   background-color: white;
-  height: 60%;
-  width: 80%;
+  height: 550px;
+  width: 450px;
   margin-left: 15%;
   border: 6px solid #082c38; }
   .addsubscriber .add-subscriber p {
@@ -8625,14 +8732,14 @@ body {
     font-weight: bold;
     font-size: 20px; }
   .addsubscriber .add-subscriber .email-containter {
-    position: relative;
-    width: 30%; }
+    margin-top: 10px;
+    position: relative; }
     .addsubscriber .add-subscriber .email-containter .custom-text {
       padding: 6px 6px 6px 30px; }
   .addsubscriber .add-subscriber h5 {
     font-weight: bold; }
   .addsubscriber .add-subscriber .sports {
-    text-align: center; }
+    margin-left: 42%; }
 
 .addsubscriber .submit {
   display: inline-block;
