@@ -8712,13 +8712,19 @@ body {
   .viewArticles .top button {
     background-color: #082c38; }
 
+.viewArticleSubjects {
+  background-color: #FFFFFF;
+  padding: 10px; }
+  .viewArticleSubjects button {
+    background-color: #082c38; }
+
 .addsubscriber h3 {
   font-weight: bold; }
 
 .addsubscriber .add-subscriber {
   background-color: white;
-  height: 60%;
-  width: 80%;
+  height: 550px;
+  width: 450px;
   margin-left: 15%;
   border: 6px solid #082c38; }
   .addsubscriber .add-subscriber p {
@@ -8726,14 +8732,14 @@ body {
     font-weight: bold;
     font-size: 20px; }
   .addsubscriber .add-subscriber .email-containter {
-    position: relative;
-    width: 30%; }
+    margin-top: 10px;
+    position: relative; }
     .addsubscriber .add-subscriber .email-containter .custom-text {
       padding: 6px 6px 6px 30px; }
   .addsubscriber .add-subscriber h5 {
     font-weight: bold; }
   .addsubscriber .add-subscriber .sports {
-    text-align: center; }
+    margin-left: 42%; }
 
 .addsubscriber .submit {
   display: inline-block;

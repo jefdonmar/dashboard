@@ -490,10 +490,7 @@ body {
     button.submit {
       color: $Navy;
     }
-
-
   }  
-
 }
 
 
@@ -512,7 +509,19 @@ body {
 
     button {
       background-color: $Navy;
+
     }
+  }
+}
+
+// View Articles by Subject View
+
+.viewArticleSubjects {
+  background-color: $White;
+  padding: 10px;
+
+  button {
+    background-color: $Navy;
   }
 
 
@@ -529,8 +538,8 @@ body {
 
   .add-subscriber {
     background-color: white;
-    height: 60%;
-    width: 80%;
+    height: 550px;
+    width: 450px;
     margin-left: 15%;
     border: 6px solid $Navy;
 
@@ -541,8 +550,8 @@ body {
     }
 
     .email-containter {
+      margin-top: 10px;
       position: relative;
-      width: 30%;
 
       .custom-text {
         padding:6px 6px 6px 30px;
@@ -552,9 +561,11 @@ body {
     h5 {
       font-weight: bold;
     }
+
     .sports {
-      text-align: center;
+      margin-left: 42%;
     }
+   
   }
   .submit {
     display: inline-block;
