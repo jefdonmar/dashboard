@@ -1,22 +1,12 @@
-<!-- <p>Ideas for data to include</p>
-<ol>
-  <li>Total subscribers</li>
-  <li>Last 5 subscribers</li>
-  <li>Subscribers by subject preferences</li>
-  <li>Articles by subject preferences</li>
-  <li>New subscribers (#) over last 10 days</li>
-</ol> -->
-
-
 <h4 class="dash-headlines">Subscribers</h3>
 <ul class="small-block-grid-2">
   <li class="dash-3-block">
     <h5>Total Subscribers</h5>
-    <p class="big-number-dash">100</p>
+    <p class="big-number-dash">{{ vm.subscribers.length }}</p>
   </li>
   <li class="dash-3-block">
-    <h5>Last 10 days growth</h5>
-    <p class="big-number-dash">10%</p>
+    <h5>New subscribers today</h5>
+    <p class="big-number-dash">{{ vm.newToday.length }}</p>
   </li>
 </ul>
 
@@ -54,8 +44,8 @@
     <canvas 
       id="doughnut"
       class="chart chart-doughnut"
-      chart-data="piePrefData"
-      chart-labels="piePrefLabels">
+      chart-data="pieArticleData"
+      chart-labels="pieArticleLabels">
     </canvas> 
   </li>
 
@@ -64,9 +54,9 @@
     <canvas 
       id="bar" 
       class="chart chart-bar"
-      chart-data="subBarData" 
-      chart-labels="subBarLabels" 
-      chart-series="subBarSeries">
+      chart-data="articleBarData" 
+      chart-labels="articleBarLabels" 
+      chart-series="articleBarSeries">
     </canvas>
   </li>
 

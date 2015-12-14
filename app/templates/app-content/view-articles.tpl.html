@@ -9,12 +9,12 @@
         View by subject
       </button>
     </a>
-
   </div>
-  
+
+
 
   <div ng-repeat="article in vm.articles" class="view-article-card" ng-click="vm.goToArticle(article)">
-    <img src="http://fpoimg.com/150x150">
+    <img class="small-article-img" src="{{ article.media }}}">
     <div class="art-card-text">
       <h3 class="art-card-headline">
         {{ article.title }}
@@ -27,8 +27,6 @@
       </p>
       <!-- <p class="art-card-time">Time Stamp</p> -->
     </div>
-    <hr>
-  </div>
 
 </div>
 
