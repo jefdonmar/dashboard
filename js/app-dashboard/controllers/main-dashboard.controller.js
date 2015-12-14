@@ -6,11 +6,11 @@ let MainDashboardController = function($state, DashboardService, $scope) {
   let vm = this;
 
   let subjects = [
-   {name: 'Football', count: 0},
-   {name: 'Baseball', count: 0}, 
-   {name: 'Basketball', count: 0},
-   {name: 'Soccer', count: 0},
-   {name: 'Hockey', count: 0}
+   {name: 'Football', count: 0, articles: 0},
+   {name: 'Baseball', count: 0, articles: 0}, 
+   {name: 'Basketball', count: 0, articles: 0},
+   {name: 'Soccer', count: 0, articles: 0},
+   {name: 'Hockey', count: 0, articles: 0}
   ]; 
 
   DashboardService.getAllSubscribers().then( (response) => {
@@ -41,28 +41,63 @@ let MainDashboardController = function($state, DashboardService, $scope) {
       });
     });
    
-  console.log('AFTER SUBJECT', subjects);
-  let subjectNames = [];
-  let subjectCounts = [];
+    console.log('AFTER SUBJECT', subjects);
+    let subjectNames = [];
+    let subjectCounts = [];
 
-  subjects.forEach ( function (subject) {
-    subjectNames.push(subject.name);
-    subjectCounts.push(subject.count);
+    subjects.forEach ( function (subject) {
+      subjectNames.push(subject.name);
+      subjectCounts.push(subject.count);
+    });
+
+    console.log('NAMES', subjectNames);
+    console.log('COUNTS', subjectCounts);
+
+    // Pie Chart for Subscriber Preferences
+    $scope.piePrefData = subjectCounts;
+
+    // Preferences bar graph
+    $scope.subBarData = [subjectCounts];
+
+
+    // BAR LABELS
+    $scope.subBarLabels = subjectNames;
+    $scope.articleBarLabels = subjectNames; 
+    
+    // PIE CHART LABELS
+    $scope.piePrefLabels = subjectNames;
+    $scope.pieArticleLabels = subjectNames;
+
   });
 
-  console.log('NAMES', subjectNames);
-  console.log('COUNTS', subjectCounts);
 
-  // Pie Chart for Subscriber Preferences
-  $scope.piePrefLabels = subjectNames;
-  $scope.piePrefData = subjectCounts;
+  DashboardService.getAllArticles().then( (response) => {
+    let articles = response.data.article;
+    console.log('ARTICLES', articles);
 
-  // Preferences bar graph
-  $scope.subBarLabels = subjectNames;
-  $scope.subBarData = [subjectCounts];
+    let subjectArticles = [];
+    
+    articles.forEach ( function (article) {
+      subjects.forEach ( function (subject) {
+        if (article.subject_names.includes(subject.name)) {
+          subject.articles = subject.articles + 1;
+        }
+      });
+    });
+
+    subjects.forEach ( function (subject) {
+      subjectArticles.push(subject.articles);
+    });
+
+    console.log('ARTICLE COUNTS', subjectArticles);
+    console.log('SUBJECTS', subjects);
+
+    // bar graph values
+    $scope.articleBarData = [subjectArticles];
+    $scope.pieArticleData = subjectArticles;
+
 
   });
-
 
 
 };

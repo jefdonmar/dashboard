@@ -807,7 +807,7 @@ var MainDashboardController = function MainDashboardController($state, Dashboard
 
   var vm = this;
 
-  var subjects = [{ name: 'Football', count: 0 }, { name: 'Baseball', count: 0 }, { name: 'Basketball', count: 0 }, { name: 'Soccer', count: 0 }, { name: 'Hockey', count: 0 }];
+  var subjects = [{ name: 'Football', count: 0, articles: 0 }, { name: 'Baseball', count: 0, articles: 0 }, { name: 'Basketball', count: 0, articles: 0 }, { name: 'Soccer', count: 0, articles: 0 }, { name: 'Hockey', count: 0, articles: 0 }];
 
   DashboardService.getAllSubscribers().then(function (response) {
     console.log('SUBSCRIBERS', response.data.subscriber);
@@ -850,12 +850,44 @@ var MainDashboardController = function MainDashboardController($state, Dashboard
     console.log('COUNTS', subjectCounts);
 
     // Pie Chart for Subscriber Preferences
-    $scope.piePrefLabels = subjectNames;
     $scope.piePrefData = subjectCounts;
 
     // Preferences bar graph
-    $scope.subBarLabels = subjectNames;
     $scope.subBarData = [subjectCounts];
+
+    // BAR LABELS
+    $scope.subBarLabels = subjectNames;
+    $scope.articleBarLabels = subjectNames;
+
+    // PIE CHART LABELS
+    $scope.piePrefLabels = subjectNames;
+    $scope.pieArticleLabels = subjectNames;
+  });
+
+  DashboardService.getAllArticles().then(function (response) {
+    var articles = response.data.article;
+    console.log('ARTICLES', articles);
+
+    var subjectArticles = [];
+
+    articles.forEach(function (article) {
+      subjects.forEach(function (subject) {
+        if (article.subject_names.includes(subject.name)) {
+          subject.articles = subject.articles + 1;
+        }
+      });
+    });
+
+    subjects.forEach(function (subject) {
+      subjectArticles.push(subject.articles);
+    });
+
+    console.log('ARTICLE COUNTS', subjectArticles);
+    console.log('SUBJECTS', subjects);
+
+    // bar graph values
+    $scope.articleBarData = [subjectArticles];
+    $scope.pieArticleData = subjectArticles;
   });
 };
 
@@ -904,6 +936,7 @@ Object.defineProperty(exports, '__esModule', {
 var DashboardService = function DashboardService($http, HEROKU) {
 
   var subscriberURL = HEROKU.URL + 'subscribers';
+  var articleURL = HEROKU.URL + 'articles';
   var months = [{ Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 }];
 
   function Subscriber(subObj) {
@@ -913,6 +946,7 @@ var DashboardService = function DashboardService($http, HEROKU) {
 
   this.getAllSubscribers = getAllSubscribers;
   this.cleanDates = cleanDates;
+  this.getAllArticles = getAllArticles;
 
   this.addedToday = [];
 
@@ -923,6 +957,11 @@ var DashboardService = function DashboardService($http, HEROKU) {
   function cleanDates(subscriber) {
     subscriber.created_at = new Date(subscriber.created_at);
     return $http.put(subscriberURL + '/' + subscriber.id, subscriber, HEROKU.CONFIG);
+  }
+
+  function getAllArticles() {
+    console.log('getAllArticles function is called');
+    return $http.get(articleURL, HEROKU.CONFIG);
   }
 };
 
