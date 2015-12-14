@@ -8420,77 +8420,6 @@ body {
   width: 170px;
   height: 51px; }
 
-.login {
-  width: 500px;
-  margin-left: 20%;
-  margin-right: 20%;
-  position: fixed;
-  background-color: white;
-  border: 6px solid #082c38; }
-  .login .logo {
-    padding: 10px;
-    text-align: center;
-    font-size: 25px; }
-    .login .logo p {
-      font-weight: bold; }
-  .login .log-in {
-    padding: 5px; }
-    .login .log-in .fa {
-      display: block;
-      margin: 30% auto; }
-    .login .log-in .user-container {
-      position: relative; }
-      .login .log-in .user-container .user-ph {
-        display: inline-block;
-        width: 30px;
-        height: 100%;
-        font-size: 14px;
-        font-weight: normal;
-        position: absolute;
-        text-align: center;
-        text-shadow: 0 1px 0 #ffffff;
-        background-color: #eeeeee;
-        z-index: 3;
-        border: 1px solid #EDEDED;
-        border-right: none; }
-      .login .log-in .user-container .custom-text {
-        padding: 6px 6px 6px 40px; }
-    .login .log-in .password-container {
-      position: relative; }
-      .login .log-in .password-container .password-ph {
-        display: inline-block;
-        width: 30px;
-        height: 100%;
-        font-size: 14px;
-        font-weight: normal;
-        position: absolute;
-        text-align: center;
-        text-shadow: 0 1px 0 #ffffff;
-        background-color: #eeeeee;
-        z-index: 3;
-        border: 1px solid #EDEDED;
-        border-right: none; }
-      .login .log-in .password-container .custom-text {
-        padding: 6px 6px 6px 40px; }
-    .login .log-in .extra input {
-      margin-left: 10px; }
-    .login .log-in .extra a {
-      float: right;
-      margin-right: 20px; }
-    .login .log-in .extra p {
-      font-weight: bold;
-      color: red;
-      margin-left: 10px; }
-    .login .log-in button {
-      display: inline-block;
-      background-color: #082c38;
-      height: auto;
-      width: 100%;
-      border-radius: 5px;
-      text-align: center; }
-    .login .log-in p {
-      text-align: center; }
-
 .signup {
   width: 550px;
   margin-left: 20%;
@@ -10317,5 +10246,73 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
         height: 200px;
         width: 200px;
         border: 6px solid #082c38; } }
+
+.login {
+  background-color: white;
+  border: 6px solid #082c38;
+  display: block; }
+  .login .logo {
+    padding: 10px;
+    text-align: center;
+    font-size: 25px; }
+    .login .logo p {
+      font-weight: bold; }
+  .login .log-in {
+    padding: 5px; }
+    .login .log-in .fa {
+      display: block;
+      margin: 30% auto; }
+    .login .log-in .user-container {
+      position: relative; }
+      .login .log-in .user-container .user-ph {
+        display: inline-block;
+        width: 30px;
+        height: 100%;
+        font-size: 14px;
+        font-weight: normal;
+        position: absolute;
+        text-align: center;
+        text-shadow: 0 1px 0 #ffffff;
+        background-color: #eeeeee;
+        z-index: 3;
+        border: 1px solid #EDEDED;
+        border-right: none; }
+      .login .log-in .user-container .custom-text {
+        padding: 6px 6px 6px 40px; }
+    .login .log-in .password-container {
+      position: relative; }
+      .login .log-in .password-container .password-ph {
+        display: inline-block;
+        width: 30px;
+        height: 100%;
+        font-size: 14px;
+        font-weight: normal;
+        position: absolute;
+        text-align: center;
+        text-shadow: 0 1px 0 #ffffff;
+        background-color: #eeeeee;
+        z-index: 3;
+        border: 1px solid #EDEDED;
+        border-right: none; }
+      .login .log-in .password-container .custom-text {
+        padding: 6px 6px 6px 40px; }
+    .login .log-in .extra input {
+      margin-left: 10px; }
+    .login .log-in .extra a {
+      float: right;
+      margin-right: 20px; }
+    .login .log-in .extra p {
+      font-weight: bold;
+      color: red;
+      margin-left: 10px; }
+    .login .log-in button {
+      display: inline-block;
+      background-color: #082c38;
+      height: auto;
+      width: 100%;
+      border-radius: 5px;
+      text-align: center; }
+    .login .log-in p {
+      text-align: center; }
 
 /*# sourceMappingURL=main.css.map */
