@@ -8420,81 +8420,6 @@ body {
   width: 170px;
   height: 47px; }
 
-.home {
-  background: #FFFFFF;
-  display: block;
-  margin: 5px auto; }
-  .home h3 {
-    text-align: center; }
-  .home .homeImage {
-    display: block;
-    margin: 5px auto;
-    background: #FFFFFF; }
-    .home .homeImage img {
-      border: 6px solid #082c38;
-      float: left;
-      display: block;
-      width: 100%; }
-    .home .homeImage .text {
-      display: block;
-      text-align: center; }
-    .home .homeImage .home-info {
-      text-align: center;
-      background-color: #39bced;
-      margin-top: -5px;
-      font-weight: bold; }
-      .home .homeImage .home-info h2 {
-        color: #082c38; }
-      .home .homeImage .home-info button {
-        background-color: #082c38;
-        margin-right: 20px; }
-  .home .manageImage .grid-frame .grid-block {
-    height: 100%; }
-    .home .manageImage .grid-frame .grid-block img {
-      height: 100%; }
-  .home .generateImage {
-    display: inline-block;
-    background: #FFFFFF; }
-    .home .generateImage img {
-      border: 6px solid #082c38;
-      float: left;
-      height: 250px;
-      width: 250px;
-      margin-right: 20px;
-      margin-left: 5px; }
-    .home .generateImage .text {
-      padding: 5px; }
-      .home .generateImage .text h3 {
-        text-align: center; }
-  .home .publishContent {
-    display: inline-block;
-    background: #EDEDED; }
-    .home .publishContent img {
-      border: 6px solid #082c38;
-      float: right;
-      height: 250px;
-      width: 250px;
-      margin-left: 20px;
-      margin-right: 5px; }
-    .home .publishContent .text {
-      padding: 5px; }
-      .home .publishContent .text h3 {
-        text-align: center; }
-  .home .trackImage {
-    display: inline-block;
-    background: #FFFFFF; }
-    .home .trackImage img {
-      border: 6px solid #082c38;
-      float: left;
-      height: 250px;
-      width: 250px;
-      margin-right: 20px;
-      margin-left: 5px; }
-    .home .trackImage .text {
-      padding: 5px; }
-      .home .trackImage .text h3 {
-        text-align: center; }
-
 .login {
   width: 500px;
   margin-left: 20%;
@@ -10334,5 +10259,49 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   margin: 15px auto;
   width: 600px;
   background-color: #082c38; }
+
+.home {
+  background: #FFFFFF;
+  display: block;
+  margin: 5px auto;
+  width: 80%;
+  max-width: 600px; }
+  .home h3 {
+    text-align: center; }
+  .home h2 {
+    text-align: center;
+    width: 90%;
+    margin: 20px auto;
+    font-size: 1.8em;
+    font-weight: bold; }
+  .home .text {
+    display: block;
+    margin: 0px auto;
+    text-align: center;
+    width: 80%;
+    padding-top: 10px; }
+  .home .btn-row {
+    margin: 0 auto;
+    position: absolute;
+    display: block;
+    width: 100%;
+    max-width: 600px; }
+    .home .btn-row button {
+      background-color: #082c38;
+      display: inline-block;
+      position: relative;
+      top: 0%;
+      left: 2%; }
+  .home .manageImage .grid-frame .gray {
+    background-color: #EDEDED; }
+  .home .manageImage .grid-frame .grid-block {
+    display: inline-block;
+    margin: 1%;
+    vertical-align: top;
+    height: 100%; }
+    .home .manageImage .grid-frame .grid-block img.managePic {
+      height: 200px;
+      width: 200px;
+      border: 6px solid #082c38; }
 
 /*# sourceMappingURL=main.css.map */
