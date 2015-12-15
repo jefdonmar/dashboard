@@ -7,8 +7,6 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
   vm.sendNews = sendNews;
   vm.getAllSubscribers = getAllSubscribers;
 
-
-
   let newsletter = {};
   let articles = [];
   let subscribers = [];

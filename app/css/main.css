@@ -10021,6 +10021,7 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
         width: 200px;
         border: 6px solid #082c38; } }
 
+<<<<<<< HEAD
 .login {
   background-color: white;
   border: 6px solid #082c38;
@@ -10411,5 +10412,14 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     background-color: #082c38;
     display: block;
     margin: 15px auto; }
+=======
+.dashboard-container {
+  background-color: white;
+  padding: 15px;
+  border: 10px solid #082c38; }
+
+ul.dash-row {
+  border-bottom: 2px solid #082c38; }
+>>>>>>> master
 
 /*# sourceMappingURL=main.css.map */

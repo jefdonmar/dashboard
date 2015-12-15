@@ -92,6 +92,11 @@ let config = function($urlRouterProvider, $stateProvider) {
       url: '/profile',
       controller: 'ProfileController as vm',
       templateUrl: 'templates/app-user/profile.tpl.html'
+    })
+    .state('root.send-all', {
+      url: '/send-all',
+      controller: 'SendAllController as vm',
+      templateUrl: 'templates/app-content/send-all.tpl.html'
     });
 
 };
