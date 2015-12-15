@@ -8439,31 +8439,13 @@ body {
     display: block;
     margin: 15px auto; }
 
-.viewArticles {
-  background-color: #FFFFFF;
-  padding: 10px; }
-  .viewArticles .view-article-card {
-    border-bottom: 1px solid #082c38;
-    padding-top: 25px;
-    width: 90%;
-    margin: 0 auto; }
-  .viewArticles .top {
-    width: 90%;
-    margin: 0 auto; }
-    .viewArticles .top h3 {
-      text-align: center;
-      font-weight: bold; }
-    .viewArticles .top button {
-      background-color: #082c38;
-      position: absolute;
-      right: 0;
-      top: 0; }
-
 .viewArticleSubjects {
   background-color: #FFFFFF;
-  padding: 10px; }
-  .viewArticleSubjects button {
-    background-color: #082c38; }
+  padding: 10px;
+  display: block;
+  border: 6px solid #082c38; }
+  .viewArticleSubjects ul, .viewArticleSubjects h3 {
+    text-align: center; }
 
 .addsubscriber {
   display: block; }
@@ -8535,22 +8517,21 @@ div.view-article-card {
     margin-top: 5px;
     margin-bottom: 5px; }
 
-.dash-headlines {
-  font-size: 2em;
-  margin-top: 20px; }
-
-.small-block-grid-2 {
-  margin-top: 10px; }
-
-h4 {
-  text-align: center; }
-
-h5 {
-  text-align: center; }
-
-.big-number-dash {
-  font-size: 5em;
-  text-align: center; }
+.main-dashboard {
+  background-color: #FFFFFF;
+  border: 6px solid #082c38; }
+  .main-dashboard .dash-headlines {
+    font-size: 2em;
+    margin-top: 20px; }
+  .main-dashboard .small-block-grid-2 {
+    margin-top: 10px; }
+  .main-dashboard h4 {
+    text-align: center; }
+  .main-dashboard h5 {
+    text-align: center; }
+  .main-dashboard .big-number-dash {
+    font-size: 5em;
+    text-align: center; }
 
 .Two-big-number-dash {
   font-size: 2em;
@@ -10073,7 +10054,8 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   display: block;
   margin: 5px auto;
   width: 80%;
-  max-width: 600px; }
+  max-width: 600px;
+  border: 6px solid #082c38; }
   .home h3 {
     text-align: center; }
   .home h2 {
@@ -10451,5 +10433,53 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
         .welcome .rowTwo .rightTwo img {
           width: 100px;
           height: 100px; } }
+
+.article {
+  display: block;
+  background-color: #FFFFFF;
+  border: 6px solid #082c38;
+  padding: 5px; }
+  .article ul.single-article-nav {
+    text-align: center; }
+  .article p {
+    text-align: center; }
+  .article h3 {
+    text-align: center;
+    font-weight: bold; }
+
+.edit-article {
+  background-color: #FFFFFF;
+  border: 6px solid #082c38;
+  padding: 5px;
+  display: block; }
+  .edit-article h4 {
+    text-align: center;
+    font-weight: bold; }
+  .edit-article button {
+    background-color: #082c38;
+    margin-left: 40%;
+    margin-right: 40%; }
+
+.viewArticles {
+  background-color: #FFFFFF;
+  padding: 10px;
+  border: 6px solid #082c38;
+  display: block; }
+  .viewArticles .view-article-card {
+    border-bottom: 1px solid #082c38;
+    padding-top: 25px;
+    width: 90%;
+    margin: 0 auto; }
+  .viewArticles .top {
+    width: 90%;
+    margin: 0 auto; }
+    .viewArticles .top h3 {
+      text-align: center;
+      font-weight: bold; }
+    .viewArticles .top button {
+      background-color: #082c38;
+      position: absolute;
+      right: 0;
+      top: 0; }
 
 /*# sourceMappingURL=main.css.map */

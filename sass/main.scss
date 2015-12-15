@@ -82,48 +82,20 @@ body {
 }
 
 
-// View-Articles View 
 
-.viewArticles {
-  background-color: $White;
-  padding: 10px;
-
-  .view-article-card {
-    border-bottom: 1px solid $Navy;
-    padding-top: 25px;
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  .top {
-
-     width: 90%;
-    margin: 0 auto;
-
-    h3 {
-      text-align: center; 
-      font-weight: bold;
-    }
-
-    button {
-      background-color: $Navy;
-      position: absolute;
-      right: 0;
-      top: 0;
-
-    }
-  }
-}
 
 // View Articles by Subject View
 
 .viewArticleSubjects {
   background-color: $White;
   padding: 10px;
+  display: block;
+  border: 6px solid $Navy;
 
-  button {
-    background-color: $Navy;
-  }
+
+ ul, h3 {
+  text-align: center;
+ }
 
 
 }
@@ -249,37 +221,46 @@ div.view-article-card {
 
 // --- DASHBOARD VIEWS ----
 
-.dash-headlines {
-  font-size: 2em;
-  margin-top: 20px;
+.main-dashboard {
+  background-color: $White;
+  border: 6px solid $Navy;
+
+
+
+  .dash-headlines {
+    font-size: 2em;
+    margin-top: 20px;
+  }
+
+  .small-block-grid-2 {
+    margin-top: 10px;
+  }
+
+  h4 {
+    text-align: center;
+  }
+
+  h5 {
+    text-align: center; 
+  }
+
+  .big-number-dash {
+    font-size: 5em;
+    text-align: center;
+  }
 }
 
-.small-block-grid-2 {
-  margin-top: 10px;
-}
-
-h4 {
-  text-align: center;
-}
-
-h5 {
-  text-align: center;
-  // border-bottom: 1px solid black;
-}
-
-.big-number-dash {
-  font-size: 5em;
-  text-align: center;
-}
 
 .Two-big-number-dash {
   font-size: 2em;
   text-align: center;
+
 }
 
 .demo-pics {
   display: block;
   margin: 0 auto;
+
 }
 
 
@@ -288,6 +269,7 @@ li.view-articles-news {
   border: 1px solid black;
   text-align: center;
   margin: 10px 0;
+
 }
 
 
@@ -410,6 +392,9 @@ div.ui-grid-pager-panel {
 @import "login";
 @import "signup";
 @import "welcome";
+@import "article";
+@import "edit-article";
+@import "view-articles";
 
 
 

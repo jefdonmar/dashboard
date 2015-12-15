@@ -1,65 +1,67 @@
-<h4 class="dash-headlines">Subscribers</h3>
-<ul class="small-block-grid-2">
-  <li class="dash-3-block">
-    <h5>Total Subscribers</h5>
-    <p class="big-number-dash">{{ vm.subscribers.length }}</p>
-  </li>
-  <li class="dash-3-block">
-    <h5>New subscribers today</h5>
-    <p class="big-number-dash">{{ vm.newToday.length }}</p>
-  </li>
-</ul>
+<div class="main-dashboard">
 
-<h4 class="dash-headlines">Preferences</h3>
-<ul class="small-block-grid-2">
+  <h4 class="dash-headlines">Subscribers</h3>
+  <ul class="small-block-grid-2">
+    <li class="dash-3-block">
+      <h5>Total Subscribers</h5>
+      <p class="big-number-dash">{{ vm.subscribers.length }}</p>
+    </li>
+    <li class="dash-3-block">
+      <h5>New subscribers today</h5>
+      <p class="big-number-dash">{{ vm.newToday.length }}</p>
+    </li>
+  </ul>
 
-  <li class="dash-3-block">
-    <h5>Preferences breakdown</h5>
-    <canvas 
-      id="doughnut"
-      class="chart chart-doughnut"
-      chart-data="piePrefData"
-      chart-labels="piePrefLabels">
-    </canvas> 
-  </li>
+  <h4 class="dash-headlines">Preferences</h3>
+  <ul class="small-block-grid-2">
 
-  <li class="dash-3-block">
-    <h5>Subscribers by subject</h5>
-    <canvas 
-      id="bar" 
-      class="chart chart-bar"
-      chart-data="subBarData" 
-      chart-labels="subBarLabels" 
-      chart-series="subBarSeries">
-    </canvas>
-  </li>
-</ul>
+    <li class="dash-3-block">
+      <h5>Preferences breakdown</h5>
+      <canvas 
+        id="doughnut"
+        class="chart chart-doughnut"
+        chart-data="piePrefData"
+        chart-labels="piePrefLabels">
+      </canvas> 
+    </li>
 
-
-<h4 class="dash-headlines">Content</h3>
-<ul class="small-block-grid-2">
-
-  <li class="dash-3-block">
-    <h5>Content breakdown</h5>
-    <canvas 
-      id="doughnut"
-      class="chart chart-doughnut"
-      chart-data="pieArticleData"
-      chart-labels="pieArticleLabels">
-    </canvas> 
-  </li>
-
-  <li class="dash-3-block">
-    <h5>Articles by subject</h5>
-    <canvas 
-      id="bar" 
-      class="chart chart-bar"
-      chart-data="articleBarData" 
-      chart-labels="articleBarLabels" 
-      chart-series="articleBarSeries">
-    </canvas>
-  </li>
-
-</ul>
+    <li class="dash-3-block">
+      <h5>Subscribers by subject</h5>
+      <canvas 
+        id="bar" 
+        class="chart chart-bar"
+        chart-data="subBarData" 
+        chart-labels="subBarLabels" 
+        chart-series="subBarSeries">
+      </canvas>
+    </li>
+  </ul>
 
 
+  <h4 class="dash-headlines">Content</h3>
+  <ul class="small-block-grid-2">
+
+    <li class="dash-3-block">
+      <h5>Content breakdown</h5>
+      <canvas 
+        id="doughnut"
+        class="chart chart-doughnut"
+        chart-data="pieArticleData"
+        chart-labels="pieArticleLabels">
+      </canvas> 
+    </li>
+
+    <li class="dash-3-block">
+      <h5>Articles by subject</h5>
+      <canvas 
+        id="bar" 
+        class="chart chart-bar"
+        chart-data="articleBarData" 
+        chart-labels="articleBarLabels" 
+        chart-series="articleBarSeries">
+      </canvas>
+    </li>
+
+  </ul>
+
+</div>
