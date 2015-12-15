@@ -1,0 +1,29 @@
+  
+.about {
+  display: block;
+  background-color: $White;
+  border: 2px solid $Navy;
+  width: 100%;
+  max-width: 800px;
+
+  text-align: center;
+
+
+  .member-block {
+    width: 40%;
+    padding: 5px;
+    height: 350px;
+    margin: 5%;
+    display: inline-block;
+    // border: 2px solid $Navy;
+
+    img {
+      height: 250px;
+      width: 100%;
+      border: 2px solid $Navy;
+    }
+
+  }
+
+
+}

@@ -19,6 +19,7 @@ let SendAllController = function($scope, NewsletterService, $state, ArticleServi
   vm.buildNewsletters = buildNewsletters;
   vm.showBatch = showBatch;
   vm.sendAllEmails = sendAllEmails;
+  vm.sendToFullList = sendToFullList;
 
   activate ();
 
@@ -216,6 +217,12 @@ let SendAllController = function($scope, NewsletterService, $state, ArticleServi
       NewsletterService.sendAllEmails(emailObject).then( (response) => {
         console.log(response);
       });
+    });
+  }
+
+  function sendToFullList () {
+    NewsletterService.blastList().then( (response) => {
+      console.log('BLAST LIST', response);
     });
   }
 

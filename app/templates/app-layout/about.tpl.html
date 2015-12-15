@@ -1,0 +1,23 @@
+<div class="about">
+
+  <h1>The StreamLine Team</h1>
+
+  <div>
+    <div class="member-block" ng-repeat="member in vm.team">
+      <img src="{{ member.pic }}">
+      <h4>{{ member.name }}</h4>
+      <p>{{ member.nickname }}</p>
+      <span>
+        <i class="fa fa-github">
+          <a href="{{ member.github }}}">Github</a>
+        </i>
+      </span>
+      <span>
+        <i class="fa fa-linkedin-square">
+          <a href="{{ member.linkedin }}}">LinkedIn</a>
+        </i>
+      </span>
+    </div>
+  </div>
+
+</div>
