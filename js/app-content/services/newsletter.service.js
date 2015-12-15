@@ -48,17 +48,15 @@ let NewsletterService = function($state, $http, HEROKU) {
     return $http.get(url + 'subscribers', HEROKU.CONFIG);
   }
 
-  function sendContent (content, preContent, postContent, newsletter, emailRecipients) {
-    // console.log(content);
-    // console.log(preContent);
-    // console.log(postContent);
-    console.log('NEWSLETTER', newsletter);
-    console.log('EMAIL IS TO:', emailRecipients);
+  function sendContent (content, preContent, postContent, newsletter, relevantSubscribers) {
+    console.log('SUBJECT', newsletter.name);
+    console.log('EMAIL IS TO:', newsletter.to);
+    console.log('ALL RELEVANT SUBSCRIBERS', relevantSubscribers);
     return $http.post(url + 'emails', 
       {
         html: preContent + content + postContent,
         subject: newsletter.name,
-        email: emailRecipients
+        email: newsletter.to
       },
       HEROKU.CONFIG);
   }
@@ -144,13 +142,6 @@ let NewsletterService = function($state, $http, HEROKU) {
     console.log('constructMailer');
   } 
 
-  // function buildEmail (articleArray) {
-  //   articleArray.forEach ( function (article) {
-  //     eachEmail.push(article);
-  //     return eachEmail;
-  //   });
-  // }
-
   function Mailer (mailer, subscriber) {
     // this.html = mailer.html;
     // this.subject = mailer.subject;
@@ -180,38 +171,6 @@ let NewsletterService = function($state, $http, HEROKU) {
       // getArticles(subscriberId);
     });
   }
-
-
-  // .then( (response) => {
-    
-  //   let articles = response.data.subscriber.articles;
-  //   console.log('ARTICLES', articles);
-  //   mailerArticles.push(articles);
-  //   console.log('MAILER ARTICLES', mailerArticles);
-
-  //   mailerArticles.forEach( function (arrayOfArticles) {
-  //     console.log('Hello');
-  //     arrayOfArticles.forEach( function (article) {
-  //       let articleContent = [];
-  //       articleContent.push(article);
-  //       console.log('ARTICLE CONTENT', articleContent);
-  //       NewsletterService.contentTest = articleContent;
-  //     });
-  //     console.log(NewsletterService.contentTest);
-  //   });
-  //   console.log(NewsletterService.contentTest);
-  // });
-
-  // Still iterating over all subscribers
-
-  // console.log('TEST SEND ALL CONTENT', sendAllContent);
-
-  // let m = new Mailer (mailerArticles, subscriber);
-  // console.log('INSTANCE OF MAILER CHECK', m);
-
-  // NEED TO USE CONSTRUCTOR EVENTUALLY
-  // let mailer = new Mailer (subscriber);
-  // console.log('MAILER', mailer);
 
 };
 

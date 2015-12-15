@@ -6,6 +6,12 @@
 <br>
 <br>
 
+<form class="import-file-form" ng-submit="vm.importSubscribers()">
+  <p>Import subscribers</p>
+  <input type="file" id="subscriberImport">
+  <button>Submit</button>
+</form>
+
 <button class="view-subs-btn" ng-click="deleteMe()">Delete selected row</button>
 <button class="view-subs-btn" ng-click="viewMe()">Edit selected subscriber</button>
 

@@ -14,6 +14,19 @@ let SubscriberService = function($http, HEROKU, $cookies) {
   this.editSubscriber      = editSubscriber;
   this.updateSubscribers   = updateSubscribers;
   this.getArticles         = getArticles;
+  this.importSubscribers   = importSubscribers;
+
+  
+  function importSubscribers (fileObj) {
+
+    console.log('TEST LOG', fileObj);
+
+    // let formData = new FormData();
+    // formData.append('fileimport', fileObj);
+    // HEROKU.CONFIG.headers['Content-Type'] = undefined;
+    // return $http.post(url, formData, HEROKU.CONFIG);
+
+  }
 
   function addSubscriber (subObj) {
     let sub = new Subscriber(subObj);

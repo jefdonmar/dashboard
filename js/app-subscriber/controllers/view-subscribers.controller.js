@@ -8,9 +8,23 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
   // connect data to scope of the controller through view model
   vm.subscribers = [];
   vm.submitedits = submit;
+  vm.importSubscribers = importSubscribers;
 
   $scope.sortType = 'id';
   $scope.sortReverse = false;
+
+  function importSubscribers () {
+    console.log('File import click');
+    let fileField = document.getElementById('subscriberImport');
+    let fileObj = fileField.files[0];
+    console.log(fileObj);
+
+    SubscriberService.importSubscribers(fileObj);   
+    // ADD ONCE AJAX REQUEST IS WRITTEN
+    // .then( (response) => {
+    //   console.log(response);
+    // });
+  }
 
 
   function submit () {

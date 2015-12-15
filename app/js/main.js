@@ -145,8 +145,8 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
     var content = NewsletterService.tempContent.join();
     var preContent = NewsletterService.preContent;
     var postContent = NewsletterService.postContent;
-    var emailRecipients = NewsletterService.segmentEmails;
-    NewsletterService.sendContent(content, preContent, postContent, newsletter, emailRecipients).then(function (response) {
+    var relevantSubscribers = NewsletterService.segmentEmails;
+    NewsletterService.sendContent(content, preContent, postContent, newsletter, relevantSubscribers).then(function (response) {
       console.log(response);
     });
   }
@@ -596,7 +596,7 @@ var emailArticle = function emailArticle(ArticleService, $compile, NewsletterSer
     },
     // transclude: true,
     // controller: 'SubscriberRowController as vm', // Not needed?
-    template: '\n     <table style="border: none;background-color: white;">\n        <tr width="600" style="padding = 0px;">\n          <td width="100%" style="padding = 0px;" >\n            <h5 style="border-bottom: 1px solid black; padding-bottom: 3px;">\n              {{ article.title }}\n            </h5>\n          </td>\n        </tr>\n        <tr width="600" style="background-color: white;">\n          <td  width="100%">\n            <img src="{{ article.media }}">\n          </td>\n        </tr>\n        <tr width="600" style="background-color: white;">\n          <td  width="100%">\n            <p>{{ article.content }}</p>\n          </td>\n        </tr>\n      </table>\n    ',
+    template: '\n     <table style="border: none;background-color: white;">\n        <tr width="100%" style="padding = 5px;">\n          <td width="100%" style="padding = 5px;">\n            <h5 style="border-bottom: 2px solid black; padding-bottom: 3px; font-size: 1.4em; margin-top: 10px; margin-bottom: 1px;">\n              {{ article.title }}\n            </h5>\n          </td>\n        </tr>\n        <tr width="100%" style="background-color: white; padding: 10px;">\n          <td width="90%" style="text-align: center; display: block; margin: 5px auto;">\n            <img width="80%" src="{{ article.media }}">\n          </td>\n        </tr>\n        <tr width="100%" style="background-color: white;">\n          <td width="100%" style="padding = 5px; padding-top: 10px;">\n            <p width="100%" style="font-size: 1.2em;">{{ article.content }}</p>\n          </td>\n        </tr>\n      </table>\n    ',
     link: function link(scope, element, attrs) {
       // console.log(element[0].innerHTML);
       var template = angular.element(element[0].innerHTML);
@@ -616,6 +616,12 @@ var emailArticle = function emailArticle(ArticleService, $compile, NewsletterSer
 emailArticle.$inject = ['ArticleService', '$compile', 'NewsletterService'];
 
 exports['default'] = emailArticle;
+
+// OLD STYLING CODE
+
+// PADDING AND WIDTHS OF ROWS
+// <tr width="600" style="padding = 0px;">
+//           <td width="100%" style="padding = 0px;" >
 
 // <tr ng-show="{{ article.media }}">
 //          <td>
@@ -830,16 +836,14 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
     return $http.get(url + 'subscribers', HEROKU.CONFIG);
   }
 
-  function sendContent(content, preContent, postContent, newsletter, emailRecipients) {
-    // console.log(content);
-    // console.log(preContent);
-    // console.log(postContent);
-    console.log('NEWSLETTER', newsletter);
-    console.log('EMAIL IS TO:', emailRecipients);
+  function sendContent(content, preContent, postContent, newsletter, relevantSubscribers) {
+    console.log('SUBJECT', newsletter.name);
+    console.log('EMAIL IS TO:', newsletter.to);
+    console.log('ALL RELEVANT SUBSCRIBERS', relevantSubscribers);
     return $http.post(url + 'emails', {
       html: preContent + content + postContent,
       subject: newsletter.name,
-      email: emailRecipients
+      email: newsletter.to
     }, HEROKU.CONFIG);
   }
 
@@ -919,13 +923,6 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
     console.log('constructMailer');
   }
 
-  // function buildEmail (articleArray) {
-  //   articleArray.forEach ( function (article) {
-  //     eachEmail.push(article);
-  //     return eachEmail;
-  //   });
-  // }
-
   function Mailer(mailer, subscriber) {
     // this.html = mailer.html;
     // this.subject = mailer.subject;
@@ -955,37 +952,6 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
       // getArticles(subscriberId);
     });
   }
-
-  // .then( (response) => {
-
-  //   let articles = response.data.subscriber.articles;
-  //   console.log('ARTICLES', articles);
-  //   mailerArticles.push(articles);
-  //   console.log('MAILER ARTICLES', mailerArticles);
-
-  //   mailerArticles.forEach( function (arrayOfArticles) {
-  //     console.log('Hello');
-  //     arrayOfArticles.forEach( function (article) {
-  //       let articleContent = [];
-  //       articleContent.push(article);
-  //       console.log('ARTICLE CONTENT', articleContent);
-  //       NewsletterService.contentTest = articleContent;
-  //     });
-  //     console.log(NewsletterService.contentTest);
-  //   });
-  //   console.log(NewsletterService.contentTest);
-  // });
-
-  // Still iterating over all subscribers
-
-  // console.log('TEST SEND ALL CONTENT', sendAllContent);
-
-  // let m = new Mailer (mailerArticles, subscriber);
-  // console.log('INSTANCE OF MAILER CHECK', m);
-
-  // NEED TO USE CONSTRUCTOR EVENTUALLY
-  // let mailer = new Mailer (subscriber);
-  // console.log('MAILER', mailer);
 };
 
 NewsletterService.$inject = ['$state', '$http', 'HEROKU'];
@@ -1543,9 +1509,23 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
   // connect data to scope of the controller through view model
   vm.subscribers = [];
   vm.submitedits = submit;
+  vm.importSubscribers = importSubscribers;
 
   $scope.sortType = 'id';
   $scope.sortReverse = false;
+
+  function importSubscribers() {
+    console.log('File import click');
+    var fileField = document.getElementById('subscriberImport');
+    var fileObj = fileField.files[0];
+    console.log(fileObj);
+
+    SubscriberService.importSubscribers(fileObj);
+    // ADD ONCE AJAX REQUEST IS WRITTEN
+    // .then( (response) => {
+    //   console.log(response);
+    // });
+  }
 
   function submit() {
     // console.log($scope.gridObject.data);
@@ -1730,6 +1710,17 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
   this.editSubscriber = editSubscriber;
   this.updateSubscribers = updateSubscribers;
   this.getArticles = getArticles;
+  this.importSubscribers = importSubscribers;
+
+  function importSubscribers(fileObj) {
+
+    console.log('TEST LOG', fileObj);
+
+    // let formData = new FormData();
+    // formData.append('fileimport', fileObj);
+    // HEROKU.CONFIG.headers['Content-Type'] = undefined;
+    // return $http.post(url, formData, HEROKU.CONFIG);
+  }
 
   function addSubscriber(subObj) {
     var sub = new Subscriber(subObj);
