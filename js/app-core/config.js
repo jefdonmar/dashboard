@@ -97,8 +97,12 @@ let config = function($urlRouterProvider, $stateProvider) {
       url: '/send-all',
       controller: 'SendAllController as vm',
       templateUrl: 'templates/app-content/send-all.tpl.html'
+    })
+    .state('root.about-us', {
+      url:'/about-us',
+      controller:'AboutController as vm',
+      templateUrl: 'templates/app-layout/about.tpl.html'
     });
-
 };
 
 config.$inject = ['$urlRouterProvider', '$stateProvider'];

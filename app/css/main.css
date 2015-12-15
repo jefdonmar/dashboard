@@ -10021,7 +10021,6 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
         width: 200px;
         border: 6px solid #082c38; } }
 
-<<<<<<< HEAD
 .login {
   background-color: white;
   border: 6px solid #082c38;
@@ -10394,6 +10393,16 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     .main-dashboard .dash-3-block #second-number {
       margin-top: -25px; } }
 
+.import-file-form {
+  border: 2px solid #082c38;
+  background-color: #EDEDED;
+  color: #082c38;
+  margin-bottom: 10px;
+  display: block;
+  width: 40%;
+  padding-left: 5px;
+  padding-right: 5px; }
+
 .addArticle .logo {
   background-color: #FFFFFF;
   margin-bottom: 0px;
@@ -10412,24 +10421,74 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     background-color: #082c38;
     display: block;
     margin: 15px auto; }
-=======
-.dashboard-container {
-  background-color: white;
-  padding: 15px;
-  border: 10px solid #082c38; }
 
-ul.dash-row {
-  border-bottom: 2px solid #082c38; }
->>>>>>> master
-
-.import-file-form {
-  border: 2px solid #082c38;
-  background-color: #EDEDED;
-  color: #082c38;
-  margin-bottom: 10px;
+.about {
   display: block;
-  width: 40%;
-  padding-left: 5px;
-  padding-right: 5px; }
+  background-color: #FFFFFF;
+  border: 2px solid #082c38;
+  width: 635px; }
+  .about h1 {
+    color: #082c38;
+    text-align: center;
+    margin-bottom: 10px; }
+  .about h2 {
+    text-align: center;
+    bottom: 10;
+    color: #39bced; }
+  .about div {
+    padding: 10px; }
+  .about .row1, .about .row2 {
+    display: inline-block;
+    background-color: #FFFFFF;
+    margin-top: -15px; }
+  .about .andrew {
+    float: left; }
+    .about .andrew h2 {
+      text-align: center; }
+    .about .andrew i {
+      display: block;
+      margin-left: 40%; }
+  .about .jeff {
+    float: right;
+    margin-left: 40px; }
+    .about .jeff h2 {
+      text-align: center; }
+    .about .jeff i {
+      display: block;
+      margin-left: 40%; }
+  .about .robert {
+    float: left; }
+    .about .robert h2 {
+      text-align: center; }
+    .about .robert i {
+      display: block;
+      margin-left: 40%; }
+  .about .danny {
+    float: right;
+    margin-left: 70px; }
+    .about .danny h2 {
+      text-align: center; }
+    .about .danny i {
+      display: block;
+      margin-left: 40%; }
+  .about img {
+    width: 250px;
+    height: 250px;
+    margin-bottom: 20px; }
+  @media screen and (max-width: 375px) {
+    .about {
+      width: 315px; }
+      .about h1 {
+        font-size: 25px;
+        text-align: center; }
+      .about .andrew {
+        margin-left: 10px; }
+      .about .jeff {
+        margin-right: 30px; }
+      .about .robert {
+        margin-left: 10px; }
+      .about .danny {
+        margin-right: 20px;
+        margin-left: 20px; } }
 
 /*# sourceMappingURL=main.css.map */

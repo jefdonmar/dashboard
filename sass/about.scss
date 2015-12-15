@@ -1,0 +1,122 @@
+// About Us View 
+.about {
+  display: block;
+  background-color: $White;
+  border: 2px solid $Navy;
+  width: 635px;
+
+  h1 {
+    color: $Navy;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    text-align: center;
+    bottom: 10;
+    color: $BrightBlue;
+  }
+
+  div {
+    padding: 10px;
+  }
+
+  .row1, .row2 {
+    display: inline-block;
+    background-color: $White;
+    margin-top: -15px;
+  }
+
+  .andrew {
+    float: left;
+
+    h2 {
+      text-align: center;
+    }
+
+    i {
+      display: block;
+      margin-left: 40%;
+    }
+  }
+
+  .jeff {
+    float: right;
+    margin-left: 40px;
+
+    h2 {
+      text-align: center;
+    }
+
+    i {
+      display: block;
+      margin-left: 40%;
+    }
+  }
+
+  .robert {
+    float: left;
+
+    h2 {
+      text-align: center;
+    }
+
+    i {
+      display: block;
+      margin-left: 40%;
+    }
+  }
+
+  .danny {
+    float: right;
+    margin-left: 70px;
+
+
+    h2 {
+      text-align: center;
+    }
+
+    i {
+      display: block;
+      margin-left: 40%;
+    }
+  }
+
+  img {
+    width: 250px;
+    height: 250px;
+    margin-bottom: 20px;
+
+  }
+
+  @media screen and (max-width: 375px) {
+
+    width: 315px;
+
+
+    h1 {
+      font-size: 25px;
+      text-align: center;
+    }
+
+    .andrew {
+      margin-left: 10px;
+    }
+
+    .jeff {
+      margin-right: 30px;
+    }
+
+    .robert {
+      margin-left: 10px;
+    }
+
+    .danny {
+      margin-right: 20px;
+      margin-left: 20px;
+
+    }
+
+  }
+
+}
