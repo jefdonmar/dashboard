@@ -10422,4 +10422,14 @@ ul.dash-row {
   border-bottom: 2px solid #082c38; }
 >>>>>>> master
 
+.import-file-form {
+  border: 2px solid #082c38;
+  background-color: #EDEDED;
+  color: #082c38;
+  margin-bottom: 10px;
+  display: block;
+  width: 40%;
+  padding-left: 5px;
+  padding-right: 5px; }
+
 /*# sourceMappingURL=main.css.map */

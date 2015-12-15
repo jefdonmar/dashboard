@@ -68,8 +68,8 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
     let content = NewsletterService.tempContent.join();
     let preContent = NewsletterService.preContent;
     let postContent = NewsletterService.postContent;
-    let emailRecipients = NewsletterService.segmentEmails;
-    NewsletterService.sendContent(content, preContent, postContent, newsletter, emailRecipients).then( (response) => {
+    let relevantSubscribers = NewsletterService.segmentEmails;
+    NewsletterService.sendContent(content, preContent, postContent, newsletter, relevantSubscribers).then( (response) => {
       console.log(response);
     });
   }
