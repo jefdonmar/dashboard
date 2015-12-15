@@ -2,29 +2,41 @@ import _ from "underscore";
 
 let NewsletterService = function($state, $http, HEROKU) {
   
+// VARIABLES AND PROPERTIES
+
   let url = HEROKU.URL;
   let self = this;
+  let emailContent = [];
+  let mailerBatch = [];
+  let mailerArticles = [];
+  let eachEmail = [];
 
+  this.contentTest = {};
   this.tempContent = [];
   this.sendAllContent = [];
   this.segmentEmails = [];
+  this.emailContent = [];
+  this.subscriberIds = [];
+  this.contentCounter = 0;
+  this.preContent = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="viewport" content="width=device-width"/></head><body><table class="body" style="width: 100%;"><tr><td class="center" align="center" valign="center"><p style="text-align: center;">Click to view in your browser</p></td></tr><tr><td class="wrapper"><table>';
+  this.postContent = '</table></td></tr></table></body></html>';
 
-  console.log('NewsletterService is working');
+  this.getSubjects = getSubjects;
+  this.getAllSubscribers = getAllSubscribers;
+  this.sendContent = sendContent;
+  this.getMatchedSubscribers = getMatchedSubscribers;
+  this.getAllArticles = getAllArticles;
+  this.getArticles = getArticles;
+  this.constructMailer = constructMailer;
+  this.eachEmail = eachEmail;
+  // this.buildEmail = buildEmail;
+
+// FUNCTIONS
 
   function Newsletter (newsObj) {
     // this.newsName     = newsObj.name;
     this.subjects     = newsObj.subjectNames.toString();
   }
-
-  this.getSubjects = getSubjects;
-  this.getAllSubscribers = getAllSubscribers;
-  this.sendContent = sendContent;
-  this.preContent = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="viewport" content="width=device-width"/></head><body><table class="body" style="width: 100%;"><tr><td class="center" align="center" valign="center"><p style="text-align: center;">Click to view in your browser</p></td></tr><tr><td class="wrapper"><table>';
-  this.postContent = '</table></td></tr></table></body></html>';
-  this.getMatchedSubscribers = getMatchedSubscribers;
-  this.getAllArticles = getAllArticles;
-  this.getArticles = getArticles;
-  this.constructMailer = constructMailer;
 
   function getSubjects (subject) {
     return $http.get(url + 'subject/' + subject, HEROKU.CONFIG);
@@ -59,8 +71,6 @@ let NewsletterService = function($state, $http, HEROKU) {
     subscribers.forEach( function (subscriber) {  
       subjects.forEach( function (subject) {
         if ( subscriber.subject_names.includes(subject)  ){
-          // && !segmentEmails.includes(subscriber.email)
-          // subscriber.subject_names.includes(subject);
           segmentEmails.push(subscriber.email);
         }
       });
@@ -105,7 +115,6 @@ let NewsletterService = function($state, $http, HEROKU) {
       alert('No subscribers match selected subjects');
     }
 
-
     // CONVERT EMAILS TO A STRING WITH , SPACE
     let listOfEmails = filteredSegment.toString().split(',').join(', ');
     console.log('TO FIELD:', listOfEmails);
@@ -113,18 +122,6 @@ let NewsletterService = function($state, $http, HEROKU) {
     // SET PROPERTY OF NEWSLETTER SERVICE TO PASS TO SEND FUNCTION 
     this.segmentEmails = listOfEmails;
   }
-
-
-
-  let mailerBatch = [];
-  let mailerArticles = [];
-  // this.buildEmail = buildEmail;
-
-  this.contentTest = {};
-
-  this.eachEmail = eachEmail;
-  let eachEmail = [];
-
 
   function constructMailer () {
     console.log('constructMailer');
@@ -144,13 +141,6 @@ let NewsletterService = function($state, $http, HEROKU) {
     this.mailer = mailer;
   }
 
-  let emailContent = [];
-
-  this.emailContent = [];
-  this.subscriberIds = [];
-
-  this.contentCounter = 0;
-
   function getContent (subscriberId) {
     return $http.get(url + '/subscribers/' + subscriberId + '/' + 'articles', HEROKU.CONFIG); 
   }
@@ -158,10 +148,8 @@ let NewsletterService = function($state, $http, HEROKU) {
   function getArticles (subscriberIds) {
     subscriberIds.forEach( function(subscriberId) {
       getContent(subscriberId).then( (response) => {
-        // console.log('RESPONSE', response);
-        console.log('request was made');
-        console.log('DATA', response.data.subscriber);
         self.emailContent.push(response.data.subscriber);
+        self.contentCounter = self
       });
     });
   }
@@ -178,36 +166,36 @@ let NewsletterService = function($state, $http, HEROKU) {
   }
 
 
-      // .then( (response) => {
-        
-      //   let articles = response.data.subscriber.articles;
-      //   console.log('ARTICLES', articles);
-      //   mailerArticles.push(articles);
-      //   console.log('MAILER ARTICLES', mailerArticles);
+  // .then( (response) => {
+    
+  //   let articles = response.data.subscriber.articles;
+  //   console.log('ARTICLES', articles);
+  //   mailerArticles.push(articles);
+  //   console.log('MAILER ARTICLES', mailerArticles);
 
-      //   mailerArticles.forEach( function (arrayOfArticles) {
-      //     console.log('Hello');
-      //     arrayOfArticles.forEach( function (article) {
-      //       let articleContent = [];
-      //       articleContent.push(article);
-      //       console.log('ARTICLE CONTENT', articleContent);
-      //       NewsletterService.contentTest = articleContent;
-      //     });
-      //     console.log(NewsletterService.contentTest);
-      //   });
-      //   console.log(NewsletterService.contentTest);
-      // });
+  //   mailerArticles.forEach( function (arrayOfArticles) {
+  //     console.log('Hello');
+  //     arrayOfArticles.forEach( function (article) {
+  //       let articleContent = [];
+  //       articleContent.push(article);
+  //       console.log('ARTICLE CONTENT', articleContent);
+  //       NewsletterService.contentTest = articleContent;
+  //     });
+  //     console.log(NewsletterService.contentTest);
+  //   });
+  //   console.log(NewsletterService.contentTest);
+  // });
 
-      // Still iterating over all subscribers
+  // Still iterating over all subscribers
 
-      // console.log('TEST SEND ALL CONTENT', sendAllContent);
+  // console.log('TEST SEND ALL CONTENT', sendAllContent);
 
-      // let m = new Mailer (mailerArticles, subscriber);
-      // console.log('INSTANCE OF MAILER CHECK', m);
+  // let m = new Mailer (mailerArticles, subscriber);
+  // console.log('INSTANCE OF MAILER CHECK', m);
 
-      // NEED TO USE CONSTRUCTOR EVENTUALLY
-      // let mailer = new Mailer (subscriber);
-      // console.log('MAILER', mailer);
+  // NEED TO USE CONSTRUCTOR EVENTUALLY
+  // let mailer = new Mailer (subscriber);
+  // console.log('MAILER', mailer);
 
 };
 

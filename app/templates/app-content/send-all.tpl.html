@@ -1,10 +1,11 @@
 <h3>Send all</h3>
 
 <button ng-click="vm.getAllArticles(vm.subscribers)">Get all</button>
+<button ng-click="vm.previewEmail()">Preview an email</button>
+<button ng-click="vm.sendToAll()">Send to all</button>
 
-<button ng-click="vm.sendToAll(vm.subscribers)">Send to all</button>
+<button ng-click="vm.checkMe()">Check</button>
 
-<button ng-click="vm.previewEmail()">Preview email</button>
 
 <p>Number of subscribers: {{ vm.subscribers.length }}</p>
 
@@ -12,7 +13,9 @@
   <li ng-repeat="subscriber in vm.subscribers">{{ subscriber.email }}</li>
 </ul>
 
-
+<ul>
+  <li ng-repeat="article in vm.articles">{{ article.content }}</li>
+</ul>
 
 <!-- PREVIEW CODE -->
 <div class="html-email-container">
