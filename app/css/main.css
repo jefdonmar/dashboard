@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab|Nunito);
 meta.foundation-version {
   font-family: "/5.5.3/"; }
 
@@ -9970,7 +9971,7 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   background: #FFFFFF;
   display: block;
   margin: 5px auto;
-  width: 80%;
+  width: 100%;
   max-width: 600px;
   border: 6px solid #082c38; }
   .home h3 {
@@ -10376,12 +10377,22 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
 
 .main-dashboard {
   background-color: #FFFFFF;
-  border: 6px solid #082c38; }
+  border: 6px solid #082c38;
+  width: 100%; }
   .main-dashboard .dash-headlines {
-    font-size: 2em;
-    margin-top: 20px; }
+    font-size: 1.6em;
+    margin-top: 20px;
+    border-top: 2px solid #39bced;
+    border-bottom: 2px solid #39bced;
+    background-color: #082c38;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 6px; }
   .main-dashboard .small-block-grid-2 {
     margin-top: 10px; }
+  .main-dashboard h2 {
+    text-align: center; }
   .main-dashboard h4 {
     text-align: center; }
   .main-dashboard h5 {
@@ -10389,9 +10400,38 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   .main-dashboard .big-number-dash {
     font-size: 5em;
     text-align: center; }
-  @media screen and (max-width: 375px) {
-    .main-dashboard .dash-3-block #second-number {
-      margin-top: -25px; } }
+  .main-dashboard .bar {
+    padding-left: 0px;
+    padding-right: 20px;
+    padding-bottom: 0px; }
+    .main-dashboard .bar li {
+      height: 100%; }
+  .main-dashboard .numbers {
+    background-color: #EDEDED;
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding-top: 15px;
+    padding-bottom: 0px;
+    border: 2px solid #EDEDED;
+    border-radius: 2px;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow: 3px 3px 5px 6px #ccc; }
+  @media screen and (max-width: 700px) {
+    .main-dashboard ul {
+      display: block;
+      width: 100%;
+      margin: 0 auto; }
+    .main-dashboard .dash-3-block {
+      width: 100%;
+      padding: 8%;
+      display: block;
+      margin: 0 auto; }
+      .main-dashboard .dash-3-block .chart-container {
+        display: block;
+        margin: 5px auto; } }
 
 .import-file-form {
   border: 2px solid #082c38;
@@ -10468,5 +10508,8 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       height: 250px;
       width: 100%;
       border: 2px solid #082c38; }
+
+* {
+  font-family: 'Nunito', sans-serif; }
 
 /*# sourceMappingURL=main.css.map */

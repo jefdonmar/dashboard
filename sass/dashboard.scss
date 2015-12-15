@@ -2,14 +2,27 @@
 .main-dashboard {
   background-color: $White;
   border: 6px solid $Navy;
+  width: 100%;
 
   .dash-headlines {
-    font-size: 2em;
+    font-size: 1.6em;
     margin-top: 20px;
+    border-top: 2px solid $BrightBlue;
+    border-bottom: 2px solid $BrightBlue;
+    background-color: $Navy;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 6px;
+
   }
 
   .small-block-grid-2 {
     margin-top: 10px;
+  }
+
+  h2 {
+    text-align: center;
   }
 
   h4 {
@@ -25,17 +38,71 @@
     text-align: center;
   }
 
-  @media screen and (max-width: 375px) {
+  .bar {
+    padding-left: 0px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+
+    li {
+      height: 100%;
+    }
+
+  }
+
+  .numbers {
+    background-color: $LightGrey;
+    // width: 80%;
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding-top: 15px;
+    padding-bottom: 0px;
+    border: 2px solid $LightGrey;
+    border-radius: 2px;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow:         3px 3px 5px 6px #ccc;
+  }
+
+
+  // @media screen and (max-width: 375px) {
+
+  //   .dash-3-block {
+
+  //     #second-number {
+  //       margin-top: -25px;
+  //     }
+
+  //   }   
+  // }
+
+
+
+@media screen and (max-width: 700px) {
+
+    ul {
+      display: block;
+      width: 100%;
+      margin: 0 auto;
+    }
 
     .dash-3-block {
+      width: 100%;
+      padding: 8%;
+      display: block;
+      margin: 0 auto;
 
-      #second-number {
-        margin-top: -25px;
+      .chart-container {
+        display: block;
+        margin: 5px auto;
       }
 
     }   
   }
 }
+
+
 
 // .dashboard-container {
 //   background-color: white;
