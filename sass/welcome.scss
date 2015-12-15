@@ -1,0 +1,172 @@
+// Welcome View
+.welcome {
+  background-color: $LightGrey;
+  border: 5px solid $Navy;
+  display: block;
+
+  p {
+    padding: 10px;
+    text-align: center;
+    display: block;
+
+  }
+
+  .managePic {
+    margin-left: 90px;
+    margin-right: 60px;
+  }
+
+  .rowOne {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    .leftOne {
+      float: left;
+      margin-right: 20px;
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+
+      h5 {
+        text-align: center;
+      }
+
+    }
+
+    .rightOne{
+      margin-left: 20px;
+
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+
+      h5 {
+        text-align: center;
+      }
+
+    }
+
+    p {
+      display: block;
+    }
+
+  }
+
+  .rowTwo {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    .leftTwo {
+      float: left;
+      margin-right: 20px;
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+
+      h5 {
+        text-align: center;
+      }
+
+    }
+
+    .rightTwo{
+      float: right;
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+
+      h5 {
+        text-align: center;
+      }
+
+    }
+  }
+  
+  @media screen and (max-width: 375px){
+
+    p {
+      padding: 10px;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      font-size: 12px;
+    }
+
+    .rowOne {
+      display: inline-block;
+      margin-top: -25px;
+
+      a {
+        font-size:12px;
+        text-align: center;
+      }
+     
+
+      .leftOne {
+        margin-: 20px;
+        
+
+        img {
+          width: 75px;
+          height: 75px;
+          margin-left: 15px;
+        }
+
+      }
+
+      .rightOne{
+        margin-left: 20px;
+
+        h5 {
+          margin-right: 5px;
+        }
+
+
+        img {
+          width: 75px;
+          height: 75px;
+        }
+
+      }
+
+    }
+
+    .rowTwo {
+      display: inline-block;
+      margin-top: -25px;
+      margin-bottom: 25px;
+
+
+      .leftTwo {
+
+        img {
+          width: 75px;
+          height: 75px;
+        }
+
+      }
+
+      .rightTwo{
+        margin-left: 43px;
+
+        img {
+          width: 75px;
+          height: 75px;
+          margin-left: 20px;
+        }
+
+      }
+
+    }
+  }
+} 

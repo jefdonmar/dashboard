@@ -15,7 +15,6 @@ $customTextPadding: 6px 6px 6px 40px;
 $iconBoxBorder: 1px solid $LightGrey;
 
 
-
 body {
   background: $BrightBlue;
 
@@ -24,406 +23,6 @@ body {
     width: 80%;
     max-width: 1000px;
     max-height: 1000px;
-
-  }
-}
-
-// Navigation Bar View 
-.top-bar {
-
-  .name {
-    img {
-      margin-top: -5.75px;
-      width: 170px;
-      height:47px;
-    }
-  }
-
-}
-
-
-// Log-In View
-
-.login {
-  width: 500px;
-  margin-left: 20%;
-  margin-right: 20%;
-  position: fixed;
-  background-color: white;
-  border: 6px solid $Navy;
-
-  .logo{
-    padding: 10px;
-    text-align: center;
-    font-size: 25px;
-
-    p {
-      font-weight: bold;
-    }
-  }
-
-  .log-in {
-    padding: 5px;
-
-    .fa {
-      display: block;
-      margin: 30% auto;
-    }
-
-    .user-container {
-      position: relative;
-
-      .user-ph {
-        display: inline-block;
-        width: $iconBoxWidth;
-        height: 100%;
-        font-size: 14px;
-        font-weight: normal;
-        position: absolute;
-        text-align: center;
-        text-shadow: 0 1px 0 #ffffff;
-        background-color: #eeeeee;
-        // left: 3px;
-        // top: 3px;
-        // bottom: 3px;
-        z-index: 3;
-        border: $iconBoxBorder;
-        border-right: none;
-      }
-
-      .custom-text {
-        padding: $customTextPadding;
-      }
-    }
-  
-    .password-container{
-      position: relative;
-
-      .password-ph {
-        display: inline-block;
-        width: $iconBoxWidth;
-        height: 100%;
-        font-size: 14px;
-        font-weight: normal;
-        position: absolute;
-        text-align: center;
-        text-shadow: 0 1px 0 #ffffff;
-        background-color: #eeeeee;
-        // left: 3px;
-        // top: 3px;
-        // bottom: 3px;
-        z-index: 3;
-        border: $iconBoxBorder;
-        border-right: none;
-      }
-      .custom-text {
-        padding: $customTextPadding;
-      }
-    }
-
-    .extra { 
-
-      input {
-        margin-left: 10px;
-      }
-
-      a{
-        float: right;
-        margin-right: 20px;
-      }
-
-      p {
-        font-weight: bold;
-        color: red;
-        margin-left: 10px;
-      }
-    }
-
-    button {
-      display: inline-block;
-      background-color: $Navy;
-      height: auto;
-      width: 100%;
-      border-radius: 5px;
-      text-align: center;
-    }
-
-    p {
-      text-align: center;
-    }
-  }
-}
-
-// Sign-up View 
-
-.signup {
-  width: 550px;
-  margin-left: 20%;
-  margin-right: 20%;
-  position: fixed;
-  background-color: white;
-  border: 6px solid $Navy;
-
-  .logo{
-    padding: 10px;
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
-
-    p {
-      text-align: center;
-      font-weight: bold;
-    }
-  }
-
-  .sign-up{
-    padding: 5px;
-
-    .fa {
-      display: block;
-      margin: 30% auto;
-    }
-
-    .company-container{
-      position: relative;
-      
-
-      .company-ph {
-        display: inline-block;
-        width: $iconBoxWidth;
-        height: 100%;
-        font-size: 14px;
-        font-weight: normal;
-        position: absolute;
-        text-align: center;
-        text-shadow: 0 1px 0 #ffffff;
-        background-color: #eeeeee;
-        // left: 3px;
-        // top: 3px;
-        // bottom: 3px;
-        z-index: 3;
-        border: $iconBoxBorder;
-        border-right: none;
-      }
-      .custom-text {
-        padding: $customTextPadding;
-      }
-    }
-
-    .user-container {
-      position: relative;
-      
-
-      .user-ph {
-        display: inline-block;
-        width: $iconBoxWidth;
-        height: 100%;
-        font-size: 14px;
-        font-weight: normal;
-        position: absolute;
-        text-align: center;
-        text-shadow: 0 1px 0 #ffffff;
-        background-color: #eeeeee;
-        // left: 3px;
-        // top: 3px;
-        // bottom: 3px;
-        z-index: 3;
-        border: $iconBoxBorder;
-        border-right: none;
-      }
-
-      .custom-text {
-        padding: $customTextPadding;
-      }
-    }
-  
-    .password-container{
-      position: relative;
-      
-
-      .password-ph {
-        display: inline-block;
-        width: $iconBoxWidth;
-        height: 100%;
-        font-size: 14px;
-        font-weight: normal;
-        position: absolute;
-        text-align: center;
-        text-shadow: 0 1px 0 #ffffff;
-        background-color: #eeeeee;
-        // left: 3px;
-        // top: 3px;
-        // bottom: 3px;
-        z-index: 3;
-        border: $iconBoxBorder;
-        border-right: none;
-      }
-      .custom-text {
-        padding: $customTextPadding;
-      }
-    }
-
-    .advice {
-
-      p{
-        text-align: center;
-      }
-    }
-
-    button {
-      display: inline-block;
-      background-color: $Navy;
-      width: 100%;
-      height: auto;
-      border-radius: 5px;
-      text-align: center;
-    }
-
-    p {
-      text-align: center;
-    }
-  }
-}
-
-
-// Welcome View
-
-.welcome {
-  background-color: $LightGrey;
-  border: 5px solid $Navy;
-
-  p {
-    padding: 10px;
-    text-align: center;
-
-  }
-
-  .rowOne {
-    display: inline-block;
-    margin-left: 10px;
-    margin-right: 10px;
-
-    .leftOne {
-      float: left;
-      margin-right: 20px;
-
-      img {
-        width: 300px;
-        height: 300px;
-      }
-
-    }
-
-    .rightOne{
-      float: right;
-      margin-left: 20px;
-
-      img {
-        width: 300px;
-        height: 300px;
-      }
-
-    }
-
-  }
-
-  .rowTwo {
-    display: inline-block;
-    margin-left: 10px;
-    margin-right: 10px;
-
-    .leftTwo {
-      float: left;
-      margin-right: 20px;
-
-      img {
-        width: 300px;
-        height: 300px;
-      }
-
-    }
-
-    .rightTwo{
-      float: right;
-      margin-left: 20px;
-
-      img {
-        width: 300px;
-        height: 300px;
-      }
-
-    }
-
-  }
-} 
-
-
-// Add- Article View 
-
-.addArticle {
-
-  .logo {
-    background-color: $White;
-    margin-bottom: 0px;
-    border: 6px solid $Navy;
-  }
-
-  #articleImg {
-    display: block;
-    margin: 0 auto;
-  }
-
-  h3, p {
-    text-align: center;
-  }
-  
-  .article-form {
-    // background-color: $White;
-    padding: 15px;
-
-    .article {
-      // background-color: $White;
-    }
-
-    button.submit {
-      background-color: $Navy;
-      display: block;
-      margin: 15px auto;
-    }
-  }  
-}
-
-
-// View-Articles View 
-
-.viewArticles {
-  background-color: $White;
-  padding: 10px;
-
-  .view-article-card {
-    border-bottom: 1px solid $Navy;
-    padding-top: 25px;
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  .top {
-
-     width: 90%;
-    margin: 0 auto;
-
-    h3 {
-      text-align: center; 
-      font-weight: bold;
-    }
-
-    button {
-      background-color: $Navy;
-      position: absolute;
-      right: 0;
-      top: 0;
-
-    }
   }
 }
 
@@ -432,66 +31,13 @@ body {
 .viewArticleSubjects {
   background-color: $White;
   padding: 10px;
+  display: block;
+  border: 6px solid $Navy;
 
-  button {
-    background-color: $Navy;
-  }
-
-
+ ul, h3 {
+  text-align: center;
+ }
 }
-
-
-// Add-Subscriber View
-
-.addsubscriber {
-
-  h3 {
-    font-weight: bold;
-  }
-
-  .add-subscriber {
-    background-color: white;
-    height: 550px;
-    width: 450px;
-    margin-left: 15%;
-    border: 6px solid $Navy;
-    padding: 15px;
-
-    p {
-      text-align: center;
-      font-weight: bold;
-      font-size: 20px;
-    }
-
-    .email-containter {
-      margin-top: 10px;
-      position: relative;
-
-      .custom-text {
-        padding:6px 6px 6px 30px;
-      }
-    }
-
-    h5 {
-      font-weight: bold;
-    }
-
-    .sports {
-      margin-left: 42%;
-    }
-   
-  }
-  .submit {
-    display: block;
-    margin: 0 auto;
-    background-color: $Navy;
-    width: 50%;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 20px;
-  }
-}
-
 
 .subject-headers {
   display: inline-block;
@@ -510,7 +56,6 @@ body {
     cursor: pointer;
     color: blue;
   }
-
 }
 
 .single-article-nav {
@@ -524,18 +69,13 @@ body {
     margin-left: 0px;
     cursor: pointer;
   }
-
 }
 
 ul.subject-button-list {
   list-style-type: none;
 }
 
-
-
-
 // ---- ARTICLE CARDS ON VIEW ARTICLES ---
-
 div.view-article-card {
   margin: 0 auto;
 
@@ -556,34 +96,8 @@ div.view-article-card {
     margin-top: 5px;
     margin-bottom: 5px;
   }
-
 }
 
-
-// --- DASHBOARD VIEWS ----
-
-.dash-headlines {
-  font-size: 2em;
-  margin-top: 20px;
-}
-
-.small-block-grid-2 {
-  margin-top: 10px;
-}
-
-h4 {
-  text-align: center;
-}
-
-h5 {
-  text-align: center;
-  // border-bottom: 1px solid black;
-}
-
-.big-number-dash {
-  font-size: 5em;
-  text-align: center;
-}
 
 .Two-big-number-dash {
   font-size: 2em;
@@ -595,14 +109,11 @@ h5 {
   margin: 0 auto;
 }
 
-
-
 li.view-articles-news {
   border: 1px solid black;
   text-align: center;
   margin: 10px 0;
 }
-
 
 div.html-email-container {
   border: 2px solid $Navy;
@@ -635,7 +146,6 @@ div.html-email-container {
   min-height: 150px;
 }
 
-
 .grid {
   width: 100%;
   max-width: 1200px;
@@ -647,7 +157,6 @@ div.ui-grid-pager-panel {
   background-color: $Navy;
   color: white;
 }
-
 
 #subjectBuildDiv {
   display: inline-block;
@@ -664,40 +173,7 @@ div.ui-grid-pager-panel {
   height: 100px;
 }
 
-
-
-// View articles by subject
-
-.view-sub-heading {
-  width: 90%;
-  margin: 0 auto;
-  margin-bottom: 10px;
-}
-
-.view-article-card {
-    border-bottom: 1px solid $Navy;
-    padding-top: 25px;
-    width: 90%;
-    margin: 0 auto;
-}
-
-.view-sub-link {
-
-  ul {
-    text-align: center;
-    width: 90%;
-    display: block;
-    margin: 0 auto;
-  }
-
-    li {  
-      display: inline-block;
-      margin: 0 10px;
-    }
-}
-
-
-// view subs
+// View-Subscribers
 
 .view-subs-nav {
   display: inline-block;
@@ -720,7 +196,15 @@ div.ui-grid-pager-panel {
 @import "ui-grid";
 @import "build-newsletter";
 @import "homepage";
+@import "login";
+@import "signup";
+@import "welcome";
+@import "article";
+@import "edit-article";
+@import "view-articles";
+@import "view-by-subject";
+@import "navigation";
+@import "add-subscriber";
 @import "dashboard";
 @import "file-import";
-
-
+@import "add-article";

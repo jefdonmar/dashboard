@@ -1,0 +1,33 @@
+// Add- Article View 
+
+.addArticle {
+
+  .logo {
+    background-color: $White;
+    margin-bottom: 0px;
+    border: 6px solid $Navy;
+  }
+
+  #articleImg {
+    display: block;
+    margin: 0 auto;
+  }
+
+  h3, p {
+    text-align: center;
+  }
+  
+  .article-form {
+    padding: 15px;
+
+    .article {
+      // width: 100%;
+    }
+
+    button.submit {
+      background-color: $Navy;
+      display: block;
+      margin: 15px auto;
+    }
+  }  
+}

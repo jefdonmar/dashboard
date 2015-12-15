@@ -1,9 +1,46 @@
-.dashboard-container {
-  background-color: white;
-  padding: 15px;
-  border: 10px solid $Navy;
-}
+// --- DASHBOARD VIEWS ----
+.main-dashboard {
+  background-color: $White;
+  border: 6px solid $Navy;
 
-ul.dash-row {
-  border-bottom: 2px solid $Navy;
-}
+  .dash-headlines {
+    font-size: 2em;
+    margin-top: 20px;
+  }
+
+  .small-block-grid-2 {
+    margin-top: 10px;
+  }
+
+  h4 {
+    text-align: center;
+  }
+
+  h5 {
+    text-align: center; 
+  }
+
+  .big-number-dash {
+    font-size: 5em;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 375px) {
+
+    .dash-3-block {
+
+      #second-number {
+        margin-top: -25px;
+      }
+
+    }   
+  }
+
+// .dashboard-container {
+//   background-color: white;
+//   padding: 15px;
+//   border: 10px solid $Navy;
+// }
+
+// ul.dash-row {
+//   border-bottom: 2px solid $Navy;

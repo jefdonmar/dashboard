@@ -1,33 +1,55 @@
 $Navy: #082c38; 
 $BrightBlue: #39bced;
 
-.newsletter-form {
-  border: 3px solid white;
-  padding: 15px;
-  background-color: $Navy;
-  color: white;
-  margin: 10px auto;
-  width: 600px;
+.build-news {
 
-  span {
-    padding-bottom: 10px;
-  }
-
-  .build-newsletter-btn {
-    display: block;
-    margin: 5px auto;
-  }
-
-  label {
+  .newsletter-form {
+    border: 3px solid white;
+    padding: 15px;
+    background-color: $Navy;
     color: white;
-    font-size: 1em;
+    margin: 10px auto;
+    width: 600px;
+
+    span {
+      padding-bottom: 10px;
+    }
+
+    .build-newsletter-btn {
+      display: block;
+      margin: 5px auto;
+    }
+
+    label {
+      color: white;
+      font-size: 1em;
+    }
+
+  }
+
+  .send-newsletter-btn {
+    display: block;
+    margin: 15px auto;
+    width: 600px;
+    background-color: $Navy;
+  }
+
+  @media screen and (max-width: 375px) {
+
+    .newsletter-form {
+
+      width: 570px;
+    }
+
+    .body{
+      width: 570px;
+    }
+
+    .send-newsletter-btn {
+      width: 570px;
+    }
+
   }
 
 }
 
-.send-newsletter-btn {
-  display: block;
-  margin: 15px auto;
-  width: 600px;
-  background-color: $Navy;
-}
