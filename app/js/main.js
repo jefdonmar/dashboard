@@ -250,6 +250,7 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
   vm.buildNewsletters = buildNewsletters;
   vm.showBatch = showBatch;
   vm.sendAllEmails = sendAllEmails;
+  vm.sendToFullList = sendToFullList;
 
   activate();
 
@@ -441,6 +442,12 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
       NewsletterService.sendAllEmails(emailObject).then(function (response) {
         console.log(response);
       });
+    });
+  }
+
+  function sendToFullList() {
+    NewsletterService.blastList().then(function (response) {
+      console.log('BLAST LIST', response);
     });
   }
 
@@ -708,7 +715,7 @@ _angular2['default'].module('app.content', ['checklist-model'])
 // DIRECTIVES
 .directive('emailArticle', _directivesEmailArticleDirective2['default']).directive('addImage', _directivesAddImageDirective2['default']);
 
-},{"./controllers/add-article.controller":1,"./controllers/article-by-subject.controller":2,"./controllers/build-newsletter.controller":3,"./controllers/edit-article.controller":4,"./controllers/preview-newsletter.controller":5,"./controllers/send-all.controller":6,"./controllers/view-articles.controller":7,"./controllers/view-single-article.controller":8,"./directives/add-image.directive":9,"./directives/email-article.directive":10,"./services/article.service":12,"./services/newsletter.service":13,"./services/upload.service":14,"angular":45,"checklist-model":47}],12:[function(require,module,exports){
+},{"./controllers/add-article.controller":1,"./controllers/article-by-subject.controller":2,"./controllers/build-newsletter.controller":3,"./controllers/edit-article.controller":4,"./controllers/preview-newsletter.controller":5,"./controllers/send-all.controller":6,"./controllers/view-articles.controller":7,"./controllers/view-single-article.controller":8,"./directives/add-image.directive":9,"./directives/email-article.directive":10,"./services/article.service":12,"./services/newsletter.service":13,"./services/upload.service":14,"angular":46,"checklist-model":48}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -820,6 +827,7 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
   this.getContent = getContent;
   // this.buildEmail = buildEmail;
   this.sendAllEmails = sendAllEmails;
+  this.blastList = blastList;
 
   // FUNCTIONS
 
@@ -952,6 +960,14 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
       // getArticles(subscriberId);
     });
   }
+
+  function blastList() {
+    var subject = 'Subject';
+
+    return $http.post(url + 'newsletters', {
+      subject: 'Subject Line'
+    }, HEROKU.CONFIG);
+  }
 };
 
 NewsletterService.$inject = ['$state', '$http', 'HEROKU'];
@@ -959,7 +975,7 @@ NewsletterService.$inject = ['$state', '$http', 'HEROKU'];
 exports['default'] = NewsletterService;
 module.exports = exports['default'];
 
-},{"underscore":51}],14:[function(require,module,exports){
+},{"underscore":52}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1066,6 +1082,10 @@ var config = function config($urlRouterProvider, $stateProvider) {
     url: '/send-all',
     controller: 'SendAllController as vm',
     templateUrl: 'templates/app-content/send-all.tpl.html'
+  }).state('root.about', {
+    url: '/about',
+    controller: 'AboutUsController as vm',
+    templateUrl: 'templates/app-layout/about.tpl.html'
   });
 };
 
@@ -1118,7 +1138,7 @@ var _herokuConstant2 = _interopRequireDefault(_herokuConstant);
 
 _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).config(_config2['default']).constant('HEROKU', _herokuConstant2['default']);
 
-},{"./config":15,"./heroku.constant":16,"angular":45,"angular-cookies":40,"angular-ui-router":43}],18:[function(require,module,exports){
+},{"./config":15,"./heroku.constant":16,"angular":46,"angular-cookies":41,"angular-ui-router":44}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1250,7 +1270,7 @@ console.dir(_angularChartJs2['default']);
 
 _angular2['default'].module('app.dashboard', ['chart.js']).controller('MainDashboardController', _controllersMainDashboardController2['default']).service('DashboardService', _servicesDashboardService2['default']);
 
-},{"./controllers/main-dashboard.controller":18,"./services/dashboard.service":20,"angular":45,"angular-chart.js":38}],20:[function(require,module,exports){
+},{"./controllers/main-dashboard.controller":18,"./services/dashboard.service":20,"angular":46,"angular-chart.js":39}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1299,6 +1319,50 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
+var AboutUsController = function AboutUsController($scope) {
+
+  console.log('AboutUsController');
+
+  var vm = this;
+
+  vm.team = [{
+    name: 'Andrew Faircloth',
+    pic: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAJEAAAAJGMwMTMwODdjLWQ3ZWUtNGEyMy04MDg0LTIxYzA4YzM4YTA1NA.jpg",
+    github: "https://github.com/faircloth",
+    linkedin: "https://www.linkedin.com/in/andrew-faircloth-3b905069",
+    nickname: "Lightweight"
+  }, {
+    name: 'Jeffrey Martín',
+    pic: "https://files.slack.com/files-pri/T066DB5HT-F0GMVE1A9/pic.jpg",
+    github: "https://github.com/jefdonmar",
+    linkedin: "https://www.linkedin.com/in/jeffrey-martín-a753ab41",
+    nickname: "One F Jeff"
+  }, {
+    name: 'Robert Cramer',
+    pic: "https://files.slack.com/files-pri/T066DB5HT-F0GJ7V160/prophoto.jpg",
+    github: "https://github.com/robertcramer",
+    linkedin: "https://www.linkedin.com/in/rbcramer",
+    nickname: "Longfellow Deeds"
+  }, {
+    name: 'Danny Barton',
+    pic: "https://files.slack.com/files-pri/T066DB5HT-F0GJV65GA/slack_for_ios_upload.jpg",
+    github: "https://github.com/dbarton8406",
+    linkedin: "https://www.linkedin.com/in/daniel-barton-ba5a6310b",
+    nickname: "Sugar"
+  }];
+};
+
+AboutUsController.$inject = ['$scope'];
+
+exports['default'] = AboutUsController;
+module.exports = exports['default'];
+
+},{}],22:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 var HomeController = function HomeController($state) {
 
   // console.log('Hello from home controller');
@@ -1310,7 +1374,7 @@ HomeController.$inject = ['$state'];
 exports['default'] = HomeController;
 module.exports = exports['default'];
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -1323,9 +1387,13 @@ var _controllersHomeController = require('./controllers/home.controller');
 
 var _controllersHomeController2 = _interopRequireDefault(_controllersHomeController);
 
-_angular2['default'].module('app.layout', []).controller('HomeController', _controllersHomeController2['default']);
+var _controllersAboutUsController = require('./controllers/about-us.controller');
 
-},{"./controllers/home.controller":21,"angular":45}],23:[function(require,module,exports){
+var _controllersAboutUsController2 = _interopRequireDefault(_controllersAboutUsController);
+
+_angular2['default'].module('app.layout', []).controller('HomeController', _controllersHomeController2['default']).controller('AboutUsController', _controllersAboutUsController2['default']);
+
+},{"./controllers/about-us.controller":21,"./controllers/home.controller":22,"angular":46}],24:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1371,7 +1439,7 @@ AddSubscriberController.$inject = ['$state', '$scope', 'SubscriberService'];
 exports['default'] = AddSubscriberController;
 module.exports = exports['default'];
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1417,7 +1485,7 @@ EditSubscriberController.$inject = ['$state', 'SubscriberService', '$stateParams
 exports['default'] = EditSubscriberController;
 module.exports = exports['default'];
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1451,7 +1519,7 @@ SingleSubscriberController.$inject = ['$state', 'SubscriberService', '$statePara
 exports['default'] = SingleSubscriberController;
 module.exports = exports['default'];
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1488,7 +1556,7 @@ SubscriberRowController.$inject = ['SubscriberService', '$state'];
 exports['default'] = SubscriberRowController;
 module.exports = exports['default'];
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1606,7 +1674,7 @@ ViewSubscribersController.$inject = ['$state', '$scope', 'SubscriberService'];
 exports['default'] = ViewSubscribersController;
 module.exports = exports['default'];
 
-},{"moment":50}],28:[function(require,module,exports){
+},{"moment":51}],29:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1633,7 +1701,7 @@ subscriberItem.$inject = ['SubscriberService'];
 exports['default'] = subscriberItem;
 module.exports = exports['default'];
 
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -1688,7 +1756,7 @@ var _servicesSubscriberService2 = _interopRequireDefault(_servicesSubscriberServ
 
 _angular2['default'].module('app.subscriber', ['checklist-model', 'ui.grid', 'ui.grid.resizeColumns', 'angularMoment', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.selection', 'ui.grid.pagination']).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).controller('SubscriberRowController', _controllersSubscriberRowDirectiveController2['default']).controller('EditSubscriberController', _controllersEditSubscriberController2['default']).controller('SingleSubscriberController', _controllersSingleSubscriberController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
 
-},{"./controllers/add-subscriber.controller":23,"./controllers/edit-subscriber.controller":24,"./controllers/single-subscriber.controller":25,"./controllers/subscriber-row-directive.controller":26,"./controllers/view-subscribers.controller":27,"./directives/subscriberItem.directive":28,"./services/subscriber.service":30,"angular":45,"angular-moment":41,"angular-ui-grid":42,"checklist-model":47,"moment":50}],30:[function(require,module,exports){
+},{"./controllers/add-subscriber.controller":24,"./controllers/edit-subscriber.controller":25,"./controllers/single-subscriber.controller":26,"./controllers/subscriber-row-directive.controller":27,"./controllers/view-subscribers.controller":28,"./directives/subscriberItem.directive":29,"./services/subscriber.service":31,"angular":46,"angular-moment":42,"angular-ui-grid":43,"checklist-model":48,"moment":51}],31:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1768,7 +1836,7 @@ SubscriberService.$inject = ['$http', 'HEROKU', '$cookies'];
 exports['default'] = SubscriberService;
 module.exports = exports['default'];
 
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1800,7 +1868,7 @@ LoginController.$inject = ['$scope', '$state', 'UserService'];
 exports['default'] = LoginController;
 module.exports = exports['default'];
 
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1850,7 +1918,7 @@ SignupController.$inject = ['$state', '$scope', 'UserService'];
 exports['default'] = SignupController;
 module.exports = exports['default'];
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1875,7 +1943,7 @@ ProfileController.$inject = ['$scope', 'UserService'];
 exports['default'] = ProfileController;
 module.exports = exports['default'];
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1894,7 +1962,7 @@ WelcomeController.$inject = ['$scope', '$state', 'UserService'];
 exports['default'] = WelcomeController;
 module.exports = exports['default'];
 
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -1925,7 +1993,7 @@ var _controllersUserProfileController2 = _interopRequireDefault(_controllersUser
 
 _angular2['default'].module('app.user', []).controller('LoginController', _controllersLoginController2['default']).controller('SignupController', _controllersSignupController2['default']).controller('WelcomeController', _controllersWelcomeController2['default']).controller('ProfileController', _controllersUserProfileController2['default']).service('UserService', _servicesUserService2['default']);
 
-},{"./controllers/login.controller":31,"./controllers/signup.controller":32,"./controllers/user-profile.controller":33,"./controllers/welcome.controller":34,"./services/user.service":36,"angular":45}],36:[function(require,module,exports){
+},{"./controllers/login.controller":32,"./controllers/signup.controller":33,"./controllers/user-profile.controller":34,"./controllers/welcome.controller":35,"./services/user.service":37,"angular":46}],37:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2009,7 +2077,7 @@ UserService.$inject = ['$http', 'HEROKU', '$cookies', '$state'];
 exports['default'] = UserService;
 module.exports = exports['default'];
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -2065,7 +2133,7 @@ console.log(_moment2['default']);
   });
 });
 
-},{"./app-content/index":11,"./app-core/index":17,"./app-dashboard/index":19,"./app-layout/index":22,"./app-subscriber/index":29,"./app-user/index":35,"angular":45,"foundation":48,"jquery":49,"moment":50}],38:[function(require,module,exports){
+},{"./app-content/index":11,"./app-core/index":17,"./app-dashboard/index":19,"./app-layout/index":23,"./app-subscriber/index":30,"./app-user/index":36,"angular":46,"foundation":49,"jquery":50,"moment":51}],39:[function(require,module,exports){
 (function (factory) {
   'use strict';
   if (typeof exports === 'object') {
@@ -2429,7 +2497,7 @@ console.log(_moment2['default']);
   }
 }));
 
-},{"angular":45,"chart.js":46}],39:[function(require,module,exports){
+},{"angular":46,"chart.js":47}],40:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -2752,11 +2820,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],40:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":39}],41:[function(require,module,exports){
+},{"./angular-cookies":40}],42:[function(require,module,exports){
 (function (global){
 /* angular-moment.js / v0.10.3 / (c) 2013, 2014, 2015 Uri Shaked / MIT Licence */
 
@@ -3393,7 +3461,7 @@ module.exports = 'ngCookies';
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"moment":50}],42:[function(require,module,exports){
+},{"moment":51}],43:[function(require,module,exports){
 /*!
  * ui-grid - v3.0.7 - 2015-10-06
  * Copyright (c) 2015 ; License: MIT 
@@ -30130,7 +30198,7 @@ angular.module('ui.grid').run(['$templateCache', function($templateCache) {
 
 }]);
 
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -34501,7 +34569,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],44:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -63520,11 +63588,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],45:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":44}],46:[function(require,module,exports){
+},{"./angular":45}],47:[function(require,module,exports){
 /*!
  * Chart.js
  * http://chartjs.org/
@@ -67002,7 +67070,7 @@ module.exports = angular;
 
 
 }).call(this);
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 /**
  * Checklist-model
  * AngularJS directive for list of checkboxes
@@ -67152,7 +67220,7 @@ angular.module('checklist-model', [])
   };
 }]);
 
-},{}],48:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 (function (global){
 ; var __browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 /*
@@ -73743,7 +73811,7 @@ angular.module('checklist-model', [])
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],49:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 (function (global){
 ; var __browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 /*!
@@ -82963,7 +83031,7 @@ return jQuery;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],50:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 //! moment.js
 //! version : 2.10.6
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
@@ -86159,7 +86227,7 @@ return jQuery;
     return _moment;
 
 }));
-},{}],51:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -87709,7 +87777,7 @@ return jQuery;
   }
 }.call(this));
 
-},{}]},{},[37])
+},{}]},{},[38])
 
 
 //# sourceMappingURL=main.js.map

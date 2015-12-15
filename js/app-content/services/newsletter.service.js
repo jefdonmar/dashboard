@@ -32,6 +32,7 @@ let NewsletterService = function($state, $http, HEROKU) {
   this.getContent = getContent;
   // this.buildEmail = buildEmail;
   this.sendAllEmails = sendAllEmails;
+  this.blastList = blastList;
 
   // FUNCTIONS
 
@@ -170,6 +171,16 @@ let NewsletterService = function($state, $http, HEROKU) {
       console.log(self.subscriberIds);
       // getArticles(subscriberId);
     });
+  }
+
+  function blastList () {
+    let subject = 'Subject';
+
+    return $http.post(url + 'newsletters', 
+      {
+        subject: 'Subject Line'
+      },
+      HEROKU.CONFIG);
   }
 
 };
