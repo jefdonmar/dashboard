@@ -10337,27 +10337,6 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   width: 170px;
   height: 51px; }
 
-.addArticle .logo {
-  background-color: #FFFFFF;
-  margin-bottom: 0px;
-  border: 6px solid #082c38; }
-
-.addArticle #articleImg {
-  display: block;
-  margin: 0 auto; }
-
-.addArticle h3, .addArticle p {
-  text-align: center; }
-
-.addArticle .article-form {
-  padding: 15px; }
-  .addArticle .article-form .article {
-    width: 100%; }
-  .addArticle .article-form button.submit {
-    background-color: #082c38;
-    display: block;
-    margin: 15px auto; }
-
 .addsubscriber {
   display: block; }
   .addsubscriber h3 {
@@ -10413,5 +10392,24 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   @media screen and (max-width: 375px) {
     .main-dashboard .dash-3-block #second-number {
       margin-top: -25px; } }
+
+.addArticle .logo {
+  background-color: #FFFFFF;
+  margin-bottom: 0px;
+  border: 6px solid #082c38; }
+
+.addArticle #articleImg {
+  display: block;
+  margin: 0 auto; }
+
+.addArticle h3, .addArticle p {
+  text-align: center; }
+
+.addArticle .article-form {
+  padding: 15px; }
+  .addArticle .article-form button.submit {
+    background-color: #082c38;
+    display: block;
+    margin: 15px auto; }
 
 /*# sourceMappingURL=main.css.map */
