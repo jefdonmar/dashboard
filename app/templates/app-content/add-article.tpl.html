@@ -8,25 +8,32 @@
       subscriber list.
     </p>
 
-  <form  class="article-form" style="min-width: 300px; max-width: 800px; width: 100%;"class="add-article"ng-submit="vm.addArticle(article)">
+  <form  class="article-form" style="min-width: 300px; max-width: 800px; width: 100%;"class="add-article" ng-submit="vm.addArticle(article)">
     
     <select ng-model="article.subject_names">
       <option value=''>Choose a subject</option>
       <option ng-repeat="subject in subjects">{{ subject }}</option>
     </select>
 
-    <table class="article" id="input-article-table" style="width: 100%; max-width: 800px;">
+
+    <input class="custom-text"  id="input-headlines" width="100%" ng-model="article.title" placeholder="Headline..."/>
+
+    <textarea class="custom-text" id="input-text-content" ng-model="article.content" placeholder="Article Content..."></textarea>
+
+
+  
+   <!--  <table id="input-article-table" class="article" style="max-width: 800px; width: 100%;">
       <tr width="100%">
         <td width="100%">
-          <input class="custom-text" id="input-headlines" ng-model="article.title" placeholder="Headline...">
+          <input class="custom-text"  id="input-headlines" width="100%" ng-model="article.title" placeholder="Headline..."/>
         </td>
       </tr>
       <tr>
         <td>
-          <textarea id="input-text-content" class="custom-text" ng-model="article.content" placeholder="Article Content..."> </textarea>
+          <textarea class="custom-text" id="input-text-content" ng-model="article.content" placeholder="Article Content..."></textarea>
         </td>
       </tr>
-    </table>  
+    </table>   -->
     
     <input type="file" id="articleImg">
 

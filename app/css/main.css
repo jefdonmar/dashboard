@@ -10021,7 +10021,6 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
         width: 200px;
         border: 6px solid #082c38; } }
 
-<<<<<<< HEAD
 .login {
   background-color: white;
   border: 6px solid #082c38;
@@ -10394,34 +10393,6 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     .main-dashboard .dash-3-block #second-number {
       margin-top: -25px; } }
 
-.addArticle .logo {
-  background-color: #FFFFFF;
-  margin-bottom: 0px;
-  border: 6px solid #082c38; }
-
-.addArticle #articleImg {
-  display: block;
-  margin: 0 auto; }
-
-.addArticle h3, .addArticle p {
-  text-align: center; }
-
-.addArticle .article-form {
-  padding: 15px; }
-  .addArticle .article-form button.submit {
-    background-color: #082c38;
-    display: block;
-    margin: 15px auto; }
-=======
-.dashboard-container {
-  background-color: white;
-  padding: 15px;
-  border: 10px solid #082c38; }
-
-ul.dash-row {
-  border-bottom: 2px solid #082c38; }
->>>>>>> master
-
 .import-file-form {
   border: 2px solid #082c38;
   background-color: #EDEDED;
@@ -10431,5 +10402,53 @@ ul.dash-row {
   width: 40%;
   padding-left: 5px;
   padding-right: 5px; }
+
+.addArticle .logo {
+  background-color: #FFFFFF;
+  margin-bottom: 0px;
+  border: 6px solid #082c38;
+  width: 100%; }
+
+.addArticle #articleImg {
+  display: block;
+  margin: 0 auto; }
+
+.addArticle h3, .addArticle p {
+  text-align: center; }
+
+.addArticle .article-form {
+  padding: 20px;
+  display: block;
+  width: 90%; }
+  .addArticle .article-form .article {
+    width: 100%;
+    display: block; }
+  .addArticle .article-form button.submit {
+    background-color: #082c38;
+    display: block;
+    margin: 15px auto; }
+  .addArticle .article-form select {
+    border: 1px solid #082c38;
+    background-color: #EDEDED;
+    font-size: 1em; }
+  .addArticle .article-form #input-headlines {
+    background-color: white;
+    color: #082c38;
+    border: 1px solid #082c38;
+    padding: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #EDEDED;
+    font-size: 1.4em; }
+  .addArticle .article-form textarea {
+    min-height: 300px;
+    height: 300px;
+    background-color: white;
+    border: 1px solid #082c38;
+    color: #082c38;
+    padding: 10px;
+    padding-bottom: 15px;
+    background-color: #EDEDED;
+    font-size: 1em; }
 
 /*# sourceMappingURL=main.css.map */
