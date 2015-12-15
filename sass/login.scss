@@ -1,0 +1,108 @@
+// Log-In View
+
+.login {
+  background-color: white;
+  border: 6px solid $Navy;
+  display: block;
+
+  .logo{
+    padding: 10px;
+    text-align: center;
+    font-size: 25px;
+
+    p {
+      font-weight: bold;
+    }
+  }
+
+  .log-in {
+    padding: 5px;
+
+    .fa {
+      display: block;
+      margin: 30% auto;
+    }
+
+    .user-container {
+      position: relative;
+
+      .user-ph {
+        display: inline-block;
+        width: $iconBoxWidth;
+        height: 100%;
+        font-size: 14px;
+        font-weight: normal;
+        position: absolute;
+        text-align: center;
+        text-shadow: 0 1px 0 #ffffff;
+        background-color: #eeeeee;
+        // left: 3px;
+        // top: 3px;
+        // bottom: 3px;
+        z-index: 3;
+        border: $iconBoxBorder;
+        border-right: none;
+      }
+
+      .custom-text {
+        padding: $customTextPadding;
+      }
+    }
+  
+    .password-container{
+      position: relative;
+
+      .password-ph {
+        display: inline-block;
+        width: $iconBoxWidth;
+        height: 100%;
+        font-size: 14px;
+        font-weight: normal;
+        position: absolute;
+        text-align: center;
+        text-shadow: 0 1px 0 #ffffff;
+        background-color: #eeeeee;
+        // left: 3px;
+        // top: 3px;
+        // bottom: 3px;
+        z-index: 3;
+        border: $iconBoxBorder;
+        border-right: none;
+      }
+      .custom-text {
+        padding: $customTextPadding;
+      }
+    }
+
+    .extra { 
+
+      input {
+        margin-left: 10px;
+      }
+
+      a{
+        float: right;
+        margin-right: 20px;
+      }
+
+      p {
+        font-weight: bold;
+        color: red;
+        margin-left: 10px;
+      }
+    }
+
+    button {
+      display: inline-block;
+      background-color: $Navy;
+      height: auto;
+      width: 100%;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+    }
+  }
+}

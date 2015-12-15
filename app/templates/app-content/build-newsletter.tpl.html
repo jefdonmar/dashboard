@@ -1,82 +1,87 @@
-<button class="send-newsletter-btn" ng-click="vm.sendToAll(newsObj, sub)">Send to all</button>
-
-<!-- Subject line, recipient for newsletter - FORM -->
-
-<form class="newsletter-form" ng-submit="vm.getSubjectsForNewsletter(newsObj)">
-
-<h5 style="color: white; font-size: 1.4em; text-transform: uppercase; font-weight: bold;">Build a newsletter</h5>
-  <span>Subject line:</span>
-  <input placeholder="Your subject line" ng-model="newsObj.name">
+<div class="build-news">
   
-<!--   <span>Recipient:</span>
-  <select ng-model="newsObj.to">
-    <option value="">Select a subscriber</option>
-    <option ng-repeat="sub in vm.subscribers">{{sub.email}}</option>
-  </select> -->
+  <!-- Subject line, recipient for newsletter - FORM -->
 
-  <span>Subjects:</span><br>
-  <div id="subjectBuildDiv" ng-repeat="subject in subjects">
-    <label class="subjectList">
-      <input
-        type="checkbox"
-        checklist-model="newsObj.subjectNames"
-        checklist-value="subject"> 
-        {{ subject }}
-    </label>
+  <form class="newsletter-form" ng-submit="vm.getSubjectsForNewsletter(newsObj)">
+
+  <h5 style="color: white; font-size: 1.4em; text-transform: uppercase; font-weight: bold;">Build a newsletter</h5>
+    <span>Subject line:</span>
+    <input placeholder="Your subject line" ng-model="newsObj.name">
+  
+  <!--   <span>Recipient:</span>
+    <select ng-model="newsObj.to">
+      <option value="">Select a subscriber</option>
+      <option ng-repeat="sub in vm.subscribers">{{sub.email}}</option>
+    </select> -->
+
+    <span>Subjects:</span><br>
+    <div id="subjectBuildDiv" ng-repeat="subject in subjects">
+      <label class="subjectList">
+        <input
+          type="checkbox"
+          checklist-model="newsObj.subjectNames"
+          checklist-value="subject"> 
+          {{ subject }}
+      </label>
+    </div>
+
+    <br>
+
+    <button class="build-newsletter-btn">Build Preview Below</button>
+
+  </form>
+
+
+  <!-- Newsletter Preview -->
+
+  <!-- http://i.imgur.com/CFGICrc.png -->
+
+  <!-- <form>
+    <input 
+      type="text" 
+      placeholder="Insert logo URL for your newsletter"
+      ng-model="bannerImg">
+    <button>Upload banner image</button>
+  </form> -->
+
+  <div class="html-email-container">
+
+  <html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width"/>
+    </head>
+
+    <body>
+      <table class="body" style="width: 100%;">
+        <tr>
+          <td class="center" align="center" valign="center">
+            <p style="text-align: center;">Click to view in your browser</p>
+            <img class="banner-img" src="{{ bannerImg }}" ng-show="bannerImg">
+          </td>
+        </tr>
+        <tr>
+          <td class="wrapper">
+            <table email-article 
+            ng-repeat="a in articles"
+            article="a"
+            class="row">
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+  <!-- http://fpoimg.com/600x150 -->
+
+  </html>
   </div>
 
-  <br>
-
-  <button class="build-newsletter-btn">Build Preview Below</button>
-
-</form>
+  <button class="send-newsletter-btn" ng-click="vm.sendNews(newsObj, sub)">Send</button>
 
 
-<!-- Newsletter Preview -->
-
-<!-- http://i.imgur.com/CFGICrc.png -->
-
-<!-- <form>
-  <input 
-    type="text" 
-    placeholder="Insert logo URL for your newsletter"
-    ng-model="bannerImg">
-  <button>Upload banner image</button>
-</form> -->
-
-<div class="html-email-container">
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width"/>
-  </head>
-
-  <body>
-    <table class="body" style="width: 100%;">
-      <tr>
-        <td class="center" align="center" valign="center">
-          <p style="text-align: center;">Click to view in your browser</p>
-          <img class="banner-img" src="{{ bannerImg }}" ng-show="bannerImg">
-        </td>
-      </tr>
-      <tr>
-        <td class="wrapper">
-          <table email-article 
-          ng-repeat="a in articles"
-          article="a"
-          class="row">
-          </table>
-        </td>
-      </tr>
-    </table>
-  </body>
-<!-- http://fpoimg.com/600x150 -->
-
-</html>
 </div>
 
-<button class="send-newsletter-btn" ng-click="vm.sendNews(newsObj, sub)">Send</button>
+
 
 
 

@@ -1,18 +1,20 @@
-<div class="dashboard-container">
-  <h4 class="dash-headlines">Subscribers</h4>
-  <ul class="small-block-grid-2 dash-row">
+
+<div class="main-dashboard">
+
+  <h4 class="dash-headlines">Subscribers</h3>
+  <ul class="small-block-grid-2">
     <li class="dash-3-block">
       <h5>Total Subscribers</h5>
       <p class="big-number-dash">{{ vm.subscribers.length }}</p>
     </li>
     <li class="dash-3-block">
       <h5>New subscribers today</h5>
-      <p class="big-number-dash">{{ vm.newToday.length }}</p>
+      <p class="big-number-dash" id="second-number">{{ vm.newToday.length }}</p>
     </li>
   </ul>
 
-  <h4 class="dash-headlines">Preferences</h4>
-  <ul class="small-block-grid-2 dash-row">
+  <h4 class="dash-headlines">Preferences</h3>
+  <ul class="small-block-grid-2">
 
     <li class="dash-3-block">
       <h5>Preferences breakdown</h5>
@@ -36,7 +38,6 @@
     </li>
   </ul>
 
-
   <h4 class="dash-headlines">Content</h4>
   <ul class="small-block-grid-2 dash-row">
 
@@ -51,6 +52,7 @@
     </li>
 
     <li class="dash-3-block">
+
       <h5>Articles by subject</h5>
       <canvas 
         id="bar" 
@@ -62,5 +64,5 @@
     </li>
 
   </ul>
-</div>
 
+</div>

@@ -1,0 +1,63 @@
+// Add-Subscriber View
+
+.addsubscriber {
+display: block;
+
+
+  h3 {
+    font-weight: bold;
+  }
+
+  .add-subscriber {
+    background-color: white;
+    border: 6px solid $Navy;
+    padding: 15px;
+
+    p {
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .email-containter {
+      margin-top: 10px;
+      position: relative;
+
+      .custom-text {
+        padding:6px 6px 6px 30px;
+      }
+    }
+
+    h5 {
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .sports {
+      margin-left: 42%;
+    }
+   
+  }
+  .submit {
+    display: block;
+    margin: 0 auto;
+    background-color: $Navy;
+    width: 50%;
+    height: auto;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  @media screen and (max-width: 375px) {
+
+    h5 {
+      text-align: center;
+    }
+
+    label {
+      margin-right: 35px;
+      margin-left: -10px;
+    }
+
+  }
+}

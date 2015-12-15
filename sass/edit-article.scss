@@ -1,0 +1,19 @@
+.edit-article {
+  background-color: $White;
+  border: 6px solid $Navy;
+  padding: 5px;
+  display: block;
+
+  h4 {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  button {
+    background-color: $Navy;
+    margin-left: 40%;
+    margin-right: 40%;
+
+  }
+
+}
