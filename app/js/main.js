@@ -229,7 +229,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var SendAllController = function SendAllController($scope, NewsletterService, $state) {
+var SendAllController = function SendAllController($scope, NewsletterService, $state, ArticleService) {
 
   console.clear();
   console.log('SendAllController');
@@ -245,6 +245,10 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
   vm.previewEmail = previewEmail;
   vm.constructMailers = constructMailers;
   vm.checkMe = checkMe;
+  vm.build = build;
+  vm.checkMatch = checkMatch;
+  vm.buildNewsletters = buildNewsletters;
+  vm.showBatch = showBatch;
 
   activate();
 
@@ -276,7 +280,7 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
       console.log('CONTENT', content);
       console.log('SUBSCRIBERS', subscribers);
       nextStep(content, subscribers);
-    }, 5000);
+    }, 2000);
   }
 
   var collection = [];
@@ -296,18 +300,32 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
     });
     setTimeout(function () {
       console.log(collection);
-    }, 3000);
+    }, 2000);
   }
 
   function compileContent(collection) {
     console.log('COMPILER', collection[0]);
   }
 
-  function constructMailers(subscribers, collection) {
+  var articleMatcher = [];
 
-    collection.forEach(function (arr) {
-      console.log('ARRAY OF ARTICLES', arr);
-      $scope.articles = arr;
+  function constructMailers() {
+
+    NewsletterService.sendAllContent = [];
+
+    ArticleService.getAllArticles().then(function (response) {
+      var allArticles = response.data.article;
+      console.log(allArticles);
+      $scope.articles = allArticles;
+
+      allArticles.forEach(function (article) {
+        var articleObj = {};
+        articleObj.id = article.id;
+        articleObj.title = article.title;
+        articleObj.content = article.content;
+        articleObj.subject_names = article.subject_names;
+        articleMatcher.push(articleObj);
+      });
     });
   }
 
@@ -322,11 +340,90 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
     console.log('CLICK');
     console.log('COLLECTION', collection);
     console.log('SUBSCRIBERS', subscribers);
-    constructMailers(subscribers, collection);
+    constructMailers();
+    setTimeout(function () {
+      checkMe();
+    }, 1000);
   }
 
   function checkMe() {
     console.log('CHECK', NewsletterService.sendAllContent);
+    console.log('ARTICLE MATCHER', articleMatcher);
+  }
+
+  function build() {
+    console.clear();
+    console.log(articleMatcher);
+
+    articleMatcher.forEach(function (article) {
+      NewsletterService.sendAllContent.forEach(function (codeString) {
+        if (codeString.includes(article.title) && codeString.includes(article.content)) {
+          article.htmlContent = codeString;
+        }
+      });
+    });
+  }
+
+  function checkMatch() {
+    console.log(articleMatcher);
+  }
+
+  var newsletterBatch = [];
+  var preContent = NewsletterService.preContent;
+  var postContent = NewsletterService.postContent;
+
+  // let preContent = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="viewport" content="width=device-width"/></head><body><table class="body" style="width: 100%;"><tr><td class="center" align="center" valign="center"><p style="text-align: center;">Click to view in your browser</p></td></tr><tr><td class="wrapper"><table>';
+  // let postContent = '</table></td></tr></table></body></html>';
+
+  function buildNewsletters() {
+    console.clear();
+    console.log('newsletter builder');
+    console.log(newsletterBatch);
+
+    // BUILD A NEWSLETTER FOR EACH SUBSCRIBER
+    subscribers.forEach(function (subscriber) {
+
+      // CONSTRUCT AN OBJECT FOR EACH NEWSLETTER TO PUSH TO AN ARRAY OF EMAILS
+      var emailNewsletter = {};
+
+      // SET PROPERTIES YOU CAN - NEED TO FILL SUJECT IN WITH A FORM
+      emailNewsletter.email = subscriber.email;
+      emailNewsletter.subject = 'Test Subject Line';
+
+      // CREATE AN EMPTY ARRAY FOR ALL ARTICLES, WILL PUSH CONTENT TO IT
+      emailNewsletter.allArticles = [];
+
+      // COLLECT THE ARTICLE IDS NEEDED
+      var articleIds = [];
+
+      NewsletterService.getContent(subscriber.id).then(function (response) {
+        var articles = response.data.articles;
+        articles.forEach(function (article) {
+          articleIds.push(article.id);
+          console.log('ARTICLEIDs', articleIds);
+        });
+      });
+
+      // FOR EACH ARTICLE IN THE MATCHER ARRAY, PUSH HTML CODE INTO THE CONTENT PROPERTY
+      articleMatcher.forEach(function (article) {
+        if (articleIds.includes(article.id)) {
+          allArticles.push(article.htmlContent);
+        }
+      });
+
+      // GIVE THE FUNCTION SOME TIME, THEN STRING TOGETHER CODE AND LOG IT OUT
+      setTimeout(function () {
+        var articleContent = emailNewsletter.allArticles.join('');
+        emailNewsletter.html = preContent + articleContent + postContent;
+        console.log('EMAIL NEWSLETTER', emailNewsletter);
+        newsletterBatch.push(emailNewsletter);
+        showBatch();
+      }, 3000);
+    });
+  }
+
+  function showBatch() {
+    console.log('NEWSLETTER BATCH', newsletterBatch);
   }
 
   // let mailers = [];
@@ -339,7 +436,7 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
   // }
 };
 
-SendAllController.$inject = ['$scope', 'NewsletterService', '$state'];
+SendAllController.$inject = ['$scope', 'NewsletterService', '$state', 'ArticleService'];
 
 exports['default'] = SendAllController;
 module.exports = exports['default'];
@@ -491,7 +588,7 @@ var emailArticle = function emailArticle(ArticleService, $compile, NewsletterSer
       setTimeout(function () {
         NewsletterService.tempContent.push(content[0].innerHTML);
         NewsletterService.sendAllContent.push(content[0].innerHTML);
-        console.log(content[0].innerHTML);
+        // console.log(content[0].innerHTML);
         // console.log(NewsletterService.tempContent);
       }, 0);
     }
@@ -696,6 +793,7 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
   this.getArticles = getArticles;
   this.constructMailer = constructMailer;
   this.eachEmail = eachEmail;
+  this.getContent = getContent;
   // this.buildEmail = buildEmail;
 
   // FUNCTIONS
@@ -811,7 +909,6 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
     subscriberIds.forEach(function (subscriberId) {
       getContent(subscriberId).then(function (response) {
         self.emailContent.push(response.data.subscriber);
-        self.contentCounter = self;
       });
     });
   }

@@ -2,7 +2,7 @@ import _ from "underscore";
 
 let NewsletterService = function($state, $http, HEROKU) {
   
-// VARIABLES AND PROPERTIES
+  // VARIABLES AND PROPERTIES
 
   let url = HEROKU.URL;
   let self = this;
@@ -29,9 +29,10 @@ let NewsletterService = function($state, $http, HEROKU) {
   this.getArticles = getArticles;
   this.constructMailer = constructMailer;
   this.eachEmail = eachEmail;
+  this.getContent = getContent;
   // this.buildEmail = buildEmail;
 
-// FUNCTIONS
+  // FUNCTIONS
 
   function Newsletter (newsObj) {
     // this.newsName     = newsObj.name;
@@ -149,7 +150,6 @@ let NewsletterService = function($state, $http, HEROKU) {
     subscriberIds.forEach( function(subscriberId) {
       getContent(subscriberId).then( (response) => {
         self.emailContent.push(response.data.subscriber);
-        self.contentCounter = self
       });
     });
   }
