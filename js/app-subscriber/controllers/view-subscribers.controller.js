@@ -19,11 +19,9 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
     let fileObj = fileField.files[0];
     console.log(fileObj);
 
-    SubscriberService.importSubscribers(fileObj);   
-    // ADD ONCE AJAX REQUEST IS WRITTEN
-    // .then( (response) => {
-    //   console.log(response);
-    // });
+    SubscriberService.importSubscribers(fileObj).then( (response) => {
+      console.log(response);
+    });
   }
 
 
@@ -40,7 +38,7 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
     enableSorting: true,
     enableFiltering: true,
     enableColumnResizing: true,
-    paginationPageSize: 20,
+    paginationPageSize: 50,
     columnDefs: [
       // { field: 'id', width: '5%'},
       { field: 'email', width: '30%'},

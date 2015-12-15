@@ -1588,11 +1588,9 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     var fileObj = fileField.files[0];
     console.log(fileObj);
 
-    SubscriberService.importSubscribers(fileObj);
-    // ADD ONCE AJAX REQUEST IS WRITTEN
-    // .then( (response) => {
-    //   console.log(response);
-    // });
+    SubscriberService.importSubscribers(fileObj).then(function (response) {
+      console.log(response);
+    });
   }
 
   function submit() {
@@ -1608,7 +1606,7 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     enableSorting: true,
     enableFiltering: true,
     enableColumnResizing: true,
-    paginationPageSize: 20,
+    paginationPageSize: 50,
     columnDefs: [
     // { field: 'id', width: '5%'},
     { field: 'email', width: '30%' }, { field: 'subject_names', width: '35%' },
@@ -1784,10 +1782,10 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
 
     console.log('TEST LOG', fileObj);
 
-    // let formData = new FormData();
-    // formData.append('fileimport', fileObj);
-    // HEROKU.CONFIG.headers['Content-Type'] = undefined;
-    // return $http.post(url, formData, HEROKU.CONFIG);
+    var formData = new FormData();
+    formData.append('fileimport', fileObj);
+    HEROKU.CONFIG.headers['Content-Type'] = undefined;
+    return $http.post(url + '/' + 'create_by_csv', formData, HEROKU.CONFIG);
   }
 
   function addSubscriber(subObj) {

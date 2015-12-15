@@ -8503,11 +8503,65 @@ div.html-email-container {
   font-size: 1.2em;
   min-height: 150px; }
 
+p.data-directions {
+  margin-top: 15px;
+  margin-bottom: 0px;
+  color: #082c38;
+  text-align: right;
+  font-weight: bold; }
+
+ul.small-block-grid-2 li.view-sub-block-1, ul.small-block-grid-2 li.view-sub-block-2 {
+  color: #082c38;
+  height: 100%; }
+  ul.small-block-grid-2 li.view-sub-block-1 form, ul.small-block-grid-2 li.view-sub-block-2 form {
+    width: 100%;
+    background-color: #EDEDED;
+    text-align: center;
+    border: 3px solid #082c38;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 100%; }
+    ul.small-block-grid-2 li.view-sub-block-1 form h5, ul.small-block-grid-2 li.view-sub-block-2 form h5 {
+      font-weight: bold; }
+    ul.small-block-grid-2 li.view-sub-block-1 form button, ul.small-block-grid-2 li.view-sub-block-2 form button {
+      padding: 10px;
+      background-color: #082c38;
+      width: 60%;
+      text-align: center;
+      border: 3px solid #082c38;
+      font-weight: bold;
+      margin: 15px auto;
+      height: 20%;
+      color: white; }
+    ul.small-block-grid-2 li.view-sub-block-1 form input, ul.small-block-grid-2 li.view-sub-block-2 form input {
+      display: block;
+      width: 80%;
+      margin: 2px auto;
+      text-align: center; }
+  ul.small-block-grid-2 li.view-sub-block-1 a.view-subs-nav, ul.small-block-grid-2 li.view-sub-block-1 button.view-subs-btn, ul.small-block-grid-2 li.view-sub-block-2 a.view-subs-nav, ul.small-block-grid-2 li.view-sub-block-2 button.view-subs-btn {
+    padding: 10px;
+    background-color: #EDEDED;
+    width: 80%;
+    text-align: center;
+    border: 3px solid #082c38;
+    font-weight: bold;
+    margin: 5px;
+    height: 20%;
+    color: #082c38; }
+
 .grid {
-  width: 100%;
-  max-width: 1200px;
+  width: 1200px;
   display: block;
   margin: 10px auto; }
+  .grid .ui-grid-render-container {
+    border: none; }
+  .grid .ui-grid-header {
+    border-bottom: 5px solid #39bced; }
+  .grid .ui-grid-header-cell-row {
+    background-color: #082c38;
+    color: white;
+    font-family: 'Helvetica', sans-serif;
+    font-weight: normal; }
 
 div.ui-grid-pager-panel {
   background-color: #082c38;
@@ -8549,7 +8603,7 @@ div.ui-grid-pager-panel {
   clear: both; }
 
 .ui-grid {
-  border: 1px solid #d4d4d4;
+  border: 5px solid white;
   box-sizing: content-box;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -10510,6 +10564,6 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       border: 2px solid #082c38; }
 
 * {
-  font-family: 'Nunito', sans-serif; }
+  font-family: 'Helvetica', sans-serif; }
 
 /*# sourceMappingURL=main.css.map */

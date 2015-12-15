@@ -21,10 +21,10 @@ let SubscriberService = function($http, HEROKU, $cookies) {
 
     console.log('TEST LOG', fileObj);
 
-    // let formData = new FormData();
-    // formData.append('fileimport', fileObj);
-    // HEROKU.CONFIG.headers['Content-Type'] = undefined;
-    // return $http.post(url, formData, HEROKU.CONFIG);
+    let formData = new FormData();
+    formData.append('fileimport', fileObj);
+    HEROKU.CONFIG.headers['Content-Type'] = undefined;
+    return $http.post(url + '/' + 'create_by_csv', formData, HEROKU.CONFIG);
 
   }
 
