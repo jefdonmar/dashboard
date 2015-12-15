@@ -15,7 +15,6 @@ $customTextPadding: 6px 6px 6px 40px;
 $iconBoxBorder: 1px solid $LightGrey;
 
 
-
 body {
   background: $BrightBlue;
 
@@ -24,65 +23,8 @@ body {
     width: 80%;
     max-width: 1000px;
     max-height: 1000px;
-
   }
 }
-
-// Navigation Bar View 
-.top-bar {
-
-  .name {
-    img {
-      margin-top: -5.75px;
-      width: 170px;
-      height:51px;
-    }
-  }
-
-}
-
-
-
-
-
-
-// Add- Article View 
-
-.addArticle {
-
-  .logo {
-    background-color: $White;
-    margin-bottom: 0px;
-    border: 6px solid $Navy;
-  }
-
-  #articleImg {
-    display: block;
-    margin: 0 auto;
-  }
-
-  h3, p {
-    text-align: center;
-  }
-  
-  .article-form {
-    // background-color: $White;
-    padding: 15px;
-
-    .article {
-      // background-color: $White;
-    }
-
-    button.submit {
-      background-color: $Navy;
-      display: block;
-      margin: 15px auto;
-    }
-  }  
-}
-
-
-
 
 // View Articles by Subject View
 
@@ -92,65 +34,10 @@ body {
   display: block;
   border: 6px solid $Navy;
 
-
  ul, h3 {
   text-align: center;
  }
-
-
 }
-
-
-// Add-Subscriber View
-
-.addsubscriber {
-display: block;
-
-
-  h3 {
-    font-weight: bold;
-  }
-
-  .add-subscriber {
-    background-color: white;
-    border: 6px solid $Navy;
-    padding: 15px;
-
-    p {
-      text-align: center;
-      font-weight: bold;
-      font-size: 20px;
-    }
-
-    .email-containter {
-      margin-top: 10px;
-      position: relative;
-
-      .custom-text {
-        padding:6px 6px 6px 30px;
-      }
-    }
-
-    h5 {
-      font-weight: bold;
-    }
-
-    .sports {
-      margin-left: 42%;
-    }
-   
-  }
-  .submit {
-    display: block;
-    margin: 0 auto;
-    background-color: $Navy;
-    width: 50%;
-    height: auto;
-    border-radius: 5px;
-    padding: 10px;
-  }
-}
-
 
 .subject-headers {
   display: inline-block;
@@ -169,7 +56,6 @@ display: block;
     cursor: pointer;
     color: blue;
   }
-
 }
 
 .single-article-nav {
@@ -183,18 +69,13 @@ display: block;
     margin-left: 0px;
     cursor: pointer;
   }
-
 }
 
 ul.subject-button-list {
   list-style-type: none;
 }
 
-
-
-
 // ---- ARTICLE CARDS ON VIEW ARTICLES ---
-
 div.view-article-card {
   margin: 0 auto;
 
@@ -215,63 +96,24 @@ div.view-article-card {
     margin-top: 5px;
     margin-bottom: 5px;
   }
-
-}
-
-
-// --- DASHBOARD VIEWS ----
-
-.main-dashboard {
-  background-color: $White;
-  border: 6px solid $Navy;
-
-
-
-  .dash-headlines {
-    font-size: 2em;
-    margin-top: 20px;
-  }
-
-  .small-block-grid-2 {
-    margin-top: 10px;
-  }
-
-  h4 {
-    text-align: center;
-  }
-
-  h5 {
-    text-align: center; 
-  }
-
-  .big-number-dash {
-    font-size: 5em;
-    text-align: center;
-  }
 }
 
 
 .Two-big-number-dash {
   font-size: 2em;
   text-align: center;
-
 }
 
 .demo-pics {
   display: block;
   margin: 0 auto;
-
 }
-
-
 
 li.view-articles-news {
   border: 1px solid black;
   text-align: center;
   margin: 10px 0;
-
 }
-
 
 div.html-email-container {
   border: 2px solid $Navy;
@@ -304,7 +146,6 @@ div.html-email-container {
   min-height: 150px;
 }
 
-
 .grid {
   width: 100%;
   max-width: 1200px;
@@ -316,7 +157,6 @@ div.ui-grid-pager-panel {
   background-color: $Navy;
   color: white;
 }
-
 
 #subjectBuildDiv {
   display: inline-block;
@@ -332,39 +172,6 @@ div.ui-grid-pager-panel {
   width: 100px;
   height: 100px;
 }
-
-
-
-// View articles by subject
-
-.view-sub-heading {
-  width: 90%;
-  margin: 0 auto;
-  margin-bottom: 10px;
-}
-
-.view-article-card {
-    border-bottom: 1px solid $Navy;
-    padding-top: 25px;
-    width: 90%;
-    margin: 0 auto;
-}
-
-.view-sub-link {
-
-  ul {
-    text-align: center;
-    width: 90%;
-    display: block;
-    margin: 0 auto;
-  }
-
-    li {  
-      display: inline-block;
-      margin: 0 10px;
-    }
-}
-
 
 // View-Subscribers
 
@@ -395,6 +202,11 @@ div.ui-grid-pager-panel {
 @import "article";
 @import "edit-article";
 @import "view-articles";
+@import "view-by-subject";
+@import "navigation";
+@import "add-article";
+@import "add-subscriber";
+@import "dashboard";
 
 
 

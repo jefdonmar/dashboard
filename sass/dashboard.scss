@@ -1,0 +1,38 @@
+// --- DASHBOARD VIEWS ----
+.main-dashboard {
+  background-color: $White;
+  border: 6px solid $Navy;
+
+  .dash-headlines {
+    font-size: 2em;
+    margin-top: 20px;
+  }
+
+  .small-block-grid-2 {
+    margin-top: 10px;
+  }
+
+  h4 {
+    text-align: center;
+  }
+
+  h5 {
+    text-align: center; 
+  }
+
+  .big-number-dash {
+    font-size: 5em;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 375px) {
+
+    .dash-3-block {
+
+      #second-number {
+        margin-top: -25px;
+      }
+
+    }   
+  }
+}

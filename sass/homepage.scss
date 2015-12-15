@@ -1,7 +1,4 @@
-
-
 // Home Page View
-
 .home {
   background: $White;
   display: block;
@@ -22,7 +19,6 @@
     font-weight: bold;
   }
 
-
   .text {
     display: block;
     margin: 0px auto;
@@ -30,7 +26,6 @@
     width: 80%;
     padding-top: 10px;
   }
-
 
   .manageImage {
 
@@ -45,7 +40,7 @@
         margin: 1%;
         vertical-align: top;
         height: 100%;
-
+        text-align: center;
 
         img.managePic {
           height: 200px;
@@ -57,20 +52,12 @@
         margin-left: 15%;
         margin-right: 10%;
 
-        @media screen and (max-width: 740px) {
-
-          .btn-row {
-            display: block;
-          }
-        }
-
         button {
           background-color: $Navy;
         }
       }
-  
 
-      @media screen and (max-width: 720px) {
+      @media screen and (max-width: 375px) {
 
         .grid-block {
           display: block;
@@ -82,14 +69,21 @@
             text-align: center;
           }
 
+          .medium-7 {
 
-            img.managePic {
+            .iPhone {
+              margin-left: 15px;
+            }
+          }
+
+
+          img.managePic {
             display: block;
             margin: 2% auto;
             height: 200px;
             width: 200px;
             border: 6px solid $Navy;
-            }
+          }
 
         }
       }

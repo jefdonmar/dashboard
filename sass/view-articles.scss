@@ -15,7 +15,7 @@
 
   .top {
 
-     width: 90%;
+    width: 90%;
     margin: 0 auto;
 
     h3 {
@@ -30,5 +30,16 @@
       top: 0;
 
     }
+  }
+
+  @media screen and (max-width: 375px) {
+
+    .view-article-card {
+
+      img {
+        margin-left: 70px;
+      }
+    }
+
   }
 }

@@ -8415,30 +8415,6 @@ body {
     max-width: 1000px;
     max-height: 1000px; }
 
-.top-bar .name img {
-  margin-top: -5.75px;
-  width: 170px;
-  height: 51px; }
-
-.addArticle .logo {
-  background-color: #FFFFFF;
-  margin-bottom: 0px;
-  border: 6px solid #082c38; }
-
-.addArticle #articleImg {
-  display: block;
-  margin: 0 auto; }
-
-.addArticle h3, .addArticle p {
-  text-align: center; }
-
-.addArticle .article-form {
-  padding: 15px; }
-  .addArticle .article-form button.submit {
-    background-color: #082c38;
-    display: block;
-    margin: 15px auto; }
-
 .viewArticleSubjects {
   background-color: #FFFFFF;
   padding: 10px;
@@ -8446,36 +8422,6 @@ body {
   border: 6px solid #082c38; }
   .viewArticleSubjects ul, .viewArticleSubjects h3 {
     text-align: center; }
-
-.addsubscriber {
-  display: block; }
-  .addsubscriber h3 {
-    font-weight: bold; }
-  .addsubscriber .add-subscriber {
-    background-color: white;
-    border: 6px solid #082c38;
-    padding: 15px; }
-    .addsubscriber .add-subscriber p {
-      text-align: center;
-      font-weight: bold;
-      font-size: 20px; }
-    .addsubscriber .add-subscriber .email-containter {
-      margin-top: 10px;
-      position: relative; }
-      .addsubscriber .add-subscriber .email-containter .custom-text {
-        padding: 6px 6px 6px 30px; }
-    .addsubscriber .add-subscriber h5 {
-      font-weight: bold; }
-    .addsubscriber .add-subscriber .sports {
-      margin-left: 42%; }
-  .addsubscriber .submit {
-    display: block;
-    margin: 0 auto;
-    background-color: #082c38;
-    width: 50%;
-    height: auto;
-    border-radius: 5px;
-    padding: 10px; }
 
 .subject-headers {
   display: inline-block;
@@ -8516,22 +8462,6 @@ div.view-article-card {
   div.view-article-card p {
     margin-top: 5px;
     margin-bottom: 5px; }
-
-.main-dashboard {
-  background-color: #FFFFFF;
-  border: 6px solid #082c38; }
-  .main-dashboard .dash-headlines {
-    font-size: 2em;
-    margin-top: 20px; }
-  .main-dashboard .small-block-grid-2 {
-    margin-top: 10px; }
-  .main-dashboard h4 {
-    text-align: center; }
-  .main-dashboard h5 {
-    text-align: center; }
-  .main-dashboard .big-number-dash {
-    font-size: 5em;
-    text-align: center; }
 
 .Two-big-number-dash {
   font-size: 2em;
@@ -8592,27 +8522,6 @@ div.ui-grid-pager-panel {
 .small-article-img {
   width: 100px;
   height: 100px; }
-
-.view-sub-heading {
-  width: 90%;
-  margin: 0 auto;
-  margin-bottom: 10px; }
-
-.view-article-card {
-  border-bottom: 1px solid #082c38;
-  padding-top: 25px;
-  width: 90%;
-  margin: 0 auto; }
-
-.view-sub-link ul {
-  text-align: center;
-  width: 90%;
-  display: block;
-  margin: 0 auto; }
-
-.view-sub-link li {
-  display: inline-block;
-  margin: 0 10px; }
 
 .view-subs-nav {
   display: inline-block;
@@ -10027,27 +9936,35 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
 .ui-grid-icon-spin5:before {
   content: '\ea61'; }
 
-.newsletter-form {
+.build-news .newsletter-form {
   border: 3px solid white;
   padding: 15px;
   background-color: #082c38;
   color: white;
   margin: 10px auto;
   width: 600px; }
-  .newsletter-form span {
+  .build-news .newsletter-form span {
     padding-bottom: 10px; }
-  .newsletter-form .build-newsletter-btn {
+  .build-news .newsletter-form .build-newsletter-btn {
     display: block;
     margin: 5px auto; }
-  .newsletter-form label {
+  .build-news .newsletter-form label {
     color: white;
     font-size: 1em; }
 
-.send-newsletter-btn {
+.build-news .send-newsletter-btn {
   display: block;
   margin: 15px auto;
   width: 600px;
   background-color: #082c38; }
+
+@media screen and (max-width: 375px) {
+  .build-news .newsletter-form {
+    width: 570px; }
+  .build-news .body {
+    width: 570px; }
+  .build-news .send-newsletter-btn {
+    width: 570px; } }
 
 .home {
   background: #FFFFFF;
@@ -10076,7 +9993,8 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     display: inline-block;
     margin: 1%;
     vertical-align: top;
-    height: 100%; }
+    height: 100%;
+    text-align: center; }
     .home .manageImage .grid-frame .grid-block img.managePic {
       height: 200px;
       width: 200px;
@@ -10084,12 +10002,9 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   .home .manageImage .grid-frame .btn-row {
     margin-left: 15%;
     margin-right: 10%; }
-    @media screen and (max-width: 740px) {
-      .home .manageImage .grid-frame .btn-row .btn-row {
-        display: block; } }
     .home .manageImage .grid-frame .btn-row button {
       background-color: #082c38; }
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: 375px) {
     .home .manageImage .grid-frame .grid-block {
       display: block;
       margin: 2% auto; }
@@ -10097,6 +10012,8 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
         display: block;
         width: 90%;
         text-align: center; }
+      .home .manageImage .grid-frame .grid-block .medium-7 .iPhone {
+        margin-left: 15px; }
       .home .manageImage .grid-frame .grid-block img.managePic {
         display: block;
         margin: 2% auto;
@@ -10258,9 +10175,13 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   display: block; }
   .welcome p {
     padding: 10px;
-    text-align: center; }
+    text-align: center;
+    display: block; }
+  .welcome .managePic {
+    margin-left: 90px;
+    margin-right: 60px; }
   .welcome .rowOne {
-    display: block;
+    display: inline-block;
     margin-left: 10px;
     margin-right: 10px; }
     .welcome .rowOne .leftOne {
@@ -10269,12 +10190,17 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       .welcome .rowOne .leftOne img {
         width: 300px;
         height: 300px; }
+      .welcome .rowOne .leftOne h5 {
+        text-align: center; }
     .welcome .rowOne .rightOne {
-      float: right;
       margin-left: 20px; }
       .welcome .rowOne .rightOne img {
         width: 300px;
         height: 300px; }
+      .welcome .rowOne .rightOne h5 {
+        text-align: center; }
+    .welcome .rowOne p {
+      display: block; }
   .welcome .rowTwo {
     display: inline-block;
     margin-left: 10px;
@@ -10285,154 +10211,54 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       .welcome .rowTwo .leftTwo img {
         width: 300px;
         height: 300px; }
+      .welcome .rowTwo .leftTwo h5 {
+        text-align: center; }
     .welcome .rowTwo .rightTwo {
-      float: right;
-      margin-left: 20px; }
+      float: right; }
       .welcome .rowTwo .rightTwo img {
         width: 300px;
         height: 300px; }
-  @media screen and (max-width: 753px) {
+      .welcome .rowTwo .rightTwo h5 {
+        text-align: center; }
+  @media screen and (max-width: 375px) {
     .welcome p {
       padding: 10px;
       text-align: center;
       position: relative;
-      display: inline-block; }
-    .welcome .rowOne {
-      display: block; }
-      .welcome .rowOne .leftOne {
-        float: left;
-        margin-right: 20px; }
-        .welcome .rowOne .leftOne img {
-          width: 200px;
-          height: 200px; }
-      .welcome .rowOne .rightOne {
-        float: right;
-        margin-left: 20px; }
-        .welcome .rowOne .rightOne img {
-          width: 200px;
-          height: 200px; }
-    .welcome .rowTwo {
       display: inline-block;
-      margin-left: 10px;
-      margin-right: 10px; }
-      .welcome .rowTwo .leftTwo {
-        float: left;
-        margin-right: 20px; }
-        .welcome .rowTwo .leftTwo img {
-          width: 200px;
-          height: 200px; }
-      .welcome .rowTwo .rightTwo {
-        float: right;
-        margin-left: 20px; }
-        .welcome .rowTwo .rightTwo img {
-          width: 200px;
-          height: 200px; } }
-  @media screen and (max-width: 535px) {
-    .welcome p {
-      padding: 10px;
-      text-align: center;
-      position: relative;
-      display: inline-block; }
+      font-size: 12px; }
     .welcome .rowOne {
-      display: block; }
-      .welcome .rowOne .leftOne {
-        float: left;
-        margin-right: 20px; }
-        .welcome .rowOne .leftOne img {
-          width: 150px;
-          height: 150px; }
-      .welcome .rowOne .rightOne {
-        float: right;
-        margin-left: 20px; }
-        .welcome .rowOne .rightOne img {
-          width: 150px;
-          height: 150px; }
-    .welcome .rowTwo {
       display: inline-block;
-      margin-left: 10px;
-      margin-right: 10px; }
-      .welcome .rowTwo .leftTwo {
-        float: left;
-        margin-right: 20px; }
-        .welcome .rowTwo .leftTwo img {
-          width: 150px;
-          height: 150px; }
-      .welcome .rowTwo .rightTwo {
-        float: right;
-        margin-left: 20px; }
-        .welcome .rowTwo .rightTwo img {
-          width: 150px;
-          height: 150px; } }
-  @media screen and (max-width: 430px) {
-    .welcome p {
-      padding: 10px;
-      text-align: center;
-      position: relative;
-      display: inline-block; }
-    .welcome .rowOne {
-      display: block; }
+      margin-top: -25px; }
+      .welcome .rowOne a {
+        font-size: 12px;
+        text-align: center; }
       .welcome .rowOne .leftOne {
-        float: left;
-        margin-right: 20px; }
-        .welcome .rowOne .leftOne img {
-          width: 125px;
-          height: 125px; }
-      .welcome .rowOne .rightOne {
-        float: right;
-        margin-left: 20px; }
-        .welcome .rowOne .rightOne img {
-          width: 125px;
-          height: 125px; }
-    .welcome .rowTwo {
-      display: inline-block;
-      margin-left: 10px;
-      margin-right: 10px; }
-      .welcome .rowTwo .leftTwo {
-        float: left;
-        margin-right: 20px; }
-        .welcome .rowTwo .leftTwo img {
-          width: 125px;
-          height: 125px; }
-      .welcome .rowTwo .rightTwo {
-        float: right;
-        margin-left: 20px; }
-        .welcome .rowTwo .rightTwo img {
-          width: 125px;
-          height: 125px; } }
-  @media screen and (max-width: 420px) {
-    .welcome p {
-      padding: 10px;
-      text-align: center;
-      position: relative;
-      display: inline-block; }
-    .welcome .rowOne {
-      display: block; }
-      .welcome .rowOne .leftOne {
-        float: left;
-        margin-right: 20px; }
+        margin-: 20px; }
         .welcome .rowOne .leftOne img {
           width: 75px;
-          height: 75px; }
+          height: 75px;
+          margin-left: 15px; }
       .welcome .rowOne .rightOne {
-        float: right;
         margin-left: 20px; }
+        .welcome .rowOne .rightOne h5 {
+          margin-right: 5px; }
         .welcome .rowOne .rightOne img {
           width: 75px;
           height: 75px; }
     .welcome .rowTwo {
-      display: block; }
-      .welcome .rowTwo .leftTwo {
-        float: left;
-        margin-right: 20px; }
-        .welcome .rowTwo .leftTwo img {
-          width: 100px;
-          height: 100px; }
+      display: inline-block;
+      margin-top: -25px;
+      margin-bottom: 25px; }
+      .welcome .rowTwo .leftTwo img {
+        width: 75px;
+        height: 75px; }
       .welcome .rowTwo .rightTwo {
-        float: right;
-        margin-left: 20px; }
+        margin-left: 43px; }
         .welcome .rowTwo .rightTwo img {
-          width: 100px;
-          height: 100px; } }
+          width: 75px;
+          height: 75px;
+          margin-left: 20px; } }
 
 .article {
   display: block;
@@ -10481,5 +10307,111 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       position: absolute;
       right: 0;
       top: 0; }
+  @media screen and (max-width: 375px) {
+    .viewArticles .view-article-card img {
+      margin-left: 70px; } }
+
+.view-sub-heading {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 10px; }
+
+.view-article-card {
+  border-bottom: 1px solid #082c38;
+  padding-top: 25px;
+  width: 90%;
+  margin: 0 auto; }
+
+.view-sub-link ul {
+  text-align: center;
+  width: 90%;
+  display: block;
+  margin: 0 auto; }
+
+.view-sub-link li {
+  display: inline-block;
+  margin: 0 10px; }
+
+.top-bar .name img {
+  margin-top: -5.75px;
+  width: 170px;
+  height: 51px; }
+
+.addArticle .logo {
+  background-color: #FFFFFF;
+  margin-bottom: 0px;
+  border: 6px solid #082c38; }
+
+.addArticle #articleImg {
+  display: block;
+  margin: 0 auto; }
+
+.addArticle h3, .addArticle p {
+  text-align: center; }
+
+.addArticle .article-form {
+  padding: 15px; }
+  .addArticle .article-form .article {
+    width: 100%; }
+  .addArticle .article-form button.submit {
+    background-color: #082c38;
+    display: block;
+    margin: 15px auto; }
+
+.addsubscriber {
+  display: block; }
+  .addsubscriber h3 {
+    font-weight: bold; }
+  .addsubscriber .add-subscriber {
+    background-color: white;
+    border: 6px solid #082c38;
+    padding: 15px; }
+    .addsubscriber .add-subscriber p {
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px; }
+    .addsubscriber .add-subscriber .email-containter {
+      margin-top: 10px;
+      position: relative; }
+      .addsubscriber .add-subscriber .email-containter .custom-text {
+        padding: 6px 6px 6px 30px; }
+    .addsubscriber .add-subscriber h5 {
+      font-weight: bold;
+      text-align: center; }
+    .addsubscriber .add-subscriber .sports {
+      margin-left: 42%; }
+  .addsubscriber .submit {
+    display: block;
+    margin: 0 auto;
+    background-color: #082c38;
+    width: 50%;
+    height: auto;
+    border-radius: 5px;
+    padding: 10px; }
+  @media screen and (max-width: 375px) {
+    .addsubscriber h5 {
+      text-align: center; }
+    .addsubscriber label {
+      margin-right: 35px;
+      margin-left: -10px; } }
+
+.main-dashboard {
+  background-color: #FFFFFF;
+  border: 6px solid #082c38; }
+  .main-dashboard .dash-headlines {
+    font-size: 2em;
+    margin-top: 20px; }
+  .main-dashboard .small-block-grid-2 {
+    margin-top: 10px; }
+  .main-dashboard h4 {
+    text-align: center; }
+  .main-dashboard h5 {
+    text-align: center; }
+  .main-dashboard .big-number-dash {
+    font-size: 5em;
+    text-align: center; }
+  @media screen and (max-width: 375px) {
+    .main-dashboard .dash-3-block #second-number {
+      margin-top: -25px; } }
 
 /*# sourceMappingURL=main.css.map */
