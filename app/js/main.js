@@ -2121,11 +2121,15 @@ require('./app-dashboard/index');
 console.log(_moment2['default']);
 
 //Initialize Foundation
-(0, _jquery2['default'])(document).foundation();_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber', 'app.user', 'app.content', 'app.dashboard']).run(function ($rootScope, UserService) {
+(0, _jquery2['default'])(document).foundation();_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber', 'app.user', 'app.content', 'app.dashboard']).run(function ($rootScope, UserService, $state) {
   $rootScope.$on('$stateChangeSuccess', function () {
     console.log('state change');
     UserService.setHeaders();
-    UserService.checkAuth();
+    if ($state.is('root.signup')) {
+      console.log('Hello');
+    } else {
+      UserService.checkAuth();
+    }
   });
 
   $rootScope.$on('$viewContentLoaded', function () {

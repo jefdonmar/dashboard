@@ -25,11 +25,15 @@ import './app-dashboard/index';
 // Instantiate angular module
 angular
   .module('app', ['app.core', 'app.layout', 'app.subscriber', 'app.user', 'app.content', 'app.dashboard'])
-  .run(function ($rootScope, UserService) {
+  .run(function ($rootScope, UserService, $state) {
     $rootScope.$on('$stateChangeSuccess', function() {
       console.log('state change');
       UserService.setHeaders();
-      UserService.checkAuth();
+      if ( $state.is('root.signup')  ) {
+        console.log('Hello');  
+      } else {
+        UserService.checkAuth();
+      }
     });
 
     $rootScope.$on('$viewContentLoaded', function () {
