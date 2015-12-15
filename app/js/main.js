@@ -249,6 +249,7 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
   vm.checkMatch = checkMatch;
   vm.buildNewsletters = buildNewsletters;
   vm.showBatch = showBatch;
+  vm.sendAllEmails = sendAllEmails;
 
   activate();
 
@@ -391,13 +392,14 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
       emailNewsletter.subject = 'Test Subject Line';
 
       // CREATE AN EMPTY ARRAY FOR ALL ARTICLES, WILL PUSH CONTENT TO IT
-      emailNewsletter.allArticles = [];
-
+      var allArticles = [];
       // COLLECT THE ARTICLE IDS NEEDED
       var articleIds = [];
 
       NewsletterService.getContent(subscriber.id).then(function (response) {
-        var articles = response.data.articles;
+        console.log(response);
+        var articles = response.data.subscriber.articles;
+        console.log('ARTICLES', articles);
         articles.forEach(function (article) {
           articleIds.push(article.id);
           console.log('ARTICLEIDs', articleIds);
@@ -405,25 +407,41 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
       });
 
       // FOR EACH ARTICLE IN THE MATCHER ARRAY, PUSH HTML CODE INTO THE CONTENT PROPERTY
-      articleMatcher.forEach(function (article) {
-        if (articleIds.includes(article.id)) {
-          allArticles.push(article.htmlContent);
-        }
-      });
+      setTimeout(function () {
+        articleMatcher.forEach(function (article) {
+          console.log('ARTICLE MATCHER ARTICLE', article);
+          articleIds.forEach(function (articleId) {
+            console.log('ARTICLE IDs SINGLE ID', articleId);
+            if (articleId === article.id) {
+              allArticles.push(article.htmlContent);
+            }
+          });
+        });
+      }, 2000);
 
       // GIVE THE FUNCTION SOME TIME, THEN STRING TOGETHER CODE AND LOG IT OUT
       setTimeout(function () {
-        var articleContent = emailNewsletter.allArticles.join('');
+        console.log('ALL ARTICLES', allArticles);
+        var articleContent = allArticles.join('');
         emailNewsletter.html = preContent + articleContent + postContent;
         console.log('EMAIL NEWSLETTER', emailNewsletter);
         newsletterBatch.push(emailNewsletter);
         showBatch();
-      }, 3000);
+      }, 5000);
     });
   }
 
   function showBatch() {
     console.log('NEWSLETTER BATCH', newsletterBatch);
+    alert('Newsletters are ready to send');
+  }
+
+  function sendAllEmails() {
+    newsletterBatch.forEach(function (emailObject) {
+      NewsletterService.sendAllEmails(emailObject).then(function (response) {
+        console.log(response);
+      });
+    });
   }
 
   // let mailers = [];
@@ -795,6 +813,7 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
   this.eachEmail = eachEmail;
   this.getContent = getContent;
   // this.buildEmail = buildEmail;
+  this.sendAllEmails = sendAllEmails;
 
   // FUNCTIONS
 
@@ -823,6 +842,19 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
       email: emailRecipients
     }, HEROKU.CONFIG);
   }
+
+  // *** -----   SEND ALL EMAILS BEGINNING ----- ***
+
+  function sendAllEmails(emailObject) {
+    console.log(emailObject);
+    return $http.post(url + 'emails', {
+      html: emailObject.html,
+      subject: emailObject.subject,
+      email: emailObject.email
+    }, HEROKU.CONFIG);
+  }
+
+  // *** -----   SEND ALL EMAILS END ----- ***
 
   function getMatchedSubscribers(subjects, subscribers) {
     console.log('SUBJECTS TO MATCH', subjects);

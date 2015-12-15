@@ -31,6 +31,7 @@ let NewsletterService = function($state, $http, HEROKU) {
   this.eachEmail = eachEmail;
   this.getContent = getContent;
   // this.buildEmail = buildEmail;
+  this.sendAllEmails = sendAllEmails;
 
   // FUNCTIONS
 
@@ -61,6 +62,21 @@ let NewsletterService = function($state, $http, HEROKU) {
       },
       HEROKU.CONFIG);
   }
+
+  // *** -----   SEND ALL EMAILS BEGINNING ----- ***
+
+  function sendAllEmails (emailObject) {
+    console.log(emailObject);
+    return $http.post(url + 'emails', 
+      {
+        html: emailObject.html,
+        subject: emailObject.subject,
+        email: emailObject.email
+      },
+      HEROKU.CONFIG);
+  } 
+
+  // *** -----   SEND ALL EMAILS END ----- ***
 
   function getMatchedSubscribers (subjects, subscribers) {
     console.log('SUBJECTS TO MATCH', subjects);
