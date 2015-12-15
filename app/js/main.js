@@ -239,6 +239,8 @@ var SendAllController = function SendAllController($scope, NewsletterService) {
   var subscribers = [];
 
   vm.sendToAll = sendToAll;
+  vm.getAllArticles = getAllArticles;
+  vm.previewEmail = previewEmail;
 
   function sendToAll(subscribers) {
     console.log('TEST');
@@ -258,6 +260,29 @@ var SendAllController = function SendAllController($scope, NewsletterService) {
       console.log('AFTER SUBSCRIBERS', subscribers);
       vm.subscribers = subscribers;
     });
+  }
+
+  function getAllArticles(subscribers) {
+    NewsletterService.getAllArticles(subscribers);
+    var subscriberIds = NewsletterService.subscriberIds;
+    console.clear();
+    console.log(subscriberIds);
+    NewsletterService.getArticles(subscriberIds);
+    setTimeout(function () {
+      // console.log('CONTENT', NewsletterService.emailContent);
+      var content = NewsletterService.emailContent;
+      console.log('CONTENT', content);
+    }, 5000);
+  }
+
+  console.log(NewsletterService);
+
+  function previewEmail() {
+    console.log(NewsletterService);
+    setTimeout(function () {
+      console.log('CONTROLLER', NewsletterService.contentTest);
+      $scope.articles = NewsletterService.contentTest;
+    }, 2000);
   }
 };
 
@@ -412,6 +437,7 @@ var emailArticle = function emailArticle(ArticleService, $compile, NewsletterSer
 
       setTimeout(function () {
         NewsletterService.tempContent.push(content[0].innerHTML);
+        NewsletterService.sendAllContent.push(content[0].innerHTML);
         // console.log(NewsletterService.tempContent);
       }, 0);
     }
@@ -590,8 +616,10 @@ var _underscore2 = _interopRequireDefault(_underscore);
 var NewsletterService = function NewsletterService($state, $http, HEROKU) {
 
   var url = HEROKU.URL;
+  var self = this;
 
   this.tempContent = [];
+  this.sendAllContent = [];
   this.segmentEmails = [];
 
   console.log('NewsletterService is working');
@@ -607,6 +635,9 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
   this.preContent = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="viewport" content="width=device-width"/></head><body><table class="body" style="width: 100%;"><tr><td class="center" align="center" valign="center"><p style="text-align: center;">Click to view in your browser</p></td></tr><tr><td class="wrapper"><table>';
   this.postContent = '</table></td></tr></table></body></html>';
   this.getMatchedSubscribers = getMatchedSubscribers;
+  this.getAllArticles = getAllArticles;
+  this.getArticles = getArticles;
+  this.constructMailer = constructMailer;
 
   function getSubjects(subject) {
     return $http.get(url + 'subject/' + subject, HEROKU.CONFIG);
@@ -689,6 +720,97 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
     // SET PROPERTY OF NEWSLETTER SERVICE TO PASS TO SEND FUNCTION
     this.segmentEmails = listOfEmails;
   }
+
+  var mailerBatch = [];
+  var mailerArticles = [];
+  // this.buildEmail = buildEmail;
+
+  this.contentTest = {};
+
+  this.eachEmail = eachEmail;
+  var eachEmail = [];
+
+  function constructMailer() {
+    console.log('constructMailer');
+  }
+
+  // function buildEmail (articleArray) {
+  //   articleArray.forEach ( function (article) {
+  //     eachEmail.push(article);
+  //     return eachEmail;
+  //   });
+  // }
+
+  function Mailer(mailer, subscriber) {
+    // this.html = mailer.html;
+    // this.subject = mailer.subject;
+    this.email = subscriber.email;
+    this.mailer = mailer;
+  }
+
+  var emailContent = [];
+
+  this.emailContent = [];
+  this.subscriberIds = [];
+
+  this.contentCounter = 0;
+
+  function getContent(subscriberId) {
+    return $http.get(url + '/subscribers/' + subscriberId + '/' + 'articles', HEROKU.CONFIG);
+  }
+
+  function getArticles(subscriberIds) {
+    subscriberIds.forEach(function (subscriberId) {
+      getContent(subscriberId).then(function (response) {
+        // console.log('RESPONSE', response);
+        console.log('request was made');
+        console.log('DATA', response.data.subscriber);
+        self.emailContent.push(response.data.subscriber);
+      });
+    });
+  }
+
+  function getAllArticles(subscribers) {
+    console.log('SUBSCRIBERS IN GET ALL ARTICLES', subscribers);
+    subscribers.forEach(function (subscriber) {
+      // console.log(subscriber);
+      var subscriberId = subscriber.id;
+      self.subscriberIds.push(subscriberId);
+      console.log(self.subscriberIds);
+      // getArticles(subscriberId);
+    });
+  }
+
+  // .then( (response) => {
+
+  //   let articles = response.data.subscriber.articles;
+  //   console.log('ARTICLES', articles);
+  //   mailerArticles.push(articles);
+  //   console.log('MAILER ARTICLES', mailerArticles);
+
+  //   mailerArticles.forEach( function (arrayOfArticles) {
+  //     console.log('Hello');
+  //     arrayOfArticles.forEach( function (article) {
+  //       let articleContent = [];
+  //       articleContent.push(article);
+  //       console.log('ARTICLE CONTENT', articleContent);
+  //       NewsletterService.contentTest = articleContent;
+  //     });
+  //     console.log(NewsletterService.contentTest);
+  //   });
+  //   console.log(NewsletterService.contentTest);
+  // });
+
+  // Still iterating over all subscribers
+
+  // console.log('TEST SEND ALL CONTENT', sendAllContent);
+
+  // let m = new Mailer (mailerArticles, subscriber);
+  // console.log('INSTANCE OF MAILER CHECK', m);
+
+  // NEED TO USE CONSTRUCTOR EVENTUALLY
+  // let mailer = new Mailer (subscriber);
+  // console.log('MAILER', mailer);
 };
 
 NewsletterService.$inject = ['$state', '$http', 'HEROKU'];

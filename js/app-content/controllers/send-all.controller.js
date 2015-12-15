@@ -8,6 +8,8 @@ let SendAllController = function($scope, NewsletterService) {
   let subscribers = [];
 
   vm.sendToAll = sendToAll;
+  vm.getAllArticles = getAllArticles;
+  vm.previewEmail = previewEmail;
 
   function sendToAll (subscribers) {
     console.log('TEST');
@@ -27,6 +29,29 @@ let SendAllController = function($scope, NewsletterService) {
       console.log('AFTER SUBSCRIBERS', subscribers);
       vm.subscribers = subscribers;
     });
+  }
+
+  function getAllArticles (subscribers) {
+    NewsletterService.getAllArticles(subscribers);
+    let subscriberIds = NewsletterService.subscriberIds;
+    console.clear();
+    console.log(subscriberIds);
+    NewsletterService.getArticles(subscriberIds);
+    setTimeout( function () {
+      // console.log('CONTENT', NewsletterService.emailContent);
+      let content = NewsletterService.emailContent;
+      console.log('CONTENT', content);
+    }, 5000);
+  }
+  
+  console.log(NewsletterService);
+
+  function previewEmail () {  
+    console.log(NewsletterService);
+    setTimeout( function () {
+      console.log('CONTROLLER', NewsletterService.contentTest);
+      $scope.articles = NewsletterService.contentTest;
+    }, 2000);
   }
 
 };

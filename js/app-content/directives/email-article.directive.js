@@ -38,6 +38,7 @@ let emailArticle = function(ArticleService, $compile, NewsletterService) {
 
       setTimeout( function () {
         NewsletterService.tempContent.push(content[0].innerHTML);
+        NewsletterService.sendAllContent.push(content[0].innerHTML);
         // console.log(NewsletterService.tempContent);
       }, 0);
     }
