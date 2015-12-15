@@ -229,6 +229,242 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
+var SendAllController = function SendAllController($scope, NewsletterService, $state, ArticleService) {
+
+  console.clear();
+  console.log('SendAllController');
+
+  var vm = this;
+
+  var subscribers = [];
+
+  vm.sendToAll = sendToAll;
+  vm.getAllArticles = getAllArticles;
+  vm.nextStep = nextStep;
+  vm.compileContent = compileContent;
+  vm.previewEmail = previewEmail;
+  vm.constructMailers = constructMailers;
+  vm.checkMe = checkMe;
+  vm.build = build;
+  vm.checkMatch = checkMatch;
+  vm.buildNewsletters = buildNewsletters;
+  vm.showBatch = showBatch;
+  vm.sendAllEmails = sendAllEmails;
+
+  activate();
+
+  function activate() {
+    NewsletterService.getAllSubscribers().then(function (response) {
+      // console.log(response);
+      var allSubscribers = response.data.subscriber;
+      console.log(allSubscribers);
+      allSubscribers.forEach(function (subscriber) {
+        subscribers.push(subscriber);
+      });
+      console.log('AFTER SUBSCRIBERS', subscribers);
+      vm.subscribers = subscribers;
+    });
+  }
+
+  function getAllArticles(subscribers) {
+    NewsletterService.getAllArticles(subscribers);
+    var subscriberIds = NewsletterService.subscriberIds;
+    console.clear();
+    console.log(subscriberIds);
+    NewsletterService.getArticles(subscriberIds);
+
+    // Set delay so the function has time to run
+
+    setTimeout(function () {
+      // console.log('CONTENT', NewsletterService.emailContent);
+      var content = NewsletterService.emailContent;
+      console.log('CONTENT', content);
+      console.log('SUBSCRIBERS', subscribers);
+      nextStep(content, subscribers);
+    }, 2000);
+  }
+
+  var collection = [];
+
+  function nextStep(content, subscribers) {
+    console.clear();
+    console.log('Next step');
+    vm.test = 'test';
+    console.log('CONTENT', content);
+    console.log('SUBSCRIBERS', subscribers);
+    content.forEach(function (setOfArticles) {
+      console.log('ARTICLE SET', setOfArticles);
+      // $scope.articles = [];
+      // console.log('BEFORE', $scope.articles);
+      var content = setOfArticles.articles;
+      collection.push(content);
+    });
+    setTimeout(function () {
+      console.log(collection);
+    }, 2000);
+  }
+
+  function compileContent(collection) {
+    console.log('COMPILER', collection[0]);
+  }
+
+  var articleMatcher = [];
+
+  function constructMailers() {
+
+    NewsletterService.sendAllContent = [];
+
+    ArticleService.getAllArticles().then(function (response) {
+      var allArticles = response.data.article;
+      console.log(allArticles);
+      $scope.articles = allArticles;
+
+      allArticles.forEach(function (article) {
+        var articleObj = {};
+        articleObj.id = article.id;
+        articleObj.title = article.title;
+        articleObj.content = article.content;
+        articleObj.subject_names = article.subject_names;
+        articleMatcher.push(articleObj);
+      });
+    });
+  }
+
+  // need a button for the data to compile
+  function previewEmail() {
+    compileContent(collection);
+    $scope.articles = collection[0];
+  }
+
+  function sendToAll() {
+    console.clear();
+    console.log('CLICK');
+    console.log('COLLECTION', collection);
+    console.log('SUBSCRIBERS', subscribers);
+    constructMailers();
+    setTimeout(function () {
+      checkMe();
+    }, 1000);
+  }
+
+  function checkMe() {
+    console.log('CHECK', NewsletterService.sendAllContent);
+    console.log('ARTICLE MATCHER', articleMatcher);
+  }
+
+  function build() {
+    console.clear();
+    console.log(articleMatcher);
+
+    articleMatcher.forEach(function (article) {
+      NewsletterService.sendAllContent.forEach(function (codeString) {
+        if (codeString.includes(article.title) && codeString.includes(article.content)) {
+          article.htmlContent = codeString;
+        }
+      });
+    });
+  }
+
+  function checkMatch() {
+    console.log(articleMatcher);
+  }
+
+  var newsletterBatch = [];
+  var preContent = NewsletterService.preContent;
+  var postContent = NewsletterService.postContent;
+
+  // let preContent = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="viewport" content="width=device-width"/></head><body><table class="body" style="width: 100%;"><tr><td class="center" align="center" valign="center"><p style="text-align: center;">Click to view in your browser</p></td></tr><tr><td class="wrapper"><table>';
+  // let postContent = '</table></td></tr></table></body></html>';
+
+  function buildNewsletters() {
+    console.clear();
+    console.log('newsletter builder');
+    console.log(newsletterBatch);
+
+    // BUILD A NEWSLETTER FOR EACH SUBSCRIBER
+    subscribers.forEach(function (subscriber) {
+
+      // CONSTRUCT AN OBJECT FOR EACH NEWSLETTER TO PUSH TO AN ARRAY OF EMAILS
+      var emailNewsletter = {};
+
+      // SET PROPERTIES YOU CAN - NEED TO FILL SUJECT IN WITH A FORM
+      emailNewsletter.email = subscriber.email;
+      emailNewsletter.subject = 'Test Subject Line';
+
+      // CREATE AN EMPTY ARRAY FOR ALL ARTICLES, WILL PUSH CONTENT TO IT
+      var allArticles = [];
+      // COLLECT THE ARTICLE IDS NEEDED
+      var articleIds = [];
+
+      NewsletterService.getContent(subscriber.id).then(function (response) {
+        console.log(response);
+        var articles = response.data.subscriber.articles;
+        console.log('ARTICLES', articles);
+        articles.forEach(function (article) {
+          articleIds.push(article.id);
+          console.log('ARTICLEIDs', articleIds);
+        });
+      });
+
+      // FOR EACH ARTICLE IN THE MATCHER ARRAY, PUSH HTML CODE INTO THE CONTENT PROPERTY
+      setTimeout(function () {
+        articleMatcher.forEach(function (article) {
+          console.log('ARTICLE MATCHER ARTICLE', article);
+          articleIds.forEach(function (articleId) {
+            console.log('ARTICLE IDs SINGLE ID', articleId);
+            if (articleId === article.id) {
+              allArticles.push(article.htmlContent);
+            }
+          });
+        });
+      }, 2000);
+
+      // GIVE THE FUNCTION SOME TIME, THEN STRING TOGETHER CODE AND LOG IT OUT
+      setTimeout(function () {
+        console.log('ALL ARTICLES', allArticles);
+        var articleContent = allArticles.join('');
+        emailNewsletter.html = preContent + articleContent + postContent;
+        console.log('EMAIL NEWSLETTER', emailNewsletter);
+        newsletterBatch.push(emailNewsletter);
+        showBatch();
+      }, 5000);
+    });
+  }
+
+  function showBatch() {
+    console.log('NEWSLETTER BATCH', newsletterBatch);
+    alert('Newsletters are ready to send');
+  }
+
+  function sendAllEmails() {
+    newsletterBatch.forEach(function (emailObject) {
+      NewsletterService.sendAllEmails(emailObject).then(function (response) {
+        console.log(response);
+      });
+    });
+  }
+
+  // let mailers = [];
+
+  // function Mailer (mailer, subscriber) {
+  //   this.html = mailer.html;
+  //   this.subject = mailer.subject;
+  //   this.email = subscriber.email;
+  //   this.mailer = mailer;
+  // }
+};
+
+SendAllController.$inject = ['$scope', 'NewsletterService', '$state', 'ArticleService'];
+
+exports['default'] = SendAllController;
+module.exports = exports['default'];
+
+},{}],7:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 var ViewArticlesController = function ViewArticlesController($state, $scope, ArticleService) {
 
   // console.log('Hello from the view articles controller');
@@ -257,7 +493,7 @@ ViewArticlesController.$inject = ['$state', '$scope', 'ArticleService'];
 exports['default'] = ViewArticlesController;
 module.exports = exports['default'];
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -308,7 +544,7 @@ SingleArticleController.$inject = ['$state', 'ArticleService', '$stateParams'];
 exports['default'] = SingleArticleController;
 module.exports = exports['default'];
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -343,7 +579,7 @@ addImage.$inject = ['ArticleService', 'UploadService'];
 exports['default'] = addImage;
 module.exports = exports['default'];
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -369,6 +605,8 @@ var emailArticle = function emailArticle(ArticleService, $compile, NewsletterSer
 
       setTimeout(function () {
         NewsletterService.tempContent.push(content[0].innerHTML);
+        NewsletterService.sendAllContent.push(content[0].innerHTML);
+        // console.log(content[0].innerHTML);
         // console.log(NewsletterService.tempContent);
       }, 0);
     }
@@ -387,7 +625,7 @@ exports['default'] = emailArticle;
 //        </tr>
 module.exports = exports['default'];
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -428,6 +666,10 @@ var _controllersPreviewNewsletterController = require('./controllers/preview-new
 
 var _controllersPreviewNewsletterController2 = _interopRequireDefault(_controllersPreviewNewsletterController);
 
+var _controllersSendAllController = require('./controllers/send-all.controller');
+
+var _controllersSendAllController2 = _interopRequireDefault(_controllersSendAllController);
+
 // SERVICES
 
 var _servicesArticleService = require('./services/article.service');
@@ -454,13 +696,13 @@ var _directivesAddImageDirective2 = _interopRequireDefault(_directivesAddImageDi
 
 _angular2['default'].module('app.content', ['checklist-model'])
 // CONTROLLERS
-.controller('AddArticleController', _controllersAddArticleController2['default']).controller('ViewArticlesController', _controllersViewArticlesController2['default']).controller('SingleArticleController', _controllersViewSingleArticleController2['default']).controller('EditArticleController', _controllersEditArticleController2['default']).controller('ArticleBySubjectController', _controllersArticleBySubjectController2['default']).controller('BuildNewsletterController', _controllersBuildNewsletterController2['default']).controller('PreviewNewsletterController', _controllersPreviewNewsletterController2['default'])
+.controller('AddArticleController', _controllersAddArticleController2['default']).controller('ViewArticlesController', _controllersViewArticlesController2['default']).controller('SingleArticleController', _controllersViewSingleArticleController2['default']).controller('EditArticleController', _controllersEditArticleController2['default']).controller('ArticleBySubjectController', _controllersArticleBySubjectController2['default']).controller('BuildNewsletterController', _controllersBuildNewsletterController2['default']).controller('PreviewNewsletterController', _controllersPreviewNewsletterController2['default']).controller('SendAllController', _controllersSendAllController2['default'])
 // SERVICES
 .service('ArticleService', _servicesArticleService2['default']).service('NewsletterService', _servicesNewsletterService2['default']).service('UploadService', _servicesUploadService2['default'])
 // DIRECTIVES
 .directive('emailArticle', _directivesEmailArticleDirective2['default']).directive('addImage', _directivesAddImageDirective2['default']);
 
-},{"./controllers/add-article.controller":1,"./controllers/article-by-subject.controller":2,"./controllers/build-newsletter.controller":3,"./controllers/edit-article.controller":4,"./controllers/preview-newsletter.controller":5,"./controllers/view-articles.controller":6,"./controllers/view-single-article.controller":7,"./directives/add-image.directive":8,"./directives/email-article.directive":9,"./services/article.service":11,"./services/newsletter.service":12,"./services/upload.service":13,"angular":44,"checklist-model":46}],11:[function(require,module,exports){
+},{"./controllers/add-article.controller":1,"./controllers/article-by-subject.controller":2,"./controllers/build-newsletter.controller":3,"./controllers/edit-article.controller":4,"./controllers/preview-newsletter.controller":5,"./controllers/send-all.controller":6,"./controllers/view-articles.controller":7,"./controllers/view-single-article.controller":8,"./directives/add-image.directive":9,"./directives/email-article.directive":10,"./services/article.service":12,"./services/newsletter.service":13,"./services/upload.service":14,"angular":45,"checklist-model":47}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -527,7 +769,7 @@ ArticleService.$inject = ['$http', 'HEROKU'];
 exports['default'] = ArticleService;
 module.exports = exports['default'];
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -542,24 +784,43 @@ var _underscore2 = _interopRequireDefault(_underscore);
 
 var NewsletterService = function NewsletterService($state, $http, HEROKU) {
 
+  // VARIABLES AND PROPERTIES
+
   var url = HEROKU.URL;
+  var self = this;
+  var emailContent = [];
+  var mailerBatch = [];
+  var mailerArticles = [];
+  var eachEmail = [];
 
+  this.contentTest = {};
   this.tempContent = [];
+  this.sendAllContent = [];
   this.segmentEmails = [];
+  this.emailContent = [];
+  this.subscriberIds = [];
+  this.contentCounter = 0;
+  this.preContent = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="viewport" content="width=device-width"/></head><body><table class="body" style="width: 100%;"><tr><td class="center" align="center" valign="center"><p style="text-align: center;">Click to view in your browser</p></td></tr><tr><td class="wrapper"><table>';
+  this.postContent = '</table></td></tr></table></body></html>';
 
-  console.log('NewsletterService is working');
+  this.getSubjects = getSubjects;
+  this.getAllSubscribers = getAllSubscribers;
+  this.sendContent = sendContent;
+  this.getMatchedSubscribers = getMatchedSubscribers;
+  this.getAllArticles = getAllArticles;
+  this.getArticles = getArticles;
+  this.constructMailer = constructMailer;
+  this.eachEmail = eachEmail;
+  this.getContent = getContent;
+  // this.buildEmail = buildEmail;
+  this.sendAllEmails = sendAllEmails;
+
+  // FUNCTIONS
 
   function Newsletter(newsObj) {
     // this.newsName     = newsObj.name;
     this.subjects = newsObj.subjectNames.toString();
   }
-
-  this.getSubjects = getSubjects;
-  this.getAllSubscribers = getAllSubscribers;
-  this.sendContent = sendContent;
-  this.preContent = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="viewport" content="width=device-width"/></head><body><table class="body" style="width: 100%;"><tr><td class="center" align="center" valign="center"><p style="text-align: center;">Click to view in your browser</p></td></tr><tr><td class="wrapper"><table>';
-  this.postContent = '</table></td></tr></table></body></html>';
-  this.getMatchedSubscribers = getMatchedSubscribers;
 
   function getSubjects(subject) {
     return $http.get(url + 'subject/' + subject, HEROKU.CONFIG);
@@ -582,6 +843,19 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
     }, HEROKU.CONFIG);
   }
 
+  // *** -----   SEND ALL EMAILS BEGINNING ----- ***
+
+  function sendAllEmails(emailObject) {
+    console.log(emailObject);
+    return $http.post(url + 'emails', {
+      html: emailObject.html,
+      subject: emailObject.subject,
+      email: emailObject.email
+    }, HEROKU.CONFIG);
+  }
+
+  // *** -----   SEND ALL EMAILS END ----- ***
+
   function getMatchedSubscribers(subjects, subscribers) {
     console.log('SUBJECTS TO MATCH', subjects);
     console.log('ALL SUBSCRIBERS', subscribers);
@@ -592,8 +866,6 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
     subscribers.forEach(function (subscriber) {
       subjects.forEach(function (subject) {
         if (subscriber.subject_names.includes(subject)) {
-          // && !segmentEmails.includes(subscriber.email)
-          // subscriber.subject_names.includes(subject);
           segmentEmails.push(subscriber.email);
         }
       });
@@ -642,6 +914,78 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
     // SET PROPERTY OF NEWSLETTER SERVICE TO PASS TO SEND FUNCTION
     this.segmentEmails = listOfEmails;
   }
+
+  function constructMailer() {
+    console.log('constructMailer');
+  }
+
+  // function buildEmail (articleArray) {
+  //   articleArray.forEach ( function (article) {
+  //     eachEmail.push(article);
+  //     return eachEmail;
+  //   });
+  // }
+
+  function Mailer(mailer, subscriber) {
+    // this.html = mailer.html;
+    // this.subject = mailer.subject;
+    this.email = subscriber.email;
+    this.mailer = mailer;
+  }
+
+  function getContent(subscriberId) {
+    return $http.get(url + '/subscribers/' + subscriberId + '/' + 'articles', HEROKU.CONFIG);
+  }
+
+  function getArticles(subscriberIds) {
+    subscriberIds.forEach(function (subscriberId) {
+      getContent(subscriberId).then(function (response) {
+        self.emailContent.push(response.data.subscriber);
+      });
+    });
+  }
+
+  function getAllArticles(subscribers) {
+    console.log('SUBSCRIBERS IN GET ALL ARTICLES', subscribers);
+    subscribers.forEach(function (subscriber) {
+      // console.log(subscriber);
+      var subscriberId = subscriber.id;
+      self.subscriberIds.push(subscriberId);
+      console.log(self.subscriberIds);
+      // getArticles(subscriberId);
+    });
+  }
+
+  // .then( (response) => {
+
+  //   let articles = response.data.subscriber.articles;
+  //   console.log('ARTICLES', articles);
+  //   mailerArticles.push(articles);
+  //   console.log('MAILER ARTICLES', mailerArticles);
+
+  //   mailerArticles.forEach( function (arrayOfArticles) {
+  //     console.log('Hello');
+  //     arrayOfArticles.forEach( function (article) {
+  //       let articleContent = [];
+  //       articleContent.push(article);
+  //       console.log('ARTICLE CONTENT', articleContent);
+  //       NewsletterService.contentTest = articleContent;
+  //     });
+  //     console.log(NewsletterService.contentTest);
+  //   });
+  //   console.log(NewsletterService.contentTest);
+  // });
+
+  // Still iterating over all subscribers
+
+  // console.log('TEST SEND ALL CONTENT', sendAllContent);
+
+  // let m = new Mailer (mailerArticles, subscriber);
+  // console.log('INSTANCE OF MAILER CHECK', m);
+
+  // NEED TO USE CONSTRUCTOR EVENTUALLY
+  // let mailer = new Mailer (subscriber);
+  // console.log('MAILER', mailer);
 };
 
 NewsletterService.$inject = ['$state', '$http', 'HEROKU'];
@@ -649,7 +993,7 @@ NewsletterService.$inject = ['$state', '$http', 'HEROKU'];
 exports['default'] = NewsletterService;
 module.exports = exports['default'];
 
-},{"underscore":50}],13:[function(require,module,exports){
+},{"underscore":51}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -671,7 +1015,7 @@ UploadService.$inject = ['$http', 'HEROKU'];
 exports['default'] = UploadService;
 module.exports = exports['default'];
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -752,6 +1096,10 @@ var config = function config($urlRouterProvider, $stateProvider) {
     url: '/profile',
     controller: 'ProfileController as vm',
     templateUrl: 'templates/app-user/profile.tpl.html'
+  }).state('root.send-all', {
+    url: '/send-all',
+    controller: 'SendAllController as vm',
+    templateUrl: 'templates/app-content/send-all.tpl.html'
   });
 };
 
@@ -760,7 +1108,7 @@ config.$inject = ['$urlRouterProvider', '$stateProvider'];
 exports['default'] = config;
 module.exports = exports['default'];
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 // ACTUALLY PARSE AS OF NOW -- NEED TO REPLACE WITH HEROKU APP INFO
 
 'use strict';
@@ -781,7 +1129,7 @@ exports['default'] = {
 // 'X-Parse-REST-API-Key': 'zROPKm2h7Zj1PvbejjaVmaI9KgU1TK4YwOim5wLS'
 module.exports = exports['default'];
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -804,7 +1152,7 @@ var _herokuConstant2 = _interopRequireDefault(_herokuConstant);
 
 _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).config(_config2['default']).constant('HEROKU', _herokuConstant2['default']);
 
-},{"./config":14,"./heroku.constant":15,"angular":44,"angular-cookies":39,"angular-ui-router":42}],17:[function(require,module,exports){
+},{"./config":15,"./heroku.constant":16,"angular":45,"angular-cookies":40,"angular-ui-router":43}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -905,7 +1253,7 @@ MainDashboardController.$inject = ['$state', 'DashboardService', '$scope'];
 exports['default'] = MainDashboardController;
 module.exports = exports['default'];
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -936,7 +1284,7 @@ console.dir(_angularChartJs2['default']);
 
 _angular2['default'].module('app.dashboard', ['chart.js']).controller('MainDashboardController', _controllersMainDashboardController2['default']).service('DashboardService', _servicesDashboardService2['default']);
 
-},{"./controllers/main-dashboard.controller":17,"./services/dashboard.service":19,"angular":44,"angular-chart.js":37}],19:[function(require,module,exports){
+},{"./controllers/main-dashboard.controller":18,"./services/dashboard.service":20,"angular":45,"angular-chart.js":38}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -979,7 +1327,7 @@ DashboardService.$inject = ['$http', 'HEROKU'];
 exports['default'] = DashboardService;
 module.exports = exports['default'];
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -996,7 +1344,7 @@ HomeController.$inject = ['$state'];
 exports['default'] = HomeController;
 module.exports = exports['default'];
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -1011,7 +1359,7 @@ var _controllersHomeController2 = _interopRequireDefault(_controllersHomeControl
 
 _angular2['default'].module('app.layout', []).controller('HomeController', _controllersHomeController2['default']);
 
-},{"./controllers/home.controller":20,"angular":44}],22:[function(require,module,exports){
+},{"./controllers/home.controller":21,"angular":45}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1057,7 +1405,7 @@ AddSubscriberController.$inject = ['$state', '$scope', 'SubscriberService'];
 exports['default'] = AddSubscriberController;
 module.exports = exports['default'];
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1103,7 +1451,7 @@ EditSubscriberController.$inject = ['$state', 'SubscriberService', '$stateParams
 exports['default'] = EditSubscriberController;
 module.exports = exports['default'];
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1137,7 +1485,7 @@ SingleSubscriberController.$inject = ['$state', 'SubscriberService', '$statePara
 exports['default'] = SingleSubscriberController;
 module.exports = exports['default'];
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1174,7 +1522,7 @@ SubscriberRowController.$inject = ['SubscriberService', '$state'];
 exports['default'] = SubscriberRowController;
 module.exports = exports['default'];
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1278,7 +1626,7 @@ ViewSubscribersController.$inject = ['$state', '$scope', 'SubscriberService'];
 exports['default'] = ViewSubscribersController;
 module.exports = exports['default'];
 
-},{"moment":49}],27:[function(require,module,exports){
+},{"moment":50}],28:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1305,7 +1653,7 @@ subscriberItem.$inject = ['SubscriberService'];
 exports['default'] = subscriberItem;
 module.exports = exports['default'];
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -1360,7 +1708,7 @@ var _servicesSubscriberService2 = _interopRequireDefault(_servicesSubscriberServ
 
 _angular2['default'].module('app.subscriber', ['checklist-model', 'ui.grid', 'ui.grid.resizeColumns', 'angularMoment', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.selection', 'ui.grid.pagination']).controller('AddSubscriberController', _controllersAddSubscriberController2['default']).controller('ViewSubscribersController', _controllersViewSubscribersController2['default']).controller('SubscriberRowController', _controllersSubscriberRowDirectiveController2['default']).controller('EditSubscriberController', _controllersEditSubscriberController2['default']).controller('SingleSubscriberController', _controllersSingleSubscriberController2['default']).directive('subscriberItem', _directivesSubscriberItemDirective2['default']).service('SubscriberService', _servicesSubscriberService2['default']);
 
-},{"./controllers/add-subscriber.controller":22,"./controllers/edit-subscriber.controller":23,"./controllers/single-subscriber.controller":24,"./controllers/subscriber-row-directive.controller":25,"./controllers/view-subscribers.controller":26,"./directives/subscriberItem.directive":27,"./services/subscriber.service":29,"angular":44,"angular-moment":40,"angular-ui-grid":41,"checklist-model":46,"moment":49}],29:[function(require,module,exports){
+},{"./controllers/add-subscriber.controller":23,"./controllers/edit-subscriber.controller":24,"./controllers/single-subscriber.controller":25,"./controllers/subscriber-row-directive.controller":26,"./controllers/view-subscribers.controller":27,"./directives/subscriberItem.directive":28,"./services/subscriber.service":30,"angular":45,"angular-moment":41,"angular-ui-grid":42,"checklist-model":47,"moment":50}],30:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1429,7 +1777,7 @@ SubscriberService.$inject = ['$http', 'HEROKU', '$cookies'];
 exports['default'] = SubscriberService;
 module.exports = exports['default'];
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1461,7 +1809,7 @@ LoginController.$inject = ['$scope', '$state', 'UserService'];
 exports['default'] = LoginController;
 module.exports = exports['default'];
 
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1511,7 +1859,7 @@ SignupController.$inject = ['$state', '$scope', 'UserService'];
 exports['default'] = SignupController;
 module.exports = exports['default'];
 
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1536,7 +1884,7 @@ ProfileController.$inject = ['$scope', 'UserService'];
 exports['default'] = ProfileController;
 module.exports = exports['default'];
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1555,7 +1903,7 @@ WelcomeController.$inject = ['$scope', '$state', 'UserService'];
 exports['default'] = WelcomeController;
 module.exports = exports['default'];
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -1586,7 +1934,7 @@ var _controllersUserProfileController2 = _interopRequireDefault(_controllersUser
 
 _angular2['default'].module('app.user', []).controller('LoginController', _controllersLoginController2['default']).controller('SignupController', _controllersSignupController2['default']).controller('WelcomeController', _controllersWelcomeController2['default']).controller('ProfileController', _controllersUserProfileController2['default']).service('UserService', _servicesUserService2['default']);
 
-},{"./controllers/login.controller":30,"./controllers/signup.controller":31,"./controllers/user-profile.controller":32,"./controllers/welcome.controller":33,"./services/user.service":35,"angular":44}],35:[function(require,module,exports){
+},{"./controllers/login.controller":31,"./controllers/signup.controller":32,"./controllers/user-profile.controller":33,"./controllers/welcome.controller":34,"./services/user.service":36,"angular":45}],36:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1670,7 +2018,7 @@ UserService.$inject = ['$http', 'HEROKU', '$cookies', '$state'];
 exports['default'] = UserService;
 module.exports = exports['default'];
 
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -1726,7 +2074,7 @@ console.log(_moment2['default']);
   });
 });
 
-},{"./app-content/index":10,"./app-core/index":16,"./app-dashboard/index":18,"./app-layout/index":21,"./app-subscriber/index":28,"./app-user/index":34,"angular":44,"foundation":47,"jquery":48,"moment":49}],37:[function(require,module,exports){
+},{"./app-content/index":11,"./app-core/index":17,"./app-dashboard/index":19,"./app-layout/index":22,"./app-subscriber/index":29,"./app-user/index":35,"angular":45,"foundation":48,"jquery":49,"moment":50}],38:[function(require,module,exports){
 (function (factory) {
   'use strict';
   if (typeof exports === 'object') {
@@ -2090,7 +2438,7 @@ console.log(_moment2['default']);
   }
 }));
 
-},{"angular":44,"chart.js":45}],38:[function(require,module,exports){
+},{"angular":45,"chart.js":46}],39:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -2413,11 +2761,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],39:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":38}],40:[function(require,module,exports){
+},{"./angular-cookies":39}],41:[function(require,module,exports){
 (function (global){
 /* angular-moment.js / v0.10.3 / (c) 2013, 2014, 2015 Uri Shaked / MIT Licence */
 
@@ -3054,7 +3402,7 @@ module.exports = 'ngCookies';
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"moment":49}],41:[function(require,module,exports){
+},{"moment":50}],42:[function(require,module,exports){
 /*!
  * ui-grid - v3.0.7 - 2015-10-06
  * Copyright (c) 2015 ; License: MIT 
@@ -29791,7 +30139,7 @@ angular.module('ui.grid').run(['$templateCache', function($templateCache) {
 
 }]);
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -34162,7 +34510,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -63181,11 +63529,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],44:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":43}],45:[function(require,module,exports){
+},{"./angular":44}],46:[function(require,module,exports){
 /*!
  * Chart.js
  * http://chartjs.org/
@@ -66663,7 +67011,7 @@ module.exports = angular;
 
 
 }).call(this);
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 /**
  * Checklist-model
  * AngularJS directive for list of checkboxes
@@ -66813,7 +67161,7 @@ angular.module('checklist-model', [])
   };
 }]);
 
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 (function (global){
 ; var __browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 /*
@@ -73404,7 +73752,7 @@ angular.module('checklist-model', [])
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],48:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 (function (global){
 ; var __browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 /*!
@@ -82624,7 +82972,7 @@ return jQuery;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],49:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 //! moment.js
 //! version : 2.10.6
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
@@ -85820,7 +86168,7 @@ return jQuery;
     return _moment;
 
 }));
-},{}],50:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -87370,7 +87718,7 @@ return jQuery;
   }
 }.call(this));
 
-},{}]},{},[36])
+},{}]},{},[37])
 
 
 //# sourceMappingURL=main.js.map

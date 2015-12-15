@@ -10322,4 +10322,12 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
         width: 200px;
         border: 6px solid #082c38; } }
 
+.dashboard-container {
+  background-color: white;
+  padding: 15px;
+  border: 10px solid #082c38; }
+
+ul.dash-row {
+  border-bottom: 2px solid #082c38; }
+
 /*# sourceMappingURL=main.css.map */
