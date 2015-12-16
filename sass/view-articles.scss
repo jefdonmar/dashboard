@@ -33,12 +33,16 @@
     }
   }
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 550px) {
 
     .view-article-card {
 
       img {
-        margin-left: 70px;
+        display: block;
+        width: 200px;
+        height: 200px;
+        margin: 10px auto;
+        margin-bottom: 20px;
       }
     }
 

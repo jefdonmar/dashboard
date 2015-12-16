@@ -8588,9 +8588,6 @@ div.ui-grid-pager-panel {
   background-color: #082c38;
   margin-right: 10px; }
 
-.top-bar {
-  background-color: #082c38; }
-
 /*!
  * ui-grid - v3.0.7 - 2015-10-06
  * Copyright (c) 2015 ; License: MIT 
@@ -10079,20 +10076,38 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
 .login {
   background-color: white;
   border: 6px solid #082c38;
-  display: block; }
+  display: block;
+  margin: 0px auto;
+  width: 60%;
+  max-width: 500px;
+  min-width: 300px; }
   .login .logo {
     padding: 10px;
     text-align: center;
-    font-size: 25px; }
+    font-size: 25px;
+    display: block;
+    margin: 20px auto;
+    margin-bottom: 5px;
+    width: 60%;
+    max-width: 300px;
+    min-width: 100px; }
+    .login .logo img {
+      margin-bottom: 10px; }
     .login .logo p {
-      font-weight: bold; }
+      font-weight: bold;
+      margin-bottom: 0px; }
   .login .log-in {
     padding: 5px; }
     .login .log-in .fa {
       display: block;
       margin: 30% auto; }
+    .login .log-in input {
+      border: none; }
     .login .log-in .user-container {
-      position: relative; }
+      position: relative;
+      width: 60%;
+      display: block;
+      margin: 5px auto; }
       .login .log-in .user-container .user-ph {
         display: inline-block;
         width: 30px;
@@ -10104,12 +10119,14 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
         text-shadow: 0 1px 0 #ffffff;
         background-color: #eeeeee;
         z-index: 3;
-        border: 1px solid #EDEDED;
-        border-right: none; }
+        border: 1px solid #EDEDED; }
       .login .log-in .user-container .custom-text {
         padding: 6px 6px 6px 40px; }
     .login .log-in .password-container {
-      position: relative; }
+      position: relative;
+      width: 60%;
+      display: block;
+      margin: 5px auto; }
       .login .log-in .password-container .password-ph {
         display: inline-block;
         width: 30px;
@@ -10135,12 +10152,10 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       color: red;
       margin-left: 10px; }
     .login .log-in button {
-      display: inline-block;
+      display: block;
       background-color: #082c38;
-      height: auto;
-      width: 100%;
-      border-radius: 5px;
-      text-align: center; }
+      width: 60%;
+      margin: 25px auto; }
     .login .log-in p {
       text-align: center; }
 
@@ -10231,7 +10246,7 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   width: 100%;
   max-width: 800px;
   margin-top: 20px;
-  margin: 15px auto;
+  margin: 40px auto;
   text-align: center; }
   .welcome .welcome-top-msg {
     padding: 15px;
@@ -10288,6 +10303,8 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   .welcome .grid-contain {
     background-color: #FFFFFF; }
   @media screen and (max-width: 725px) {
+    .welcome .welcome-top-msg {
+      font-size: 1.3em; }
     .welcome .member-block {
       width: 80%;
       padding: 10px;
@@ -10392,9 +10409,13 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       position: absolute;
       right: 0;
       top: 0; }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 550px) {
     .viewArticles .view-article-card img {
-      margin-left: 70px; } }
+      display: block;
+      width: 200px;
+      height: 200px;
+      margin: 10px auto;
+      margin-bottom: 20px; } }
 
 .view-sub-heading {
   width: 90%;
@@ -10416,6 +10437,9 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
 .view-sub-link li {
   display: inline-block;
   margin: 0 10px; }
+
+.mob {
+  display: none; }
 
 .top-bar-section li.active:not(.has-form) a:not(.button) {
   line-height: 3.0625rem;
@@ -10450,6 +10474,49 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
         font-weight: bold;
         line-height: 3.0625rem;
         text-align: center; }
+  .top-bar .mob {
+    display: none; }
+  @media screen and (max-width: 650px) {
+    .top-bar .top-bar.expanded, .top-bar .title-area {
+      background-color: #FFFFFF; }
+    .top-bar nav.top-bar ul {
+      background-color: #FFFFFF; }
+      .top-bar nav.top-bar ul .top-bar.expanded, .top-bar nav.top-bar ul .title-area {
+        background-color: #FFFFFF; }
+    .top-bar .mob {
+      display: block;
+      float: right;
+      height: 50px;
+      margin-top: -60px;
+      border: none;
+      background-color: white;
+      color: #082c38;
+      z-index: 3; }
+      .top-bar .mob .right {
+        margin-right: 15px;
+        border: none;
+        background-color: white;
+        color: #082c38; }
+        .top-bar .mob .right .has-dropdown a {
+          border: none;
+          background-color: white;
+          color: #082c38;
+          width: 100%; }
+        .top-bar .mob .right .dropdown {
+          display: block;
+          margin-top: 60px;
+          width: 375px;
+          height: 1200px;
+          background-color: #082c38;
+          color: #FFFFFF; }
+          .top-bar .mob .right .dropdown li {
+            width: 100%; }
+      .top-bar .mob li.dropdown {
+        margin-left: 50%; }
+    .top-bar .reg {
+      display: none; } }
+  .top-bar * {
+    background-color: #FFFFFF; }
 
 .addsubscriber {
   width: 80%;
@@ -10667,6 +10734,17 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
         height: 250px;
         width: 250px;
         border: 2px solid #082c38; } }
+
+@media screen and (max-width: 600px) {
+  li.view-sub-block-2 {
+    display: none; }
+  li.view-sub-block-1 {
+    width: 100%; }
+  ul.small-block-grid-2 li.view-sub-block-1 button.view-subs-btn {
+    width: 40%;
+    margin: 4%;
+    height: 70px;
+    vertical-align: top; } }
 
 * {
   font-family: 'Helvetica', sans-serif; }

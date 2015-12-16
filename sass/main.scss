@@ -271,9 +271,10 @@ div.ui-grid-pager-panel {
 }
 
 
-.top-bar {
-  background-color: $Navy;
-}
+// .top-bar {
+//   background-color: $Navy;
+// }
+
 
 
 @import "ui-grid";
@@ -294,6 +295,27 @@ div.ui-grid-pager-panel {
 @import "about";
 
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab|Nunito);
+
+
+
+@media screen and (max-width: 600px) {
+
+  li.view-sub-block-2 {
+    display: none;
+  }
+
+  li.view-sub-block-1 {
+    width: 100%;
+  }
+
+  ul.small-block-grid-2 li.view-sub-block-1 button.view-subs-btn {
+    width: 40%;
+    margin: 4%;
+    height: 70px;
+    vertical-align: top;
+  }
+
+}
 
 * {
   font-family: 'Helvetica', sans-serif;
