@@ -18,7 +18,7 @@ let AddSubscriberController = function($state, $scope, SubscriberService) {
     console.log('Supposed to add now');
     SubscriberService.addSubscriber(subObj).then( (res)=>{
       console.log(res);
-      $state.go('root.home');
+      $state.go('root.main-dashboard');
     });
   }
 

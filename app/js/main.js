@@ -751,14 +751,21 @@ var ArticleService = function ArticleService($http, HEROKU) {
 
   function addArticle(article, fileObj) {
 
+    console.log('FILE OBJ', fileObj);
+
     var formData = new FormData();
 
     formData.append('subject_names', article.subject_names);
     formData.append('title', article.title);
     formData.append('content', article.content);
-    formData.append('media', fileObj);
+
+    if (fileObj) {
+      formData.append('media', fileObj);
+    }
 
     HEROKU.CONFIG.headers['Content-Type'] = undefined;
+
+    console.log('OBJECT', formData);
 
     return $http.post(url, formData, HEROKU.CONFIG);
   }
@@ -1435,7 +1442,7 @@ var AddSubscriberController = function AddSubscriberController($state, $scope, S
     console.log('Supposed to add now');
     SubscriberService.addSubscriber(subObj).then(function (res) {
       console.log(res);
-      $state.go('root.home');
+      $state.go('root.main-dashboard');
     });
   }
 
@@ -1952,9 +1959,22 @@ var ProfileController = function ProfileController($scope, UserService) {
 
   vm.sendUserInfo = sendUserInfo;
 
+  getUser();
+
+  function getUser() {
+    UserService.getUser().then(function (response) {
+      console.clear();
+      var user = response.data.user;
+      console.log('USER', user);
+      $scope.user = user;
+    });
+  }
+
   function sendUserInfo(user) {
     console.log(user);
-    UserService.sendKey(user);
+    UserService.sendKey(user).then(function (response) {
+      console.log('RESPONSE', response);
+    });
   }
 };
 
@@ -2056,6 +2076,20 @@ var UserService = function UserService($http, HEROKU, $cookies, $state) {
   this.checkAuth = checkAuth;
   this.sendKey = sendKey;
   this.logout = logout;
+  this.getUser = getUser;
+
+  function getUser() {
+    return $http.get(url + 'users', HEROKU.CONFIG);
+  }
+
+  function sendKey(user) {
+    console.log(user.key);
+    return $http.put(url + 'users', {
+      name: user.name,
+      email: user.email,
+      mandrill_api: user.mandrill_api
+    }, HEROKU.CONFIG);
+  }
 
   function logout() {
     $cookies.remove('auth_token');
@@ -2115,11 +2149,6 @@ var UserService = function UserService($http, HEROKU, $cookies, $state) {
     console.log('User should have been logged In');
     console.log(userObj);
     return $http.post(url + 'login', userObj, HEROKU.CONFIG);
-  }
-
-  function sendKey(user) {
-    console.log(user.key);
-    // return $http.post(url + 'user', user, HEROKU.CONFIG);
   }
 };
 

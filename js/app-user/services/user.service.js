@@ -13,6 +13,21 @@ let UserService = function($http, HEROKU, $cookies, $state) {
   this.checkAuth = checkAuth;
   this.sendKey = sendKey;
   this.logout = logout;
+  this.getUser = getUser;
+
+  function getUser () {
+    return $http.get(url + 'users', HEROKU.CONFIG);
+  }
+
+  function sendKey (user) {
+    console.log(user.key);
+    return $http.put(url + 'users',
+      {
+        name: user.name,
+        email: user.email ,
+        mandrill_api: user.mandrill_api
+      }, HEROKU.CONFIG);
+  }
 
   function logout () {
     $cookies.remove('auth_token');
@@ -74,12 +89,6 @@ let UserService = function($http, HEROKU, $cookies, $state) {
     console.log('User should have been logged In');
     console.log(userObj);
     return $http.post(url + 'login', userObj, HEROKU.CONFIG);
-  }
-
-
-  function sendKey (user) {
-    console.log(user.key);
-    // return $http.post(url + 'user', user, HEROKU.CONFIG);
   }
 
 
