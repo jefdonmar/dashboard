@@ -1,52 +1,36 @@
 <div class="welcome">
-  <p> Manage subscribers like no other using our seamless interface. In just one view, you can manage all the of your subscribers in one view and also generate customize curated emails for all of those individuals that your company supports</p>
+  <p class="welcome-top-msg">Welcome to Streamline!<br> Forget what you know about email content.</p>
 
-  <div class="rowOne">
-    
-    <div class="leftOne">
-      <h5>
-        <a href="#/view-subscribers">
-          Manage Subscribers
+  <div class="welcome-btns">
+
+  <img class="banner-img-welcome"  src="https://blogs.adobe.com/digitalpublishing/files/2015/12/Social-Sharing-Main-700x400.jpg">
+
+    <div class="member-block">
+      <button>
+        <a href="#/login">
+          Sign in
         </a>
-      </h5>
-      <img class="managePic" src="http://www.metia.com/media/1042734/marketing_automation_480x200.jpg">
+      </button>
     </div>
 
-    <div class="rightOne">
-      <h5>
-        <a href="#/add-article">
-          Generate Articles
+    <div class="member-block">
+      <button>
+        <a href="#/signup">
+          Not a Member?
         </a>
-      </h5>
-      <img class="generatePic" src="http://govdelivery.com/wp-content/uploads/2014/06/Social-Icons-300x257.png">
+      </button>
     </div>
-
-     <p> Become an email wizard with customized email publishing content templates where you are able to send the emails to your users in the exact fashions that they like to receive their messages. In addition to that, you will also be able to track the performance of how your user interact with the email it self with out Streamline analytics</p>
-
-    <div class="rowTwo">
-    
-      <div class="leftTwo">
-        <h5>
-          <a href="#/build-newsletter">
-            Publish Content
-          </a>
-        </h5>
-        <img src="https://i.vimeocdn.com/video/521596384_640.jpg">
-      </div>
-
-      <div class="rightTwo">
-        <h5>
-          <a href="#/main-dashboard">
-            Track Performance
-          </a>
-        </h5>
-        <img src="http://www.smekdigital.com/wp-content/uploads/2015/03/email-marketing.jpg">
-      </div>
-
-    </div>
-
   </div>
-        
+
+
+  <div class="grid-contain">
+    <div class="member-block" ng-repeat="block in vm.blocks">
+        <h5><a href="{{ block.link }}">{{ block.heading }}</a></h5>
+        <img src="{{ block.picture }}">
+        <p class="blurb">{{ block.blurb }}</p>
+    </div>
+  </div>
+      
 </div>
 
 

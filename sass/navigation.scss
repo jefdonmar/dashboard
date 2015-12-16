@@ -1,11 +1,66 @@
 // Navigation Bar View 
+
+.top-bar-section li.active:not(.has-form) a:not(.button) {
+  line-height: 3.0625rem; 
+  border-left: 2px solid $Navy;
+  border-right: 2px solid $Navy;
+  background-color: $Navy;
+  color: white;
+  font-weight: bold;
+
+  &:hover {
+    background-color: $BrightBlue;
+    color: $Navy;
+  }
+}
+
 .top-bar {
 
+  background-color: white;
+  border-bottom: 2px solid $Navy;
+  height: 51px;
+
+
+  #active-btn {
+    margin-right: 15px;
+  }
+
   .name {
+    // display: inline-block;
+
     img {
-      margin-top: -5.75px;
-      width: 170px;
-      height:51px;
+      margin-top: -2.7px;
+      width: 140px;
+      height: 51px;
+      // border-bottom: 2px solid $Navy;
+    }
+  }
+
+  .right {
+
+    // border-bottom: 2px solid $Navy;
+    height: auto;
+
+    li.has-dropdown {
+      height: auto;
+
+      li.active {
+      
+        a {
+          line-height: 3.0625rem;
+        }
+      }
+
+      a {
+        background-color: white;
+        color: $Navy;
+        font-weight: bold;
+        line-height: 3.0625rem;
+        // border: 2px solid $Navy;
+        text-align: center;
+        // height: 51px;
+      }
+
     }
   }
 

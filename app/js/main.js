@@ -1010,11 +1010,17 @@ var config = function config($urlRouterProvider, $stateProvider) {
   $stateProvider.state('root', {
     abstract: true,
     templateUrl: 'templates/app-layout/layout.tpl.html'
-  }).state('root.home', {
+  }).state('root.welcome', {
     url: '/',
-    controller: 'HomeController as vm',
-    templateUrl: 'templates/app-layout/home.tpl.html'
-  }).state('root.add-subscriber', {
+    controller: 'WelcomeController as vm',
+    templateUrl: 'templates/app-user/welcome.tpl.html'
+  })
+  // .state('root.home', {
+  //   url: '/',
+  //   controller: 'HomeController as vm',
+  //   templateUrl: 'templates/app-layout/home.tpl.html'
+  // })
+  .state('root.add-subscriber', {
     url: '/add-subscriber',
     controller: 'AddSubscriberController as vm',
     templateUrl: 'templates/app-subscriber/add-subscriber.tpl.html'
@@ -1062,11 +1068,13 @@ var config = function config($urlRouterProvider, $stateProvider) {
     url: '/main-dashboard',
     controller: 'MainDashboardController as vm',
     templateUrl: 'templates/app-dashboard/main-dashboard.tpl.html'
-  }).state('root.welcome', {
-    url: '/welcome',
-    controller: 'WelcomeController as vm',
-    templateUrl: 'templates/app-user/welcome.tpl.html'
-  }).state('root.build-newsletter', {
+  })
+  // .state('root.welcome', {
+  //   url: '/welcome',
+  //   controller: 'WelcomeController as vm',
+  //   templateUrl: 'templates/app-user/welcome.tpl.html'
+  // })
+  .state('root.build-newsletter', {
     url: '/build-newsletter',
     controller: 'BuildNewsletterController as vm',
     templateUrl: 'templates/app-content/build-newsletter.tpl.html'
@@ -1953,6 +1961,28 @@ var WelcomeController = function WelcomeController($scope, $state, UserService) 
 
   // set view model to this object
   var vm = this;
+
+  vm.blocks = [{
+    heading: 'Manage Subscribers',
+    blurb: 'Import contacts and better manage your outreach',
+    picture: 'http://www.metia.com/media/1042734/marketing_automation_480x200.jpg',
+    link: '#/view-subscribers'
+  }, {
+    heading: 'Generate Content',
+    blurb: 'Create, store and access your content all in one place',
+    picture: 'http://govdelivery.com/wp-content/uploads/2014/06/Social-Icons-300x257.png',
+    link: '#/view-articles'
+  }, {
+    heading: 'Publish Articles',
+    blurb: 'Send the right content to the right people at the right time',
+    picture: 'https://i.vimeocdn.com/video/521596384_640.jpg',
+    link: '#/build-newsletter'
+  }, {
+    heading: 'Track Performance',
+    blurb: 'Keep a pulse on your business to stay ahead of the game',
+    picture: 'http://www.smekdigital.com/wp-content/uploads/2015/03/email-marketing.jpg',
+    link: '#/main-dashboard'
+  }];
 };
 
 WelcomeController.$inject = ['$scope', '$state', 'UserService'];

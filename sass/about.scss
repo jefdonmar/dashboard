@@ -2,7 +2,7 @@
 .about {
   display: block;
   background-color: $White;
-  border: 2px solid $Navy;
+  border: 5px solid $Navy;
   width: 100%;
   max-width: 800px;
 
@@ -19,11 +19,29 @@
 
     img {
       height: 250px;
-      width: 100%;
+      width: 250px;
       border: 2px solid $Navy;
     }
 
   }
 
 
+  @media screen and (max-width: 650px) {
+
+    .member-block {
+      width: 80%;
+      padding: 10px;
+      margin: 5%;
+      display: inline-block;
+      // border: 2px solid $Navy;
+
+    img {
+      height: 250px;
+      width: 250px;
+      border: 2px solid $Navy;
+    }    
+
+    } 
+  }
+  
 }

@@ -10225,95 +10225,98 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       text-align: center; }
 
 .welcome {
-  background-color: #EDEDED;
-  border: 5px solid #082c38;
-  display: block; }
-  .welcome p {
+  display: block;
+  background-color: #082c38;
+  border: 6px solid #082c38;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 20px;
+  margin: 15px auto;
+  text-align: center; }
+  .welcome .welcome-top-msg {
+    padding: 15px;
+    font-size: 1.7em;
+    font-weight: bold;
+    color: #FFFFFF; }
+  .welcome .welcome-btns {
+    border-bottom: 4px solid #39bced; }
+    .welcome .welcome-btns .banner-img-welcome {
+      width: 90%;
+      border: 2px solid #FFFFFF;
+      -webkit-box-shadow: 2px 2px 2px 2px #FFFFFF;
+      box-shadow: 2px 2px 2px 2px #FFFFFF; }
+    .welcome .welcome-btns .member-block {
+      width: 40%;
+      height: 80px;
+      margin-left: 4%;
+      margin-right: 4%;
+      margin-bottom: 4px;
+      margin-top: 9px;
+      display: inline-block; }
+      .welcome .welcome-btns .member-block button {
+        width: 98%;
+        background-color: #082c38; }
+        .welcome .welcome-btns .member-block button a {
+          color: #FFFFFF;
+          font-weight: bold;
+          font-size: 1.2em; }
+        .welcome .welcome-btns .member-block button:hover {
+          background-color: #39bced;
+          color: #082c38; }
+  .welcome h5 a {
+    color: #082c38;
+    font-weight: bold; }
+    .welcome h5 a:hover {
+      color: #39bced; }
+  .welcome .blurb {
     padding: 10px;
-    text-align: center;
-    display: block; }
-  .welcome .managePic {
-    margin-left: 90px;
-    margin-right: 60px; }
-  .welcome .rowOne {
+    padding-top: 20px;
+    font-size: 1.1em; }
+  .welcome .member-block {
+    width: 40%;
+    padding: 5px;
+    height: 400px;
+    margin: 1% 5% 4% 5%;
     display: inline-block;
-    margin-left: 10px;
-    margin-right: 10px; }
-    .welcome .rowOne .leftOne {
-      float: left;
-      margin-right: 20px; }
-      .welcome .rowOne .leftOne img {
-        width: 300px;
-        height: 300px; }
-      .welcome .rowOne .leftOne h5 {
-        text-align: center; }
-    .welcome .rowOne .rightOne {
-      margin-left: 20px; }
-      .welcome .rowOne .rightOne img {
-        width: 300px;
-        height: 300px; }
-      .welcome .rowOne .rightOne h5 {
-        text-align: center; }
-    .welcome .rowOne p {
-      display: block; }
-  .welcome .rowTwo {
-    display: inline-block;
-    margin-left: 10px;
-    margin-right: 10px; }
-    .welcome .rowTwo .leftTwo {
-      float: left;
-      margin-right: 20px; }
-      .welcome .rowTwo .leftTwo img {
-        width: 300px;
-        height: 300px; }
-      .welcome .rowTwo .leftTwo h5 {
-        text-align: center; }
-    .welcome .rowTwo .rightTwo {
-      float: right; }
-      .welcome .rowTwo .rightTwo img {
-        width: 300px;
-        height: 300px; }
-      .welcome .rowTwo .rightTwo h5 {
-        text-align: center; }
-  @media screen and (max-width: 375px) {
-    .welcome p {
+    vertical-align: top; }
+    .welcome .member-block img {
+      margin-top: 10px;
+      height: 250px;
+      width: 250px;
+      -webkit-box-shadow: 3px 3px 5px 6px #082c38;
+      box-shadow: 3px 3px 5px 6px #082c38; }
+  .welcome .grid-contain {
+    background-color: #FFFFFF; }
+  @media screen and (max-width: 725px) {
+    .welcome .member-block {
+      width: 80%;
       padding: 10px;
-      text-align: center;
-      position: relative;
-      display: inline-block;
-      font-size: 12px; }
-    .welcome .rowOne {
-      display: inline-block;
-      margin-top: -25px; }
-      .welcome .rowOne a {
-        font-size: 12px;
-        text-align: center; }
-      .welcome .rowOne .leftOne {
-        margin-: 20px; }
-        .welcome .rowOne .leftOne img {
-          width: 75px;
-          height: 75px;
-          margin-left: 15px; }
-      .welcome .rowOne .rightOne {
-        margin-left: 20px; }
-        .welcome .rowOne .rightOne h5 {
-          margin-right: 5px; }
-        .welcome .rowOne .rightOne img {
-          width: 75px;
-          height: 75px; }
-    .welcome .rowTwo {
-      display: inline-block;
-      margin-top: -25px;
-      margin-bottom: 25px; }
-      .welcome .rowTwo .leftTwo img {
-        width: 75px;
-        height: 75px; }
-      .welcome .rowTwo .rightTwo {
-        margin-left: 43px; }
-        .welcome .rowTwo .rightTwo img {
-          width: 75px;
-          height: 75px;
-          margin-left: 20px; } }
+      margin: 5%;
+      display: inline-block; }
+      .welcome .member-block img {
+        height: 250px;
+        width: 250px;
+        border: 2px solid #082c38; }
+    .welcome .welcome-btns {
+      padding-bottom: 20px; }
+      .welcome .welcome-btns .member-block {
+        width: 90%;
+        height: 70px;
+        margin-left: 4%;
+        margin-right: 4%;
+        margin-bottom: 4px;
+        margin-top: 9px;
+        display: block; }
+        .welcome .welcome-btns .member-block button {
+          width: 98%;
+          background-color: #082c38; }
+          .welcome .welcome-btns .member-block button a {
+            color: #FFFFFF;
+            font-weight: bold;
+            font-size: 1.1em; }
+          .welcome .welcome-btns .member-block button:hover {
+            background-color: #39bced;
+            color: #082c38; } }
 
 .article {
   display: block;
@@ -10350,7 +10353,8 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     border-bottom: 1px solid #082c38;
     padding-top: 25px;
     width: 90%;
-    margin: 0 auto; }
+    margin: 0 auto;
+    cursor: pointer; }
   .viewArticles .top {
     width: 90%;
     margin: 0 auto; }
@@ -10387,10 +10391,39 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   display: inline-block;
   margin: 0 10px; }
 
-.top-bar .name img {
-  margin-top: -5.75px;
-  width: 170px;
+.top-bar-section li.active:not(.has-form) a:not(.button) {
+  line-height: 3.0625rem;
+  border-left: 2px solid #082c38;
+  border-right: 2px solid #082c38;
+  background-color: #082c38;
+  color: white;
+  font-weight: bold; }
+  .top-bar-section li.active:not(.has-form) a:not(.button):hover {
+    background-color: #39bced;
+    color: #082c38; }
+
+.top-bar {
+  background-color: white;
+  border-bottom: 2px solid #082c38;
   height: 51px; }
+  .top-bar #active-btn {
+    margin-right: 15px; }
+  .top-bar .name img {
+    margin-top: -2.7px;
+    width: 140px;
+    height: 51px; }
+  .top-bar .right {
+    height: auto; }
+    .top-bar .right li.has-dropdown {
+      height: auto; }
+      .top-bar .right li.has-dropdown li.active a {
+        line-height: 3.0625rem; }
+      .top-bar .right li.has-dropdown a {
+        background-color: white;
+        color: #082c38;
+        font-weight: bold;
+        line-height: 3.0625rem;
+        text-align: center; }
 
 .addsubscriber {
   display: block; }
@@ -10436,8 +10469,8 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   .main-dashboard .dash-headlines {
     font-size: 1.6em;
     margin-top: 20px;
-    border-top: 2px solid #39bced;
-    border-bottom: 2px solid #39bced;
+    border-top: 3px solid #39bced;
+    border-bottom: 3px solid #39bced;
     background-color: #082c38;
     color: white;
     font-weight: bold;
@@ -10548,7 +10581,7 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
 .about {
   display: block;
   background-color: #FFFFFF;
-  border: 2px solid #082c38;
+  border: 5px solid #082c38;
   width: 100%;
   max-width: 800px;
   text-align: center; }
@@ -10560,8 +10593,18 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     display: inline-block; }
     .about .member-block img {
       height: 250px;
-      width: 100%;
+      width: 250px;
       border: 2px solid #082c38; }
+  @media screen and (max-width: 650px) {
+    .about .member-block {
+      width: 80%;
+      padding: 10px;
+      margin: 5%;
+      display: inline-block; }
+      .about .member-block img {
+        height: 250px;
+        width: 250px;
+        border: 2px solid #082c38; } }
 
 * {
   font-family: 'Helvetica', sans-serif; }
