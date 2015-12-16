@@ -14,8 +14,8 @@ let LoginController = function($scope, $state, UserService) {
       let loginRES = res.data.user;
       console.log(loginRES);
       UserService.storeAuth(loginRES);
+      $state.go('root.main-dashboard');
     });
-    $state.go('root.main-dashboard');
   }
 
 };

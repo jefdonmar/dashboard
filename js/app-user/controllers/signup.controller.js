@@ -16,8 +16,8 @@ let SignupController = function($state, $scope, UserService) {
       let userRES = response.data.user;
       console.log(userRES);
       UserService.storeAuth(userRES);
+      $state.go('root.welcome');
     });
-    $state.go('root.welcome');
   }
 
   // watch the email entry field in the form and validate @ symbol with error msg

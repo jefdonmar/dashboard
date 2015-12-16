@@ -29,7 +29,7 @@ angular
     $rootScope.$on('$stateChangeSuccess', function() {
       console.log('state change');
       UserService.setHeaders();
-      if ( $state.is('root.signup')  ) {
+      if ( $state.is('root.signup') || $state.is('root.welcome')  ) {
         console.log('Hello');  
       } else {
         UserService.checkAuth();

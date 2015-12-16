@@ -1,21 +1,29 @@
 <div class="article"> 
+  
+<div class="top-view-art">
   <ul class="single-article-nav">
-    <li class="article-nav-list-item"><a href="/#/view-articles" class="article-nav-list-item">Back</a></li>
+    <li class="article-nav-list-item"><a href="/#/view-articles">Back</a></li>
     <li class="article-nav-list-item" ng-click="vm.editMe(vm.article)">Edit</li>
     <li class="article-nav-list-item" ng-click="vm.deleteMe(vm.article)" style="color:red;">Delete</li>
   </ul>
 
+  <hr>
+    <div style="display: block;">
+    <span style="float: left;">Subject: {{ vm.article.subject_names }}</span>
+    <span style="float: right;">Relevant Subscribers: {{ vm.associatedSubscribers.length }}</span>
+    </div>
+
+  <hr>
+</div>
+
 
   <h3>{{ vm.article.title }}</h3>
 
-  <p>Subjects: {{ vm.article.subject_names }}</p>
 
-  <p>Subscribers: {{ vm.associatedSubscribers.length }}</p>
+  <p class="article-para">{{ vm.article.content }}</p>
 
   <img ng-src="{{vm.article.media }}"/>
 
-  <hr>
 
-  <p>{{ vm.article.content }}</p>
 
 </div>

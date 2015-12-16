@@ -4,14 +4,29 @@
   background-color: white;
   border: 6px solid $Navy;
   display: block;
+  margin: 0px auto;
+  width: 60%;
+  max-width: 500px;
+  min-width: 300px;
 
   .logo{
     padding: 10px;
     text-align: center;
     font-size: 25px;
+    display: block;
+    margin: 20px auto;
+    margin-bottom: 5px;
+    width: 60%;
+    max-width: 300px;
+    min-width: 100px;
+
+    img {
+      margin-bottom: 10px;
+    }
 
     p {
       font-weight: bold;
+      margin-bottom: 0px;
     }
   }
 
@@ -23,8 +38,17 @@
       margin: 30% auto;
     }
 
+    input {
+      border: none;
+    }
+
     .user-container {
       position: relative;
+      width: 60%;
+      display: block;
+      margin: 5px auto;
+
+
 
       .user-ph {
         display: inline-block;
@@ -41,7 +65,6 @@
         // bottom: 3px;
         z-index: 3;
         border: $iconBoxBorder;
-        border-right: none;
       }
 
       .custom-text {
@@ -51,6 +74,9 @@
   
     .password-container{
       position: relative;
+      width: 60%;
+      display: block;
+      margin: 5px auto;
 
       .password-ph {
         display: inline-block;
@@ -93,12 +119,10 @@
     }
 
     button {
-      display: inline-block;
+      display: block;
       background-color: $Navy;
-      height: auto;
-      width: 100%;
-      border-radius: 5px;
-      text-align: center;
+      width: 60%;
+      margin: 25px auto;
     }
 
     p {

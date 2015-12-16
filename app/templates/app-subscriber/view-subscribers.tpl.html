@@ -1,21 +1,28 @@
 <h3>My subscribers</h3>
 
-<a class="view-subs-nav" href="#/main-dashboard"><span>Go to dashboard</span></a>
 
-<a class="view-subs-nav" href="#/build-newsletter"><span>Build a newsletter</span></a>
-<br>
-<br>
+<ul class="small-block-grid-2">
+  <li class="view-sub-block-1">
+     <!-- <button class="view-subs-btn"><a href="#/main-dashboard"><span>Go to dashboard</span></a></button>
+    <button class="view-subs-btn"><a href="#/build-newsletter"><span>Build a newsletter</span></a></button> -->
 
-<form class="import-file-form" ng-submit="vm.importSubscribers()">
-  <p>Import subscribers</p>
-  <input type="file" id="subscriberImport">
-  <button>Submit</button>
-</form>
-
-<button class="view-subs-btn" ng-click="deleteMe()">Delete selected row</button>
-<button class="view-subs-btn" ng-click="viewMe()">Edit selected subscriber</button>
+    <button class="view-subs-btn" ng-click="deleteMe()">Delete selected</button>
+    <button class="view-subs-btn" ng-click="viewMe()">Edit selected</button>
+  </li>
+  <li class="view-sub-block-2">
+    <form class="import-file-form" ng-submit="vm.importSubscribers()">
+      <h5>Import subscribers</h5>
+      <input type="file" id="subscriberImport">
+      <button>Submit</button>
+    </form>
+  </li>
+</ul>
 
 <!-- If you comment this out, the other table shows up -->
+
+
+<p class="data-directions">Scroll right to see additional fields >>></p>
+<div style="overflow-x: scroll;">
 <div 
   ui-grid="gridOptions" 
   class="grid"
@@ -24,6 +31,7 @@
   ui-grid-cellNav
   ui-grid-selection
   ui-grid-pagination>
+</div>
 </div>
 
 

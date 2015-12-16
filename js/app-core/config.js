@@ -8,11 +8,16 @@ let config = function($urlRouterProvider, $stateProvider) {
       abstract: true,
       templateUrl: 'templates/app-layout/layout.tpl.html'
     })
-    .state('root.home', {
+    .state('root.welcome', {
       url: '/',
-      controller: 'HomeController as vm',
-      templateUrl: 'templates/app-layout/home.tpl.html'
+      controller: 'WelcomeController as vm',
+      templateUrl: 'templates/app-user/welcome.tpl.html'
     })
+    // .state('root.home', {
+    //   url: '/',
+    //   controller: 'HomeController as vm',
+    //   templateUrl: 'templates/app-layout/home.tpl.html'
+    // })
     .state('root.add-subscriber', {
       url: '/add-subscriber',
       controller: 'AddSubscriberController as vm',
@@ -73,11 +78,11 @@ let config = function($urlRouterProvider, $stateProvider) {
       controller: 'MainDashboardController as vm',
       templateUrl: 'templates/app-dashboard/main-dashboard.tpl.html'
     })
-    .state('root.welcome', {
-      url: '/welcome',
-      controller: 'WelcomeController as vm',
-      templateUrl: 'templates/app-user/welcome.tpl.html'
-    })
+    // .state('root.welcome', {
+    //   url: '/welcome',
+    //   controller: 'WelcomeController as vm',
+    //   templateUrl: 'templates/app-user/welcome.tpl.html'
+    // })
     .state('root.build-newsletter', {
       url: '/build-newsletter',
       controller: 'BuildNewsletterController as vm',

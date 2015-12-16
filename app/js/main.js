@@ -21,6 +21,7 @@ var AddArticleController = function AddArticleController($state, $scope, Article
 
     ArticleService.addArticle(article, fileObj).then(function (response) {
       console.log(response);
+      $state.go('root.view-articles');
     });
   }
 
@@ -1010,11 +1011,17 @@ var config = function config($urlRouterProvider, $stateProvider) {
   $stateProvider.state('root', {
     abstract: true,
     templateUrl: 'templates/app-layout/layout.tpl.html'
-  }).state('root.home', {
+  }).state('root.welcome', {
     url: '/',
-    controller: 'HomeController as vm',
-    templateUrl: 'templates/app-layout/home.tpl.html'
-  }).state('root.add-subscriber', {
+    controller: 'WelcomeController as vm',
+    templateUrl: 'templates/app-user/welcome.tpl.html'
+  })
+  // .state('root.home', {
+  //   url: '/',
+  //   controller: 'HomeController as vm',
+  //   templateUrl: 'templates/app-layout/home.tpl.html'
+  // })
+  .state('root.add-subscriber', {
     url: '/add-subscriber',
     controller: 'AddSubscriberController as vm',
     templateUrl: 'templates/app-subscriber/add-subscriber.tpl.html'
@@ -1062,11 +1069,13 @@ var config = function config($urlRouterProvider, $stateProvider) {
     url: '/main-dashboard',
     controller: 'MainDashboardController as vm',
     templateUrl: 'templates/app-dashboard/main-dashboard.tpl.html'
-  }).state('root.welcome', {
-    url: '/welcome',
-    controller: 'WelcomeController as vm',
-    templateUrl: 'templates/app-user/welcome.tpl.html'
-  }).state('root.build-newsletter', {
+  })
+  // .state('root.welcome', {
+  //   url: '/welcome',
+  //   controller: 'WelcomeController as vm',
+  //   templateUrl: 'templates/app-user/welcome.tpl.html'
+  // })
+  .state('root.build-newsletter', {
     url: '/build-newsletter',
     controller: 'BuildNewsletterController as vm',
     templateUrl: 'templates/app-content/build-newsletter.tpl.html'
@@ -1588,11 +1597,9 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     var fileObj = fileField.files[0];
     console.log(fileObj);
 
-    SubscriberService.importSubscribers(fileObj);
-    // ADD ONCE AJAX REQUEST IS WRITTEN
-    // .then( (response) => {
-    //   console.log(response);
-    // });
+    SubscriberService.importSubscribers(fileObj).then(function (response) {
+      console.log(response);
+    });
   }
 
   function submit() {
@@ -1608,7 +1615,7 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     enableSorting: true,
     enableFiltering: true,
     enableColumnResizing: true,
-    paginationPageSize: 20,
+    paginationPageSize: 50,
     columnDefs: [
     // { field: 'id', width: '5%'},
     { field: 'email', width: '30%' }, { field: 'subject_names', width: '35%' },
@@ -1784,10 +1791,10 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
 
     console.log('TEST LOG', fileObj);
 
-    // let formData = new FormData();
-    // formData.append('fileimport', fileObj);
-    // HEROKU.CONFIG.headers['Content-Type'] = undefined;
-    // return $http.post(url, formData, HEROKU.CONFIG);
+    var formData = new FormData();
+    formData.append('fileimport', fileObj);
+    HEROKU.CONFIG.headers['Content-Type'] = undefined;
+    return $http.post(url + '/' + 'create_by_csv', formData, HEROKU.CONFIG);
   }
 
   function addSubscriber(subObj) {
@@ -1858,8 +1865,8 @@ var LoginController = function LoginController($scope, $state, UserService) {
       var loginRES = res.data.user;
       console.log(loginRES);
       UserService.storeAuth(loginRES);
+      $state.go('root.main-dashboard');
     });
-    $state.go('root.main-dashboard');
   }
 };
 
@@ -1891,8 +1898,8 @@ var SignupController = function SignupController($state, $scope, UserService) {
       var userRES = response.data.user;
       console.log(userRES);
       UserService.storeAuth(userRES);
+      $state.go('root.welcome');
     });
-    $state.go('root.welcome');
   }
 
   // watch the email entry field in the form and validate @ symbol with error msg
@@ -1955,6 +1962,28 @@ var WelcomeController = function WelcomeController($scope, $state, UserService) 
 
   // set view model to this object
   var vm = this;
+
+  vm.blocks = [{
+    heading: 'Manage Subscribers',
+    blurb: 'Import contacts and better manage your outreach',
+    picture: 'http://www.metia.com/media/1042734/marketing_automation_480x200.jpg',
+    link: '#/view-subscribers'
+  }, {
+    heading: 'Generate Content',
+    blurb: 'Create, store and access your content all in one place',
+    picture: 'http://govdelivery.com/wp-content/uploads/2014/06/Social-Icons-300x257.png',
+    link: '#/view-articles'
+  }, {
+    heading: 'Publish Articles',
+    blurb: 'Send the right content to the right people at the right time',
+    picture: 'https://i.vimeocdn.com/video/521596384_640.jpg',
+    link: '#/build-newsletter'
+  }, {
+    heading: 'Track Performance',
+    blurb: 'Keep a pulse on your business to stay ahead of the game',
+    picture: 'http://www.smekdigital.com/wp-content/uploads/2015/03/email-marketing.jpg',
+    link: '#/main-dashboard'
+  }];
 };
 
 WelcomeController.$inject = ['$scope', '$state', 'UserService'];
@@ -2125,7 +2154,7 @@ console.log(_moment2['default']);
   $rootScope.$on('$stateChangeSuccess', function () {
     console.log('state change');
     UserService.setHeaders();
-    if ($state.is('root.signup')) {
+    if ($state.is('root.signup') || $state.is('root.welcome')) {
       console.log('Hello');
     } else {
       UserService.checkAuth();
