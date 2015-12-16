@@ -1,4 +1,4 @@
-let AddArticleController = function($state, $scope, ArticleService) {
+let AddArticleController = function($state, $scope, ArticleService, UserService) {
   
   console.log('Hello from the add article controller');
 
@@ -13,6 +13,13 @@ let AddArticleController = function($state, $scope, ArticleService) {
    'Soccer',
    'Hockey'
   ]; 
+
+  $scope.logOut = logout;
+
+  function logout () {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
 
   function addArticle (article) {
 
@@ -35,6 +42,6 @@ let AddArticleController = function($state, $scope, ArticleService) {
 
 };
 
-AddArticleController.$inject = ['$state', '$scope', 'ArticleService'];
+AddArticleController.$inject = ['$state', '$scope', 'ArticleService', 'UserService'];
 
 export default AddArticleController;

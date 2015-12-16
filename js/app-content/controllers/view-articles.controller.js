@@ -1,4 +1,4 @@
-let ViewArticlesController = function($state, $scope, ArticleService) {
+let ViewArticlesController = function($state, $scope, ArticleService, UserService) {
   
   // console.log('Hello from the view articles controller');
 
@@ -11,6 +11,13 @@ let ViewArticlesController = function($state, $scope, ArticleService) {
   $scope.sortType = 'title';
   $scope.sortReverse = false;
 
+  $scope.logOut = logout;
+
+  function logout () {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
+
   ArticleService.getAllArticles().then( (response)=> {
     vm.articles = response.data.article;
     console.log(vm.articles);
@@ -22,6 +29,6 @@ let ViewArticlesController = function($state, $scope, ArticleService) {
 
 };
 
-ViewArticlesController.$inject = ['$state', '$scope', 'ArticleService'];
+ViewArticlesController.$inject = ['$state', '$scope', 'ArticleService', 'UserService'];
 
 export default ViewArticlesController;

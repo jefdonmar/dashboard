@@ -4,7 +4,7 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var AddArticleController = function AddArticleController($state, $scope, ArticleService) {
+var AddArticleController = function AddArticleController($state, $scope, ArticleService, UserService) {
 
   console.log('Hello from the add article controller');
 
@@ -13,6 +13,13 @@ var AddArticleController = function AddArticleController($state, $scope, Article
   vm.addImage = addImage;
 
   $scope.subjects = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
+
+  $scope.logOut = logout;
+
+  function logout() {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
 
   function addArticle(article) {
 
@@ -34,7 +41,7 @@ var AddArticleController = function AddArticleController($state, $scope, Article
   }
 };
 
-AddArticleController.$inject = ['$state', '$scope', 'ArticleService'];
+AddArticleController.$inject = ['$state', '$scope', 'ArticleService', 'UserService'];
 
 exports['default'] = AddArticleController;
 module.exports = exports['default'];
@@ -446,8 +453,8 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
     });
   }
 
-  function sendToFullList() {
-    NewsletterService.blastList().then(function (response) {
+  function sendToFullList(subject) {
+    NewsletterService.blastList(subject).then(function (response) {
       console.log('BLAST LIST', response);
     });
   }
@@ -473,7 +480,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ViewArticlesController = function ViewArticlesController($state, $scope, ArticleService) {
+var ViewArticlesController = function ViewArticlesController($state, $scope, ArticleService, UserService) {
 
   // console.log('Hello from the view articles controller');
 
@@ -486,6 +493,13 @@ var ViewArticlesController = function ViewArticlesController($state, $scope, Art
   $scope.sortType = 'title';
   $scope.sortReverse = false;
 
+  $scope.logOut = logout;
+
+  function logout() {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
+
   ArticleService.getAllArticles().then(function (response) {
     vm.articles = response.data.article;
     console.log(vm.articles);
@@ -496,7 +510,7 @@ var ViewArticlesController = function ViewArticlesController($state, $scope, Art
   }
 };
 
-ViewArticlesController.$inject = ['$state', '$scope', 'ArticleService'];
+ViewArticlesController.$inject = ['$state', '$scope', 'ArticleService', 'UserService'];
 
 exports['default'] = ViewArticlesController;
 module.exports = exports['default'];
@@ -962,11 +976,10 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
     });
   }
 
-  function blastList() {
-    var subject = 'Subject';
+  function blastList(subject) {
 
     return $http.post(url + 'newsletters', {
-      subject: 'Subject Line'
+      subject: subject
     }, HEROKU.CONFIG);
   }
 };
@@ -2042,6 +2055,15 @@ var UserService = function UserService($http, HEROKU, $cookies, $state) {
   this.setHeaders = setHeaders;
   this.checkAuth = checkAuth;
   this.sendKey = sendKey;
+  this.logout = logout;
+
+  function logout() {
+    $cookies.remove('auth_token');
+    $cookies.remove('user_id');
+    HEROKU.CONFIG.headers['auth_token'] = null;
+    HEROKU.CONFIG.headers['user_id'] = null;
+    $state.go('root.login');
+  }
 
   // SERVICE FUNCTIONS
   function User(userObj) {

@@ -12,6 +12,16 @@ let UserService = function($http, HEROKU, $cookies, $state) {
   this.setHeaders = setHeaders;
   this.checkAuth = checkAuth;
   this.sendKey = sendKey;
+  this.logout = logout;
+
+  function logout () {
+    $cookies.remove('auth_token');
+    $cookies.remove('user_id');
+    HEROKU.CONFIG.headers['auth_token'] = null;
+    HEROKU.CONFIG.headers['user_id'] = null;
+    $state.go('root.login');
+  }
+
 
   // SERVICE FUNCTIONS
   function User (userObj) {

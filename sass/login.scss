@@ -44,9 +44,9 @@
 
     .user-container {
       position: relative;
-      width: 60%;
       display: block;
       margin: 5px auto;
+      width: 80%;
 
 
 
@@ -74,9 +74,9 @@
   
     .password-container{
       position: relative;
-      width: 60%;
       display: block;
       margin: 5px auto;
+      width: 80%;
 
       .password-ph {
         display: inline-block;
@@ -121,12 +121,14 @@
     button {
       display: block;
       background-color: $Navy;
-      width: 60%;
+      width: 80%;
       margin: 25px auto;
     }
 
     p {
       text-align: center;
+      padding-left: 10%;
+      padding-right: 10%;
     }
   }
 }

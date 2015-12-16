@@ -173,12 +173,11 @@ let NewsletterService = function($state, $http, HEROKU) {
     });
   }
 
-  function blastList () {
-    let subject = 'Subject';
+  function blastList (subject) {
 
     return $http.post(url + 'newsletters', 
       {
-        subject: 'Subject Line'
+        subject: subject
       },
       HEROKU.CONFIG);
   }

@@ -5,13 +5,44 @@
   padding: 10px;
   border: 6px solid $Navy;
   display: block;
+  width: 80%;
+  max-width: 600px;
+  display: block;
+  margin: 40px auto;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
 
   .view-article-card {
-    border-bottom: 1px solid $Navy;
+    // border-bottom: 1px solid $Navy;
     padding-top: 25px;
+    padding-bottom: 25px;
     width: 90%;
     margin: 0 auto;
     cursor: pointer;
+    overflow: hidden;
+    // y-overflow: scroll;
+    text-overflow: clip;
+    // text-overflow: "...";
+
+    .art-card-text {
+      // padding: 10px;
+      padding-bottom: 20px;
+      margin-bottom: 10px;
+      p {
+        padding-bottom: 20px;
+      }
+    }
+
+    .art-card-content{
+      padding-bottom: 10px;
+    }
+     img {
+        display: block;
+        width: 250px;
+        height: 250px;
+        margin: 10px auto;
+        margin-bottom: 20px;
+      }
   }
 
   .top {

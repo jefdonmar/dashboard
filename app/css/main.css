@@ -10105,9 +10105,9 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       border: none; }
     .login .log-in .user-container {
       position: relative;
-      width: 60%;
       display: block;
-      margin: 5px auto; }
+      margin: 5px auto;
+      width: 80%; }
       .login .log-in .user-container .user-ph {
         display: inline-block;
         width: 30px;
@@ -10124,9 +10124,9 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
         padding: 6px 6px 6px 40px; }
     .login .log-in .password-container {
       position: relative;
-      width: 60%;
       display: block;
-      margin: 5px auto; }
+      margin: 5px auto;
+      width: 80%; }
       .login .log-in .password-container .password-ph {
         display: inline-block;
         width: 30px;
@@ -10154,20 +10154,33 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     .login .log-in button {
       display: block;
       background-color: #082c38;
-      width: 60%;
+      width: 80%;
       margin: 25px auto; }
     .login .log-in p {
-      text-align: center; }
+      text-align: center;
+      padding-left: 10%;
+      padding-right: 10%; }
 
 .signup {
-  display: block;
   background-color: white;
-  border: 6px solid #082c38; }
+  border: 6px solid #082c38;
+  display: block;
+  margin: 0px auto;
+  width: 60%;
+  max-width: 500px;
+  min-width: 300px; }
   .signup .logo {
     padding: 10px;
     text-align: center;
     font-size: 25px;
-    font-weight: bold; }
+    display: block;
+    margin: 20px auto;
+    margin-bottom: 5px;
+    width: 60%;
+    max-width: 300px;
+    min-width: 100px; }
+    .signup .logo img {
+      margin-bottom: 10px; }
     .signup .logo p {
       text-align: center;
       font-weight: bold; }
@@ -10177,7 +10190,10 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       display: block;
       margin: 30% auto; }
     .signup .sign-up .company-container {
-      position: relative; }
+      position: relative;
+      display: block;
+      margin: 5px auto;
+      width: 80%; }
       .signup .sign-up .company-container .company-ph {
         display: inline-block;
         width: 30px;
@@ -10194,7 +10210,10 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       .signup .sign-up .company-container .custom-text {
         padding: 6px 6px 6px 40px; }
     .signup .sign-up .user-container {
-      position: relative; }
+      position: relative;
+      display: block;
+      margin: 5px auto;
+      width: 80%; }
       .signup .sign-up .user-container .user-ph {
         display: inline-block;
         width: 30px;
@@ -10211,7 +10230,10 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       .signup .sign-up .user-container .custom-text {
         padding: 6px 6px 6px 40px; }
     .signup .sign-up .password-container {
-      position: relative; }
+      position: relative;
+      display: block;
+      margin: 5px auto;
+      width: 80%; }
       .signup .sign-up .password-container .password-ph {
         display: inline-block;
         width: 30px;
@@ -10230,14 +10252,14 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     .signup .sign-up .advice p {
       text-align: center; }
     .signup .sign-up button {
-      display: inline-block;
+      display: block;
       background-color: #082c38;
-      width: 100%;
-      height: auto;
-      border-radius: 5px;
-      text-align: center; }
+      width: 80%;
+      margin: 25px auto; }
     .signup .sign-up p {
-      text-align: center; }
+      text-align: center;
+      padding-left: 10%;
+      padding-right: 10%; }
 
 .welcome {
   display: block;
@@ -10378,26 +10400,54 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   background-color: #FFFFFF;
   border: 6px solid #082c38;
   padding: 5px;
-  display: block; }
+  display: block;
+  width: 60%;
+  max-width: 500px;
+  margin: 40px auto; }
+  .edit-article form {
+    width: 80%;
+    display: block;
+    margin: 10px auto; }
+    .edit-article form #edit-art-par {
+      min-height: 300px; }
   .edit-article h4 {
     text-align: center;
     font-weight: bold; }
   .edit-article button {
     background-color: #082c38;
-    margin-left: 40%;
-    margin-right: 40%; }
+    display: block;
+    margin: 10px auto; }
 
 .viewArticles {
   background-color: #FFFFFF;
   padding: 10px;
   border: 6px solid #082c38;
-  display: block; }
+  display: block;
+  width: 80%;
+  max-width: 600px;
+  display: block;
+  margin: 40px auto; }
   .viewArticles .view-article-card {
-    border-bottom: 1px solid #082c38;
     padding-top: 25px;
+    padding-bottom: 25px;
     width: 90%;
     margin: 0 auto;
-    cursor: pointer; }
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: clip; }
+    .viewArticles .view-article-card .art-card-text {
+      padding-bottom: 20px;
+      margin-bottom: 10px; }
+      .viewArticles .view-article-card .art-card-text p {
+        padding-bottom: 20px; }
+    .viewArticles .view-article-card .art-card-content {
+      padding-bottom: 10px; }
+    .viewArticles .view-article-card img {
+      display: block;
+      width: 250px;
+      height: 250px;
+      margin: 10px auto;
+      margin-bottom: 20px; }
   .viewArticles .top {
     width: 90%;
     margin: 0 auto; }
@@ -10713,6 +10763,7 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   border: 5px solid #082c38;
   width: 100%;
   max-width: 800px;
+  margin: 40px auto;
   text-align: center; }
   .about .member-block {
     width: 40%;
@@ -10745,6 +10796,28 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     margin: 4%;
     height: 70px;
     vertical-align: top; } }
+
+.log-out {
+  color: #082c38;
+  text-align: center;
+  position: absolute;
+  top: 55px;
+  left: 10px;
+  font-size: .8em; }
+
+.blast-form {
+  display: block;
+  background-color: white;
+  border: 5px solid #082c38;
+  max-width: 500px;
+  margin: 20px auto; }
+  .blast-form h3, .blast-form button, .blast-form input {
+    text-align: center;
+    display: block;
+    width: 60%;
+    margin: 20px auto; }
+  .blast-form button, .blast-form input {
+    border: 1px solid #082c38; }
 
 * {
   font-family: 'Helvetica', sans-serif; }

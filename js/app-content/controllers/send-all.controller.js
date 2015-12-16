@@ -220,8 +220,8 @@ let SendAllController = function($scope, NewsletterService, $state, ArticleServi
     });
   }
 
-  function sendToFullList () {
-    NewsletterService.blastList().then( (response) => {
+  function sendToFullList (subject) {
+    NewsletterService.blastList(subject).then( (response) => {
       console.log('BLAST LIST', response);
     });
   }

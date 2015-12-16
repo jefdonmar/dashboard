@@ -3,6 +3,20 @@
   border: 6px solid $Navy;
   padding: 5px;
   display: block;
+  width: 60%;
+  max-width: 500px;
+  margin: 40px auto;
+
+  form {
+    width: 80%;
+    display: block;
+    margin: 10px auto;
+
+    #edit-art-par {
+      min-height: 300px;
+    }
+
+  }
 
   h4 {
     text-align: center;
@@ -11,9 +25,8 @@
 
   button {
     background-color: $Navy;
-    margin-left: 40%;
-    margin-right: 40%;
-
+    display: block;
+    margin: 10px auto;
   }
 
 }
