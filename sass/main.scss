@@ -294,6 +294,7 @@ div.ui-grid-pager-panel {
 @import "add-article";
 @import "about";
 @import "profile";
+@import "blast-list";
 
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab|Nunito);
 
@@ -327,25 +328,6 @@ div.ui-grid-pager-panel {
   font-size: .8em;
 }
 
-
-.blast-form {
-  display: block;
-  background-color: white;
-  border: 5px solid $Navy;
-  max-width: 500px;
-  margin: 20px auto;
-
-    h3, button, input {
-      text-align: center;
-      display: block;
-      width: 60%;
-      margin: 20px auto;
-    }
-
-    button, input {
-      border: 1px solid $Navy;
-    }
-}
 
 * {
   font-family: 'Helvetica', sans-serif;

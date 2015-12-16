@@ -34,6 +34,13 @@ let SendAllController = function($scope, NewsletterService, $state, ArticleServi
       console.log('AFTER SUBSCRIBERS', subscribers);
       vm.subscribers = subscribers;
     });
+
+    NewsletterService.getAllUserArticles().then( (response) => {
+      // console.log(response);
+      let allUserArticles = response.data.article;
+      console.log('TEST', allUserArticles); 
+      vm.allUserArticles = allUserArticles;
+    });
   }
 
   function getAllArticles (subscribers) {
@@ -89,6 +96,7 @@ let SendAllController = function($scope, NewsletterService, $state, ArticleServi
       let allArticles = response.data.article;
       console.log(allArticles);
       $scope.articles = allArticles;
+      vm.articles = allArticles;
 
       allArticles.forEach( function (article) {
         let articleObj = {};
@@ -224,6 +232,10 @@ let SendAllController = function($scope, NewsletterService, $state, ArticleServi
     NewsletterService.blastList(subject).then( (response) => {
       console.log('BLAST LIST', response);
     });
+    vm.emailsSent = true;
+    setTimeout( function () {
+      $state.go('root.main-dashboard');
+    }, 3000);
   }
 
 

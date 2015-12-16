@@ -273,6 +273,13 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
       console.log('AFTER SUBSCRIBERS', subscribers);
       vm.subscribers = subscribers;
     });
+
+    NewsletterService.getAllUserArticles().then(function (response) {
+      // console.log(response);
+      var allUserArticles = response.data.article;
+      console.log('TEST', allUserArticles);
+      vm.allUserArticles = allUserArticles;
+    });
   }
 
   function getAllArticles(subscribers) {
@@ -327,6 +334,7 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
       var allArticles = response.data.article;
       console.log(allArticles);
       $scope.articles = allArticles;
+      vm.articles = allArticles;
 
       allArticles.forEach(function (article) {
         var articleObj = {};
@@ -457,6 +465,10 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
     NewsletterService.blastList(subject).then(function (response) {
       console.log('BLAST LIST', response);
     });
+    vm.emailsSent = true;
+    setTimeout(function () {
+      $state.go('root.main-dashboard');
+    }, 3000);
   }
 
   // let mailers = [];
@@ -850,6 +862,7 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
   // this.buildEmail = buildEmail;
   this.sendAllEmails = sendAllEmails;
   this.blastList = blastList;
+  this.getAllUserArticles = getAllUserArticles;
 
   // FUNCTIONS
 
@@ -864,6 +877,10 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
 
   function getAllSubscribers() {
     return $http.get(url + 'subscribers', HEROKU.CONFIG);
+  }
+
+  function getAllUserArticles() {
+    return $http.get(url + 'articles', HEROKU.CONFIG);
   }
 
   function sendContent(content, preContent, postContent, newsletter, relevantSubscribers) {
@@ -1359,7 +1376,7 @@ var AboutUsController = function AboutUsController($scope) {
     pic: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAJEAAAAJGMwMTMwODdjLWQ3ZWUtNGEyMy04MDg0LTIxYzA4YzM4YTA1NA.jpg",
     github: "https://github.com/faircloth",
     linkedin: "https://www.linkedin.com/in/andrew-faircloth-3b905069",
-    nickname: "Lightweight"
+    nickname: "Lord Pistachio"
   }, {
     name: 'Jeffrey Martín',
     pic: "https://files.slack.com/files-pri/T066DB5HT-F0GMVE1A9/pic.jpg",
@@ -1371,7 +1388,7 @@ var AboutUsController = function AboutUsController($scope) {
     pic: "https://files.slack.com/files-pri/T066DB5HT-F0GJ7V160/prophoto.jpg",
     github: "https://github.com/robertcramer",
     linkedin: "https://www.linkedin.com/in/rbcramer",
-    nickname: "Longfellow Deeds"
+    nickname: "Designated Sprinkler"
   }, {
     name: 'Danny Barton',
     pic: "https://files.slack.com/files-pri/T066DB5HT-F0GJV65GA/slack_for_ios_upload.jpg",

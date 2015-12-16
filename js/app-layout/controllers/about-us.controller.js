@@ -10,7 +10,7 @@ let AboutUsController = function($scope) {
       pic: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAJEAAAAJGMwMTMwODdjLWQ3ZWUtNGEyMy04MDg0LTIxYzA4YzM4YTA1NA.jpg",
       github: "https://github.com/faircloth",
       linkedin: "https://www.linkedin.com/in/andrew-faircloth-3b905069",
-      nickname: "Lightweight"
+      nickname: "Lord Pistachio"
     },
     {
       name: 'Jeffrey Martín',
@@ -24,7 +24,7 @@ let AboutUsController = function($scope) {
       pic: "https://files.slack.com/files-pri/T066DB5HT-F0GJ7V160/prophoto.jpg",
       github: "https://github.com/robertcramer",
       linkedin: "https://www.linkedin.com/in/rbcramer",
-      nickname: "Longfellow Deeds"
+      nickname: "Designated Sprinkler"
     },
     {
       name: 'Danny Barton',

@@ -10763,6 +10763,8 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   width: 100%;
   max-width: 800px;
   margin: 40px auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
   text-align: center; }
   .about .member-block {
     width: 40%;
@@ -10817,6 +10819,49 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     display: block;
     margin: 15px auto; }
 
+div.congrats-message {
+  display: block;
+  background-color: #082c38;
+  color: white;
+  border: 5px solid #FFFFFF;
+  width: 80%;
+  max-width: 600px;
+  margin: 20px auto;
+  height: 600px;
+  position: absolute;
+  top: 60px; }
+  div.congrats-message h2 {
+    color: white;
+    text-align: center;
+    padding: 20px; }
+
+.blast-form {
+  display: block;
+  background-color: white;
+  border: 5px solid #082c38;
+  max-width: 600px;
+  margin: 20px auto; }
+  .blast-form h3, .blast-form button, .blast-form input, .blast-form h5 {
+    text-align: center;
+    display: block;
+    width: 60%;
+    margin: 20px auto; }
+  .blast-form ul {
+    width: 60%;
+    margin: 20px auto;
+    text-align: center;
+    list-style-position: inside; }
+  .blast-form h5 {
+    width: 75%;
+    padding: 10px; }
+  .blast-form h5.send-all-warning {
+    background-color: red;
+    color: white;
+    border: 3px solid grey;
+    border-radius: 4px; }
+  .blast-form button, .blast-form input {
+    border: 1px solid #082c38; }
+
 @media screen and (max-width: 600px) {
   li.view-sub-block-2 {
     display: none; }
@@ -10835,20 +10880,6 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   top: 55px;
   left: 10px;
   font-size: .8em; }
-
-.blast-form {
-  display: block;
-  background-color: white;
-  border: 5px solid #082c38;
-  max-width: 500px;
-  margin: 20px auto; }
-  .blast-form h3, .blast-form button, .blast-form input {
-    text-align: center;
-    display: block;
-    width: 60%;
-    margin: 20px auto; }
-  .blast-form button, .blast-form input {
-    border: 1px solid #082c38; }
 
 * {
   font-family: 'Helvetica', sans-serif; }
