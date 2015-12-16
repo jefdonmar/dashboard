@@ -1436,7 +1436,7 @@ var AddSubscriberController = function AddSubscriberController($state, $scope, S
   vm.addSubscriber = addSubscriber;
   vm.validateEmail = validateEmail;
 
-  $scope.subject_names = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
+  $scope.subject_names = [' Football', ' Baseball', ' Basketball', ' Soccer', ' Hockey'];
 
   function addSubscriber(subObj) {
     console.log('Supposed to add now');

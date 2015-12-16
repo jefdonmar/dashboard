@@ -7,11 +7,11 @@ let AddSubscriberController = function($state, $scope, SubscriberService) {
   vm.validateEmail = validateEmail;
 
   $scope.subject_names = [
-   'Football',
-   'Baseball',
-   'Basketball',
-   'Soccer',
-   'Hockey'
+   ' Football',
+   ' Baseball',
+   ' Basketball',
+   ' Soccer',
+   ' Hockey'
   ]; 
 
   function addSubscriber (subObj) {
