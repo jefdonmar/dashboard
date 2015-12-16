@@ -6,27 +6,38 @@
     background-color: $White;
     margin-bottom: 0px;
     border: 6px solid $Navy;
-    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+
+    img {
+      display: block;
+      width: 40%;
+      margin: 1px auto 10px ;
+    }
+
+    h3, p {
+      text-align: center;
+      padding: 5px 20px;
+      width: 80%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    p {
+      font-size: 1.1em;
+    }
   }
 
-  #articleImg {
-    display: block;
-    margin: 0 auto;
-  }
-
-  h3, p {
-    text-align: center;
-  }
   
-  .article-form {
+  form.article-form {
     padding: 20px;
     display: block;
-    width: 90%;
+    width: 80%;
 
-    .article {
-      width: 100%;
-      display: block;
-    }
+    // .article {
+    //   width: 80%;
+    //   display: block;
+    // }
 
     button.submit {
       background-color: $Navy;
@@ -35,38 +46,67 @@
     }  
 
     select {
-      border: 1px solid $Navy;
-      background-color: $LightGrey;
-      font-size: 1em;
+      border: 2px solid $Navy;
+      background-color: #ededed;
+      font-size: 1.1em;
+      display: block;
+      width: 90%;
+      max-width: 600px;
+      margin: 10px auto;
+      margin-bottom: 20px;
+      padding: 10px;
+      padding-top: 0px;
+      padding-bottom: 0px;
     }
 
-    // input {
-    //   background-color: $Navy;
-    //   color: white;
-    // }
+    input {
+      // background-color: $Navy;
+      // color: white;
+      // min-height: 50px;
+      // padding-top: 10px;
+      // text-align: center;
+      display: block;
+      width: 90%;
+      max-width: 600px;
+      margin: 10px auto;
+    }
 
     #input-headlines {
       background-color: white;
       color: $Navy;
-      border: 1px solid $Navy;
+      border: 2px solid $Navy;
       padding: 10px;
       padding-top: 15px;
       padding-bottom: 15px;
-      background-color: $LightGrey;
-      font-size: 1.4em;
+      background-color: #ededed;
+      font-size: 1.1em;
+      display: block;
+      width: 90%;
+      max-width: 600px;
+      margin: 10px auto;
+      margin-bottom: 20px;
     }
 
     textarea {
       min-height: 300px;
       height: 300px;
       background-color: white;
-      border: 1px solid $Navy;
+      border: 2px solid $Navy;
       color: $Navy;
       padding: 10px;
       // padding-top: 15px;
       padding-bottom: 15px;
-      background-color: $LightGrey;
-      font-size: 1em;
+      background-color: #ededed;
+      font-size: 1.1em;
+      display: block;
+      width: 90%;
+      max-width: 600px;
+      margin: 10px auto;
+      margin-bottom: 20px;
+    }
+
+    button:hover {
+      background-color: $BrightBlue;
     }
 
   }

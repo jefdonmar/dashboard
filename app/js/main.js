@@ -21,6 +21,7 @@ var AddArticleController = function AddArticleController($state, $scope, Article
 
     ArticleService.addArticle(article, fileObj).then(function (response) {
       console.log(response);
+      $state.go('root.view-articles');
     });
   }
 
@@ -1864,8 +1865,8 @@ var LoginController = function LoginController($scope, $state, UserService) {
       var loginRES = res.data.user;
       console.log(loginRES);
       UserService.storeAuth(loginRES);
+      $state.go('root.main-dashboard');
     });
-    $state.go('root.main-dashboard');
   }
 };
 
@@ -1897,8 +1898,8 @@ var SignupController = function SignupController($state, $scope, UserService) {
       var userRES = response.data.user;
       console.log(userRES);
       UserService.storeAuth(userRES);
+      $state.go('root.welcome');
     });
-    $state.go('root.welcome');
   }
 
   // watch the email entry field in the form and validate @ symbol with error msg
@@ -2153,7 +2154,7 @@ console.log(_moment2['default']);
   $rootScope.$on('$stateChangeSuccess', function () {
     console.log('state change');
     UserService.setHeaders();
-    if ($state.is('root.signup')) {
+    if ($state.is('root.signup') || $state.is('root.welcome')) {
       console.log('Hello');
     } else {
       UserService.checkAuth();

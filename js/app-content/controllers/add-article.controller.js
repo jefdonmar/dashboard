@@ -21,6 +21,7 @@ let AddArticleController = function($state, $scope, ArticleService) {
 
     ArticleService.addArticle(article, fileObj).then( (response)=> {
       console.log(response);
+      $state.go('root.view-articles');
     });
   }
 
