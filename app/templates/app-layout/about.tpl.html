@@ -4,18 +4,16 @@
 
   <div>
     <div class="member-block" ng-repeat="member in vm.team">
-      <img src="{{ member.pic }}">
+      <img ng-src="{{ member.pic }}"/>
       <h4>{{ member.name }}</h4>
       <p>{{ member.nickname }}</p>
       <span>
-        <i class="fa fa-github">
-          <a href="{{ member.github }}}">Github</a>
-        </i>
+        <i class="fa fa-github"></i>
+          <a href="{{ member.github }}">Github</a>
       </span>
       <span>
-        <i class="fa fa-linkedin-square">
-          <a href="{{ member.linkedin }}}">LinkedIn</a>
-        </i>
+        <i class="fa fa-linkedin-square"></i>
+          <a href="{{ member.linkedin }}">LinkedIn</a>
       </span>
     </div>
   </div>

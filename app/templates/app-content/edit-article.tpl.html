@@ -1,8 +1,9 @@
+<p class="log-out" ng-click="logOut()">Log out</p>
 <div class="edit-article">
-  
-  <h4>Edit Article</h4>
 
   <form ng-submit="vm.submitEdits(vm.article)">
+  <span ng-click="vm.goToArticle(vm.article)" class="back-link">Back</span>
+  <h4>Edit Article</h4>
     <label>
       Title </label>
       <input ng-model="vm.article.title">

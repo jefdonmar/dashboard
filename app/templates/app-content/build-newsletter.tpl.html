@@ -1,3 +1,4 @@
+<p class="log-out" ng-click="logOut()">Log out</p>
 <div class="build-news">
   
   <form class="newsletter-form" ng-submit="vm.getSubjectsForNewsletter(newsObj)">
@@ -29,6 +30,7 @@
 
   </form>
 
+  <button ng-click="startOver()" ng-show="hasPreviewed" class="build-newsletter-btn2">New Preview</button>
 
   <!-- Newsletter Preview -->
 

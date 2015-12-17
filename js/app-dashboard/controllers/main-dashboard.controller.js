@@ -1,7 +1,13 @@
-let MainDashboardController = function($state, DashboardService, $scope) {
+let MainDashboardController = function($state, DashboardService, $scope, UserService) {
   
   // console.clear();
 
+  $scope.logOut = logout;
+
+  function logout () {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
 
   let vm = this;
 
@@ -102,6 +108,6 @@ let MainDashboardController = function($state, DashboardService, $scope) {
 
 };
 
-MainDashboardController.$inject = ['$state', 'DashboardService', '$scope'];
+MainDashboardController.$inject = ['$state', 'DashboardService', '$scope', 'UserService'];
 
 export default MainDashboardController;

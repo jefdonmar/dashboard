@@ -1,4 +1,4 @@
-let AddSubscriberController = function($state, $scope, SubscriberService) {
+let AddSubscriberController = function($state, $scope, SubscriberService, UserService) {
 
   console.log('We are the Add Controller People');
 
@@ -13,6 +13,13 @@ let AddSubscriberController = function($state, $scope, SubscriberService) {
    ' Soccer',
    ' Hockey'
   ]; 
+
+  $scope.logOut = logout;
+
+  function logout () {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
 
   function addSubscriber (subObj) {
     console.log('Supposed to add now');
@@ -41,6 +48,6 @@ let AddSubscriberController = function($state, $scope, SubscriberService) {
 
 };
 
-AddSubscriberController.$inject = ['$state', '$scope', 'SubscriberService'];
+AddSubscriberController.$inject = ['$state', '$scope', 'SubscriberService', 'UserService'];
 
 export default AddSubscriberController;

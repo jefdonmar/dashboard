@@ -1,12 +1,16 @@
+<p class="log-out" ng-click="logOut()">Log out</p>
 <form class="profile-form" ng-submit="vm.sendUserInfo(user)">
   
-  <h3>Send API key</h3>
+  <h3>User Profile</h3>
   
   <label class="profile-input">Name</label>
   <input class="profile-input" type="text" placeholder="Name" ng-model="user.name">
 
   <label class="profile-input">Email</label>
   <input class="profile-input" type="text" placeholder="Email" ng-model="user.email">
+
+
+  
 
   <label class="profile-input">Mandrill API Key</label>
   <input class="profile-input" type="text" placeholder="Insert API Key..." ng-model="user.mandrill_api">

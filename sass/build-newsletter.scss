@@ -34,6 +34,14 @@ $BrightBlue: #39bced;
     background-color: $Navy;
   }
 
+  .build-newsletter-btn2 {
+      display: block;
+      margin: 5px auto;
+      background-color: green;
+      color: white;
+      border: 3px solid $Navy;
+    }
+
   @media screen and (max-width: 375px) {
 
     .newsletter-form {

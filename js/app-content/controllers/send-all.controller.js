@@ -1,4 +1,4 @@
-let SendAllController = function($scope, NewsletterService, $state, ArticleService) {
+let SendAllController = function($scope, NewsletterService, $state, ArticleService, UserService) {
   
   console.clear();
   console.log('SendAllController');
@@ -20,6 +20,14 @@ let SendAllController = function($scope, NewsletterService, $state, ArticleServi
   vm.showBatch = showBatch;
   vm.sendAllEmails = sendAllEmails;
   vm.sendToFullList = sendToFullList;
+
+
+  $scope.logOut = logout;
+
+  function logout () {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
 
   activate ();
 
@@ -250,6 +258,6 @@ let SendAllController = function($scope, NewsletterService, $state, ArticleServi
 
 };
 
-SendAllController.$inject = ['$scope', 'NewsletterService', '$state', 'ArticleService'];
+SendAllController.$inject = ['$scope', 'NewsletterService', '$state', 'ArticleService', 'UserService'];
 
 export default SendAllController;

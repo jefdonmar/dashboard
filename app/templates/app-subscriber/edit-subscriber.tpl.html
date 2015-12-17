@@ -1,11 +1,13 @@
-<h3>Edit subscriber</h3>
+<p class="log-out" ng-click="logOut()">Log out</p>
+<div style="display: block; margin: 40px auto; width: 90%; border: 5px solid #082c38; background-color: white; max-width: 500px;">
+<h3 style="display: block; margin: 10px auto; width: 90%;">Edit subscriber</h3>
 
-<p><a href="#/view-subscribers">View all subscribers</a></p>
+<p style="display: block; margin: 10px auto; width: 90%;"><a href="#/view-subscribers">View all subscribers</a></p>
 
 
-<p>Current relevant articles: {{ vm.associatedArticles.length }}</p>
+<p style="display: block; margin: 10px auto; width: 90%;">Current relevant articles: {{ vm.associatedArticles.length }}</p>
 
-<form ng-submit="vm.submitSubEdits(vm.subscriber)">
+<form style="display: block; margin: 10px auto; width: 90%;"ng-submit="vm.submitSubEdits(vm.subscriber)">
   <label>
     Email address: 
     <input ng-model="vm.subscriber.email">
@@ -16,4 +18,4 @@
   </label>
   <p>Note: Separate subject names by commas</p>
   <button>Submit</button>
-</form>
+</form></div>

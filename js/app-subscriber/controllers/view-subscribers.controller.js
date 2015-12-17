@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-let ViewSubscribersController = function($state, $scope, SubscriberService) {
+let ViewSubscribersController = function($state, $scope, SubscriberService, UserService) {
   
   // set view model to this object
   let vm = this;
@@ -12,6 +12,14 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
 
   $scope.sortType = 'id';
   $scope.sortReverse = false;
+
+  $scope.logOut = logout;
+
+  function logout () {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
+
 
   function importSubscribers () {
     console.log('File import click');
@@ -109,6 +117,6 @@ let ViewSubscribersController = function($state, $scope, SubscriberService) {
 
 };
 
-ViewSubscribersController.$inject = ['$state', '$scope', 'SubscriberService'];
+ViewSubscribersController.$inject = ['$state', '$scope', 'SubscriberService', 'UserService'];
 
 export default ViewSubscribersController;
