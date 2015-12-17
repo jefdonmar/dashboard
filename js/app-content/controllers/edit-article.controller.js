@@ -1,8 +1,16 @@
-let EditArticleController = function($state, ArticleService, $stateParams) {
+let EditArticleController = function($state, ArticleService, $stateParams, $scope) {
   
   let vm = this;
 
   vm.submitEdits = submitEdits;
+
+  $scope.subjects = [
+   'Football',
+   'Baseball',
+   'Basketball',
+   'Soccer',
+   'Hockey'
+  ]; 
 
   activate();
 
@@ -25,6 +33,6 @@ let EditArticleController = function($state, ArticleService, $stateParams) {
 
 };
 
-EditArticleController.$inject = ['$state', 'ArticleService', '$stateParams'];
+EditArticleController.$inject = ['$state', 'ArticleService', '$stateParams', '$scope'];
 
 export default EditArticleController;

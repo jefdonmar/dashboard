@@ -171,11 +171,13 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var EditArticleController = function EditArticleController($state, ArticleService, $stateParams) {
+var EditArticleController = function EditArticleController($state, ArticleService, $stateParams, $scope) {
 
   var vm = this;
 
   vm.submitEdits = submitEdits;
+
+  $scope.subjects = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
 
   activate();
 
@@ -197,7 +199,7 @@ var EditArticleController = function EditArticleController($state, ArticleServic
   }
 };
 
-EditArticleController.$inject = ['$state', 'ArticleService', '$stateParams'];
+EditArticleController.$inject = ['$state', 'ArticleService', '$stateParams', '$scope'];
 
 exports['default'] = EditArticleController;
 module.exports = exports['default'];
@@ -513,8 +515,14 @@ var ViewArticlesController = function ViewArticlesController($state, $scope, Art
   }
 
   ArticleService.getAllArticles().then(function (response) {
-    vm.articles = response.data.article;
-    console.log(vm.articles);
+    var theArticles = response.data.article;
+    theArticles.forEach(function (article) {
+      if (article.media === '/media/original/missing.png') {
+        article.media = false;
+      }
+      vm.articles = theArticles;
+      console.log('DELAYED', vm.articles);
+    });
   });
 
   function goToArticle(article) {

@@ -19,8 +19,14 @@ let ViewArticlesController = function($state, $scope, ArticleService, UserServic
   }
 
   ArticleService.getAllArticles().then( (response)=> {
-    vm.articles = response.data.article;
-    console.log(vm.articles);
+    let theArticles = response.data.article;
+    theArticles.forEach( function (article) {
+      if (article.media === '/media/original/missing.png') {
+        article.media = false;
+      } 
+      vm.articles = theArticles;
+      console.log('DELAYED', vm.articles);
+    });
   });
 
   function goToArticle (article) {

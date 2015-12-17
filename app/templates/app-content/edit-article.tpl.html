@@ -4,17 +4,24 @@
 
   <form ng-submit="vm.submitEdits(vm.article)">
     <label>
-      Title
+      Title </label>
       <input ng-model="vm.article.title">
-    </label>
+   
     <label>
-      Subject names
-      <input ng-model="vm.article.subject_names">
-    </label>
+      Subject name
+      </label>
+      <select ng-model="vm.article.subject_names">
+        <option ng-repeat="subject in subjects">{{subject}}</option>
+      </select>
+      <!-- <input ng-model="vm.article.subject_names"> -->
     <label>
-      Content
+      Content</label>
       <textarea id="edit-art-par" ng-model="vm.article.content"></textarea>
-    </label>
+
+    <label>Article Image (url)</label>
+    <input ng-model="vm.article.media">
+    <img ng-src="{{ vm.article.media }}">
+    
     <button>Submit</button>
   </form>
   
