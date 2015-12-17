@@ -1,4 +1,4 @@
-let EditSubscriberController = function($state, SubscriberService, $stateParams, $scope) {
+let EditSubscriberController = function($state, SubscriberService, $stateParams, $scope, UserService) {
   
   console.log('Edit Subscriber Controller');
 
@@ -15,6 +15,13 @@ let EditSubscriberController = function($state, SubscriberService, $stateParams,
    'Soccer',
    'Hockey'
   ]; 
+
+  $scope.logOut = logout;
+
+  function logout () {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
 
   function activate () {
     SubscriberService.getSingleSubscriber($stateParams.id).then( (response) => {
@@ -40,6 +47,6 @@ let EditSubscriberController = function($state, SubscriberService, $stateParams,
 
 };
 
-EditSubscriberController.$inject = ['$state', 'SubscriberService', '$stateParams', '$scope'];
+EditSubscriberController.$inject = ['$state', 'SubscriberService', '$stateParams', '$scope', 'UserService'];
 
 export default EditSubscriberController;

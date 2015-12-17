@@ -1,17 +1,83 @@
 // View-Articles View 
 
 .viewArticles {
-  background-color: $White;
+  background-color: $LightGrey;
   padding: 10px;
   border: 6px solid $Navy;
   display: block;
+  max-width: 850px;
+  display: block;
+  margin: 40px auto;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+
+// View BY SUBJECT
+  h3.view-sub-heading {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+  }
+
+  .subject-button-list{
+
+
+
+  // .view-sub-link {
+
+    ul {
+      text-align: center;
+      width: 90%;
+      display: block;
+      margin: 0 auto;
+    }
+
+      a, li {  
+        display: inline-block;
+        margin: 0 10px;
+        text-align: center;
+      }
+  
+  }
 
   .view-article-card {
-    border-bottom: 1px solid $Navy;
+    // border-bottom: 1px solid $Navy;
     padding-top: 25px;
+    padding-bottom: 25px;
     width: 90%;
     margin: 0 auto;
     cursor: pointer;
+
+    .art-card-text {
+      // padding: 10px;
+      padding-bottom: 20px;
+      margin-bottom: 10px;
+      overflow: scroll;
+    y-overflow: scroll;
+    text-overflow: ellipsis;
+    border: 2px solid $Navy;
+    padding: 15px;
+    min-height: 300px;
+    background-color: $white;
+    width: 100%;
+    -webkit-box-shadow: 1px 1px 2px 3px $Navy;
+    box-shadow:         1px 1px 2px 3px $Navy;
+    margin: 10px auto;
+      p {
+        padding-bottom: 20px;
+      }
+    }
+
+    .art-card-content{
+      padding-bottom: 10px;
+    }
+     img {
+        display: block;
+        width: 80%;
+        height: auto;
+        max-width: 450px;
+        margin: 10px auto;
+        margin-bottom: 20px;
+      }
   }
 
   .top {
@@ -35,12 +101,35 @@
 
   @media screen and (max-width: 550px) {
 
+    .subject-button-list{
+
+
+
+  // .view-sub-link {
+
+    ul {
+      text-align: center;
+      width: 95%;
+      display: block;
+      margin: 0 auto;
+    }
+
+      a, li {  
+        display: inline-block;
+        width: 40%;
+        margin: 0 auto;
+        text-align: center;
+      }
+  
+  }
+
     .view-article-card {
 
       img {
         display: block;
-        width: 200px;
-        height: 200px;
+        width: 80%;
+        height: auto;
+        max-width: 300px;
         margin: 10px auto;
         margin-bottom: 20px;
       }

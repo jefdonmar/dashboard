@@ -1,4 +1,4 @@
-let BuildNewsletterController = function($state, $scope, NewsletterService) {
+let BuildNewsletterController = function($state, $scope, NewsletterService, UserService) {
   
   console.log('BuildNewsletterController is working');
 
@@ -11,6 +11,19 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
   let articles = [];
   let subscribers = [];
   let allEmails = [];
+
+  $scope.logOut = logout;
+
+  function logout () {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
+
+  $scope.startOver = startOver;
+
+  function startOver () {
+    $state.reload();
+  }
 
   $scope.subjects = [
    'Football',
@@ -56,6 +69,7 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
           $scope.articles = articles;
         });
       });
+      $scope.hasPreviewed = true;
     });
   }
 
@@ -77,6 +91,6 @@ let BuildNewsletterController = function($state, $scope, NewsletterService) {
 
 };
 
-BuildNewsletterController.$inject = ['$state','$scope', 'NewsletterService'];
+BuildNewsletterController.$inject = ['$state','$scope', 'NewsletterService', 'UserService'];
 
 export default BuildNewsletterController;  

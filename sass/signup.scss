@@ -1,15 +1,29 @@
 // Sign-up View 
 
 .signup {
-  display: block;
   background-color: white;
   border: 6px solid $Navy;
+  display: block;
+  margin: 0px auto;
+  width: 60%;
+  max-width: 500px;
+  min-width: 300px;
 
   .logo{
     padding: 10px;
     text-align: center;
     font-size: 25px;
-    font-weight: bold;
+    display: block;
+    margin: 20px auto;
+    margin-bottom: 5px;
+    width: 60%;
+    max-width: 300px;
+    min-width: 100px;
+
+    img {
+      margin-bottom: 10px;
+    }
+
 
     p {
       text-align: center;
@@ -27,6 +41,10 @@
 
     .company-container{
       position: relative;
+      display: block;
+      margin: 5px auto;
+      width: 80%;
+
       
 
       .company-ph {
@@ -50,6 +68,9 @@
 
     .user-container {
       position: relative;
+      display: block;
+      margin: 5px auto;
+      width: 80%;
       
 
       .user-ph {
@@ -74,6 +95,9 @@
   
     .password-container{
       position: relative;
+      display: block;
+      margin: 5px auto;
+      width: 80%;
       
 
       .password-ph {
@@ -106,16 +130,16 @@
     }
 
     button {
-      display: inline-block;
+      display: block;
       background-color: $Navy;
-      width: 100%;
-      height: auto;
-      border-radius: 5px;
-      text-align: center;
+      width: 80%;
+      margin: 25px auto;
     }
 
     p {
       text-align: center;
+      padding-left: 10%;
+      padding-right: 10%;
     }
   }
 }

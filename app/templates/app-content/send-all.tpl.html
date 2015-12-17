@@ -1,9 +1,20 @@
-<h3>Send all</h3>
+<p class="log-out" ng-click="logOut()">Log out</p>
+<form class="blast-form" ng-submit="vm.sendToFullList(subject)">
+  <h3>Send all</h3>
+  <h5 class="send-all-warning">This is where the magic happens. All you have to do is click the "StreamLine" button and we will hand deliver your content to the right people. Well, through email, but you get the point. </h5>
+  <h5>Please verify a few quick things about what you are about to send: </h5>
+  <h5>
+    {{ vm.allUserArticles.length }} articles to your {{ vm.subscribers.length }} subscribers based on their subject name preferences.
+  </h5>
+  <input type="text" placeholder="Subject Line" ng-model="subject">
+  <button>Blast list</button>
+</form>
+
+<div class="congrats-message" ng-show="vm.emailsSent"><h2>Nice work!<br>Your emails are in the queue.</h2></div>
 
 
-<button style="background-color: red;" ng-click="vm.sendToFullList()">Blast list</button>
 
-<button ng-click="vm.getAllArticles(vm.subscribers)">Get all</button>
+<!-- <button ng-click="vm.getAllArticles(vm.subscribers)">Get all</button>
 <button ng-click="vm.previewEmail()">Preview an email</button>
 <button ng-click="vm.sendToAll()">Send to all</button>
 <button ng-click="vm.checkMe()">Manually Check</button>
@@ -13,10 +24,10 @@
 <button ng-click="vm.buildNewsletters()">MOMENT OF TRUTH</button>
 <br>
 
-<button ng-click="vm.sendAllEmails()" style="background-color: white; color: black;">SEND EMAILS!!!</button>
+<button ng-click="vm.sendAllEmails()" style="background-color: white; color: black;">SEND EMAILS!!!</button> -->
 
 
-<p>Number of subscribers: {{ vm.subscribers.length }}</p>
+<!-- <p>Number of subscribers: {{ vm.subscribers.length }}</p>
 
 <ul>
   <li ng-repeat="subscriber in vm.subscribers">{{ subscriber.email }}</li>
@@ -24,10 +35,10 @@
 
 <ul>
   <li ng-repeat="article in vm.articles">{{ article.content }}</li>
-</ul>
+</ul> -->
 
 <!-- PREVIEW CODE -->
-<div class="html-email-container">
+<!-- <div class="html-email-container">
 
 <html>
   <head>
@@ -54,7 +65,6 @@
       </tr>
     </table>
   </body>
-<!-- http://fpoimg.com/600x150 -->
 
 </html>
-</div>
+</div> -->

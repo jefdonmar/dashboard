@@ -1,4 +1,4 @@
-let SendAllController = function($scope, NewsletterService, $state, ArticleService) {
+let SendAllController = function($scope, NewsletterService, $state, ArticleService, UserService) {
   
   console.clear();
   console.log('SendAllController');
@@ -21,6 +21,14 @@ let SendAllController = function($scope, NewsletterService, $state, ArticleServi
   vm.sendAllEmails = sendAllEmails;
   vm.sendToFullList = sendToFullList;
 
+
+  $scope.logOut = logout;
+
+  function logout () {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
+
   activate ();
 
   function activate () {
@@ -33,6 +41,13 @@ let SendAllController = function($scope, NewsletterService, $state, ArticleServi
       });
       console.log('AFTER SUBSCRIBERS', subscribers);
       vm.subscribers = subscribers;
+    });
+
+    NewsletterService.getAllUserArticles().then( (response) => {
+      // console.log(response);
+      let allUserArticles = response.data.article;
+      console.log('TEST', allUserArticles); 
+      vm.allUserArticles = allUserArticles;
     });
   }
 
@@ -89,6 +104,7 @@ let SendAllController = function($scope, NewsletterService, $state, ArticleServi
       let allArticles = response.data.article;
       console.log(allArticles);
       $scope.articles = allArticles;
+      vm.articles = allArticles;
 
       allArticles.forEach( function (article) {
         let articleObj = {};
@@ -220,10 +236,14 @@ let SendAllController = function($scope, NewsletterService, $state, ArticleServi
     });
   }
 
-  function sendToFullList () {
-    NewsletterService.blastList().then( (response) => {
+  function sendToFullList (subject) {
+    NewsletterService.blastList(subject).then( (response) => {
       console.log('BLAST LIST', response);
     });
+    vm.emailsSent = true;
+    setTimeout( function () {
+      $state.go('root.main-dashboard');
+    }, 3000);
   }
 
 
@@ -238,6 +258,6 @@ let SendAllController = function($scope, NewsletterService, $state, ArticleServi
 
 };
 
-SendAllController.$inject = ['$scope', 'NewsletterService', '$state', 'ArticleService'];
+SendAllController.$inject = ['$scope', 'NewsletterService', '$state', 'ArticleService', 'UserService'];
 
 export default SendAllController;

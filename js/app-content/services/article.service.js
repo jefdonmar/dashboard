@@ -14,14 +14,21 @@ let ArticleService = function($http, HEROKU) {
 
   function addArticle (article, fileObj) {
 
+    console.log('FILE OBJ', fileObj);
+    
     let formData = new FormData();
 
     formData.append('subject_names', article.subject_names);
     formData.append('title', article.title);
     formData.append('content', article.content);
-    formData.append('media', fileObj);
 
+    if (fileObj) {
+      formData.append('media', fileObj);
+    } 
+    
     HEROKU.CONFIG.headers['Content-Type'] = undefined;
+
+    console.log('OBJECT', formData);
 
     return $http.post(url, formData, HEROKU.CONFIG);
   }

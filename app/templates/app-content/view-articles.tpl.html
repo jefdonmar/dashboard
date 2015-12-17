@@ -1,4 +1,7 @@
 <div class="viewArticles">
+<p class="log-out" ng-click="logOut()">Log out</p>
+
+
 
   <div class="top">
 
@@ -10,7 +13,7 @@
 
 
   <div ng-repeat="article in vm.articles" class="view-article-card" ng-click="vm.goToArticle(article)">
-    <img class="small-article-img" src="{{ article.media }}}">
+    <img ng-show="{{ article.media }}" class="small-article-img" src="{{ article.media }}">
     <div class="art-card-text">
       <h3 class="art-card-headline">
         {{ article.title }}

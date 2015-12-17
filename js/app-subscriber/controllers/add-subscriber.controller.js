@@ -1,4 +1,4 @@
-let AddSubscriberController = function($state, $scope, SubscriberService) {
+let AddSubscriberController = function($state, $scope, SubscriberService, UserService) {
 
   console.log('We are the Add Controller People');
 
@@ -7,18 +7,25 @@ let AddSubscriberController = function($state, $scope, SubscriberService) {
   vm.validateEmail = validateEmail;
 
   $scope.subject_names = [
-   'Football',
-   'Baseball',
-   'Basketball',
-   'Soccer',
-   'Hockey'
+   ' Football',
+   ' Baseball',
+   ' Basketball',
+   ' Soccer',
+   ' Hockey'
   ]; 
+
+  $scope.logOut = logout;
+
+  function logout () {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
 
   function addSubscriber (subObj) {
     console.log('Supposed to add now');
     SubscriberService.addSubscriber(subObj).then( (res)=>{
       console.log(res);
-      $state.go('root.home');
+      $state.go('root.main-dashboard');
     });
   }
 
@@ -41,6 +48,6 @@ let AddSubscriberController = function($state, $scope, SubscriberService) {
 
 };
 
-AddSubscriberController.$inject = ['$state', '$scope', 'SubscriberService'];
+AddSubscriberController.$inject = ['$state', '$scope', 'SubscriberService', 'UserService'];
 
 export default AddSubscriberController;

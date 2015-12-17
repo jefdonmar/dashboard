@@ -2,7 +2,7 @@
 <div class="signup">
   <div class="logo">
     <img src="assets/StreamLine_2_logo.png">
-    <p> SIGN UP TO CONTINUE</p>
+    <p>Create an account</p>
   </div>
   <form class="sign-up" ng-submit="vm.signup(user)">
     <div class="user-container">
@@ -23,27 +23,12 @@
       </div>
       <input class="custom-text" ng-model="user.password" type="password" placeholder="Password">
     </div>
-    <div class="advice">
-      <input type="checkbox"> Stay informed about StreamLine products and services
-      <a href="#">
-        Learn More
-      </a>
-      <p>
-        By clicking "Sign up" I agree that I have read and accepted the 
-        <a href="#">
-          Terms of Use
-        </a>
-        and
-        <a href="#">
-          Privacy Policy  
-        </a>
-      </p>
-    </div>
+    
     <button>SIGN UP</button>
     <p>
-      Already have a StreamLine ID?
+      Already have a StreamLine ID?<br>
       <a href="#/login">
-        Log In.
+        Log In
       </a>
     </p>
   </form>

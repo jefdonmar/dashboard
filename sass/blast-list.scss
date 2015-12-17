@@ -1,0 +1,55 @@
+div.congrats-message {
+  display: block;
+  background-color: $Navy;
+  color: white;
+  border: 5px solid $White;
+  width: 80%;
+  max-width: 600px;
+  margin: 20px auto;
+  height: 600px;
+  position: absolute;
+  top: 60px;
+  h2  {
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+}
+
+.blast-form {
+  display: block;
+  background-color: white;
+  border: 5px solid $Navy;
+  max-width: 600px;
+  margin: 20px auto;
+
+    h3, button, input, h5 {
+      text-align: center;
+      display: block;
+      width: 60%;
+      margin: 20px auto;
+    }
+
+    ul {
+      width: 60%;
+      margin: 20px auto;
+      text-align: center;
+      list-style-position: inside;
+    }
+
+    h5 {
+      width: 75%;
+      padding: 10px;
+    }
+
+    h5.send-all-warning {
+      background-color: $Navy;
+      color: white;
+      padding: 15px;
+      border: 3px solid $BrightBlue;
+    }
+
+    button, input {
+      border: 1px solid $Navy;
+    }
+}

@@ -1,4 +1,4 @@
-let SingleArticleController = function($state, ArticleService, $stateParams) {
+let SingleArticleController = function($state, ArticleService, $stateParams, $scope, UserService) {
   
   // console.log('SingleArticleController controller')
 
@@ -6,6 +6,14 @@ let SingleArticleController = function($state, ArticleService, $stateParams) {
 
   vm.editMe = editMe;
   vm.deleteMe = deleteMe;
+
+  $scope.logOut = logout;
+
+  function logout () {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
+
 
   activate();
 
@@ -40,6 +48,6 @@ let SingleArticleController = function($state, ArticleService, $stateParams) {
 
 };
 
-SingleArticleController.$inject = ['$state', 'ArticleService', '$stateParams'];
+SingleArticleController.$inject = ['$state', 'ArticleService', '$stateParams', '$scope', 'UserService'];
 
 export default SingleArticleController;

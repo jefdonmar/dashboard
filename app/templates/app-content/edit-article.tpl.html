@@ -1,20 +1,28 @@
+<p class="log-out" ng-click="logOut()">Log out</p>
 <div class="edit-article">
-  
-  <h4>Edit Article Page</h4>
 
   <form ng-submit="vm.submitEdits(vm.article)">
+  <span ng-click="vm.goToArticle(vm.article)" class="back-link">Back</span>
+  <h4>Edit Article</h4>
     <label>
-      Title
+      Title </label>
       <input ng-model="vm.article.title">
-    </label>
+   
     <label>
-      Subject names
-      <input ng-model="vm.article.subject_names">
-    </label>
+      Subject name
+      </label>
+      <select ng-model="vm.article.subject_names">
+        <option ng-repeat="subject in subjects">{{subject}}</option>
+      </select>
+      <!-- <input ng-model="vm.article.subject_names"> -->
     <label>
-      Content
-      <textarea ng-model="vm.article.content"></textarea>
-    </label>
+      Content</label>
+      <textarea id="edit-art-par" ng-model="vm.article.content"></textarea>
+
+    <label>Article Image (url)</label>
+    <input ng-model="vm.article.media">
+    <img ng-src="{{ vm.article.media }}">
+    
     <button>Submit</button>
   </form>
   

@@ -1,8 +1,25 @@
-let EditArticleController = function($state, ArticleService, $stateParams) {
+let EditArticleController = function($state, ArticleService, $stateParams, $scope, UserService) {
   
   let vm = this;
 
   vm.submitEdits = submitEdits;
+  vm.goToArticle = goToArticle;
+
+  $scope.logOut = logout;
+
+  function logout () {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
+
+
+  $scope.subjects = [
+   'Football',
+   'Baseball',
+   'Basketball',
+   'Soccer',
+   'Hockey'
+  ]; 
 
   activate();
 
@@ -11,6 +28,10 @@ let EditArticleController = function($state, ArticleService, $stateParams) {
       vm.article = response.data.article;
       console.log(vm.article);
     });
+  }
+
+  function goToArticle (article) {
+    $state.go('root.single-article', {id: article.id });
   }
 
   function submitEdits (article) {
@@ -25,6 +46,6 @@ let EditArticleController = function($state, ArticleService, $stateParams) {
 
 };
 
-EditArticleController.$inject = ['$state', 'ArticleService', '$stateParams'];
+EditArticleController.$inject = ['$state', 'ArticleService', '$stateParams', '$scope', 'UserService'];
 
 export default EditArticleController;

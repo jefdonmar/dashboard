@@ -4,7 +4,7 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var AddArticleController = function AddArticleController($state, $scope, ArticleService) {
+var AddArticleController = function AddArticleController($state, $scope, ArticleService, UserService) {
 
   console.log('Hello from the add article controller');
 
@@ -13,6 +13,13 @@ var AddArticleController = function AddArticleController($state, $scope, Article
   vm.addImage = addImage;
 
   $scope.subjects = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
+
+  $scope.logOut = logout;
+
+  function logout() {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
 
   function addArticle(article) {
 
@@ -34,7 +41,7 @@ var AddArticleController = function AddArticleController($state, $scope, Article
   }
 };
 
-AddArticleController.$inject = ['$state', '$scope', 'ArticleService'];
+AddArticleController.$inject = ['$state', '$scope', 'ArticleService', 'UserService'];
 
 exports['default'] = AddArticleController;
 module.exports = exports['default'];
@@ -45,7 +52,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ArticleBySubjectController = function ArticleBySubjectController($state, $scope, ArticleService) {
+var ArticleBySubjectController = function ArticleBySubjectController($state, $scope, ArticleService, UserService) {
 
   // console.log('Hello from the view articles controller');
 
@@ -58,6 +65,13 @@ var ArticleBySubjectController = function ArticleBySubjectController($state, $sc
 
   $scope.sortType = 'title';
   $scope.sortReverse = false;
+
+  $scope.logOut = logout;
+
+  function logout() {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
 
   function subjectName(subjNAME) {
     console.log(subjNAME);
@@ -72,7 +86,7 @@ var ArticleBySubjectController = function ArticleBySubjectController($state, $sc
   }
 };
 
-ArticleBySubjectController.$inject = ['$state', '$scope', 'ArticleService'];
+ArticleBySubjectController.$inject = ['$state', '$scope', 'ArticleService', 'UserService'];
 
 exports['default'] = ArticleBySubjectController;
 module.exports = exports['default'];
@@ -83,7 +97,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var BuildNewsletterController = function BuildNewsletterController($state, $scope, NewsletterService) {
+var BuildNewsletterController = function BuildNewsletterController($state, $scope, NewsletterService, UserService) {
 
   console.log('BuildNewsletterController is working');
 
@@ -96,6 +110,19 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
   var articles = [];
   var subscribers = [];
   var allEmails = [];
+
+  $scope.logOut = logout;
+
+  function logout() {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
+
+  $scope.startOver = startOver;
+
+  function startOver() {
+    $state.reload();
+  }
 
   $scope.subjects = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
 
@@ -134,6 +161,7 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
           $scope.articles = articles;
         });
       });
+      $scope.hasPreviewed = true;
     });
   }
 
@@ -153,7 +181,7 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
   }
 };
 
-BuildNewsletterController.$inject = ['$state', '$scope', 'NewsletterService'];
+BuildNewsletterController.$inject = ['$state', '$scope', 'NewsletterService', 'UserService'];
 
 exports['default'] = BuildNewsletterController;
 module.exports = exports['default'];
@@ -164,11 +192,21 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var EditArticleController = function EditArticleController($state, ArticleService, $stateParams) {
+var EditArticleController = function EditArticleController($state, ArticleService, $stateParams, $scope, UserService) {
 
   var vm = this;
 
   vm.submitEdits = submitEdits;
+  vm.goToArticle = goToArticle;
+
+  $scope.logOut = logout;
+
+  function logout() {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
+
+  $scope.subjects = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
 
   activate();
 
@@ -177,6 +215,10 @@ var EditArticleController = function EditArticleController($state, ArticleServic
       vm.article = response.data.article;
       console.log(vm.article);
     });
+  }
+
+  function goToArticle(article) {
+    $state.go('root.single-article', { id: article.id });
   }
 
   function submitEdits(article) {
@@ -190,7 +232,7 @@ var EditArticleController = function EditArticleController($state, ArticleServic
   }
 };
 
-EditArticleController.$inject = ['$state', 'ArticleService', '$stateParams'];
+EditArticleController.$inject = ['$state', 'ArticleService', '$stateParams', '$scope', 'UserService'];
 
 exports['default'] = EditArticleController;
 module.exports = exports['default'];
@@ -230,7 +272,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var SendAllController = function SendAllController($scope, NewsletterService, $state, ArticleService) {
+var SendAllController = function SendAllController($scope, NewsletterService, $state, ArticleService, UserService) {
 
   console.clear();
   console.log('SendAllController');
@@ -253,6 +295,13 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
   vm.sendAllEmails = sendAllEmails;
   vm.sendToFullList = sendToFullList;
 
+  $scope.logOut = logout;
+
+  function logout() {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
+
   activate();
 
   function activate() {
@@ -265,6 +314,13 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
       });
       console.log('AFTER SUBSCRIBERS', subscribers);
       vm.subscribers = subscribers;
+    });
+
+    NewsletterService.getAllUserArticles().then(function (response) {
+      // console.log(response);
+      var allUserArticles = response.data.article;
+      console.log('TEST', allUserArticles);
+      vm.allUserArticles = allUserArticles;
     });
   }
 
@@ -320,6 +376,7 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
       var allArticles = response.data.article;
       console.log(allArticles);
       $scope.articles = allArticles;
+      vm.articles = allArticles;
 
       allArticles.forEach(function (article) {
         var articleObj = {};
@@ -446,10 +503,14 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
     });
   }
 
-  function sendToFullList() {
-    NewsletterService.blastList().then(function (response) {
+  function sendToFullList(subject) {
+    NewsletterService.blastList(subject).then(function (response) {
       console.log('BLAST LIST', response);
     });
+    vm.emailsSent = true;
+    setTimeout(function () {
+      $state.go('root.main-dashboard');
+    }, 3000);
   }
 
   // let mailers = [];
@@ -462,7 +523,7 @@ var SendAllController = function SendAllController($scope, NewsletterService, $s
   // }
 };
 
-SendAllController.$inject = ['$scope', 'NewsletterService', '$state', 'ArticleService'];
+SendAllController.$inject = ['$scope', 'NewsletterService', '$state', 'ArticleService', 'UserService'];
 
 exports['default'] = SendAllController;
 module.exports = exports['default'];
@@ -473,7 +534,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ViewArticlesController = function ViewArticlesController($state, $scope, ArticleService) {
+var ViewArticlesController = function ViewArticlesController($state, $scope, ArticleService, UserService) {
 
   // console.log('Hello from the view articles controller');
 
@@ -486,9 +547,22 @@ var ViewArticlesController = function ViewArticlesController($state, $scope, Art
   $scope.sortType = 'title';
   $scope.sortReverse = false;
 
+  $scope.logOut = logout;
+
+  function logout() {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
+
   ArticleService.getAllArticles().then(function (response) {
-    vm.articles = response.data.article;
-    console.log(vm.articles);
+    var theArticles = response.data.article;
+    theArticles.forEach(function (article) {
+      if (article.media === '/media/original/missing.png') {
+        article.media = false;
+      }
+      vm.articles = theArticles;
+      console.log('DELAYED', vm.articles);
+    });
   });
 
   function goToArticle(article) {
@@ -496,7 +570,7 @@ var ViewArticlesController = function ViewArticlesController($state, $scope, Art
   }
 };
 
-ViewArticlesController.$inject = ['$state', '$scope', 'ArticleService'];
+ViewArticlesController.$inject = ['$state', '$scope', 'ArticleService', 'UserService'];
 
 exports['default'] = ViewArticlesController;
 module.exports = exports['default'];
@@ -507,7 +581,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var SingleArticleController = function SingleArticleController($state, ArticleService, $stateParams) {
+var SingleArticleController = function SingleArticleController($state, ArticleService, $stateParams, $scope, UserService) {
 
   // console.log('SingleArticleController controller')
 
@@ -515,6 +589,13 @@ var SingleArticleController = function SingleArticleController($state, ArticleSe
 
   vm.editMe = editMe;
   vm.deleteMe = deleteMe;
+
+  $scope.logOut = logout;
+
+  function logout() {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
 
   activate();
 
@@ -547,7 +628,7 @@ var SingleArticleController = function SingleArticleController($state, ArticleSe
   }
 };
 
-SingleArticleController.$inject = ['$state', 'ArticleService', '$stateParams'];
+SingleArticleController.$inject = ['$state', 'ArticleService', '$stateParams', '$scope', 'UserService'];
 
 exports['default'] = SingleArticleController;
 module.exports = exports['default'];
@@ -737,14 +818,21 @@ var ArticleService = function ArticleService($http, HEROKU) {
 
   function addArticle(article, fileObj) {
 
+    console.log('FILE OBJ', fileObj);
+
     var formData = new FormData();
 
     formData.append('subject_names', article.subject_names);
     formData.append('title', article.title);
     formData.append('content', article.content);
-    formData.append('media', fileObj);
+
+    if (fileObj) {
+      formData.append('media', fileObj);
+    }
 
     HEROKU.CONFIG.headers['Content-Type'] = undefined;
+
+    console.log('OBJECT', formData);
 
     return $http.post(url, formData, HEROKU.CONFIG);
   }
@@ -829,6 +917,7 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
   // this.buildEmail = buildEmail;
   this.sendAllEmails = sendAllEmails;
   this.blastList = blastList;
+  this.getAllUserArticles = getAllUserArticles;
 
   // FUNCTIONS
 
@@ -843,6 +932,10 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
 
   function getAllSubscribers() {
     return $http.get(url + 'subscribers', HEROKU.CONFIG);
+  }
+
+  function getAllUserArticles() {
+    return $http.get(url + 'articles', HEROKU.CONFIG);
   }
 
   function sendContent(content, preContent, postContent, newsletter, relevantSubscribers) {
@@ -962,11 +1055,10 @@ var NewsletterService = function NewsletterService($state, $http, HEROKU) {
     });
   }
 
-  function blastList() {
-    var subject = 'Subject';
+  function blastList(subject) {
 
     return $http.post(url + 'newsletters', {
-      subject: 'Subject Line'
+      subject: subject
     }, HEROKU.CONFIG);
   }
 };
@@ -1079,11 +1171,13 @@ var config = function config($urlRouterProvider, $stateProvider) {
     url: '/build-newsletter',
     controller: 'BuildNewsletterController as vm',
     templateUrl: 'templates/app-content/build-newsletter.tpl.html'
-  }).state('root.preview-newsletter', {
-    url: '/preview-newsletter',
-    controller: 'PreviewNewsletterController as vm',
-    templateUrl: 'templates/app-content/preview-newsletter.tpl.html'
-  }).state('root.profile', {
+  })
+  // .state('root.preview-newsletter', {
+  //   url: '/preview-newsletter',
+  //   controller: 'PreviewNewsletterController as vm',
+  //   templateUrl: 'templates/app-content/preview-newsletter.tpl.html'
+  // })
+  .state('root.profile', {
     url: '/profile',
     controller: 'ProfileController as vm',
     templateUrl: 'templates/app-user/profile.tpl.html'
@@ -1153,9 +1247,16 @@ _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).config(_conf
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var MainDashboardController = function MainDashboardController($state, DashboardService, $scope) {
+var MainDashboardController = function MainDashboardController($state, DashboardService, $scope, UserService) {
 
   // console.clear();
+
+  $scope.logOut = logout;
+
+  function logout() {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
 
   var vm = this;
 
@@ -1243,7 +1344,7 @@ var MainDashboardController = function MainDashboardController($state, Dashboard
   });
 };
 
-MainDashboardController.$inject = ['$state', 'DashboardService', '$scope'];
+MainDashboardController.$inject = ['$state', 'DashboardService', '$scope', 'UserService'];
 
 exports['default'] = MainDashboardController;
 module.exports = exports['default'];
@@ -1339,7 +1440,7 @@ var AboutUsController = function AboutUsController($scope) {
     pic: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAJEAAAAJGMwMTMwODdjLWQ3ZWUtNGEyMy04MDg0LTIxYzA4YzM4YTA1NA.jpg",
     github: "https://github.com/faircloth",
     linkedin: "https://www.linkedin.com/in/andrew-faircloth-3b905069",
-    nickname: "Lightweight"
+    nickname: "Lord Pistachio"
   }, {
     name: 'Jeffrey Martín',
     pic: "https://files.slack.com/files-pri/T066DB5HT-F0GMVE1A9/pic.jpg",
@@ -1351,7 +1452,7 @@ var AboutUsController = function AboutUsController($scope) {
     pic: "https://files.slack.com/files-pri/T066DB5HT-F0GJ7V160/prophoto.jpg",
     github: "https://github.com/robertcramer",
     linkedin: "https://www.linkedin.com/in/rbcramer",
-    nickname: "Longfellow Deeds"
+    nickname: "Designated Sprinkler"
   }, {
     name: 'Danny Barton',
     pic: "https://files.slack.com/files-pri/T066DB5HT-F0GJV65GA/slack_for_ios_upload.jpg",
@@ -1408,7 +1509,7 @@ _angular2['default'].module('app.layout', []).controller('HomeController', _cont
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var AddSubscriberController = function AddSubscriberController($state, $scope, SubscriberService) {
+var AddSubscriberController = function AddSubscriberController($state, $scope, SubscriberService, UserService) {
 
   console.log('We are the Add Controller People');
 
@@ -1416,13 +1517,20 @@ var AddSubscriberController = function AddSubscriberController($state, $scope, S
   vm.addSubscriber = addSubscriber;
   vm.validateEmail = validateEmail;
 
-  $scope.subject_names = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
+  $scope.subject_names = [' Football', ' Baseball', ' Basketball', ' Soccer', ' Hockey'];
+
+  $scope.logOut = logout;
+
+  function logout() {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
 
   function addSubscriber(subObj) {
     console.log('Supposed to add now');
     SubscriberService.addSubscriber(subObj).then(function (res) {
       console.log(res);
-      $state.go('root.home');
+      $state.go('root.main-dashboard');
     });
   }
 
@@ -1443,7 +1551,7 @@ var AddSubscriberController = function AddSubscriberController($state, $scope, S
   }
 };
 
-AddSubscriberController.$inject = ['$state', '$scope', 'SubscriberService'];
+AddSubscriberController.$inject = ['$state', '$scope', 'SubscriberService', 'UserService'];
 
 exports['default'] = AddSubscriberController;
 module.exports = exports['default'];
@@ -1454,7 +1562,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var EditSubscriberController = function EditSubscriberController($state, SubscriberService, $stateParams, $scope) {
+var EditSubscriberController = function EditSubscriberController($state, SubscriberService, $stateParams, $scope, UserService) {
 
   console.log('Edit Subscriber Controller');
 
@@ -1465,6 +1573,13 @@ var EditSubscriberController = function EditSubscriberController($state, Subscri
   activate();
 
   $scope.subject_names = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
+
+  $scope.logOut = logout;
+
+  function logout() {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
 
   function activate() {
     SubscriberService.getSingleSubscriber($stateParams.id).then(function (response) {
@@ -1489,7 +1604,7 @@ var EditSubscriberController = function EditSubscriberController($state, Subscri
   }
 };
 
-EditSubscriberController.$inject = ['$state', 'SubscriberService', '$stateParams', '$scope'];
+EditSubscriberController.$inject = ['$state', 'SubscriberService', '$stateParams', '$scope', 'UserService'];
 
 exports['default'] = EditSubscriberController;
 module.exports = exports['default'];
@@ -1578,7 +1693,7 @@ var _moment = require('moment');
 
 var _moment2 = _interopRequireDefault(_moment);
 
-var ViewSubscribersController = function ViewSubscribersController($state, $scope, SubscriberService) {
+var ViewSubscribersController = function ViewSubscribersController($state, $scope, SubscriberService, UserService) {
 
   // set view model to this object
   var vm = this;
@@ -1590,6 +1705,13 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
 
   $scope.sortType = 'id';
   $scope.sortReverse = false;
+
+  $scope.logOut = logout;
+
+  function logout() {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
 
   function importSubscribers() {
     console.log('File import click');
@@ -1676,7 +1798,7 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
   }
 };
 
-ViewSubscribersController.$inject = ['$state', '$scope', 'SubscriberService'];
+ViewSubscribersController.$inject = ['$state', '$scope', 'SubscriberService', 'UserService'];
 
 exports['default'] = ViewSubscribersController;
 module.exports = exports['default'];
@@ -1939,9 +2061,29 @@ var ProfileController = function ProfileController($scope, UserService) {
 
   vm.sendUserInfo = sendUserInfo;
 
+  $scope.logOut = logout;
+
+  function logout() {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
+
+  getUser();
+
+  function getUser() {
+    UserService.getUser().then(function (response) {
+      console.clear();
+      var user = response.data.user;
+      console.log('USER', user);
+      $scope.user = user;
+    });
+  }
+
   function sendUserInfo(user) {
     console.log(user);
-    UserService.sendKey(user);
+    UserService.sendKey(user).then(function (response) {
+      console.log('RESPONSE', response);
+    });
   }
 };
 
@@ -2042,6 +2184,29 @@ var UserService = function UserService($http, HEROKU, $cookies, $state) {
   this.setHeaders = setHeaders;
   this.checkAuth = checkAuth;
   this.sendKey = sendKey;
+  this.logout = logout;
+  this.getUser = getUser;
+
+  function getUser() {
+    return $http.get(url + 'users', HEROKU.CONFIG);
+  }
+
+  function sendKey(user) {
+    console.log(user.key);
+    return $http.put(url + 'users', {
+      name: user.name,
+      email: user.email,
+      mandrill_api: user.mandrill_api
+    }, HEROKU.CONFIG);
+  }
+
+  function logout() {
+    $cookies.remove('auth_token');
+    $cookies.remove('user_id');
+    HEROKU.CONFIG.headers['auth_token'] = null;
+    HEROKU.CONFIG.headers['user_id'] = null;
+    $state.go('root.login');
+  }
 
   // SERVICE FUNCTIONS
   function User(userObj) {
@@ -2093,11 +2258,6 @@ var UserService = function UserService($http, HEROKU, $cookies, $state) {
     console.log('User should have been logged In');
     console.log(userObj);
     return $http.post(url + 'login', userObj, HEROKU.CONFIG);
-  }
-
-  function sendKey(user) {
-    console.log(user.key);
-    // return $http.post(url + 'user', user, HEROKU.CONFIG);
   }
 };
 
@@ -2152,7 +2312,8 @@ console.log(_moment2['default']);
 //Initialize Foundation
 (0, _jquery2['default'])(document).foundation();_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber', 'app.user', 'app.content', 'app.dashboard']).run(function ($rootScope, UserService, $state) {
   $rootScope.$on('$stateChangeSuccess', function () {
-    console.log('state change');
+    console.clear();
+    // console.log('state change');
     UserService.setHeaders();
     if ($state.is('root.signup') || $state.is('root.welcome')) {
       console.log('Hello');

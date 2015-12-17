@@ -6,10 +6,31 @@ let ProfileController = function($scope, UserService) {
 
   vm.sendUserInfo = sendUserInfo;
 
+  $scope.logOut = logout;
+
+  function logout () {
+    console.log('LOGOUT CALLED');
+    UserService.logout();
+  }
+
+
+
+  getUser();
+
+  function getUser () {
+    UserService.getUser().then( (response) => {
+      console.clear();
+      let user = response.data.user;
+      console.log('USER', user);
+      $scope.user = user;
+    });
+  }
 
   function sendUserInfo (user) {
     console.log(user);
-    UserService.sendKey(user);
+    UserService.sendKey(user).then( (response) => {
+      console.log('RESPONSE', response);
+    });
   }
 
 };

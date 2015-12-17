@@ -33,6 +33,7 @@ let NewsletterService = function($state, $http, HEROKU) {
   // this.buildEmail = buildEmail;
   this.sendAllEmails = sendAllEmails;
   this.blastList = blastList;
+  this.getAllUserArticles = getAllUserArticles;
 
   // FUNCTIONS
 
@@ -47,6 +48,10 @@ let NewsletterService = function($state, $http, HEROKU) {
 
   function getAllSubscribers () {
     return $http.get(url + 'subscribers', HEROKU.CONFIG);
+  }
+
+  function getAllUserArticles () {
+    return $http.get(url + 'articles', HEROKU.CONFIG);
   }
 
   function sendContent (content, preContent, postContent, newsletter, relevantSubscribers) {
@@ -173,12 +178,11 @@ let NewsletterService = function($state, $http, HEROKU) {
     });
   }
 
-  function blastList () {
-    let subject = 'Subject';
+  function blastList (subject) {
 
     return $http.post(url + 'newsletters', 
       {
-        subject: 'Subject Line'
+        subject: subject
       },
       HEROKU.CONFIG);
   }
