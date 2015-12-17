@@ -1,5 +1,5 @@
 <p class="log-out" ng-click="logOut()">Log out</p>
-<form class="blast-form" ng-submit="vm.sendToFullList(subject)">
+<form ng-show="!vm.emailsSent" class="blast-form" ng-submit="vm.sendToFullList(subject)">
   <h3>Send all</h3>
   <h5 class="send-all-warning">This is where the magic happens. All you have to do is click the "StreamLine" button and we will hand deliver your content to the right people. Well, through email, but you get the point. </h5>
   <h5>Please verify a few quick things about what you are about to send: </h5>

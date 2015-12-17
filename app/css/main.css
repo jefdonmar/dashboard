@@ -10863,12 +10863,11 @@ div.congrats-message {
   background-color: #082c38;
   color: white;
   border: 5px solid #FFFFFF;
-  width: 80%;
+  width: 100%;
   max-width: 600px;
   margin: 20px auto;
   height: 600px;
-  position: absolute;
-  top: 60px; }
+  margin-top: 60px; }
   div.congrats-message h2 {
     color: white;
     text-align: center;

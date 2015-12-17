@@ -3,12 +3,12 @@ div.congrats-message {
   background-color: $Navy;
   color: white;
   border: 5px solid $White;
-  width: 80%;
+  width: 100%;
   max-width: 600px;
   margin: 20px auto;
   height: 600px;
-  position: absolute;
-  top: 60px;
+  // position: absolute;
+  margin-top: 60px;
   h2  {
     color: white;
     text-align: center;
