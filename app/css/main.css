@@ -10440,9 +10440,22 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   padding: 10px;
   border: 6px solid #082c38;
   display: block;
-  max-width: 900px;
+  max-width: 850px;
   display: block;
   margin: 40px auto; }
+  .viewArticles h3.view-sub-heading {
+    display: block;
+    margin: 10px auto;
+    text-align: center; }
+  .viewArticles .subject-button-list ul {
+    text-align: center;
+    width: 90%;
+    display: block;
+    margin: 0 auto; }
+  .viewArticles .subject-button-list a, .viewArticles .subject-button-list li {
+    display: inline-block;
+    margin: 0 10px;
+    text-align: center; }
   .viewArticles .view-article-card {
     padding-top: 25px;
     padding-bottom: 25px;
@@ -10461,16 +10474,17 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       background-color: #FFFFFF;
       width: 100%;
       -webkit-box-shadow: 1px 1px 2px 3px #082c38;
-      box-shadow: 1px 1px 2px 3px #082c38; }
+      box-shadow: 1px 1px 2px 3px #082c38;
+      margin: 10px auto; }
       .viewArticles .view-article-card .art-card-text p {
         padding-bottom: 20px; }
     .viewArticles .view-article-card .art-card-content {
       padding-bottom: 10px; }
     .viewArticles .view-article-card img {
       display: block;
-      width: 50%;
+      width: 80%;
       height: auto;
-      max-width: 400px;
+      max-width: 450px;
       margin: 10px auto;
       margin-bottom: 20px; }
   .viewArticles .top {
@@ -10485,33 +10499,23 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       right: 0;
       top: 0; }
   @media screen and (max-width: 550px) {
+    .viewArticles .subject-button-list ul {
+      text-align: center;
+      width: 95%;
+      display: block;
+      margin: 0 auto; }
+    .viewArticles .subject-button-list a, .viewArticles .subject-button-list li {
+      display: inline-block;
+      width: 40%;
+      margin: 0 auto;
+      text-align: center; }
     .viewArticles .view-article-card img {
       display: block;
-      width: 200px;
-      height: 200px;
+      width: 80%;
+      height: auto;
+      max-width: 300px;
       margin: 10px auto;
       margin-bottom: 20px; } }
-
-.view-sub-heading {
-  width: 90%;
-  margin: 0 auto;
-  margin-bottom: 10px; }
-
-.view-article-card {
-  border-bottom: 1px solid #082c38;
-  padding-top: 25px;
-  width: 90%;
-  margin: 0 auto; }
-
-.view-sub-link ul {
-  text-align: center;
-  width: 90%;
-  display: block;
-  margin: 0 auto; }
-
-.view-sub-link li {
-  display: inline-block;
-  margin: 0 10px; }
 
 .mob {
   display: none; }

@@ -1,29 +1,2 @@
 // View articles by subject
 
-.view-sub-heading {
-  width: 90%;
-  margin: 0 auto;
-  margin-bottom: 10px;
-}
-
-.view-article-card {
-    border-bottom: 1px solid $Navy;
-    padding-top: 25px;
-    width: 90%;
-    margin: 0 auto;
-}
-
-.view-sub-link {
-
-  ul {
-    text-align: center;
-    width: 90%;
-    display: block;
-    margin: 0 auto;
-  }
-
-    li {  
-      display: inline-block;
-      margin: 0 10px;
-    }
-}
