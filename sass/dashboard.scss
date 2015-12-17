@@ -79,7 +79,7 @@
 
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
 
     ul {
       display: block;
@@ -96,6 +96,16 @@
       .chart-container {
         display: block;
         margin: 5px auto;
+        // min-height: 200px;
+      }
+
+      .bar-head {
+        display: none;
+      }
+
+      .chart-bar {
+        // margin-top: 20px;
+        display: none;
       }
 
     }   

@@ -2119,7 +2119,7 @@ var WelcomeController = function WelcomeController($scope, $state, UserService) 
     heading: 'Publish Articles',
     blurb: 'Send the right content to the right people at the right time',
     picture: 'https://i.vimeocdn.com/video/521596384_640.jpg',
-    link: '#/build-newsletter'
+    link: '#/send-all'
   }, {
     heading: 'Track Performance',
     blurb: 'Keep a pulse on your business to stay ahead of the game',

@@ -10313,14 +10313,14 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     .welcome h5 a:hover {
       color: #39bced; }
   .welcome .blurb {
-    padding: 10px;
+    padding: 5px;
     padding-top: 20px;
     font-size: 1.1em; }
   .welcome .member-block {
     width: 40%;
     padding: 5px;
     height: 400px;
-    margin: 1% 5% 4% 5%;
+    margin: 1% 5% 1% 5%;
     display: inline-block;
     vertical-align: top; }
     .welcome .member-block img {
@@ -10695,7 +10695,7 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     border-radius: 2px;
     -webkit-box-shadow: 3px 3px 5px 6px #ccc;
     box-shadow: 3px 3px 5px 6px #ccc; }
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 800px) {
     .main-dashboard ul {
       display: block;
       width: 100%;
@@ -10707,7 +10707,11 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
       margin: 0 auto; }
       .main-dashboard .dash-3-block .chart-container {
         display: block;
-        margin: 5px auto; } }
+        margin: 5px auto; }
+      .main-dashboard .dash-3-block .bar-head {
+        display: none; }
+      .main-dashboard .dash-3-block .chart-bar {
+        display: none; } }
 
 .import-file-form {
   border: 2px solid #082c38;
@@ -10897,8 +10901,17 @@ div.congrats-message {
     color: white;
     padding: 15px;
     border: 3px solid #39bced; }
-  .blast-form button, .blast-form input {
+  .blast-form input {
     border: 1px solid #082c38; }
+  .blast-form button {
+    padding: 3px;
+    border: 1px solid #082c38;
+    border-radius: 8px;
+    margin-bottom: 20px; }
+    .blast-form button img {
+      width: 99%;
+      border-radius: 8px;
+      border: 1px solid #082c38; }
 
 @media screen and (max-width: 600px) {
   li.view-sub-block-2 {
