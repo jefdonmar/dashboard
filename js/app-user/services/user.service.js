@@ -6,17 +6,32 @@ let UserService = function($http, HEROKU, $cookies, $state) {
   // console.log('Hello from the UserService');
 
   // FUNCTIONS TO DEFINE
-  this.signup    = signup;
-  this.login     = login;
-  this.storeAuth = storeAuth;
-  this.setHeaders = setHeaders;
-  this.checkAuth = checkAuth;
-  this.sendKey = sendKey;
-  this.logout = logout;
-  this.getUser = getUser;
+  this.signup          = signup;
+  this.login           = login;
+  this.storeAuth       = storeAuth;
+  this.setHeaders      = setHeaders;
+  this.checkAuth       = checkAuth;
+  this.sendKey         = sendKey;
+  this.logout          = logout;
+  this.getUser         = getUser;
+  this.getUserSubjects = getUserSubjects;
+  this.addNewSubject   = addNewSubject;
+  this.updateSubjects  = updateSubjects;
+
+  function updateSubjects (subject) {
+    return $http.put(url + 'subjects', {name: subject} , HEROKU.CONFIG);
+  }
 
   function getUser () {
     return $http.get(url + 'users', HEROKU.CONFIG);
+  }
+
+  function getUserSubjects () {
+    return $http.get(url + 'subjects', HEROKU.CONFIG);
+  }
+
+  function addNewSubject (subjectName) {
+    return $http.post(url + 'subjects', {name: subjectName} , HEROKU.CONFIG);
   }
 
   function sendKey (user) {

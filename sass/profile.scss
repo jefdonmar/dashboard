@@ -42,3 +42,18 @@
 
 
 }
+
+div.profile-current-subjects {
+  display: inline-block;
+  width: 40%;
+  margin: 15px auto;
+  background-color: $LightGrey;
+}
+
+form.profile-new-subject {
+  display: inline-block;
+  width: 40%;
+  margin: 15px auto;
+  background-color: $LightGrey;
+  min-height: 100px;
+}

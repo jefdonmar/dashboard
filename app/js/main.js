@@ -2060,22 +2060,64 @@ var ProfileController = function ProfileController($scope, UserService) {
   var vm = this;
 
   vm.sendUserInfo = sendUserInfo;
+  vm.addNewSubject = addNewSubject;
+  vm.updateSubjects = updateSubjects;
 
   $scope.logOut = logout;
+
+  var userSubjects = [];
 
   function logout() {
     console.log('LOGOUT CALLED');
     UserService.logout();
   }
 
+  function addNewSubject(subjectName) {
+    UserService.addNewSubject(subjectName).then(function (response) {
+      console.log(response);
+      location.reload();
+    });
+  }
+
+  function updateSubjects(subjects) {
+    console.log(subjects);
+    var postSubjects = [];
+    subjects.forEach(function (subject) {
+      postSubjects.push(subject.name);
+    });
+    setTimeout(function () {
+      postSubjects.forEach(function (subject) {
+        UserService.updateSubjects(subject.name).then(function (response) {
+          console.log('RESPONSE', response);
+        });
+      });
+    }, 2000);
+  }
+
   getUser();
+  getUserSubjects();
 
   function getUser() {
     UserService.getUser().then(function (response) {
-      console.clear();
+      // console.clear();
       var user = response.data.user;
       console.log('USER', user);
       $scope.user = user;
+    });
+  }
+
+  function getUserSubjects() {
+    UserService.getUserSubjects().then(function (response) {
+      var currentSubjects = response.data.subjects;
+      vm.currentSubjects = currentSubjects;
+
+      currentSubjects.forEach(function (subject) {
+        userSubjects.push(subject.name);
+      });
+
+      setTimeout(function () {
+        console.log('WAIT FOR ARRAY', userSubjects);
+      }, 2000);
     });
   }
 
@@ -2186,9 +2228,24 @@ var UserService = function UserService($http, HEROKU, $cookies, $state) {
   this.sendKey = sendKey;
   this.logout = logout;
   this.getUser = getUser;
+  this.getUserSubjects = getUserSubjects;
+  this.addNewSubject = addNewSubject;
+  this.updateSubjects = updateSubjects;
+
+  function updateSubjects(subject) {
+    return $http.put(url + 'subjects', { name: subject }, HEROKU.CONFIG);
+  }
 
   function getUser() {
     return $http.get(url + 'users', HEROKU.CONFIG);
+  }
+
+  function getUserSubjects() {
+    return $http.get(url + 'subjects', HEROKU.CONFIG);
+  }
+
+  function addNewSubject(subjectName) {
+    return $http.post(url + 'subjects', { name: subjectName }, HEROKU.CONFIG);
   }
 
   function sendKey(user) {

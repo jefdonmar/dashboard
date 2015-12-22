@@ -10861,6 +10861,19 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     display: block;
     margin: 15px auto; }
 
+div.profile-current-subjects {
+  display: inline-block;
+  width: 40%;
+  margin: 15px auto;
+  background-color: #EDEDED; }
+
+form.profile-new-subject {
+  display: inline-block;
+  width: 40%;
+  margin: 15px auto;
+  background-color: #EDEDED;
+  min-height: 100px; }
+
 div.congrats-message {
   display: block;
   background-color: #082c38;
