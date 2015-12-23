@@ -10442,8 +10442,9 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     background-color: #082c38;
     display: block;
     margin: 10px auto; }
-  .edit-article .no-img-message {
-    color: red; }
+
+.no-img-message {
+  color: red; }
 
 .viewArticles {
   background-color: #EDEDED;

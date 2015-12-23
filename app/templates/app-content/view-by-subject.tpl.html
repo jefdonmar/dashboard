@@ -2,7 +2,9 @@
 <p class="log-out" ng-click="logOut()">Log out</p>
 <div class="viewArticles">
   
+  <a href="#/view-articles">View all articles</a>
   <h3 class="view-sub-heading">View articles by subject</h2>
+
 
   <ul class="subject-button-list">
     <a ng-repeat="subject in subject_names" class="view-sub-link" ng-click="vm.subjectName(subject)">
@@ -18,7 +20,15 @@
   </ul>
 
   <div ng-repeat="article in vm.articles" class="view-article-card" ng-click="vm.goToArticle(article)">
-    <img class="small-article-img" src="{{ article.media }}}">
+
+    <!-- IMG  -->
+    <div ng-show="article.media !== '/media/original/missing.png'">
+      <p>Current image:</p>
+      <img class="small-article-img" ng-src="{{ article.media }}">
+    </div>
+    <p class="no-img-message" ng-show="article.media === '/media/original/missing.png'">Currently no image</p>
+    <!-- IMG -->
+
     <div class="art-card-text">
       <h3 class="art-card-headline">
         {{ article.title }}

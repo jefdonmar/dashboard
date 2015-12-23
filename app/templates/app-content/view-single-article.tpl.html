@@ -23,7 +23,14 @@
 
   <p class="article-para">{{ vm.article.content }}</p>
 
-  <img ng-src="{{vm.article.media }}"/>
+  <!-- <img ng-src="{{vm.article.media }}"/> -->
+
+  <div ng-show="vm.article.media !== '/media/original/missing.png'">
+      <p>Current image:</p>
+      <img ng-src="{{ vm.article.media }}">
+    </div>
+
+    <p class="no-img-message" ng-show="vm.article.media === '/media/original/missing.png'">Currently no image</p>
 
 
 
