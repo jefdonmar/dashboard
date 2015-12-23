@@ -1,19 +1,14 @@
 let AddArticleController = function($state, $scope, ArticleService, UserService) {
   
-  console.log('Hello from the add article controller');
-
   let vm = this;
   vm.addArticle = addArticle;
   vm.addImage = addImage;
 
-  $scope.subjects = [
-   'Football',
-   'Baseball',
-   'Basketball',
-   'Soccer',
-   'Hockey'
-  ]; 
+  // --- USER SERVICE PROVIDES ACCESS TO SUBJECT NAMES ---
+  UserService.accessUserSubjects();
+  $scope.subjects = UserService.userSubjects;
 
+  // --- USER SERVICE PROVIDES LOGOUT FUNCTION ---
   $scope.logOut = logout;
 
   function logout () {

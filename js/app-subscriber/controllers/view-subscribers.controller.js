@@ -30,6 +30,10 @@ let ViewSubscribersController = function($state, $scope, SubscriberService, User
     SubscriberService.importSubscribers(fileObj).then( (response) => {
       console.log(response);
     });
+
+    setTimeout( function() {
+      location.reload();
+    }, 1500);
   }
 
 
@@ -42,11 +46,15 @@ let ViewSubscribersController = function($state, $scope, SubscriberService, User
     // });
   }
 
+  let selectedRows = [];
+
   $scope.gridOptions = {
     enableSorting: true,
     enableFiltering: true,
     enableColumnResizing: true,
     paginationPageSize: 50,
+    enableRowSelection: true,
+    multiSelect: true,
     columnDefs: [
       // { field: 'id', width: '5%'},
       { field: 'email', width: '30%'},
@@ -89,6 +97,21 @@ let ViewSubscribersController = function($state, $scope, SubscriberService, User
         console.log(response);
       });
     });
+
+    // Multi-selection playground
+
+    gridApi.selection.on.rowSelectionChanged($scope,function(row, rowSelectionChanged, rowEntity){
+      console.log(row.entity.user_id);
+      selectedRows.push(row.entity.user_id);
+      console.log(selectedRows);
+      // var msg = 'row selected ' + row.isSelected;
+      // $log.log(msg);
+    });
+
+    // gridApi.selection.on.rowSelectionChangedBatch($scope,function(rows){
+    //   var msg = 'rows changed ' + rows.length;
+    //   $log.log(msg);
+    // });
   };
 
 

@@ -5,31 +5,16 @@
   <h3 class="view-sub-heading">View articles by subject</h2>
 
   <ul class="subject-button-list">
-    <a class="view-sub-link" ng-click="vm.subjectName('Baseball')">
+    <a ng-repeat="subject in subject_names" class="view-sub-link" ng-click="vm.subjectName(subject)">
+      <li>
+        {{subject}}
+      </li>
+    </a>
+    <!-- <a class="view-sub-link" ng-click="vm.subjectName('Baseball')">
       <li>
         Baseball
       </li>
-    </a>
-    <a class="view-sub-link" ng-click="vm.subjectName('Basketball')">
-      <li>
-        Basketball
-      </li>
-    </a>
-    <a class="view-sub-link" ng-click="vm.subjectName('Football')">
-      <li>
-        Football
-      </li>
-    </a>
-    <a class="view-sub-link" ng-click="vm.subjectName('Hockey')">
-      <li>
-        Hockey
-      </li>
-    </a>
-    <a class="view-sub-link" ng-click="vm.subjectName('Soccer')">
-      <li>
-        Soccer
-      </li>
-    </a>
+    </a> -->
   </ul>
 
   <div ng-repeat="article in vm.articles" class="view-article-card" ng-click="vm.goToArticle(article)">

@@ -6,13 +6,9 @@ let AddSubscriberController = function($state, $scope, SubscriberService, UserSe
   vm.addSubscriber = addSubscriber;
   vm.validateEmail = validateEmail;
 
-  $scope.subject_names = [
-   ' Football',
-   ' Baseball',
-   ' Basketball',
-   ' Soccer',
-   ' Hockey'
-  ]; 
+  // --- USER SERVICE PROVIDES ACCESS TO SUBJECT NAMES ---
+  UserService.accessUserSubjects();
+  $scope.subject_names = UserService.userSubjects;
 
   $scope.logOut = logout;
 

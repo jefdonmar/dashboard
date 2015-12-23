@@ -66,6 +66,8 @@ let ProfileController = function($scope, UserService) {
 
       setTimeout ( function () {
         console.log('WAIT FOR ARRAY', userSubjects);
+        UserService.userSubjects = userSubjects;
+        console.log('ON USERSERVICE', UserService.userSubjects);
       }, 2000);
 
     });

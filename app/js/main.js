@@ -6,14 +6,15 @@ Object.defineProperty(exports, '__esModule', {
 });
 var AddArticleController = function AddArticleController($state, $scope, ArticleService, UserService) {
 
-  console.log('Hello from the add article controller');
-
   var vm = this;
   vm.addArticle = addArticle;
   vm.addImage = addImage;
 
-  $scope.subjects = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
+  // --- USER SERVICE PROVIDES ACCESS TO SUBJECT NAMES ---
+  UserService.accessUserSubjects();
+  $scope.subjects = UserService.userSubjects;
 
+  // --- USER SERVICE PROVIDES LOGOUT FUNCTION ---
   $scope.logOut = logout;
 
   function logout() {
@@ -60,6 +61,10 @@ var ArticleBySubjectController = function ArticleBySubjectController($state, $sc
 
   vm.goToArticle = goToArticle;
   vm.subjectName = subjectName;
+
+  // --- USER SERVICE PROVIDES ACCESS TO SUBJECT NAMES ---
+  UserService.accessUserSubjects();
+  $scope.subject_names = UserService.userSubjects;
 
   // vm.articles = [];
 
@@ -124,7 +129,9 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
     $state.reload();
   }
 
-  $scope.subjects = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
+  // --- USER SERVICE PROVIDES ACCESS TO SUBJECT NAMES ---
+  UserService.accessUserSubjects();
+  $scope.subjects = UserService.userSubjects;
 
   getAllSubscribers();
 
@@ -1517,7 +1524,9 @@ var AddSubscriberController = function AddSubscriberController($state, $scope, S
   vm.addSubscriber = addSubscriber;
   vm.validateEmail = validateEmail;
 
-  $scope.subject_names = [' Football', ' Baseball', ' Basketball', ' Soccer', ' Hockey'];
+  // --- USER SERVICE PROVIDES ACCESS TO SUBJECT NAMES ---
+  UserService.accessUserSubjects();
+  $scope.subject_names = UserService.userSubjects;
 
   $scope.logOut = logout;
 
@@ -1722,6 +1731,10 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     SubscriberService.importSubscribers(fileObj).then(function (response) {
       console.log(response);
     });
+
+    setTimeout(function () {
+      location.reload();
+    }, 1500);
   }
 
   function submit() {
@@ -1733,11 +1746,15 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     // });
   }
 
+  var selectedRows = [];
+
   $scope.gridOptions = {
     enableSorting: true,
     enableFiltering: true,
     enableColumnResizing: true,
     paginationPageSize: 50,
+    enableRowSelection: true,
+    multiSelect: true,
     columnDefs: [
     // { field: 'id', width: '5%'},
     { field: 'email', width: '30%' }, { field: 'subject_names', width: '35%' },
@@ -1776,6 +1793,21 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
         console.log(response);
       });
     });
+
+    // Multi-selection playground
+
+    gridApi.selection.on.rowSelectionChanged($scope, function (row, rowSelectionChanged, rowEntity) {
+      console.log(row.entity.user_id);
+      selectedRows.push(row.entity.user_id);
+      console.log(selectedRows);
+      // var msg = 'row selected ' + row.isSelected;
+      // $log.log(msg);
+    });
+
+    // gridApi.selection.on.rowSelectionChangedBatch($scope,function(rows){
+    //   var msg = 'rows changed ' + rows.length;
+    //   $log.log(msg);
+    // });
   };
 
   activate();
@@ -2117,6 +2149,8 @@ var ProfileController = function ProfileController($scope, UserService) {
 
       setTimeout(function () {
         console.log('WAIT FOR ARRAY', userSubjects);
+        UserService.userSubjects = userSubjects;
+        console.log('ON USERSERVICE', UserService.userSubjects);
       }, 2000);
     });
   }
@@ -2217,7 +2251,7 @@ var UserService = function UserService($http, HEROKU, $cookies, $state) {
   // Get actual Heroku route from Backend
   var url = HEROKU.URL;
 
-  // console.log('Hello from the UserService');
+  var self = this;
 
   // FUNCTIONS TO DEFINE
   this.signup = signup;
@@ -2231,6 +2265,21 @@ var UserService = function UserService($http, HEROKU, $cookies, $state) {
   this.getUserSubjects = getUserSubjects;
   this.addNewSubject = addNewSubject;
   this.updateSubjects = updateSubjects;
+  this.accessUserSubjects = accessUserSubjects;
+
+  this.userSubjects = [];
+
+  function accessUserSubjects() {
+    getUserSubjects().then(function (response) {
+      var currentSubjects = response.data.subjects;
+      var userSubjects = [];
+      currentSubjects.forEach(function (subject) {
+        userSubjects.push(subject.name);
+        // console.log(self.userSubjects);
+        self.userSubjects.push(subject.name);
+      });
+    });
+  }
 
   function updateSubjects(subject) {
     return $http.put(url + 'subjects', { name: subject }, HEROKU.CONFIG);

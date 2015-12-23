@@ -3,7 +3,7 @@ let UserService = function($http, HEROKU, $cookies, $state) {
   // Get actual Heroku route from Backend
   let url = HEROKU.URL;
 
-  // console.log('Hello from the UserService');
+  let self = this;
 
   // FUNCTIONS TO DEFINE
   this.signup          = signup;
@@ -17,6 +17,21 @@ let UserService = function($http, HEROKU, $cookies, $state) {
   this.getUserSubjects = getUserSubjects;
   this.addNewSubject   = addNewSubject;
   this.updateSubjects  = updateSubjects;
+  this.accessUserSubjects = accessUserSubjects;
+
+  this.userSubjects = [];
+
+  function accessUserSubjects () {
+    getUserSubjects().then( (response) => {
+      let currentSubjects = response.data.subjects;
+      let userSubjects = [];
+      currentSubjects.forEach( function (subject) {
+        userSubjects.push(subject.name);
+        // console.log(self.userSubjects);
+        self.userSubjects.push(subject.name);
+      });
+    });
+  }
 
   function updateSubjects (subject) {
     return $http.put(url + 'subjects', {name: subject} , HEROKU.CONFIG);

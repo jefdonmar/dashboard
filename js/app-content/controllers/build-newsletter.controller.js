@@ -25,13 +25,9 @@ let BuildNewsletterController = function($state, $scope, NewsletterService, User
     $state.reload();
   }
 
-  $scope.subjects = [
-   'Football',
-   'Baseball',
-   'Basketball',
-   'Soccer',
-   'Hockey'
-  ]; 
+  // --- USER SERVICE PROVIDES ACCESS TO SUBJECT NAMES ---
+  UserService.accessUserSubjects();
+  $scope.subjects = UserService.userSubjects;
 
   getAllSubscribers();
 

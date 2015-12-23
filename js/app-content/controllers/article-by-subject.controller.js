@@ -7,6 +7,11 @@ let ArticleBySubjectController = function($state, $scope, ArticleService, UserSe
   vm.goToArticle = goToArticle;
   vm.subjectName = subjectName;
 
+
+  // --- USER SERVICE PROVIDES ACCESS TO SUBJECT NAMES ---
+  UserService.accessUserSubjects();
+  $scope.subject_names = UserService.userSubjects;
+
   // vm.articles = [];
 
   $scope.sortType = 'title';
