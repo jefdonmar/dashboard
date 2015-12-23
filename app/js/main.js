@@ -1813,8 +1813,6 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     // });
   }
 
-  var selectedRows = [];
-
   $scope.gridOptions = {
     enableSorting: true,
     enableFiltering: true,
@@ -1833,6 +1831,10 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     { field: 'created_at.substring(0,4)', name: 'Yr', width: '10%', enableCellEdit: false }, { field: 'created_at.substring(5,7)', name: 'Mo', width: '10%', enableCellEdit: false }, { field: 'created_at.substring(8,10)', name: 'Day', width: '*', enableCellEdit: false }]
   };
 
+  // ARRAYS OF SELECTED USER IDs
+  var selectAllRows = [];
+  var selectedRows = [];
+
   $scope.gridOptions.onRegisterApi = function (gridApi) {
     //set gridApi on scope
     console.log(gridApi);
@@ -1841,11 +1843,16 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     //   console.log(rowEntity);
     // });
     $scope.deleteMe = function () {
-      var rowToDelete = gridApi.grid.selection.lastSelectedRow.entity;
-      console.log(rowToDelete);
-      SubscriberService.deleteSubscriber(rowToDelete).then(function (response) {
-        console.log(response);
-        $state.reload();
+      // let rowToDelete = gridApi.grid.selection.lastSelectedRow.entity;
+      console.log('DELETE THESE ROWS', selectedRows);
+      selectedRows.forEach(function (subscriberId) {
+        console.log(subscriberId);
+        SubscriberService.deleteSubscriber(subscriberId).then(function (response) {
+          console.log('DELETE RESPONSE', response);
+        });
+        setTimeout(function () {
+          $state.reload();
+        }, 1500);
       });
     };
     $scope.viewMe = function () {
@@ -1864,17 +1871,68 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
     // Multi-selection playground
 
     gridApi.selection.on.rowSelectionChanged($scope, function (row, rowSelectionChanged, rowEntity) {
-      console.log(row.entity.user_id);
-      selectedRows.push(row.entity.user_id);
-      console.log(selectedRows);
-      // var msg = 'row selected ' + row.isSelected;
-      // $log.log(msg);
+      console.log(row.isSelected);
+      // console.log(row.entity.id);
+      // console.log('INDEX OF', selectedRows.indexOf(row.entity.id));
+
+      // Only add the id if it is not already included?
+      if (row.isSelected && selectedRows.indexOf(row.entity.id) === -1) {
+        console.log('SHOULD ADD');
+        selectedRows.push(row.entity.id);
+      }
+
+      if (row.isSelected && selectAllRows.indexOf(row.entity.id) === -1) {
+        console.log('SHOULD ADD TO SELECT ALL');
+        selectAllRows.push(row.entity.id);
+      }
+
+      // Show the resulting selection
+      // console.log('SELECTED ROWS', selectedRows);
+
+      // Remove the id if it becomes 'unselected'
+      if (!row.isSelected && selectedRows.indexOf(row.entity.id) !== -1) {
+        console.log('SHOULD REMOVE');
+        var index = selectedRows.indexOf(row.entity.id);
+        selectedRows.splice(index, 1);
+      }
+
+      if (!row.isSelected && selectAllRows.indexOf(row.entity.id) !== -1) {
+        console.log('SHOULD REMOVE FROM SELECT ALL');
+        var indexA = selectAllRows.indexOf(row.entity.id);
+        selectAllRows.splice(indexA, 1);
+      }
+
+      // Show the resulting selection
+      console.log('SELECTED ROWS', selectedRows);
+      console.log('SELECT ALL ROWS', selectAllRows);
     });
 
-    // gridApi.selection.on.rowSelectionChangedBatch($scope,function(rows){
-    //   var msg = 'rows changed ' + rows.length;
-    //   $log.log(msg);
-    // });
+    gridApi.selection.on.rowSelectionChangedBatch($scope, function (rows) {
+      console.log(rows);
+      rows.forEach(function (row) {
+        console.log(row.isSelected);
+        if (row.isSelected && selectAllRows.indexOf(row.entity.id) === -1) {
+          selectAllRows.push(row.entity.id);
+        }
+        if (row.isSelected && selectedRows.indexOf(row.entity.id) === -1) {
+          selectedRows.push(row.entity.id);
+        }
+      });
+      rows.forEach(function (row) {
+        console.log(row.isSelected);
+        if (!row.isSelected && selectedRows.indexOf(row.entity.id) !== -1) {
+          var indexY = selectedRows.indexOf(row.entity.id);
+          selectedRows.splice(indexY, 1);
+        }
+
+        if (!row.isSelected && selectAllRows.indexOf(row.entity.id) !== -1) {
+          var indexZ = selectAllRows.indexOf(row.entity.id);
+          selectAllRows.splice(indexZ, 1);
+        }
+      });
+      console.log('SELECT ALL ROWS', selectAllRows);
+      console.log('SELECTED ROWS', selectedRows);
+    });
   };
 
   activate();
@@ -2028,9 +2086,9 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
     return $http.get(url, HEROKU.CONFIG);
   }
 
-  function deleteSubscriber(subscriber) {
-    console.log(subscriber);
-    return $http['delete'](url + '/' + subscriber.id, HEROKU.CONFIG);
+  function deleteSubscriber(subscriberId) {
+    console.log(subscriberId);
+    return $http['delete'](url + '/' + subscriberId, HEROKU.CONFIG);
   }
 
   function getSingleSubscriber(subscriberId) {

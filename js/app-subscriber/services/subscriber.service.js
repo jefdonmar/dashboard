@@ -38,9 +38,9 @@ let SubscriberService = function($http, HEROKU, $cookies) {
     return $http.get(url, HEROKU.CONFIG);
   }
 
-  function deleteSubscriber (subscriber) {
-    console.log(subscriber);
-    return $http.delete(url + '/' + subscriber.id, HEROKU.CONFIG);
+  function deleteSubscriber (subscriberId) {
+    console.log(subscriberId);
+    return $http.delete(url + '/' + subscriberId, HEROKU.CONFIG);
   }
 
   function getSingleSubscriber (subscriberId) {
