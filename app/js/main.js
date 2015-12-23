@@ -1855,9 +1855,11 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
         }, 1500);
       });
     };
+    $scope.lastSelect = false;
     $scope.viewMe = function () {
       var rowToView = gridApi.grid.selection.lastSelectedRow.entity;
       console.log(rowToView);
+      // $scope.lastSelect = rowToView;
       $state.go('root.edit-subscriber', { id: rowToView.id });
     };
     gridApi.edit.on.afterCellEdit($scope, function (rowEntity, colDef, newValue, oldValue) {
@@ -1874,6 +1876,10 @@ var ViewSubscribersController = function ViewSubscribersController($state, $scop
       console.log(row.isSelected);
       // console.log(row.entity.id);
       // console.log('INDEX OF', selectedRows.indexOf(row.entity.id));
+
+      if (row.isSelected) {
+        $scope.lastSelect = row.entity;
+      }
 
       // Only add the id if it is not already included?
       if (row.isSelected && selectedRows.indexOf(row.entity.id) === -1) {

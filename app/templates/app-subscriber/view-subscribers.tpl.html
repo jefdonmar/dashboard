@@ -9,7 +9,7 @@
     <button class="view-subs-btn"><a href="#/build-newsletter"><span>Build a newsletter</span></a></button> -->
 
     <button class="view-subs-btn" ng-click="deleteMe()">Delete selected</button>
-    <button class="view-subs-btn" ng-click="viewMe()">Edit selected</button>
+    <button ng-show="lastSelect" class="view-subs-btn" ng-click="viewMe()">Edit {{ lastSelect.email }}</button>
   </li>
   <li class="view-sub-block-2">
     <form class="import-file-form" ng-submit="vm.importSubscribers()">
