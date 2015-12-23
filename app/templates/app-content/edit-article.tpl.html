@@ -19,12 +19,15 @@
       Content</label>
       <textarea id="edit-art-par" ng-model="vm.article.content"></textarea>
 
-    <div ng-show="vm.article.media">
+    
+
+    <div ng-show="vm.article.media !== '/media/original/missing.png'">
       <p>Current image:</p>
+      <p style="cursor: pointer; color: red;" ng-click="vm.removeImg(vm.article)">Remove image</p>
       <img ng-src="{{ vm.article.media }}">
     </div>
 
-    <p class="no-img-message" ng-show="!vm.article.media">Currently no image</p>
+    <p class="no-img-message" ng-show="vm.article.media === '/media/original/missing.png'">Currently no image</p>
 
     <!-- <label>Article Image (url)</label>
     <input ng-model="vm.article.media"> -->

@@ -205,6 +205,7 @@ var EditArticleController = function EditArticleController($state, ArticleServic
 
   vm.submitEdits = submitEdits;
   vm.goToArticle = goToArticle;
+  vm.removeImg = removeImg;
 
   $scope.logOut = logout;
 
@@ -213,7 +214,9 @@ var EditArticleController = function EditArticleController($state, ArticleServic
     UserService.logout();
   }
 
-  $scope.subjects = ['Football', 'Baseball', 'Basketball', 'Soccer', 'Hockey'];
+  // --- USER SERVICE PROVIDES ACCESS TO SUBJECT NAMES ---
+  UserService.accessUserSubjects();
+  $scope.subjects = UserService.userSubjects;
 
   activate();
 
@@ -221,6 +224,17 @@ var EditArticleController = function EditArticleController($state, ArticleServic
     ArticleService.getSingleArticle($stateParams.id).then(function (response) {
       vm.article = response.data.article;
       console.log(vm.article);
+    });
+  }
+
+  function removeImg(article) {
+    console.log('CALLED', article);
+    var articleId = article.id;
+    console.log(articleId);
+
+    ArticleService.removeImg(article).then(function (response) {
+      $state.go('root.single-article', { id: articleId });
+      console.log('IMG REMOVED TEST', response);
     });
   }
 
@@ -840,6 +854,20 @@ var ArticleService = function ArticleService($http, HEROKU) {
   // EDIT ARTICLES
   this.editArticle = editArticle;
   this.editArticleWithUpload = editArticleWithUpload;
+  this.removeImg = removeImg;
+
+  function removeImg(article) {
+    var updatedArticle = {
+      title: article.title,
+      content: article.content,
+      subject_names: article.subject_names,
+      media: null
+    };
+
+    console.log(updatedArticle);
+
+    return $http.put(url + '/' + article.id, updatedArticle, HEROKU.CONFIG);
+  }
 
   function editArticleWithUpload(article, fileObj) {
 

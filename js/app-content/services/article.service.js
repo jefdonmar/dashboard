@@ -13,6 +13,21 @@ let ArticleService = function($http, HEROKU) {
   // EDIT ARTICLES
   this.editArticle = editArticle;
   this.editArticleWithUpload = editArticleWithUpload;
+  this.removeImg = removeImg;
+
+  function removeImg (article) {
+    let updatedArticle = {
+      title: article.title,
+      content: article.content,
+      subject_names: article.subject_names,
+      media: null
+    };
+
+    console.log(updatedArticle);
+
+    return $http.put(url + '/' + article.id, updatedArticle, HEROKU.CONFIG);
+
+  }
 
 
   function editArticleWithUpload (article, fileObj) {
