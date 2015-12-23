@@ -35,13 +35,29 @@ let EditArticleController = function($state, ArticleService, $stateParams, $scop
   }
 
   function submitEdits (article) {
+    
     let articleId = article.id;
     console.log(articleId);
-    ArticleService.editArticle(article).then( (response) => {
-      console.log(articleId);
-      $state.go('root.single-article', {id: articleId}); 
-      console.log(response);
-    });
+    
+    let fileField = document.getElementById('articleImg');
+    let fileObj = fileField.files[0]; 
+    console.log(fileObj);
+
+    if (fileObj) {
+      ArticleService.editArticleWithUpload(article, fileObj).then( (response) => {
+        console.log(articleId);
+        $state.go('root.single-article', {id: articleId}); 
+        console.log(response);
+      });
+    } else {
+      alert('For now, images can only be uploaded as a file')
+      // ArticleService.editArticle(article).then( (response) => {
+      //   console.log(articleId);
+      //   $state.go('root.single-article', {id: articleId}); 
+      //   console.log(response);
+      // });
+    }
+    
   }  
 
 };

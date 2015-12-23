@@ -229,13 +229,28 @@ var EditArticleController = function EditArticleController($state, ArticleServic
   }
 
   function submitEdits(article) {
+
     var articleId = article.id;
     console.log(articleId);
-    ArticleService.editArticle(article).then(function (response) {
-      console.log(articleId);
-      $state.go('root.single-article', { id: articleId });
-      console.log(response);
-    });
+
+    var fileField = document.getElementById('articleImg');
+    var fileObj = fileField.files[0];
+    console.log(fileObj);
+
+    if (fileObj) {
+      ArticleService.editArticleWithUpload(article, fileObj).then(function (response) {
+        console.log(articleId);
+        $state.go('root.single-article', { id: articleId });
+        console.log(response);
+      });
+    } else {
+      alert('For now, images can only be uploaded as a file');
+      // ArticleService.editArticle(article).then( (response) => {
+      //   console.log(articleId);
+      //   $state.go('root.single-article', {id: articleId});
+      //   console.log(response);
+      // });
+    }
   }
 };
 
@@ -813,15 +828,39 @@ Object.defineProperty(exports, '__esModule', {
 var ArticleService = function ArticleService($http, HEROKU) {
 
   var url = HEROKU.URL + 'articles';
-  var subjectURL = HEROKU.URL + 'subject/';
+  var subjectURL = HEROKU.URL + 'subjects/';
 
   this.addArticle = addArticle;
   this.getAllArticles = getAllArticles;
   this.getSingleArticle = getSingleArticle;
-  this.editArticle = editArticle;
   this.deleteArticle = deleteArticle;
   this.getSubjectArticles = getSubjectArticles;
   this.getSubscribers = getSubscribers;
+
+  // EDIT ARTICLES
+  this.editArticle = editArticle;
+  this.editArticleWithUpload = editArticleWithUpload;
+
+  function editArticleWithUpload(article, fileObj) {
+
+    console.log('FILE OBJ IN SERVICE', fileObj);
+
+    var formData = new FormData();
+
+    formData.append('subject_names', article.subject_names);
+    formData.append('title', article.title);
+    formData.append('content', article.content);
+
+    if (fileObj) {
+      formData.append('media', fileObj);
+    }
+
+    HEROKU.CONFIG.headers['Content-Type'] = undefined;
+
+    console.log('OBJECT', formData);
+
+    return $http.put(url + '/' + article.id, formData, HEROKU.CONFIG);
+  }
 
   function addArticle(article, fileObj) {
 

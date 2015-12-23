@@ -19,9 +19,17 @@
       Content</label>
       <textarea id="edit-art-par" ng-model="vm.article.content"></textarea>
 
-    <label>Article Image (url)</label>
-    <input ng-model="vm.article.media">
-    <img ng-src="{{ vm.article.media }}">
+    <div ng-show="vm.article.media">
+      <p>Current image:</p>
+      <img ng-src="{{ vm.article.media }}">
+    </div>
+
+    <p class="no-img-message" ng-show="!vm.article.media">Currently no image</p>
+
+    <!-- <label>Article Image (url)</label>
+    <input ng-model="vm.article.media"> -->
+    
+    <input type="file" id="articleImg">
     
     <button>Submit</button>
   </form>

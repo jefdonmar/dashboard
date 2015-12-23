@@ -1,15 +1,40 @@
 let ArticleService = function($http, HEROKU) {
 
   let url = HEROKU.URL + 'articles';
-  let subjectURL = HEROKU.URL + 'subject/';
+  let subjectURL = HEROKU.URL + 'subjects/';
 
   this.addArticle = addArticle;
   this.getAllArticles = getAllArticles;
   this.getSingleArticle = getSingleArticle;
-  this.editArticle = editArticle;
   this.deleteArticle = deleteArticle;
   this.getSubjectArticles = getSubjectArticles;
   this.getSubscribers = getSubscribers;
+
+  // EDIT ARTICLES
+  this.editArticle = editArticle;
+  this.editArticleWithUpload = editArticleWithUpload;
+
+
+  function editArticleWithUpload (article, fileObj) {
+    
+    console.log('FILE OBJ IN SERVICE', fileObj);
+    
+    let formData = new FormData();
+
+    formData.append('subject_names', article.subject_names);
+    formData.append('title', article.title);
+    formData.append('content', article.content);
+
+    if (fileObj) {
+      formData.append('media', fileObj);
+    } 
+    
+    HEROKU.CONFIG.headers['Content-Type'] = undefined;
+
+    console.log('OBJECT', formData);
+
+    return $http.put(url + '/' + article.id, formData, HEROKU.CONFIG);
+  }
 
 
   function addArticle (article, fileObj) {
