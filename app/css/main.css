@@ -10847,14 +10847,16 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     text-align: center;
     margin-bottom: 20px; }
   .profile-form input {
-    width: 60%;
+    width: 80%;
+    max-width: 300px;
     display: block;
     margin: 1px auto;
     margin-bottom: 25px;
     border: 1px solid #082c38; }
   .profile-form label {
     display: block;
-    width: 60%;
+    width: 80%;
+    max-width: 300px;
     margin: 1px auto;
     text-align: left;
     font-weight: bold;
@@ -10875,6 +10877,26 @@ form.profile-new-subject {
   padding-top: 15px;
   padding-bottom: 15px;
   color: #082c38; }
+  form.profile-new-subject button {
+    display: block;
+    width: 60%;
+    max-width: 200px;
+    margin: 10px auto; }
+  form.profile-new-subject input {
+    width: 80%;
+    max-width: 300px;
+    display: block;
+    margin: 10px auto;
+    margin-bottom: 25px;
+    border: 1px solid #082c38; }
+  form.profile-new-subject label {
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    margin: 1px auto;
+    text-align: left;
+    font-weight: bold;
+    padding-bottom: 1px; }
 
 div.profile-current-subjects {
   background-color: white;
@@ -10887,6 +10909,11 @@ div.profile-current-subjects {
   padding-top: 15px;
   padding-bottom: 15px;
   color: #082c38; }
+  div.profile-current-subjects button {
+    display: block;
+    width: 60%;
+    max-width: 200px;
+    margin: 10px auto; }
   div.profile-current-subjects h3 {
     color: #082c38;
     text-align: center;
@@ -10903,6 +10930,28 @@ div.profile-current-subjects {
       width: 22%;
       display: inline-block;
       text-align: center; }
+
+@media screen and (min-width: 800px) {
+  .profile-form {
+    display: inline-block;
+    width: 35%;
+    max-width: 450px;
+    margin: 2%;
+    vertical-align: top;
+    float: left;
+    position: relative; }
+  div.profile-current-subjects {
+    display: inline-block;
+    width: 55%;
+    max-width: 550px;
+    margin: 2%;
+    float: left; }
+  form.profile-new-subject {
+    display: inline-block;
+    width: 35%;
+    max-width: 450px;
+    margin: 2%;
+    float: left; } }
 
 div.congrats-message {
   display: block;

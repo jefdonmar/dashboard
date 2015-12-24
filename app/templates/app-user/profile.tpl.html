@@ -1,4 +1,27 @@
 <p class="log-out" ng-click="logOut()">Log out</p>
+
+<div class="profile-current-subjects">
+  <h3>Current Subjects:</h4>
+  <form class="current-subjects-form" ng-submit="vm.updateSubjects(vm.currentSubjects)">
+
+    <div class="current-subjects-row">
+      <span class="row-one">Subject Name</span>
+      <span class="row-two">Users</span>
+      <span class="row-three">Articles</span>
+    </div>
+
+    <div ng-repeat="subject in vm.currentSubjects" class="current-subjects-row" ng-show="vm.currentSubjects.length > vm.currentSubjects.indexOf(subject)">
+      <input class="row-one" ng-model="vm.currentSubjects[vm.currentSubjects.indexOf(subject)].name">
+      <span class="row-two">{{ vm.subjectRef[vm.subjectPush.indexOf(subject.name)].subscribers }}</span>
+      <span class="row-three">{{ vm.subjectRef[vm.subjectPush.indexOf(subject.name)].articles }}</span>
+    </div>
+
+    <button>Submit edits</button>
+  </form>
+
+</div>
+
+
 <form class="profile-form" ng-submit="vm.sendUserInfo(user)">
   
   <h3>User Profile</h3>
@@ -20,38 +43,9 @@
   <button class="send-profile">Submit</button>
 
 </form>
-
-<!-- <div class="profile-current-subjects">
-  <h4>Current Subjects:</h4>
-  <ul>
-    <li ng-repeat="subject in vm.currentSubjects">{{ subject.name }} {{ subject.id }}</li>
-  </ul>
-</div> -->
-
-
-
+  
 <form class="profile-new-subject" ng-submit="vm.addNewSubject(newSubject)">
-  <input ng-model="newSubject" placeholder="Add new subject">
+  <label>Add new subject</label>
+  <input ng-model="newSubject" placeholder="New subject name">
   <button>Add</button>
 </form>
-
-
-<div class="profile-current-subjects">
-  <h3>Current Subjects:</h4>
-  <form class="current-subjects-form" ng-submit="vm.updateSubjects(vm.currentSubjects)">
-
-    <div class="current-subjects-row">
-      <span class="row-one">Subject Name</span>
-      <span class="row-two">Users</span>
-      <span class="row-three">Articles</span>
-    </div>
-
-    <div ng-repeat="subject in vm.currentSubjects" class="current-subjects-row" ng-show="vm.currentSubjects.length > vm.currentSubjects.indexOf(subject)">
-      <input class="row-one" ng-model="vm.currentSubjects[vm.currentSubjects.indexOf(subject)].name">
-      <span class="row-two">{{ vm.subjectRef[vm.subjectPush.indexOf(subject.name)].subscribers }}</span>
-      <span class="row-three">{{ vm.subjectRef[vm.subjectPush.indexOf(subject.name)].articles }}</span>
-    </div>
-    
-    <button>Submit</button>
-  </form>
-</div>
