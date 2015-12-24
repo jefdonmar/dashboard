@@ -258,12 +258,11 @@ var EditArticleController = function EditArticleController($state, ArticleServic
         console.log(response);
       });
     } else {
-      alert('For now, images can only be uploaded as a file');
-      // ArticleService.editArticle(article).then( (response) => {
-      //   console.log(articleId);
-      //   $state.go('root.single-article', {id: articleId});
-      //   console.log(response);
-      // });
+      ArticleService.editArticle(article).then(function (response) {
+        console.log(articleId);
+        $state.go('root.single-article', { id: articleId });
+        console.log(response);
+      });
     }
   }
 };
@@ -922,7 +921,12 @@ var ArticleService = function ArticleService($http, HEROKU) {
   }
 
   function editArticle(article) {
-    return $http.put(url + '/' + article.id, article, HEROKU.CONFIG);
+    return $http.put(url + '/' + article.id, {
+      content: article.content,
+      subject_names: article.subject_names,
+      title: article.title,
+      media: null
+    }, HEROKU.CONFIG);
   }
 
   // PASS IN ARTICLE ID TO ^ and below
@@ -2216,7 +2220,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ProfileController = function ProfileController($scope, UserService) {
+var ProfileController = function ProfileController($scope, UserService, ArticleService) {
 
   console.log('ProfileController');
 
@@ -2226,9 +2230,16 @@ var ProfileController = function ProfileController($scope, UserService) {
   vm.addNewSubject = addNewSubject;
   vm.updateSubjects = updateSubjects;
 
+  vm.subjectRef = [];
+  vm.subjectPush = [];
+
   $scope.logOut = logout;
 
   var userSubjects = [];
+
+  var subjectRef = [];
+  var articlesBySubj = [];
+  var subscribersBySubj = [];
 
   function logout() {
     console.log('LOGOUT CALLED');
@@ -2246,14 +2257,17 @@ var ProfileController = function ProfileController($scope, UserService) {
     console.log(subjects);
     var postSubjects = [];
     subjects.forEach(function (subject) {
-      postSubjects.push(subject.name);
+      postSubjects.push(subject);
     });
     setTimeout(function () {
       postSubjects.forEach(function (subject) {
-        UserService.updateSubjects(subject.name).then(function (response) {
+        UserService.updateSubjects(subject).then(function (response) {
           console.log('RESPONSE', response);
         });
       });
+    }, 1500);
+    setTimeout(function () {
+      location.reload();
     }, 2000);
   }
 
@@ -2273,9 +2287,39 @@ var ProfileController = function ProfileController($scope, UserService) {
     UserService.getUserSubjects().then(function (response) {
       var currentSubjects = response.data.subjects;
       vm.currentSubjects = currentSubjects;
+      console.log('ALL SUBJECTS', currentSubjects);
 
       currentSubjects.forEach(function (subject) {
         userSubjects.push(subject.name);
+        ArticleService.getSubjectArticles(subject.name).then(function (response) {
+          // console.log('SUBJECT ARTICLES', response);
+          // console.log(subject.name);
+
+          console.log('INDEX', currentSubjects.indexOf(subject));
+
+          // subjectRef.push(subject.name);
+
+          vm.subjectPush.push(subject.name);
+
+          vm.subjectRef.push({
+            name: subject.name,
+            articles: response.data.subject.articles.length,
+            subscribers: response.data.subject.subscribers.length
+          });
+          // subscribersBySubj.push(response.data.subject.subscribers.length);
+
+          // console.log('REF', vm.subjectRef);
+          // console.log('CURRENT', vm.currentSubjects[0]);
+          // vm.articlesBySubj = articlesBySubj;
+          // console.log(vm.articlesBySubj);
+          // vm.subscribersBySubj = subscribersBySubj;
+          // console.log(vm.subscribersBySubj);
+
+          // console.log(vm.subscribersBySubj);
+          // vm.subjectRef = subjectRef;
+          console.log(vm.subjectRef);
+          console.log(vm.subjectPush);
+        });
       });
 
       setTimeout(function () {
@@ -2294,7 +2338,7 @@ var ProfileController = function ProfileController($scope, UserService) {
   }
 };
 
-ProfileController.$inject = ['$scope', 'UserService'];
+ProfileController.$inject = ['$scope', 'UserService', 'ArticleService'];
 
 exports['default'] = ProfileController;
 module.exports = exports['default'];
@@ -2413,7 +2457,7 @@ var UserService = function UserService($http, HEROKU, $cookies, $state) {
   }
 
   function updateSubjects(subject) {
-    return $http.put(url + 'subjects', { name: subject }, HEROKU.CONFIG);
+    return $http.put(url + 'subjects' + '/' + subject.id, { name: subject.name }, HEROKU.CONFIG);
   }
 
   function getUser() {

@@ -58,12 +58,11 @@ let EditArticleController = function($state, ArticleService, $stateParams, $scop
         console.log(response);
       });
     } else {
-      alert('For now, images can only be uploaded as a file');
-      // ArticleService.editArticle(article).then( (response) => {
-      //   console.log(articleId);
-      //   $state.go('root.single-article', {id: articleId}); 
-      //   console.log(response);
-      // });
+      ArticleService.editArticle(article).then( (response) => {
+        console.log(articleId);
+        $state.go('root.single-article', {id: articleId}); 
+        console.log(response);
+      });
     }
     
   }  

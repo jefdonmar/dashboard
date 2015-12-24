@@ -1,4 +1,4 @@
-let ProfileController = function($scope, UserService) {
+let ProfileController = function($scope, UserService, ArticleService) {
   
   console.log('ProfileController'); 
 
@@ -8,10 +8,20 @@ let ProfileController = function($scope, UserService) {
   vm.addNewSubject  = addNewSubject;
   vm.updateSubjects = updateSubjects;
 
+
+  vm.subjectRef = [];
+  vm.subjectPush = [];
+
+
   $scope.logOut = logout;
 
 
   let userSubjects = [];
+
+
+  let subjectRef = [];
+  let articlesBySubj = [];
+  let subscribersBySubj = [];
 
   function logout () {
     console.log('LOGOUT CALLED');
@@ -29,16 +39,18 @@ let ProfileController = function($scope, UserService) {
     console.log(subjects);
     let postSubjects = [];
     subjects.forEach( function (subject) {
-      postSubjects.push(subject.name);
+      postSubjects.push(subject);
     });
     setTimeout ( function () {
       postSubjects.forEach( function(subject) {
-        UserService.updateSubjects(subject.name).then( (response) => {
+        UserService.updateSubjects(subject).then( (response) => {
           console.log('RESPONSE', response);
         });
       });
+    }, 1500);
+    setTimeout ( function () {
+      location.reload();
     }, 2000);
-
   }
 
 
@@ -59,9 +71,42 @@ let ProfileController = function($scope, UserService) {
     UserService.getUserSubjects().then( (response) => {
       let currentSubjects = response.data.subjects;
       vm.currentSubjects = currentSubjects;
+      console.log('ALL SUBJECTS', currentSubjects);
 
       currentSubjects.forEach( function (subject) {
         userSubjects.push(subject.name);
+        ArticleService.getSubjectArticles(subject.name).then( (response)=> {
+          // console.log('SUBJECT ARTICLES', response);
+          // console.log(subject.name);
+
+          console.log('INDEX', currentSubjects.indexOf(subject));
+
+
+          // subjectRef.push(subject.name);
+
+          vm.subjectPush.push(subject.name);
+
+          vm.subjectRef.push(
+            {
+              name: subject.name,
+              articles: response.data.subject.articles.length,
+              subscribers: response.data.subject.subscribers.length
+            });
+          // subscribersBySubj.push(response.data.subject.subscribers.length);
+
+          // console.log('REF', vm.subjectRef);
+          // console.log('CURRENT', vm.currentSubjects[0]);
+          // vm.articlesBySubj = articlesBySubj;
+          // console.log(vm.articlesBySubj);
+          // vm.subscribersBySubj = subscribersBySubj;
+          // console.log(vm.subscribersBySubj);
+
+          // console.log(vm.subscribersBySubj);
+          // vm.subjectRef = subjectRef;
+          console.log(vm.subjectRef);
+          console.log(vm.subjectPush);
+          
+        });
       });
 
       setTimeout ( function () {
@@ -82,6 +127,6 @@ let ProfileController = function($scope, UserService) {
 
 };
 
-ProfileController.$inject = ['$scope', 'UserService'];
+ProfileController.$inject = ['$scope', 'UserService', 'ArticleService'];
 
 export default ProfileController;

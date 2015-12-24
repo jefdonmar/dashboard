@@ -43,17 +43,53 @@
 
 }
 
-div.profile-current-subjects {
-  display: inline-block;
-  width: 40%;
-  margin: 15px auto;
-  background-color: $LightGrey;
+form.profile-new-subject {
+  background-color: white;
+  border: 6px solid $Navy;
+  display: block;
+  margin: 10px auto;
+  width: 80%;
+  max-width: 700px;
+  min-width: 300px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: $Navy;
 }
 
-form.profile-new-subject {
-  display: inline-block;
-  width: 40%;
-  margin: 15px auto;
-  background-color: $LightGrey;
-  min-height: 100px;
+div.profile-current-subjects {
+  background-color: white;
+  border: 6px solid $Navy;
+  display: block;
+  margin: 10px auto;
+  width: 80%;
+  max-width: 700px;
+  min-width: 300px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: $Navy;
+
+  h3 {
+    color: $Navy;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .current-subjects-row{
+    display: block;
+    width: 95%;
+    margin: 5px auto;
+
+    .row-one {
+      display: inline-block;
+      width: 50%;
+    }
+
+    .row-two, .row-three {
+      width: 22%;
+      display: inline-block;
+      text-align: center;
+    }
+  }
 }
+

@@ -34,7 +34,7 @@ let UserService = function($http, HEROKU, $cookies, $state) {
   }
 
   function updateSubjects (subject) {
-    return $http.put(url + 'subjects', {name: subject} , HEROKU.CONFIG);
+    return $http.put(url + 'subjects' + '/' + subject.id, {name: subject.name} , HEROKU.CONFIG);
   }
 
   function getUser () {

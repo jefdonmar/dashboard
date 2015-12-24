@@ -21,12 +21,12 @@
 
 </form>
 
-<div class="profile-current-subjects">
+<!-- <div class="profile-current-subjects">
   <h4>Current Subjects:</h4>
   <ul>
-    <li ng-repeat="subject in vm.currentSubjects">{{ subject.name }}</li>
+    <li ng-repeat="subject in vm.currentSubjects">{{ subject.name }} {{ subject.id }}</li>
   </ul>
-</div>
+</div> -->
 
 
 
@@ -37,12 +37,21 @@
 
 
 <div class="profile-current-subjects">
-  <h4>Current Subjects:</h4>
-  <form ng-submit="vm.updateSubjects(vm.currentSubjects)">
-    <input ng-show="vm.currentSubjects.length > 0" ng-model="vm.currentSubjects[0].name">
-    <input ng-show="vm.currentSubjects.length > 1" ng-model="vm.currentSubjects[1].name">
-    <input ng-show="vm.currentSubjects.length > 2" ng-model="vm.currentSubjects[2].name">
-    <input ng-show="vm.currentSubjects.length > 3" ng-model="vm.currentSubjects[3].name">
+  <h3>Current Subjects:</h4>
+  <form class="current-subjects-form" ng-submit="vm.updateSubjects(vm.currentSubjects)">
+
+    <div class="current-subjects-row">
+      <span class="row-one">Subject Name</span>
+      <span class="row-two">Users</span>
+      <span class="row-three">Articles</span>
+    </div>
+
+    <div ng-repeat="subject in vm.currentSubjects" class="current-subjects-row" ng-show="vm.currentSubjects.length > vm.currentSubjects.indexOf(subject)">
+      <input class="row-one" ng-model="vm.currentSubjects[vm.currentSubjects.indexOf(subject)].name">
+      <span class="row-two">{{ vm.subjectRef[vm.subjectPush.indexOf(subject.name)].subscribers }}</span>
+      <span class="row-three">{{ vm.subjectRef[vm.subjectPush.indexOf(subject.name)].articles }}</span>
+    </div>
+    
     <button>Submit</button>
   </form>
 </div>

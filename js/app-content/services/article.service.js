@@ -84,7 +84,14 @@ let ArticleService = function($http, HEROKU) {
   }
 
   function editArticle (article) {
-    return $http.put(url + '/' + article.id, article, HEROKU.CONFIG);
+    return $http.put(url + '/' + article.id, 
+      {
+        content: article.content,
+        subject_names: article.subject_names,
+        title: article.title,
+        media: null
+      },
+      HEROKU.CONFIG);
   }
 
   // PASS IN ARTICLE ID TO ^ and below

@@ -10864,18 +10864,45 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     display: block;
     margin: 15px auto; }
 
-div.profile-current-subjects {
-  display: inline-block;
-  width: 40%;
-  margin: 15px auto;
-  background-color: #EDEDED; }
-
 form.profile-new-subject {
-  display: inline-block;
-  width: 40%;
-  margin: 15px auto;
-  background-color: #EDEDED;
-  min-height: 100px; }
+  background-color: white;
+  border: 6px solid #082c38;
+  display: block;
+  margin: 10px auto;
+  width: 80%;
+  max-width: 700px;
+  min-width: 300px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #082c38; }
+
+div.profile-current-subjects {
+  background-color: white;
+  border: 6px solid #082c38;
+  display: block;
+  margin: 10px auto;
+  width: 80%;
+  max-width: 700px;
+  min-width: 300px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #082c38; }
+  div.profile-current-subjects h3 {
+    color: #082c38;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px; }
+  div.profile-current-subjects .current-subjects-row {
+    display: block;
+    width: 95%;
+    margin: 5px auto; }
+    div.profile-current-subjects .current-subjects-row .row-one {
+      display: inline-block;
+      width: 50%; }
+    div.profile-current-subjects .current-subjects-row .row-two, div.profile-current-subjects .current-subjects-row .row-three {
+      width: 22%;
+      display: inline-block;
+      text-align: center; }
 
 div.congrats-message {
   display: block;
