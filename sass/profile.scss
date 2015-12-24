@@ -11,7 +11,9 @@
   color: $Navy;
 
   h3 {
+    color: $Navy;
     text-align: center;
+    font-weight: bold;
     margin-bottom: 20px;
   }
 
@@ -37,8 +39,10 @@
 
   button.send-profile {
     width: 60%;
+    max-width: 300px;
     display: block;
     margin: 15px auto;
+    background-color: $Navy;
   }
 
 
@@ -57,11 +61,19 @@ form.profile-new-subject {
   padding-bottom: 15px;
   color: $Navy;
 
+  h3 {
+    color: $Navy;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
   button {
     display: block;
     width: 60%;
     max-width: 200px;
     margin: 10px auto;
+    background-color: $Navy;
   }
 
   input {
@@ -102,6 +114,11 @@ div.profile-current-subjects {
     width: 60%;
     max-width: 200px;
     margin: 10px auto;
+    background-color: $Navy;
+  }
+
+  input {
+    border: 1px solid $Navy;
   }
 
   h3 {

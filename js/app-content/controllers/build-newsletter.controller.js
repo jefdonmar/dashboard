@@ -29,8 +29,8 @@ let BuildNewsletterController = function($state, $scope, NewsletterService, User
   UserService.accessUserSubjects();
   $scope.subjects = UserService.userSubjects;
 
+  // --- GETS ALL SUBSCRIBERS IN CASE WE USE DROPDOWN --- 
   getAllSubscribers();
-
   function getAllSubscribers () {
     NewsletterService.getAllSubscribers().then( (response) => {
       // console.log(response);
@@ -45,11 +45,36 @@ let BuildNewsletterController = function($state, $scope, NewsletterService, User
     });
   }
 
+
+  // *** --- SENDS TEST TO ONLY NAME ENTERED --- ***
+  function sendNews (newsletter) {
+    console.clear();
+    console.log('TEST', NewsletterService.segmentEmails);
+    console.log('Newsletter sent here');
+    console.log(newsletter.name);
+    // console.log(newsletter.to);
+    let content = NewsletterService.tempContent.join();
+    let preContent = NewsletterService.preContent;
+    let postContent = NewsletterService.postContent;
+    // let relevantSubscribers = NewsletterService.segmentEmails;
+    NewsletterService.sendTest(content, preContent, postContent, newsletter).then( (response) => {
+      console.log(response);
+    });
+  }
+  // *** --- ***
+
   function getSubjectsForNewsletter (newsObj) {
+    if (!newsObj) {
+      alert('Subject line and email address are required');
+      location.reload();
+    }
+
     newsletter.name = newsObj.name;
-    // newsletter.to = newsObj.to;
+    newsletter.to = newsObj.to;
     console.log('NEWSLETTER', newsletter);
     let subjects = newsObj.subjectNames;
+
+    // *** --- USED IF WE WANT TO SEND TO A SELECT SEGMENT --- ***
 
     // Get the right subcribers associated with the subjects
     NewsletterService.getMatchedSubscribers(subjects, subscribers);
@@ -68,22 +93,6 @@ let BuildNewsletterController = function($state, $scope, NewsletterService, User
       $scope.hasPreviewed = true;
     });
   }
-
-  function sendNews (newsletter, sub) {
-    console.clear();
-    console.log('TEST', NewsletterService.segmentEmails);
-    console.log('Newsletter sent here');
-    console.log(newsletter.name);
-    // console.log(newsletter.to);
-    let content = NewsletterService.tempContent.join();
-    let preContent = NewsletterService.preContent;
-    let postContent = NewsletterService.postContent;
-    let relevantSubscribers = NewsletterService.segmentEmails;
-    NewsletterService.sendContent(content, preContent, postContent, newsletter, relevantSubscribers).then( (response) => {
-      console.log(response);
-    });
-  }
-
 
 };
 

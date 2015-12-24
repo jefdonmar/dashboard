@@ -10844,7 +10844,9 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
   padding-bottom: 15px;
   color: #082c38; }
   .profile-form h3 {
+    color: #082c38;
     text-align: center;
+    font-weight: bold;
     margin-bottom: 20px; }
   .profile-form input {
     width: 80%;
@@ -10863,8 +10865,10 @@ textarea.ui-grid-pager-row-count-picker select, select[multiple].ui-grid-pager-r
     padding-bottom: 1px; }
   .profile-form button.send-profile {
     width: 60%;
+    max-width: 300px;
     display: block;
-    margin: 15px auto; }
+    margin: 15px auto;
+    background-color: #082c38; }
 
 form.profile-new-subject {
   background-color: white;
@@ -10877,11 +10881,17 @@ form.profile-new-subject {
   padding-top: 15px;
   padding-bottom: 15px;
   color: #082c38; }
+  form.profile-new-subject h3 {
+    color: #082c38;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px; }
   form.profile-new-subject button {
     display: block;
     width: 60%;
     max-width: 200px;
-    margin: 10px auto; }
+    margin: 10px auto;
+    background-color: #082c38; }
   form.profile-new-subject input {
     width: 80%;
     max-width: 300px;
@@ -10913,7 +10923,10 @@ div.profile-current-subjects {
     display: block;
     width: 60%;
     max-width: 200px;
-    margin: 10px auto; }
+    margin: 10px auto;
+    background-color: #082c38; }
+  div.profile-current-subjects input {
+    border: 1px solid #082c38; }
   div.profile-current-subjects h3 {
     color: #082c38;
     text-align: center;
