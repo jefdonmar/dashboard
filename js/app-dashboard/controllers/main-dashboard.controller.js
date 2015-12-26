@@ -1,6 +1,29 @@
 let MainDashboardController = function($state, DashboardService, $scope, UserService) {
   
-  // console.clear();
+  console.log(UserService);
+  // --- USER SERVICE PROVIDES ACCESS TO SUBJECT NAMES ---
+  UserService.accessUserSubjects();
+  // console.log(UserService.userSubjects);
+  // $scope.subjects = UserService.userSubjects;
+
+  let subjects = [];
+
+  setTimeout( function() {
+    let userSubjects = UserService.userSubjects;
+    console.log(userSubjects);
+
+    userSubjects.forEach( function(subject) {
+      subjects.push(
+      {
+        name: subject,
+        count: 0,
+        articles: 0
+      }
+      );
+      console.log(subjects);
+    });
+  }, 500);
+
 
   $scope.logOut = logout;
 
@@ -11,15 +34,16 @@ let MainDashboardController = function($state, DashboardService, $scope, UserSer
 
   let vm = this;
 
-  let subjects = [
-   {name: 'Football', count: 0, articles: 0},
-   {name: 'Baseball', count: 0, articles: 0}, 
-   {name: 'Basketball', count: 0, articles: 0},
-   {name: 'Soccer', count: 0, articles: 0},
-   {name: 'Hockey', count: 0, articles: 0}
-  ]; 
+  // let subjects = [
+  //  {name: 'Football', count: 0, articles: 0},
+  //  {name: 'Baseball', count: 0, articles: 0}, 
+  //  {name: 'Basketball', count: 0, articles: 0},
+  //  {name: 'Soccer', count: 0, articles: 0},
+  //  {name: 'Hockey', count: 0, articles: 0}
+  // ]; 
 
-  DashboardService.getAllSubscribers().then( (response) => {
+  setTimeout( function() {
+    DashboardService.getAllSubscribers().then( (response) => {
     console.log('SUBSCRIBERS', response.data.subscriber);
     let subscribers = response.data.subscriber; 
     vm.subscribers = subscribers;
@@ -75,8 +99,7 @@ let MainDashboardController = function($state, DashboardService, $scope, UserSer
     $scope.pieArticleLabels = subjectNames;
 
   });
-
-
+  
   DashboardService.getAllArticles().then( (response) => {
     let articles = response.data.article;
     console.log('ARTICLES', articles);
@@ -102,8 +125,8 @@ let MainDashboardController = function($state, DashboardService, $scope, UserSer
     $scope.articleBarData = [subjectArticles];
     $scope.pieArticleData = subjectArticles;
 
-
   });
+  }, 1000);
 
 
 };

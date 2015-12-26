@@ -174,7 +174,7 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
 
     newsletter.name = newsObj.name;
     newsletter.to = newsObj.to;
-    console.log('NEWSLETTER', newsletter);
+    // console.log('NEWSLETTER', newsletter);
     var subjects = newsObj.subjectNames;
 
     // *** --- USED IF WE WANT TO SEND TO A SELECT SEGMENT --- ***
@@ -1347,7 +1347,27 @@ Object.defineProperty(exports, '__esModule', {
 });
 var MainDashboardController = function MainDashboardController($state, DashboardService, $scope, UserService) {
 
-  // console.clear();
+  console.log(UserService);
+  // --- USER SERVICE PROVIDES ACCESS TO SUBJECT NAMES ---
+  UserService.accessUserSubjects();
+  // console.log(UserService.userSubjects);
+  // $scope.subjects = UserService.userSubjects;
+
+  var subjects = [];
+
+  setTimeout(function () {
+    var userSubjects = UserService.userSubjects;
+    console.log(userSubjects);
+
+    userSubjects.forEach(function (subject) {
+      subjects.push({
+        name: subject,
+        count: 0,
+        articles: 0
+      });
+      console.log(subjects);
+    });
+  }, 500);
 
   $scope.logOut = logout;
 
@@ -1358,88 +1378,96 @@ var MainDashboardController = function MainDashboardController($state, Dashboard
 
   var vm = this;
 
-  var subjects = [{ name: 'Football', count: 0, articles: 0 }, { name: 'Baseball', count: 0, articles: 0 }, { name: 'Basketball', count: 0, articles: 0 }, { name: 'Soccer', count: 0, articles: 0 }, { name: 'Hockey', count: 0, articles: 0 }];
+  // let subjects = [
+  //  {name: 'Football', count: 0, articles: 0},
+  //  {name: 'Baseball', count: 0, articles: 0},
+  //  {name: 'Basketball', count: 0, articles: 0},
+  //  {name: 'Soccer', count: 0, articles: 0},
+  //  {name: 'Hockey', count: 0, articles: 0}
+  // ];
 
-  DashboardService.getAllSubscribers().then(function (response) {
-    console.log('SUBSCRIBERS', response.data.subscriber);
-    var subscribers = response.data.subscriber;
-    vm.subscribers = subscribers;
+  setTimeout(function () {
+    DashboardService.getAllSubscribers().then(function (response) {
+      console.log('SUBSCRIBERS', response.data.subscriber);
+      var subscribers = response.data.subscriber;
+      vm.subscribers = subscribers;
 
-    var today = new Date();
-    var shortToday = today.toString().substring(0, 15);
-    subscribers.forEach(function (subscriber) {
-      DashboardService.cleanDates(subscriber);
-    });
-
-    var addedToday = [];
-    subscribers.forEach(function (subscriber) {
-      var shortDate = subscriber.created_at.toString().substring(0, 15);
-      if (shortDate === shortToday) {
-        addedToday.push(subscriber.email);
-      }
-      vm.newToday = addedToday;
-    });
-
-    subscribers.forEach(function (subscriber) {
-      subjects.forEach(function (subject) {
-        if (subscriber.subject_names.includes(subject.name)) {
-          subject.count = subject.count + 1;
-        }
+      var today = new Date();
+      var shortToday = today.toString().substring(0, 15);
+      subscribers.forEach(function (subscriber) {
+        DashboardService.cleanDates(subscriber);
       });
-    });
 
-    console.log('AFTER SUBJECT', subjects);
-    var subjectNames = [];
-    var subjectCounts = [];
-
-    subjects.forEach(function (subject) {
-      subjectNames.push(subject.name);
-      subjectCounts.push(subject.count);
-    });
-
-    console.log('NAMES', subjectNames);
-    console.log('COUNTS', subjectCounts);
-
-    // Pie Chart for Subscriber Preferences
-    $scope.piePrefData = subjectCounts;
-
-    // Preferences bar graph
-    $scope.subBarData = [subjectCounts];
-
-    // BAR LABELS
-    $scope.subBarLabels = subjectNames;
-    $scope.articleBarLabels = subjectNames;
-
-    // PIE CHART LABELS
-    $scope.piePrefLabels = subjectNames;
-    $scope.pieArticleLabels = subjectNames;
-  });
-
-  DashboardService.getAllArticles().then(function (response) {
-    var articles = response.data.article;
-    console.log('ARTICLES', articles);
-
-    var subjectArticles = [];
-
-    articles.forEach(function (article) {
-      subjects.forEach(function (subject) {
-        if (article.subject_names.includes(subject.name)) {
-          subject.articles = subject.articles + 1;
+      var addedToday = [];
+      subscribers.forEach(function (subscriber) {
+        var shortDate = subscriber.created_at.toString().substring(0, 15);
+        if (shortDate === shortToday) {
+          addedToday.push(subscriber.email);
         }
+        vm.newToday = addedToday;
       });
+
+      subscribers.forEach(function (subscriber) {
+        subjects.forEach(function (subject) {
+          if (subscriber.subject_names.includes(subject.name)) {
+            subject.count = subject.count + 1;
+          }
+        });
+      });
+
+      console.log('AFTER SUBJECT', subjects);
+      var subjectNames = [];
+      var subjectCounts = [];
+
+      subjects.forEach(function (subject) {
+        subjectNames.push(subject.name);
+        subjectCounts.push(subject.count);
+      });
+
+      console.log('NAMES', subjectNames);
+      console.log('COUNTS', subjectCounts);
+
+      // Pie Chart for Subscriber Preferences
+      $scope.piePrefData = subjectCounts;
+
+      // Preferences bar graph
+      $scope.subBarData = [subjectCounts];
+
+      // BAR LABELS
+      $scope.subBarLabels = subjectNames;
+      $scope.articleBarLabels = subjectNames;
+
+      // PIE CHART LABELS
+      $scope.piePrefLabels = subjectNames;
+      $scope.pieArticleLabels = subjectNames;
     });
 
-    subjects.forEach(function (subject) {
-      subjectArticles.push(subject.articles);
+    DashboardService.getAllArticles().then(function (response) {
+      var articles = response.data.article;
+      console.log('ARTICLES', articles);
+
+      var subjectArticles = [];
+
+      articles.forEach(function (article) {
+        subjects.forEach(function (subject) {
+          if (article.subject_names.includes(subject.name)) {
+            subject.articles = subject.articles + 1;
+          }
+        });
+      });
+
+      subjects.forEach(function (subject) {
+        subjectArticles.push(subject.articles);
+      });
+
+      console.log('ARTICLE COUNTS', subjectArticles);
+      console.log('SUBJECTS', subjects);
+
+      // bar graph values
+      $scope.articleBarData = [subjectArticles];
+      $scope.pieArticleData = subjectArticles;
     });
-
-    console.log('ARTICLE COUNTS', subjectArticles);
-    console.log('SUBJECTS', subjects);
-
-    // bar graph values
-    $scope.articleBarData = [subjectArticles];
-    $scope.pieArticleData = subjectArticles;
-  });
+  }, 1000);
 };
 
 MainDashboardController.$inject = ['$state', 'DashboardService', '$scope', 'UserService'];

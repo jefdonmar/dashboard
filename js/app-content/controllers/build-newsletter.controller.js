@@ -71,7 +71,7 @@ let BuildNewsletterController = function($state, $scope, NewsletterService, User
 
     newsletter.name = newsObj.name;
     newsletter.to = newsObj.to;
-    console.log('NEWSLETTER', newsletter);
+    // console.log('NEWSLETTER', newsletter);
     let subjects = newsObj.subjectNames;
 
     // *** --- USED IF WE WANT TO SEND TO A SELECT SEGMENT --- ***
