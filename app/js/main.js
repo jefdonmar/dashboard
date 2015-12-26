@@ -1678,7 +1678,7 @@ var AddSubscriberController = function AddSubscriberController($state, $scope, S
       console.log(res);
       setTimeout(function () {
         $state.go('root.main-dashboard');
-      }, 1000);
+      }, 500);
     });
   }
 
@@ -2156,7 +2156,8 @@ var SubscriberService = function SubscriberService($http, HEROKU, $cookies) {
 
   function addSubscriber(subObj) {
     var sub = new Subscriber(subObj);
-    console.log(sub);
+    var cleanedSubjName = sub.subject_names.split(',').join(', ');
+    sub.subject_names = cleanedSubjName;
     return $http.post(url, sub, HEROKU.CONFIG);
   }
 

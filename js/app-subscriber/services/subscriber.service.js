@@ -30,7 +30,8 @@ let SubscriberService = function($http, HEROKU, $cookies) {
 
   function addSubscriber (subObj) {
     let sub = new Subscriber(subObj);
-    console.log(sub);
+    let cleanedSubjName = sub.subject_names.split(',').join(', ');
+    sub.subject_names = cleanedSubjName;
     return $http.post(url, sub, HEROKU.CONFIG);
   }
 
