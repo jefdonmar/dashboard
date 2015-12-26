@@ -1347,26 +1347,45 @@ Object.defineProperty(exports, '__esModule', {
 });
 var MainDashboardController = function MainDashboardController($state, DashboardService, $scope, UserService) {
 
-  console.log(UserService);
+  // console.log(UserService);
+  // console.log(UserService.userSubjects);
+
+  var subjects = [];
+  var subjectNames = [];
+  console.log(userSubjects);
+
   // --- USER SERVICE PROVIDES ACCESS TO SUBJECT NAMES ---
   UserService.accessUserSubjects();
+  var userSubjects = UserService.userSubjects;
+
   // console.log(UserService.userSubjects);
   // $scope.subjects = UserService.userSubjects;
 
-  var subjects = [];
+  setTimeout(function () {
+    console.log(userSubjects);
+    userSubjects.forEach(function (subject) {
 
-  var userSubjects = UserService.userSubjects;
-  console.log(userSubjects);
+      if (subjectNames.indexOf(subject) === -1) {
+        console.log(subject + ' ADDED');
+        subjectNames.push(subject);
+      }
+    });
+  }, 1000);
 
   setTimeout(function () {
-    userSubjects.forEach(function (subject) {
+
+    console.log(userSubjects);
+    console.log(subjectNames);
+
+    subjectNames.forEach(function (subject) {
       subjects.push({
         name: subject,
         count: 0,
         articles: 0
       });
     });
-  }, 1000);
+    console.log(subjects);
+  }, 1500);
 
   $scope.logOut = logout;
 
@@ -1466,7 +1485,7 @@ var MainDashboardController = function MainDashboardController($state, Dashboard
       $scope.articleBarData = [subjectArticles];
       $scope.pieArticleData = subjectArticles;
     });
-  }, 1500);
+  }, 2000);
 };
 
 MainDashboardController.$inject = ['$state', 'DashboardService', '$scope', 'UserService'];
@@ -2643,7 +2662,6 @@ console.log(_moment2['default']);
 (0, _jquery2['default'])(document).foundation();_angular2['default'].module('app', ['app.core', 'app.layout', 'app.subscriber', 'app.user', 'app.content', 'app.dashboard']).run(function ($rootScope, UserService, $state) {
   $rootScope.$on('$stateChangeSuccess', function () {
     console.clear();
-    // $state.reload();
     // console.log('state change');
     UserService.setHeaders();
     if ($state.is('root.signup') || $state.is('root.welcome')) {

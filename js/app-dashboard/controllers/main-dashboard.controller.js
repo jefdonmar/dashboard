@@ -1,19 +1,39 @@
 let MainDashboardController = function($state, DashboardService, $scope, UserService) {
   
-  console.log(UserService);
-  // --- USER SERVICE PROVIDES ACCESS TO SUBJECT NAMES ---
-  UserService.accessUserSubjects();
+  // console.log(UserService);
   // console.log(UserService.userSubjects);
-  // $scope.subjects = UserService.userSubjects;
 
   let subjects = [];
-
-
-  let userSubjects = UserService.userSubjects;
+  let subjectNames = [];
   console.log(userSubjects);
 
+  // --- USER SERVICE PROVIDES ACCESS TO SUBJECT NAMES ---
+  UserService.accessUserSubjects();
+  let userSubjects = UserService.userSubjects;
+
+  // console.log(UserService.userSubjects);
+  // $scope.subjects = UserService.userSubjects;
+  
+
   setTimeout( function() {
+    console.log(userSubjects);
     userSubjects.forEach( function(subject) {
+    
+      if (subjectNames.indexOf(subject) === -1){
+        console.log(subject + ' ADDED');
+        subjectNames.push(subject);
+      }  
+
+    });
+  }, 1000);
+
+
+  setTimeout ( function () {
+    
+    console.log(userSubjects);
+    console.log(subjectNames);
+
+    subjectNames.forEach( function (subject) { 
       subjects.push(
       {
         name: subject,
@@ -22,7 +42,11 @@ let MainDashboardController = function($state, DashboardService, $scope, UserSer
       }
       );
     });
-  }, 1000);
+    console.log(subjects);
+  }, 1500);
+  
+
+
 
 
   $scope.logOut = logout;
@@ -126,7 +150,7 @@ let MainDashboardController = function($state, DashboardService, $scope, UserSer
       $scope.pieArticleData = subjectArticles;
 
     });
-  }, 1500);
+  }, 2000);
 
 
 };
