@@ -28,6 +28,7 @@ angular
   .run(function ($rootScope, UserService, $state) {
     $rootScope.$on('$stateChangeSuccess', function() {
       console.clear();
+      // $state.reload();
       // console.log('state change');
       UserService.setHeaders();
       if ( $state.is('root.signup') || $state.is('root.welcome')  ) {

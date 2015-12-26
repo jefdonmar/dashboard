@@ -21,7 +21,9 @@ let AddSubscriberController = function($state, $scope, SubscriberService, UserSe
     console.log('Supposed to add now');
     SubscriberService.addSubscriber(subObj).then( (res)=>{
       console.log(res);
-      $state.go('root.main-dashboard');
+      setTimeout( function () {
+        $state.go('root.main-dashboard');
+      }, 1000);
     });
   }
 
