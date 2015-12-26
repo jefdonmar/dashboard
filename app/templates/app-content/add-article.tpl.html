@@ -12,7 +12,7 @@
     
     <select ng-model="article.subject_names">
       <option value=''>Choose a subject</option>
-      <option ng-repeat="subject in subjects">{{ subject }}</option>
+      <option ng-repeat="subject in subjects track by $index">{{ subject }}</option>
     </select>
 
 

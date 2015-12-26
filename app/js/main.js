@@ -131,7 +131,28 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
 
   // --- USER SERVICE PROVIDES ACCESS TO SUBJECT NAMES ---
   UserService.accessUserSubjects();
-  $scope.subjects = UserService.userSubjects;
+  var userSubjects = UserService.userSubjects;
+
+  var subjects = [];
+  var subjectNames = [];
+
+  $scope.subjects = {};
+  $scope.subjectsLoaded = false;
+
+  setTimeout(function () {
+    console.log(userSubjects);
+    userSubjects.forEach(function (subject) {
+
+      if (subjectNames.indexOf(subject) === -1) {
+        console.log(subject + ' ADDED');
+        subjectNames.push(subject);
+      }
+    });
+    $scope.subjectsLoaded = true;
+    $scope.subjects = subjectNames;
+    console.log($scope.subjects);
+    console.log($scope.subjectsLoaded);
+  }, 1000);
 
   // --- GETS ALL SUBSCRIBERS IN CASE WE USE DROPDOWN ---
   getAllSubscribers();

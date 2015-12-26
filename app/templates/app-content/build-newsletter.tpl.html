@@ -15,7 +15,7 @@
     </select> -->
 
     <span>Subjects:</span><br>
-    <div id="subjectBuildDiv" ng-repeat="subject in subjects">
+    <div id="subjectBuildDiv" ng-repeat="subject in subjects track by $index" ng-show="subjects">
       <label class="subjectList">
         <input
           type="checkbox"
