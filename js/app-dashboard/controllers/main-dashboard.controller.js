@@ -150,7 +150,7 @@ let MainDashboardController = function($state, DashboardService, $scope, UserSer
       $scope.pieArticleData = subjectArticles;
 
     });
-  }, 2000);
+  }, 1800);
 
 
 };

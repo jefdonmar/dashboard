@@ -14,15 +14,17 @@
       <option ng-repeat="sub in vm.subscribers">{{sub.email}}</option>
     </select> -->
 
-    <span>Subjects:</span><br>
-    <div id="subjectBuildDiv" ng-repeat="subject in subjects track by $index" ng-show="subjects">
-      <label class="subjectList">
-        <input
-          type="checkbox"
-          checklist-model="newsObj.subjectNames"
-          checklist-value="subject"> 
-          {{ subject }}
-      </label>
+    <div ng-show="subjectsLoaded">
+      <span>Subjects:</span><br>
+      <div id="subjectBuildDiv" ng-repeat="subject in subjects track by $index">
+        <label class="subjectList">
+          <input
+            type="checkbox"
+            checklist-model="newsObj.subjectNames"
+            checklist-value="subject"> 
+            {{ subject }}
+        </label>
+      </div>
     </div>
 
     <br>

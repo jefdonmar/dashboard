@@ -132,15 +132,17 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
   // --- USER SERVICE PROVIDES ACCESS TO SUBJECT NAMES ---
   UserService.accessUserSubjects();
   var userSubjects = UserService.userSubjects;
+  console.log(UserService.userSubjects);
 
   var subjects = [];
   var subjectNames = [];
 
-  $scope.subjects = {};
-  $scope.subjectsLoaded = false;
+  // $scope.subjects = {};
+  // $scope.subjectsLoaded = false;
 
   setTimeout(function () {
     console.log(userSubjects);
+    $scope.subjectsLoaded = true;
     userSubjects.forEach(function (subject) {
 
       if (subjectNames.indexOf(subject) === -1) {
@@ -148,11 +150,10 @@ var BuildNewsletterController = function BuildNewsletterController($state, $scop
         subjectNames.push(subject);
       }
     });
-    $scope.subjectsLoaded = true;
     $scope.subjects = subjectNames;
     console.log($scope.subjects);
-    console.log($scope.subjectsLoaded);
-  }, 1000);
+    // console.log($scope.subjectsLoaded);
+  }, 500);
 
   // --- GETS ALL SUBSCRIBERS IN CASE WE USE DROPDOWN ---
   getAllSubscribers();
@@ -1506,7 +1507,7 @@ var MainDashboardController = function MainDashboardController($state, Dashboard
       $scope.articleBarData = [subjectArticles];
       $scope.pieArticleData = subjectArticles;
     });
-  }, 2000);
+  }, 1800);
 };
 
 MainDashboardController.$inject = ['$state', 'DashboardService', '$scope', 'UserService'];
