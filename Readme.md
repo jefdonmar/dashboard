@@ -12,7 +12,7 @@ In this application we used:
   + Angular-Cookies
   +
 
-Here is a link to our repository : 
+Here is a link to our repository: http://streamliners.surge.sh/#/
 
 We hope you enjoy! 
 
